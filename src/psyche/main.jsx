@@ -1,19 +1,27 @@
 import { OrbitControls, useHelper } from '@react-three/drei'
 import AnimatedStars from './components/AnimatedStars'
-import { useRef } from 'react'
+import { useRef, useEffect } from 'react'
 import Earth from './components/Earth'
 import * as THREE from 'three'
 import PsycheAsteroid from './components/PsycheAsteroid'
+import { useCameraZoom } from './components/CameraZoom';
 
 const MainPsycheContainer = () => {
   const directionalLightRef = useRef()
   const directionalLightRefTwo = useRef()
   useHelper(directionalLightRef, THREE.DirectionalLightHelper, 1, 'hotpink')
   useHelper(directionalLightRefTwo, THREE.DirectionalLightHelper, 1, 'hotpink')
+  const orbitControlsRef = useRef();
+
+  // how close we want to get
+  const targetZoomPosition = 0.3;
+  // Initiates Zoom
+  useCameraZoom(orbitControlsRef, targetZoomPosition)
+
   return (
     <>
       <color attach='background' args={['black']} />
-      <OrbitControls />
+      <OrbitControls ref={orbitControlsRef} />
       <AnimatedStars />
       <directionalLight
         ref={directionalLightRef}
