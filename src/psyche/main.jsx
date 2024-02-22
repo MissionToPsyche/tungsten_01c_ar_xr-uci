@@ -18,13 +18,13 @@ const MainPsycheContainer = () => {
       <directionalLight
         ref={directionalLightRef}
         position={[0, 0, 10]}
-        intensity={1}
+        intensity={1.5}
         // color={0xff0000}
       />
-      <directionalLight ref={directionalLightRefTwo} position={[0, 0, -10]} />
+      <directionalLight ref={directionalLightRefTwo} position={[0, 0, -10]} intensity={1.5}/>
 
       <PsycheAsteroid />
-      {/*<Earth />*/}
+      {/*<Moon />*/}
     </>
   )
 }
