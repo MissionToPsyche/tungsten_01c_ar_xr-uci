@@ -1,15 +1,11 @@
 
 
 import { useLoader } from '@react-three/fiber'
-import { useMemo } from 'react';
-//import { OBJLoader } from 'three/examples/jsm/Addons.js'
-//import { OBJLoader } from 'three-stdlib';
+import { useMemo, useRef } from 'react';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
+import PsycheSpacecraft from './PsycheSpacecraft';
 import {useFrame} from '@react-three/fiber'
-import {useRef} from 'react'
 
-
-//import { useTexture } from '@react-three/drei'
 
 const PsycheAsteroid = () => {
 	
@@ -23,9 +19,6 @@ const PsycheAsteroid = () => {
 			if (c.type === "Mesh") {
 				const _c = c ;
 				g = _c.geometry.center();
-				
-				
-				
 			}
 		});
 		
@@ -34,14 +27,17 @@ const PsycheAsteroid = () => {
 	
 	
 	useFrame(() => {
-		psycheRef.current.rotation.y += 0.003
+		psycheRef.current.rotation.y += 0.002
 	})
 
 
 	return (
-		<mesh ref={psycheRef} geometry={geometry} scale={2} frustumCulled={false}>
-			<meshPhysicalMaterial color="gray" />
-		</mesh>
+		<group>
+			<mesh ref={psycheRef} geometry={geometry} scale={2} frustumCulled={false}>
+				<meshPhysicalMaterial color="gray" />
+			</mesh>
+			<PsycheSpacecraft target={psycheRef}/>	
+		</group>
 	)
 }
 

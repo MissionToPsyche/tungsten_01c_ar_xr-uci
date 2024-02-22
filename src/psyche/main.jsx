@@ -32,7 +32,7 @@ const MainPsycheContainer = () => {
       <directionalLight ref={directionalLightRefTwo} position={[0, 0, -10]} intensity={1.5}/>
 
       <PsycheAsteroid />
-      {/*<Earth />*/}
+      {/*<Moon />*/}
     </>
   )
 }
