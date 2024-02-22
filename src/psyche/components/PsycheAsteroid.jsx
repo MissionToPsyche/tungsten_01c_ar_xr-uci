@@ -7,9 +7,7 @@ import PsycheSpacecraft from './PsycheSpacecraft';
 import {useFrame} from '@react-three/fiber'
 
 
-const PsycheAsteroid = () => {
-	
-	const psycheRef = useRef()
+const PsycheAsteroid =  ({ psycheRef }) => {
 	
 	const obj = useLoader(OBJLoader, '	/assets/psyche.obj')
 
@@ -30,14 +28,11 @@ const PsycheAsteroid = () => {
 		psycheRef.current.rotation.y += 0.002
 	})
 
-
 	return (
-		<group>
+
 			<mesh ref={psycheRef} geometry={geometry} scale={2} frustumCulled={false}>
 				<meshPhysicalMaterial color="gray" />
 			</mesh>
-			<PsycheSpacecraft target={psycheRef}/>	
-		</group>
 	)
 }
 

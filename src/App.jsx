@@ -3,7 +3,7 @@ import MainPsycheContainer from './psyche/main'
 
 function App() {
   return (
-    <Canvas>
+    <Canvas camera={{ fov: 45, position: [0, 0, 75] }}>
       <MainPsycheContainer />
     </Canvas>
   )
