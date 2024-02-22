@@ -5,7 +5,6 @@ import { useMemo, useRef } from 'react';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
 import PsycheSpacecraft from './PsycheSpacecraft';
 import {useFrame} from '@react-three/fiber'
-import {useRef} from 'react'
 
 
 const PsycheAsteroid = () => {
@@ -28,21 +27,17 @@ const PsycheAsteroid = () => {
 	
 	
 	useFrame(() => {
-		psycheRef.current.rotation.y += 0.003
+		psycheRef.current.rotation.y += 0.002
 	})
 
 
 	return (
 		<group>
-			<mesh ref={psycheRef} geometry={geometry} scale={0.5} frustumCulled={false}>
+			<mesh ref={psycheRef} geometry={geometry} scale={2} frustumCulled={false}>
 				<meshPhysicalMaterial color="gray" />
 			</mesh>
 			<PsycheSpacecraft target={psycheRef}/>	
 		</group>
-
-		//<mesh ref={psycheRef} geometry={geometry} scale={2} frustumCulled={false}>
-		//	<meshPhysicalMaterial color="gray" />
-		//</mesh>
 	)
 }
 

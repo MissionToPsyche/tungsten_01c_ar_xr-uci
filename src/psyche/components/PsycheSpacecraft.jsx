@@ -23,8 +23,8 @@ const PsycheSpacecraft = ({target}) => {
 	const moonRef = useRef()
 	
 	useFrame(({clock}) => {
-		moonRef.current.position.x = Math.sin(clock.getElapsedTime()*0.5) * 1.5
-		moonRef.current.position.z = Math.cos(clock.getElapsedTime()*0.5) * 1.5
+		moonRef.current.position.x = Math.sin(clock.getElapsedTime()*0.4) * 10
+		moonRef.current.position.z = Math.cos(clock.getElapsedTime()*0.4) * 10
 		
 		// Calculate the direction from the moon to the target (Psyche asteroid)
     const direction = new THREE.Vector3();
@@ -40,7 +40,7 @@ const PsycheSpacecraft = ({target}) => {
 	})
 
 	return (
-		<mesh ref={moonRef} geometry={geometry}  scale={0.001}  position={[2,0,0]}  frustumCulled={false}>
+		<mesh ref={moonRef} geometry={geometry}  scale={0.01}  position={[2,0,0]}  frustumCulled={false}>
 			<meshPhysicalMaterial color="pink" />
 		</mesh>
 	)
