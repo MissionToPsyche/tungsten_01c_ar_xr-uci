@@ -2,17 +2,12 @@
 
 import { useLoader, useFrame } from '@react-three/fiber'
 import { useMemo, useRef } from 'react';
-//import { OBJLoader } from 'three/examples/jsm/Addons.js'
-//import { OBJLoader } from 'three-stdlib';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
 import * as THREE from 'three';
 
 
-
-//import { useTexture } from '@react-three/drei'
-
-const Moon = ({target}) => {
-	const obj = useLoader(OBJLoader, '/assets/psyche.obj')
+const PsycheSpacecraft = ({target}) => {
+	const obj = useLoader(OBJLoader, '/assets/psyche_spacecraft.obj')
 
 	const geometry = useMemo(() => {
 		let g;
@@ -30,7 +25,6 @@ const Moon = ({target}) => {
 	useFrame(({clock}) => {
 		moonRef.current.position.x = Math.sin(clock.getElapsedTime()*0.5) * 1.5
 		moonRef.current.position.z = Math.cos(clock.getElapsedTime()*0.5) * 1.5
-		//moonRef.current.position.y += 0.002
 		
 		// Calculate the direction from the moon to the target (Psyche asteroid)
     const direction = new THREE.Vector3();
@@ -44,14 +38,10 @@ const Moon = ({target}) => {
 	})
 
 	return (
-		//<mesh geometry={geometry} scale={0.04}>
-		//	<primitive object={obj} />
-		//	<meshPhysicalMaterial color="gray" />
-		//</mesh>
-		<mesh ref={moonRef} geometry={geometry}  scale={0.2}  position={[2,0,0]}  frustumCulled={false}>
+		<mesh ref={moonRef} geometry={geometry}  scale={0.001}  position={[2,0,0]}  frustumCulled={false}>
 			<meshPhysicalMaterial color="gray" />
 		</mesh>
 	)
 }
 
-export default Moon
+export default PsycheSpacecraft

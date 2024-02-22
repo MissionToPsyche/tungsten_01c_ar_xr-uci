@@ -3,7 +3,7 @@
 import { useLoader } from '@react-three/fiber'
 import { useMemo, useRef } from 'react';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
-import Moon from './Moon';
+import PsycheSpacecraft from './PsycheSpacecraft';
 
 
 const PsycheAsteroid = () => {
@@ -25,7 +25,7 @@ const PsycheAsteroid = () => {
 			<mesh ref={psycheRef} geometry={geometry} scale={0.2}>
 				<meshPhysicalMaterial color="gray" />
 			</mesh>
-			<Moon target={psycheRef}/>	
+			<PsycheSpacecraft target={psycheRef}/>	
 		</group>
 
 	)
