@@ -35,11 +35,13 @@ const PsycheSpacecraft = ({target}) => {
     moonRef.current.rotation.setFromRotationMatrix(
       new THREE.Matrix4().lookAt(direction, new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 1, 0))
     );
+		
+		moonRef.current.rotateY(Math.PI / 2);
 	})
 
 	return (
 		<mesh ref={moonRef} geometry={geometry}  scale={0.001}  position={[2,0,0]}  frustumCulled={false}>
-			<meshPhysicalMaterial color="gray" />
+			<meshPhysicalMaterial color="pink" />
 		</mesh>
 	)
 }

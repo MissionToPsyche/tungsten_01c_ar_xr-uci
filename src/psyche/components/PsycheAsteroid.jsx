@@ -14,7 +14,7 @@ const PsycheAsteroid = () => {
 		obj.traverse((c) => {
 			if (c.type === "Mesh") {
 				const _c = c ;
-				g = _c.geometry
+				g = _c.geometry.center();
 			}
 		});
 		return g;
@@ -22,7 +22,7 @@ const PsycheAsteroid = () => {
 
 	return (
 		<group>
-			<mesh ref={psycheRef} geometry={geometry} scale={0.2}>
+			<mesh ref={psycheRef} geometry={geometry} scale={0.5}>
 				<meshPhysicalMaterial color="gray" />
 			</mesh>
 			<PsycheSpacecraft target={psycheRef}/>	
