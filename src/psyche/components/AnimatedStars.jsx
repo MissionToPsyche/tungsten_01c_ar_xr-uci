@@ -11,7 +11,14 @@ const AnimatedStars = () => {
     starsRef.current.rotation.z += 0.0001
   })
 
-  return <Stars ref={starsRef} />
+  return (
+    <>
+    <color attach='background' args={['black']} />
+    <Stars ref={starsRef} />
+    </>
+  )
+  
+  
 }
 
 export default AnimatedStars

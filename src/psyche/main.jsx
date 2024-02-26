@@ -1,96 +1,30 @@
-import { OrbitControls, useHelper, Text } from '@react-three/drei'
-import AnimatedStars from './components/AnimatedStars'
-import { useRef, useEffect, useState } from 'react'
-import * as THREE from 'three'
-import PsycheAsteroid from './components/PsycheAsteroid'
-import { animateCameraZoom } from './components/CameraZoom';
-import PsycheSpacecraft from './components/PsycheSpacecraft'
-import { useThree } from '@react-three/fiber'
+import { Canvas } from '@react-three/fiber';
+import MainPsycheContainer from './components/MainPsycheContainer';
+import { useRef, useState } from 'react';
+import './style.css';
+import { GlobalStateProvider } from './utils/useContext';
 
-
-const MainPsycheContainer = () => {
-  const { camera } = useThree();
-  const directionalLightRef = useRef()
-  const directionalLightRefTwo = useRef()
-  useHelper(directionalLightRef, THREE.DirectionalLightHelper, 1, 'hotpink')
-  useHelper(directionalLightRefTwo, THREE.DirectionalLightHelper, 1, 'hotpink')
+function PsycheApp() {
+  const canvasRef = useRef();
+  const [isOverview, setIsOverview] = useState(false);
+  const [isOverviewClicked, setIsOverviewClicked] = useState(false);
   
-  const orbitControlsRef = useRef();
-  const psycheSpacecraftRef = useRef();
-  const psycheRef = useRef()
+  const useContextList = { isOverview, setIsOverview, isOverviewClicked, setIsOverviewClicked };
   
-  const [showCountdown, setShowCountdown] = useState(true);
-  const [countdown, setCountdown] = useState(3);
-  const [showSpacecraft, setShowSpacecraft] = useState(true);
-  const [isMoving, setIsMoving] = useState(true);
+  const handleOverviewClick = () => {
+    setIsOverviewClicked(true);
+  };
   
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowCountdown(false);
-      
-      console.log("start zoom in")
-      animateCameraZoom(orbitControlsRef, camera, setShowSpacecraft, psycheSpacecraftRef); 
-    }, 3000); 
-
-    return () => clearTimeout(timer);
-  }, []); 
-  
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (countdown === -5) return clearInterval(interval);
-      if (countdown === -3) {
-        setIsMoving(false);
-      }
-      setCountdown((prevCountdown) => prevCountdown - 1);
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [countdown]);
-
   return (
-    <>
-      {showCountdown && 
-      <Text 
-      position={[0,8,0]}
-      fontSize={5}>
-      {countdown}
-      </Text>}
-      <color attach='background' args={['black']} />
-      <OrbitControls 
-        ref={orbitControlsRef} 
-        minDistance={6}
-        maxDistance={75}
-        enableRotate={false}
-        enableZoom={false} />
-      <AnimatedStars />
-      <directionalLight
-        ref={directionalLightRef}
-        position={[0, 0, 10]}
-        intensity={0.7}
-      />
-      <directionalLight ref={directionalLightRefTwo} position={[0, 0, -10]} intensity={0.7}/>
-      
-      <directionalLight
-        ref={directionalLightRef}
-        position={[0, 10, 0]}
-        intensity={0.7}
-      />
-      <directionalLight
-        ref={directionalLightRefTwo}
-        position={[0, -10, 0]}
-        intensity={0.7}
-      />
-      
-
-      <group>
-        <PsycheAsteroid psycheRef={psycheRef} />
-        {showSpacecraft && <PsycheSpacecraft scref={psycheSpacecraftRef} target={psycheRef} isMoving={isMoving}/>}
-      </group>
-    </>
-  )
+    <GlobalStateProvider value={useContextList}>
+      <div className="app-container">
+        <Canvas ref={canvasRef} camera={{ fov: 45, position: [0, 0, 75] }}>
+          <MainPsycheContainer/>
+        </Canvas>
+        {isOverview && <button className="ombre-button" onClick={handleOverviewClick}>Overview</button>}
+      </div>
+    </GlobalStateProvider>
+  );
 }
 
-export default MainPsycheContainer
-
-
-
+export default PsycheApp;
