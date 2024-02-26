@@ -29,13 +29,7 @@ const MainPsycheContainer = () => {
       setShowCountdown(false);
       
       console.log("start zoom in")
-      animateCameraZoom(setShowSpacecraft, psycheSpacecraftRef, camera); 
-      
-      if (!showSpacecraft) {
-        orbitControlsRef.current.enableZoom = true;
-        orbitControlsRef.current.enableRotate = true;
-        orbitControlsRef.current.maxDistance = 30;
-      }
+      animateCameraZoom(orbitControlsRef, camera, setShowSpacecraft, psycheSpacecraftRef); 
     }, 3000); 
 
     return () => clearTimeout(timer);
@@ -72,9 +66,21 @@ const MainPsycheContainer = () => {
       <directionalLight
         ref={directionalLightRef}
         position={[0, 0, 10]}
-        intensity={1.5}
+        intensity={0.7}
       />
-      <directionalLight ref={directionalLightRefTwo} position={[0, 0, -10]} intensity={1.5}/>
+      <directionalLight ref={directionalLightRefTwo} position={[0, 0, -10]} intensity={0.7}/>
+      
+      <directionalLight
+        ref={directionalLightRef}
+        position={[0, 10, 0]}
+        intensity={0.7}
+      />
+      <directionalLight
+        ref={directionalLightRefTwo}
+        position={[0, -10, 0]}
+        intensity={0.7}
+      />
+      
 
       <group>
         <PsycheAsteroid psycheRef={psycheRef} />

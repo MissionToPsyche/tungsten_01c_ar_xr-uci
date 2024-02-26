@@ -29,9 +29,9 @@ const PsycheAsteroid =  ({ psycheRef }) => {
 
 	return (
 
-			<mesh ref={psycheRef} geometry={geometry} scale={2} frustumCulled={false}>
-				<meshPhysicalMaterial color="gray" />
-			</mesh>
+		<mesh ref={psycheRef} geometry={geometry} scale={2} frustumCulled={false}>
+			<meshPhysicalMaterial color="gray" />
+		</mesh>
 	)
 }
 

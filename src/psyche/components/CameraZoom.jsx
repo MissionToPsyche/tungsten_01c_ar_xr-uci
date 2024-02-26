@@ -1,5 +1,5 @@
-export const animateCameraZoom = (setShowSpacecraft, psycheSpacecraftRef, camera) => {
-  let zoomSpeed = 1.24;
+export const animateCameraZoom = (orbitControlsRef, camera, setShowSpacecraft, psycheSpacecraftRef) => {
+  let zoomSpeed = 1.235;
   
   function updatePosition() {
     const targetPosition = psycheSpacecraftRef.current.position.clone();
@@ -10,7 +10,9 @@ export const animateCameraZoom = (setShowSpacecraft, psycheSpacecraftRef, camera
     
     if (currentDistance <= 0.1) {
       setShowSpacecraft(false);
-
+      orbitControlsRef.current.enableZoom = true;
+      orbitControlsRef.current.enableRotate = true;
+      orbitControlsRef.current.maxDistance = 30;
     }
     else {
       camera.position.add(step);
@@ -22,6 +24,5 @@ export const animateCameraZoom = (setShowSpacecraft, psycheSpacecraftRef, camera
     }
   }
   
-
   updatePosition();
 };
