@@ -1,48 +1,52 @@
-import { OrbitControls, useHelper } from '@react-three/drei'
+import { OrbitControls, useHelper, Text } from '@react-three/drei'
 import AnimatedStars from './components/AnimatedStars'
 import { useRef, useEffect, useState } from 'react'
-import Earth from './components/Earth'
 import * as THREE from 'three'
 import PsycheAsteroid from './components/PsycheAsteroid'
-import { useCameraZoom } from './components/CameraZoom';
+import { animateCameraZoom } from './components/CameraZoom';
 import PsycheSpacecraft from './components/PsycheSpacecraft'
-import { Text } from '@react-three/drei';
+import { useThree } from '@react-three/fiber'
 
 
 const MainPsycheContainer = () => {
+  const { camera } = useThree();
   const directionalLightRef = useRef()
   const directionalLightRefTwo = useRef()
   useHelper(directionalLightRef, THREE.DirectionalLightHelper, 1, 'hotpink')
   useHelper(directionalLightRefTwo, THREE.DirectionalLightHelper, 1, 'hotpink')
+  
   const orbitControlsRef = useRef();
   const psycheSpacecraftRef = useRef();
   const psycheRef = useRef()
-
-  // how close we want to get
-  const targetZoomPosition = 0.3;
-  // Initiates Zoom
-  //useCameraZoom(orbitControlsRef, targetZoomPosition)
-  //orbitControlsRef.current.maxDistance = 100
   
   const [showCountdown, setShowCountdown] = useState(true);
   const [countdown, setCountdown] = useState(3);
+  const [showSpacecraft, setShowSpacecraft] = useState(true);
+  const [isMoving, setIsMoving] = useState(true);
   
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowCountdown(false);
       
-      // Start zooming in after the timeout
       console.log("start zoom in")
-      animateCameraZoom(orbitControlsRef, 7); // Adjust the target zoom position as needed
+      animateCameraZoom(setShowSpacecraft, psycheSpacecraftRef, camera); 
       
+      if (!showSpacecraft) {
+        orbitControlsRef.current.enableZoom = true;
+        orbitControlsRef.current.enableRotate = true;
+        orbitControlsRef.current.maxDistance = 30;
+      }
     }, 3000); 
 
-    return () => clearTimeout(timer); // Cleanup the timer on unmount
+    return () => clearTimeout(timer);
   }, []); 
   
   useEffect(() => {
     const interval = setInterval(() => {
-      if (countdown === 0) return clearInterval(interval);
+      if (countdown === -5) return clearInterval(interval);
+      if (countdown === -3) {
+        setIsMoving(false);
+      }
       setCountdown((prevCountdown) => prevCountdown - 1);
     }, 1000);
 
@@ -74,39 +78,12 @@ const MainPsycheContainer = () => {
 
       <group>
         <PsycheAsteroid psycheRef={psycheRef} />
-        <PsycheSpacecraft ref={psycheSpacecraftRef} target={psycheRef}/>	
+        {showSpacecraft && <PsycheSpacecraft scref={psycheSpacecraftRef} target={psycheRef} isMoving={isMoving}/>}
       </group>
     </>
   )
 }
 
-const animateCameraZoom = (orbitControlsRef, targetZoomPosition) => {
-  let zoom = 75; 
-  let zoomSpeed = 0.7; // Adjust zoom speed as needed
-
-  const animateZoom = () => {
-    if (orbitControlsRef.current && orbitControlsRef.current.object) {
-      const camera = orbitControlsRef.current.object;
-      zoom -= zoomSpeed;
-      camera.position.z = zoom;
-      
-      if (zoom > targetZoomPosition) {
-        requestAnimationFrame(animateZoom);
-      } else {
-        camera.position.z = targetZoomPosition; // Ensure we reach the target exactly
-        orbitControlsRef.current.enableZoom = true; // Enable zoom after animation is complete
-        orbitControlsRef.current.enableRotate = true; // Enable zoom after animation is complete
-        orbitControlsRef.current.maxDistance = 30
-      }
-    }
-    
-    if (zoomSpeed > 0.15){
-      zoomSpeed -= 0.005;
-    }
-  };
-
-  animateZoom();
-};
 export default MainPsycheContainer
 
 

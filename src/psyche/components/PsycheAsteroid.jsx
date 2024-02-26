@@ -1,9 +1,8 @@
 
 
 import { useLoader } from '@react-three/fiber'
-import { useMemo, useRef } from 'react';
+import { useMemo } from 'react';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
-import PsycheSpacecraft from './PsycheSpacecraft';
 import {useFrame} from '@react-three/fiber'
 
 

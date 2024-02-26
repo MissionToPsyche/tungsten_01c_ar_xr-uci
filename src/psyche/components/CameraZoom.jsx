@@ -1,21 +1,27 @@
-import { useFrame } from '@react-three/fiber';
-import { useEffect, useState } from 'react';
-import * as THREE from 'three';
+export const animateCameraZoom = (setShowSpacecraft, psycheSpacecraftRef, camera) => {
+  let zoomSpeed = 1.24;
+  
+  function updatePosition() {
+    const targetPosition = psycheSpacecraftRef.current.position.clone();
+    const currentDistance = camera.position.distanceTo(targetPosition);
+    const startPosition = camera.position.clone();
+    const direction = targetPosition.clone().sub(startPosition).normalize();
+    const step = direction.multiplyScalar(zoomSpeed);
+    
+    if (currentDistance <= 0.1) {
+      setShowSpacecraft(false);
 
-export const useCameraZoom = (orbitControlsRef, targetZoomPosition) => {
-  const [startZoom, setStartZoom] = useState(true);
-
-  useFrame(() => {
-    if (startZoom && orbitControlsRef.current) {
-      const camera = orbitControlsRef.current.object;
-      camera.position.z = THREE.MathUtils.lerp(camera.position.z, targetZoomPosition, 0.01);
-
-      // Stop the zooming effect
-      if (Math.abs(camera.position.z - targetZoomPosition) < 0.05) {
-        setStartZoom(false); 
-      }
     }
-  });
+    else {
+      camera.position.add(step);
+      requestAnimationFrame(updatePosition);
+    }
+    
+    if (zoomSpeed > 0.15){
+      zoomSpeed -= 0.08;
+    }
+  }
+  
 
-  return { startZoom, setStartZoom };
+  updatePosition();
 };
