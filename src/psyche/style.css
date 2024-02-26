@@ -1,0 +1,44 @@
+.app-container {
+  position: relative;
+  display: flex;
+  flex-direction: column; 
+  height: 100vh; 
+}
+
+.ombre-button {
+  background: linear-gradient(to bottom, #f2717a, #a8ceff);
+  border: none;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+	
+	position: absolute;
+  bottom: 5vh;
+  left: 50%;
+  transform: translateX(-50%);
+	
+	
+	padding: 3vh 5vh;
+	
+	
+  /*Add media queries for responsive sizing*/
+  @media (max-width: 768px) {
+		font-size: 5vw;
+		width: 60vw;
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+		font-size: 3vw;
+		width: 50vw;
+  }
+
+  @media (min-width: 1024px) {
+		font-size: 2vw;
+    width: 20vw;
+  }
+}
+
+.ombre-button:hover {
+  background: linear-gradient(to bottom, #f4607e, #99d4ff);
+}
