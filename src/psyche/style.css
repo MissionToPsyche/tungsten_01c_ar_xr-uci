@@ -20,6 +20,8 @@
 	
 	
 	padding: 3vh 5vh;
+
+  
 	
 	
   /*Add media queries for responsive sizing*/
@@ -41,4 +43,15 @@
 
 .ombre-button:hover {
   background: linear-gradient(to bottom, #f4607e, #99d4ff);
+}
+
+.ombre-button.clicked {
+  opacity: 0;
+  transition: opacity 0.2s ease-out;
+}
+
+.start-button 
+{
+  position: absolute;
+  bottom: 18vh;
 }
