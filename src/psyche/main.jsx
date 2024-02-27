@@ -38,6 +38,8 @@ function PsycheApp() {
   return (
     <GlobalStateProvider value={useContextList}>
       <div className="app-container">
+        <div className="title-container">Psyche Simulation</div>
+        <div class="controls-instructions">Controls:<br></br>- Pinch to zoom<br></br>- Swipe to move</div>
         <Canvas ref={canvasRef} camera={{ fov: 45, position: [0, 0, 75] }}>
           <MainPsycheContainer/>
         </Canvas>

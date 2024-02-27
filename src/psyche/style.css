@@ -55,3 +55,52 @@
   position: absolute;
   bottom: 18vh;
 }
+
+.title-container {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%); 
+  text-align: center;
+  padding: 3vh 5vh;
+  background-color: rgba(255, 255, 255, 0);
+  color: #ffffff;
+  z-index: 10;
+
+  /*Add media queries for responsive sizing*/
+  @media (max-width: 768px) {
+    font-size: 5vw;
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    font-size: 3vw;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 2vw;
+  }
+}
+
+.controls-instructions {
+  position: absolute;
+  top: 70px;
+  text-align: left;
+  color: #ffffff;
+  font-size: 16px;
+  z-index: 10;
+
+  @media (max-width: 768px) {
+    font-size: 4vw;
+    left: 18px;
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    font-size: 3vw;
+    left: 20px;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 1.5vw;
+    left: 25px;
+  }
+}
