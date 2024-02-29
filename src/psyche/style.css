@@ -56,6 +56,12 @@
   bottom: 18vh;
 }
 
+.shoot-laser-button 
+{
+  position: absolute;
+  bottom: 18vh;
+}
+
 .title-container {
   position: absolute;
   top: 0;
