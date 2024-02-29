@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 
-export const animateCameraZoomIn = (orbitControlsRef, camera, setShowSpacecraft, setIsOverview, psycheSpacecraftRef) => {
+export const animateCameraZoomIn = (orbitControlsRef, camera, setShowSpacecraft, setIsOverview, setIsShootingLaser, psycheSpacecraftRef) => {
   
   let zoomSpeed = 1.235;
   
@@ -14,6 +14,7 @@ export const animateCameraZoomIn = (orbitControlsRef, camera, setShowSpacecraft,
     if (currentDistance <= 0.1) {
       setShowSpacecraft(false);
       setIsOverview(true);
+      setIsShootingLaser(true);
       orbitControlsRef.current.enableZoom = true;
       orbitControlsRef.current.enableRotate = true;
       orbitControlsRef.current.maxDistance = 30;
