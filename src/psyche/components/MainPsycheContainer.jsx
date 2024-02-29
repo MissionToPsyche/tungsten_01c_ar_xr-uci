@@ -17,7 +17,7 @@ import {GlobalStateContext} from '../utils/useContext';
 const MainPsycheContainer = () => {
   const { camera } = useThree();
   
-  const { setIsOverview, isOverviewClicked, isStartClicked, setIsShootingLaser} = useContext(GlobalStateContext);
+  const { setIsOverview, isOverviewClicked, isStartClicked, setIsShootingLaser, isShootingLaserClicked} = useContext(GlobalStateContext);
 
   const orbitControlsRef = useRef();
   const psycheSpacecraftRef = useRef();
@@ -59,6 +59,13 @@ const MainPsycheContainer = () => {
       animateCameraZoomOut(orbitControlsRef, camera);
     }
   }, [isOverviewClicked]);
+
+  useEffect(() => {
+    if (isShootingLaserClicked) {
+      console.log("shooting laser");
+      setIsShootingLaser(false);
+    }
+  }, [isShootingLaserClicked]);
 
   return (
     <>

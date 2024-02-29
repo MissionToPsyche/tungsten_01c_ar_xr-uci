@@ -39,7 +39,7 @@ function PsycheApp() {
   };
 
   const handleShootLaser = () => {
-    const numLasers = 100;
+    const numLasers = 1000;
     const newLasers = [];
 
     for (let i = 0; i < numLasers; i++) {
