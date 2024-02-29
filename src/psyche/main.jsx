@@ -13,9 +13,10 @@ function PsycheApp() {
   const [isCreditsClicked, setCreditsClicked] = useState(false);
   const [isStartAnimating, setIsStartAnimating] = useState(false);
   const [isShootingLaser, setIsShootingLaser] = useState(false);
+  const [isShootingLaserClicked, setIsShootingLaserClicked] = useState(false);
   const [lasers, setLasers] = useState([]);
   
-  const useContextList = { isOverview, setIsOverview, isOverviewClicked, setIsOverviewClicked, isStartClicked, setStartClicked, isCreditsClicked, setCreditsClicked, isShootingLaser, setIsShootingLaser };
+  const useContextList = { isOverview, setIsOverview, isOverviewClicked, setIsOverviewClicked, isStartClicked, setStartClicked, isCreditsClicked, setCreditsClicked, isShootingLaser, setIsShootingLaser, isShootingLaserClicked, setIsShootingLaserClicked };
 
   const handleStartClick = () => {
     setIsStartAnimating(true);
@@ -63,8 +64,8 @@ function PsycheApp() {
         </Canvas>
         {!isCreditsClicked && !isStartClicked && <button className={`ombre-button start-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleStartClick}>Start</button>}
         {!isCreditsClicked && !isStartClicked && <button className={`ombre-button credits-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleCreditsClick}>Credits</button>}
-        {isStartClicked && !isShootingLaser && <button className="ombre-button shoot-laser-button" onClick={handleShootLaser}>Shoot Laser</button>}
         {isOverview && <button className="ombre-button" onClick={handleOverviewClick}>Overview</button>}
+        {isShootingLaser && <button className="ombre-button shoot-laser-button" onClick={handleShootLaser}>Shoot Laser</button>}
       </div>
     </GlobalStateProvider>
   );
