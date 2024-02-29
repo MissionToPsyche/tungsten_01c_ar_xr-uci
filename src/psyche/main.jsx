@@ -65,7 +65,7 @@ function PsycheApp() {
         {!isCreditsClicked && !isStartClicked && <button className={`ombre-button start-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleStartClick}>Start</button>}
         {!isCreditsClicked && !isStartClicked && <button className={`ombre-button credits-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleCreditsClick}>Credits</button>}
         {isOverview && <button className="ombre-button" onClick={handleOverviewClick}>Overview</button>}
-        {isShootingLaser && <button className="ombre-button shoot-laser-button" onClick={handleShootLaser}>Shoot Laser</button>}
+        {!isOverviewClicked && isShootingLaser && <button className="ombre-button shoot-laser-button" onClick={handleShootLaser}>Shoot Laser</button>}
       </div>
     </GlobalStateProvider>
   );
