@@ -36,6 +36,7 @@ function PsycheApp() {
   
   const handleOverviewClick = () => {
     setIsOverviewClicked(true);
+    setLasers([]);
   };
 
   const handleShootLaser = () => {
