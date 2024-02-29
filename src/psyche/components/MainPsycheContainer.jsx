@@ -17,7 +17,7 @@ import {GlobalStateContext} from '../utils/useContext';
 const MainPsycheContainer = () => {
   const { camera } = useThree();
   
-  const { setIsOverview, isOverviewClicked, isStartClicked} = useContext(GlobalStateContext);
+  const { setIsOverview, isOverviewClicked, isStartClicked, setIsShootingLaser} = useContext(GlobalStateContext);
 
   const orbitControlsRef = useRef();
   const psycheSpacecraftRef = useRef();
@@ -37,7 +37,7 @@ const MainPsycheContainer = () => {
             clearInterval(interval);
             setShowCountdown(false);
             console.log("start zoom in");
-            animateCameraZoomIn(orbitControlsRef, camera, setShowSpacecraft, setIsOverview, psycheSpacecraftRef);
+            animateCameraZoomIn(orbitControlsRef, camera, setShowSpacecraft, setIsOverview, setIsShootingLaser, psycheSpacecraftRef);
             setIsMoving(true);
             return prevCountdown;
           }

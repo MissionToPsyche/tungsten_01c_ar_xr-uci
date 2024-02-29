@@ -5,10 +5,9 @@ import { Mesh } from 'three';
 const Laser = ({ position, angle }) => {
   const meshRef = useRef();
 
-  // Update the position and rotation of the mesh
   useFrame(() => {
     meshRef.current.position.set(position.x, position.y, 0);
-    meshRef.current.rotation.z = angle; // Assuming angle is in radians
+    meshRef.current.rotation.z = angle;
   });
 
   return (
