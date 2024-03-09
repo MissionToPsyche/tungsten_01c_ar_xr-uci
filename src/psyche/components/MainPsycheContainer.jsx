@@ -62,12 +62,29 @@ const MainPsycheContainer = () => {
 
   return (
     <>
-      {showCountdown && 
-      <Text 
-      position={[0,8,0]}
-      fontSize={5}>
-      {countdown}
-      </Text>}
+      {showCountdown && (
+        <group position={[0, 20, 0]}>
+          <Text fontSize={4}
+                anchorX="center" anchorY="middle">
+            {countdown}
+          </Text>
+          <Text position={[0, -4, 0]}
+                fontSize={2}
+                anchorX="center" anchorY="middle">
+            Controls:
+          </Text>
+          <Text position={[0, -6, 0]}
+                fontSize={2}
+                anchorX="center" anchorY="middle">
+            Pinch to zoom
+          </Text>
+          <Text position={[0, -8, 0]}
+                fontSize={2} 
+                anchorX="center" anchorY="middle">
+            Swipe to move
+          </Text>
+        </group>
+      )}
       <OrbitControls 
         ref={orbitControlsRef} 
         minDistance={6}
