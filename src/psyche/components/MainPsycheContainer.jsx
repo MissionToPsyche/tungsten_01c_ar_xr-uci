@@ -10,6 +10,7 @@ import { animateCameraZoomIn, animateCameraZoomOut } from '../utils/useCameraZoo
 import PsycheSpacecraft from './PsycheSpacecraft'
 import Light from './Light'
 import {GlobalStateContext} from '../utils/useContext';
+import TextBoxes from './TextBoxes';
 
 
 
@@ -83,8 +84,17 @@ const MainPsycheContainer = () => {
   
       <group>
         <PsycheAsteroid psycheRef={psycheRef} />
-        {showSpacecraft && <PsycheSpacecraft scref={psycheSpacecraftRef} target={psycheRef} isMoving={isMoving}/>}
+        {showSpacecraft && <PsycheSpacecraft scref={psycheSpacecraftRef} target={psycheRef} isMoving={isMoving} />}
+        <TextBoxes
+          position={[7, 0, 0]}
+          content="Information about Psyche Asteroid"
+          fontSize={0.11}
+          planeSize={[2, 1]} // Width and height of the plane
+          planeColor="white" // Background color of the text box
+        />
       </group>
+
+      
     </>
   )
 }
