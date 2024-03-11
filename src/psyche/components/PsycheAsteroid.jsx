@@ -4,6 +4,8 @@ import { useLoader } from '@react-three/fiber'
 import { useMemo } from 'react';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
 import {useFrame} from '@react-three/fiber'
+import { ROTATION_SPEED} from './constants';
+
 
 
 const PsycheAsteroid =  ({ psycheRef }) => {
@@ -24,7 +26,7 @@ const PsycheAsteroid =  ({ psycheRef }) => {
 	
 	
 	useFrame(() => {
-		psycheRef.current.rotation.y += 0.002
+		psycheRef.current.rotation.y += ROTATION_SPEED
 	})
 
 	return (
