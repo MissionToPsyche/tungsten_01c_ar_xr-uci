@@ -16,7 +16,7 @@ const NickleIcon = ({ position, onClick, scale }) => {
   // Axis rotation
   meshRef.current.position.z = Math.cos(clock.getElapsedTime() * 0.08) * xAxis
   
-   meshRef.current.rotation.y += ROTATION_SPEED * 1.1 // Same rotation speed as Physce
+   meshRef.current.rotation.y += ROTATION_SPEED * 1.1 
   })
 
 
@@ -31,7 +31,7 @@ const NickleIcon = ({ position, onClick, scale }) => {
       ref={meshRef} 
       onClick={onClick} 
       scale={scale}>
-        <sphereGeometry args={[1, 32, 32]} />
+        <sphereGeometry args={[1.8, 32, 32]} />
         <meshStandardMaterial map={texture} />
       </mesh>
     );
