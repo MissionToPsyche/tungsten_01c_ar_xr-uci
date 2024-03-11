@@ -3,11 +3,11 @@ import { useLoader, useFrame } from '@react-three/fiber';
 import { TextureLoader } from 'three';
 import { ROTATION_SPEED } from './constants';
 
-const BlinkIcon = ({ position, onClick, scale }) => {
+const IronIcon = ({ position, onClick, scale }) => {
     const meshRef = useRef();
     
     
-    const texture = useLoader(TextureLoader, '/assets/info_star.jpeg');
+    const texture = useLoader(TextureLoader, '/assets/iron_icon.png');
     
   const xAxis = 3
   useFrame( ({clock}) => {
@@ -37,5 +37,5 @@ const BlinkIcon = ({ position, onClick, scale }) => {
     );
   };
   
-  export default BlinkIcon;
+  export default IronIcon;
   
