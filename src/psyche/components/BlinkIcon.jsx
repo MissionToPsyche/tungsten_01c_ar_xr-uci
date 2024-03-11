@@ -9,12 +9,12 @@ const BlinkIcon = ({ position, onClick, scale }) => {
     
     const texture = useLoader(TextureLoader, '/assets/info_star.jpeg');
     
-  const xAxis = 2.4
+  const xAxis = 3
   useFrame( ({clock}) => {
   // Orbit Rotation
-  meshRef.current.position.x = Math.sin(clock.getElapsedTime() * 0.07) * xAxis
+  meshRef.current.position.x = Math.sin(clock.getElapsedTime() * 0.08) * xAxis
   // Axis rotation
-  meshRef.current.position.z = Math.cos(clock.getElapsedTime() * 0.07) * xAxis
+  meshRef.current.position.z = Math.cos(clock.getElapsedTime() * 0.08) * xAxis
   
    meshRef.current.rotation.y += ROTATION_SPEED * 1.1 // Same rotation speed as Physce
   })
