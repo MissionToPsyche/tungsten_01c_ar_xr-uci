@@ -12,11 +12,11 @@ const IronIcon = ({ position, onClick, scale }) => {
   const xAxis = 3
   useFrame( ({clock}) => {
   // Orbit Rotation
-  meshRef.current.position.x = Math.sin(clock.getElapsedTime() * 0.08) * xAxis
+ // meshRef.current.position.x = Math.sin(clock.getElapsedTime() * 0.08 ) * xAxis
   // Axis rotation
-  meshRef.current.position.z = Math.cos(clock.getElapsedTime() * 0.08) * xAxis
+ // meshRef.current.position.z = Math.cos(clock.getElapsedTime() * 0.08) * xAxis
   
-   meshRef.current.rotation.y += ROTATION_SPEED * 1.1 
+  // meshRef.current.rotation.y += ROTATION_SPEED * 2.5
   })
 
 

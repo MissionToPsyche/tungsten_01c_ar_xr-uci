@@ -27,8 +27,8 @@ function PsycheApp() {
       <div className="app-container">
         <Canvas ref={canvasRef} camera={{ fov: 45, position: [0, 0, 75] }}>
           <MainPsycheContainer/>
-          <IronIcon position={[3, 5 , 15]} onClick={handleIconClick} scale={[0.05, 0.3, 0.3]} />
-          <NickleIcon position={[-1, -5, 5]} onClick={handleIconClick} scale={[0.05, 0.3, 0.3]} /> 
+          <IronIcon position={[0, 1 , 2.5]} onClick={handleIconClick} scale={[0.05, 0.3, 0.3]} />
+          <NickleIcon position={[-2, -1, -1.75]} onClick={handleIconClick} scale={[0.05, 0.3, 0.3]} /> 
         </Canvas>
         {isOverview && <button className="ombre-button" onClick={handleOverviewClick}>Overview</button>}
       </div>
