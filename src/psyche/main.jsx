@@ -31,7 +31,7 @@ function PsycheApp() {
           <MainPsycheContainer/>
 
           <IronIcon position={[0, 1 , 2.5]} onClick={handleIconClick} scale={[0.05, 0.3, 0.3]} />
-          <NickleIcon position={[-2, -1, -1.75]} onClick={handleIconClick} scale={[0.05, 0.3, 0.3]} /> 
+          <NickleIcon position={[-3, -1, -0.5]} onClick={handleIconClick} scale={[0.05, 0.3, 0.3]} /> 
 
         </Canvas>
         {isOverview && <button className="ombre-button" onClick={handleOverviewClick}>Overview</button>}
