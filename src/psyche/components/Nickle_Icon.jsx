@@ -17,6 +17,9 @@ const NickleIcon = ({ position, onClick, scale }) => {
   //meshRef.current.position.z = Math.cos(clock.getElapsedTime() * 0.08) * xAxis
   
   // meshRef.current.rotation.y += ROTATION_SPEED * 3.1 
+
+
+ 
   })
 
 
