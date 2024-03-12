@@ -17,7 +17,10 @@ const IronIcon = ({ position, onClick, scale }) => {
  // meshRef.current.position.z = Math.cos(clock.getElapsedTime() * 0.08) * xAxis
   
   // meshRef.current.rotation.y += ROTATION_SPEED * 2.5
-  })
+ 
+  meshRef.current.rotation.y = 4.7
+
+})
 
 
 

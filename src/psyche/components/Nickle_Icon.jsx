@@ -16,9 +16,21 @@ const NickleIcon = ({ position, onClick, scale }) => {
   // Axis rotation
   //meshRef.current.position.z = Math.cos(clock.getElapsedTime() * 0.08) * xAxis
   
-  // meshRef.current.rotation.y += ROTATION_SPEED * 3.1 
 
 
+   meshRef.current.rotation.y = 3
+
+   if (meshRef.current) {
+    // Move the icon along the x-axis
+   // meshRef.current.position.x += 0.001;
+
+    // Move the icon along the y-axis
+   // meshRef.current.position.y -= 0.0001;
+
+    // Move the icon along the z-axis
+   // meshRef.current.position.z += 0.001;
+
+   }
  
   })
 
