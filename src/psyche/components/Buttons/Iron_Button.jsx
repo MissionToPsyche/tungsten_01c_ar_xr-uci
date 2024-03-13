@@ -18,7 +18,9 @@ const IronIcon2 = ({ position, onClick, scale }) => {
   
 
 
-   meshRef.current.rotation.y = 2.5
+   meshRef.current.rotation.x = 0
+   meshRef.current.rotation.y = 5
+   meshRef.current.rotation.z = 0.5
 
    if (meshRef.current) {
     // Move the icon along the x-axis

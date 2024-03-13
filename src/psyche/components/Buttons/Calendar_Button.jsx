@@ -18,7 +18,11 @@ const CalendarIcon = ({ position, onClick, scale }) => {
   
   // meshRef.current.rotation.y += ROTATION_SPEED * 2.5
  
-  meshRef.current.rotation.y = 4.7
+  meshRef.current.rotation.x = 0
+  meshRef.current.rotation.y = 2.3
+  meshRef.current.rotation.z = -0.33
+  
+
 
 })
 
