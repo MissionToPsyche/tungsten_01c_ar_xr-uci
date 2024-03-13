@@ -1,9 +1,9 @@
 import React, { useRef } from 'react';
 import { useLoader, useFrame } from '@react-three/fiber';
-import { TextureLoader } from 'three';
-import { ROTATION_SPEED } from './constants';
+import { TextureLoader, MeshBasicMaterial } from 'three';
+import { ROTATION_SPEED } from '../constants';
 
-const NickleIcon = ({ position, onClick, scale }) => {
+const IronIcon2 = ({ position, onClick, scale }) => {
     const meshRef = useRef();
     
     
@@ -18,7 +18,7 @@ const NickleIcon = ({ position, onClick, scale }) => {
   
 
 
-   meshRef.current.rotation.y = 3
+   meshRef.current.rotation.y = 2.5
 
    if (meshRef.current) {
     // Move the icon along the x-axis
@@ -34,23 +34,13 @@ const NickleIcon = ({ position, onClick, scale }) => {
  
   })
 
-
-
-
-
-
-    
-  
     return (
-      <mesh position={position} 
-      ref={meshRef} 
-      onClick={onClick} 
-      scale={scale}>
-        <sphereGeometry args={[1.8, 32, 32]} />
-        <meshStandardMaterial map={texture} />
-      </mesh>
+      <mesh position={position} ref={meshRef} onClick={onClick} scale={scale}>
+      <sphereGeometry args={[1.8, 32, 32]} />
+      <meshBasicMaterial map={texture} /> {/* Updated material */}
+    </mesh>
     );
   };
   
-  export default NickleIcon;
+  export default IronIcon2;
   
