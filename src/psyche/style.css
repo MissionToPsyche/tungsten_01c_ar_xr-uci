@@ -45,6 +45,61 @@
   background: linear-gradient(to bottom, #f4607e, #99d4ff);
 }
 
+.image-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 40vw; 
+  max-height: 40vh; 
+  width: auto; 
+  height: auto; 
+ 
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* overflow: hidden; /* Hide overflow */
+  padding: 10x;
+  text-align: center;
+}
+
+.image-popup img {
+  max-width: 130%; 
+  max-height: 130%; 
+  height: auto;
+  width: auto; 
+}
+
+@media (max-width: 600px) {
+  .image-popup {
+    max-width: 200vw; 
+    max-height: 200vh;
+    padding: 0px;
+  }
+
+  .image-popup img {
+    max-width: 100vw; 
+    max-height: 100vw; 
+    height: auto;
+    width: auto; 
+  }
+}
+
+.image-popup .close-button {
+  position: absolute;
+  top: 0; 
+  right: 0; 
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5em;
+  padding: 5px; 
+}
+
 .ombre-button.clicked {
   opacity: 0;
   transition: opacity 0.2s ease-out;
