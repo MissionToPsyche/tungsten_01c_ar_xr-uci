@@ -4,7 +4,6 @@ import { useRef, useState } from 'react';
 import './style.css';
 import { GlobalStateProvider } from './utils/useContext';
 
-
 //Icons and Boxes
 import IronIcon from  './components/Buttons/Iron_Button';
 import IronBox from '../assets/iron_box.png';
@@ -17,7 +16,6 @@ import PlanetCoreBox from  '../assets/planet_core_box.png';
 
 import SizeIcon from './components/Buttons/Size_Button';
 import SizeBox from  '../assets/size_box.png';
-
 
 function PsycheApp() {
   const canvasRef = useRef();
@@ -105,7 +103,6 @@ function PsycheApp() {
           <CalendarIcon position={[-2.4, -1, -1]} onClick={handleCalendarClick} scale={[0.05, 0.3, 0.3]} />
           <PlanetCoreIcon position={[2.5, -1, -1]} onClick={handlePlanetCoreClick} scale={[0.05, 0.3, 0.3]} />
           <SizeIcon position={[-0.4, 2.1, -1.3]} onClick={handleSizeClick} scale={[0.05, 0.3, 0.3]} />
-
 
         </Canvas>
         
