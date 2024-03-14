@@ -25,9 +25,9 @@ function PsycheApp() {
   const [isCreditsClicked, setCreditsClicked] = useState(false);
   const [isStartAnimating, setIsStartAnimating] = useState(false);
   const [showControls, setShowControls] = useState(false);
+  const [currentImage, setCurrentImage] = useState(null);
   
   const useContextList = { isOverview, setIsOverview, isOverviewClicked, setIsOverviewClicked, isStartClicked, setStartClicked, isCreditsClicked, setCreditsClicked };
-  const [currentImage, setCurrentImage] = useState(null);
 
   const handleStartClick = () => {
     setIsStartAnimating(true);
@@ -47,10 +47,6 @@ function PsycheApp() {
   
   const handleOverviewClick = () => {
     setIsOverviewClicked(true);
-  };
-
-  const handleControlsClick = () => {
-    setShowControls(!showControls);
   };
 
   // Create on click event for Iron Icon
@@ -75,6 +71,10 @@ function PsycheApp() {
    const handleSizeClick = () => {
     const imageToShow = currentImage === SizeBox ? null : SizeBox;
     setCurrentImage(imageToShow); // Show the nickel info box, or hide if already shown
+  };
+
+  const handleControlsClick = () => {
+    setShowControls(!showControls);
   };
 
   function ControlsPopup({ onClose }) {
@@ -109,16 +109,15 @@ function PsycheApp() {
         {!isCreditsClicked && !isStartClicked && <button className={`ombre-button start-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleStartClick}>Start</button>}
         {!isCreditsClicked && !isStartClicked && <button className={`ombre-button credits-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleCreditsClick}>Credits</button>}
         {isOverview && <button className="ombre-button" onClick={handleOverviewClick}>Overview</button>}
-        {isStartClicked && (<button className="controls-button" onClick={handleControlsClick}>?</button>)}
-        {showControls && <ControlsPopup onClose={() => setShowControls(false)} />}
-
+        
         {currentImage && (
           <div className="image-popup">
             <img src={currentImage} alt="Information" />
             <button onClick={() => setCurrentImage(null)}>Close</button>
           </div>
         )}
-        
+        {isStartClicked && (<button className="controls-button" onClick={handleControlsClick}>?</button>)}
+        {showControls && <ControlsPopup onClose={() => setShowControls(false)} />}
       </div>
     </GlobalStateProvider>
   );

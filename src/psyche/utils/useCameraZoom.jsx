@@ -23,8 +23,8 @@ export const animateCameraZoomIn = (orbitControlsRef, camera, setShowSpacecraft,
       requestAnimationFrame(updatePosition);
     }
     
-    if (zoomSpeed > 0.15){
-      zoomSpeed -= 0.08;
+    if (zoomSpeed > 0.25){
+      zoomSpeed -= 0.04;
     }
   }
   
