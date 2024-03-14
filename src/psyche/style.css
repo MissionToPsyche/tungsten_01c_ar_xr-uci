@@ -45,6 +45,54 @@
   background: linear-gradient(to bottom, #f4607e, #99d4ff);
 }
 
+.image-popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 40vw; 
+  max-height: 40vh; 
+  width: auto; 
+  height: auto; 
+ 
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* overflow: hidden; /* Hide overflow */
+  padding: 10x;
+  text-align: center;
+}
+
+.image-popup img {
+  max-width: 100%; 
+  max-height: 100%; 
+  height: auto; 
+  width: auto; 
+}
+
+@media (max-width: 600px) {
+  .image-popup {
+    max-width: 95vw; 
+    max-height: 95vh; 
+    padding: 10px; 
+  }
+}
+
+.image-popup .close-button {
+  position: absolute;
+  top: 0; 
+  right: 0; 
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5em;
+  padding: 5px; 
+}
+
 .ombre-button.clicked {
   opacity: 0;
   transition: opacity 0.2s ease-out;
