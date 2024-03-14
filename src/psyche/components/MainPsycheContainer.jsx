@@ -17,40 +17,36 @@ import {GlobalStateContext} from '../utils/useContext';
 const MainPsycheContainer = () => {
   const { camera } = useThree();
   
-  const { setIsOverview, isOverviewClicked } = useContext(GlobalStateContext);
+  const { setIsOverview, isOverviewClicked, isStartClicked} = useContext(GlobalStateContext);
 
   const orbitControlsRef = useRef();
   const psycheSpacecraftRef = useRef();
   const psycheRef = useRef()
   
-  const [showCountdown, setShowCountdown] = useState(true);
+  const [showCountdown, setShowCountdown] = useState(false);
   const [countdown, setCountdown] = useState(3);
   const [showSpacecraft, setShowSpacecraft] = useState(true);
   const [isMoving, setIsMoving] = useState(true);
   
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowCountdown(false);
-      
-      console.log("start zoom in")
-      animateCameraZoomIn(orbitControlsRef, camera, setShowSpacecraft,setIsOverview, psycheSpacecraftRef); 
-    }, 3000); 
+    if (isStartClicked) {
+      setShowCountdown(true);
+      const interval = setInterval(() => {
+        setCountdown((prevCountdown) => {
+          if (prevCountdown <= 1) {
+            clearInterval(interval);
+            setShowCountdown(false);
+            console.log("start zoom in");
+            animateCameraZoomIn(orbitControlsRef, camera, setShowSpacecraft, setIsOverview, psycheSpacecraftRef);
+            setIsMoving(true);
+            return prevCountdown;
+          }
+          return prevCountdown - 1;
+        });
+      }, 1000);
+    }
+  }, [isStartClicked]); 
 
-    return () => clearTimeout(timer);
-  }, []); 
-  
-  useEffect(() => {
-    const interval = setInterval(() => {
-      if (countdown === -5) return clearInterval(interval);
-      if (countdown === -3) {
-        setIsMoving(false);
-      }
-      setCountdown((prevCountdown) => prevCountdown - 1);
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, [countdown]);
-  
   useEffect(() => {
     if (isOverviewClicked) {
       console.log("start zoom out")
@@ -66,12 +62,29 @@ const MainPsycheContainer = () => {
 
   return (
     <>
-      {showCountdown && 
-      <Text 
-      position={[0,8,0]}
-      fontSize={5}>
-      {countdown}
-      </Text>}
+      {showCountdown && (
+        <group position={[0, 20, 0]}>
+          <Text fontSize={4}
+                anchorX="center" anchorY="middle">
+            {countdown}
+          </Text>
+          <Text position={[0, -4, 0]}
+                fontSize={2}
+                anchorX="center" anchorY="middle">
+            Controls:
+          </Text>
+          <Text position={[0, -6, 0]}
+                fontSize={2}
+                anchorX="center" anchorY="middle">
+            Pinch to zoom
+          </Text>
+          <Text position={[0, -8, 0]}
+                fontSize={2} 
+                anchorX="center" anchorY="middle">
+            Swipe to move
+          </Text>
+        </group>
+      )}
       <OrbitControls 
         ref={orbitControlsRef} 
         minDistance={6}
