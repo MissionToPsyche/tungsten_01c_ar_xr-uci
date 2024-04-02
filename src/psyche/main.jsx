@@ -16,6 +16,7 @@ import PlanetCoreBox from  '../assets/planet_core_box.png';
 
 import SizeIcon from './components/Buttons/Size_Button';
 import SizeBox from  '../assets/size_box.png';
+import ProgressBarButton from './components/Buttons/ProgressBarButton';
 
 function PsycheApp() {
   const canvasRef = useRef();
@@ -25,6 +26,8 @@ function PsycheApp() {
   const [isCreditsClicked, setCreditsClicked] = useState(false);
   const [isStartAnimating, setIsStartAnimating] = useState(false);
   const [showControls, setShowControls] = useState(false);
+  const [showNotebook, setShowNotebook] = useState(false);
+
   const [currentImage, setCurrentImage] = useState(null);
   
   const useContextList = { isOverview, setIsOverview, isOverviewClicked, setIsOverviewClicked, isStartClicked, setStartClicked, isCreditsClicked, setCreditsClicked };
@@ -76,6 +79,10 @@ function PsycheApp() {
   const handleControlsClick = () => {
     setShowControls(!showControls);
   };
+  
+  const handleNotebookClick = () => {
+    setShowNotebook(!showNotebook);
+  };
 
   function ControlsPopup({ onClose }) {
     return (
@@ -92,6 +99,17 @@ function PsycheApp() {
     );
   }
   
+  function NotebookPopup({ onClose }) {
+    return (
+      <div className="controls-popup">
+        <button className="close-button" onClick={onClose}>X</button>
+        <div className="controls-content">
+          Notebook Content
+        </div>
+      </div>
+    );
+  }
+  
   return (
     <GlobalStateProvider value={useContextList}>
       <div className="app-container">
@@ -103,7 +121,6 @@ function PsycheApp() {
           <CalendarIcon position={[-2.4, -1, -1]} onClick={handleCalendarClick} scale={[0.05, 0.3, 0.3]} />
           <PlanetCoreIcon position={[2.5, -1, -1]} onClick={handlePlanetCoreClick} scale={[0.05, 0.3, 0.3]} />
           <SizeIcon position={[-0.4, 2.1, -1.3]} onClick={handleSizeClick} scale={[0.05, 0.3, 0.3]} />
-
         </Canvas>
         
         {!isCreditsClicked && !isStartClicked && <button className={`ombre-button start-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleStartClick}>Start</button>}
@@ -118,6 +135,14 @@ function PsycheApp() {
         )}
         {isStartClicked && (<button className="controls-button" onClick={handleControlsClick}>?</button>)}
         {showControls && <ControlsPopup onClose={() => setShowControls(false)} />}
+          
+          
+        {isStartClicked && (<button onClick={handleNotebookClick}>        
+          <ProgressBarButton/> 
+        </button>)}
+        {showNotebook && <NotebookPopup onClose={() => setShowNotebook(false)} />}
+
+
       </div>
     </GlobalStateProvider>
   );
