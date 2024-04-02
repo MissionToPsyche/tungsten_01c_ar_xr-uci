@@ -5,18 +5,16 @@ import './style.css';
 import { GlobalStateProvider } from './utils/useContext';
 
 //Icons and Boxes
-import IronIcon from  './components/Buttons/Iron_Button';
 import IronBox from '../assets/iron_box.png';
 
-import CalendarIcon from './components/Buttons/Calendar_Button'
 import CalendarBox from '../assets/calendar_box.png';
 
-import PlanetCoreIcon from './components/Buttons/Planet_Core_Button';
 import PlanetCoreBox from  '../assets/planet_core_box.png';
 
-import SizeIcon from './components/Buttons/Size_Button';
 import SizeBox from  '../assets/size_box.png';
 import ProgressBarButton from './components/Buttons/ProgressBarButton';
+
+import ItemHotspot from './components/Buttons/ItemHotspot';
 
 function PsycheApp() {
   const canvasRef = useRef();
@@ -116,11 +114,12 @@ function PsycheApp() {
         {!isStartClicked && <div className="title-container">Psyche Simulation</div>}
         <Canvas ref={canvasRef} camera={{ fov: 45, position: [0, 0, 75] }}>
           <MainPsycheContainer/>
-
-          <IronIcon position={[0, 1 , 2]} onClick={handleIronIconClick} scale={[0.05, 0.3, 0.3]} /> 
-          <CalendarIcon position={[-2.4, -1, -1]} onClick={handleCalendarClick} scale={[0.05, 0.3, 0.3]} />
-          <PlanetCoreIcon position={[2.5, -1, -1]} onClick={handlePlanetCoreClick} scale={[0.05, 0.3, 0.3]} />
-          <SizeIcon position={[-0.4, 2.1, -1.3]} onClick={handleSizeClick} scale={[0.05, 0.3, 0.3]} />
+          
+          <ItemHotspot position={[0, 1 , 2]} onClick={handleIronIconClick} scale={[0.05, 0.3, 0.3]} meshRotation={[0, 5, 0.5]} imageUrl={'/assets/nickle_icon.png'}/>
+          <ItemHotspot position={[-2.4, -1, -1]} onClick={handleCalendarClick} scale={[0.05, 0.3, 0.3]}  meshRotation={[0, 2.3, -0.33]} imageUrl={'src/assets/calendar_icon.png'}/>
+          <ItemHotspot position={[2.5, -1, -1]} onClick={handlePlanetCoreClick} scale={[0.05, 0.3, 0.3]} meshRotation={[0, 0.4, -0.2]} imageUrl={'src/assets/planet_core_icon.png'}/>
+          <ItemHotspot position={[-0.4, 2.1, -1.3]} onClick={handleSizeClick} scale={[0.05, 0.3, 0.3]} meshRotation={[0, 1.7, 0.8]} imageUrl={'src/assets/size_icon.png'}/>
+          
         </Canvas>
         
         {!isCreditsClicked && !isStartClicked && <button className={`ombre-button start-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleStartClick}>Start</button>}

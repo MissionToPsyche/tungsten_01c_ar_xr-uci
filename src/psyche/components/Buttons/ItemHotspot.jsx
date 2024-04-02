@@ -3,11 +3,9 @@ import { useLoader, useFrame } from '@react-three/fiber';
 import { TextureLoader, MeshBasicMaterial } from 'three';
 import { ROTATION_SPEED } from '../constants';
 
-const IronIcon2 = ({ position, onClick, scale }) => {
+const ItemHotspot = ({ position, onClick, scale, meshRotation, imageUrl }) => {
     const meshRef = useRef();
-    
-    
-    const texture = useLoader(TextureLoader, '/assets/nickle_icon.png');
+    const texture = useLoader(TextureLoader, imageUrl);
     
   const xAxis = 3
   useFrame( ({clock}) => {
@@ -18,9 +16,9 @@ const IronIcon2 = ({ position, onClick, scale }) => {
   
 
 
-   meshRef.current.rotation.x = 0
-   meshRef.current.rotation.y = 5
-   meshRef.current.rotation.z = 0.5
+   meshRef.current.rotation.x = meshRotation[0]
+   meshRef.current.rotation.y = meshRotation[1]
+   meshRef.current.rotation.z = meshRotation[2]
 
    if (meshRef.current) {
     // Move the icon along the x-axis
@@ -44,5 +42,5 @@ const IronIcon2 = ({ position, onClick, scale }) => {
     );
   };
   
-  export default IronIcon2;
+  export default ItemHotspot;
   
