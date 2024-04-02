@@ -8,21 +8,23 @@ const ItemHotspot = ({ position, onClick, scale, meshRotation, imageUrl }) => {
     const texture = useLoader(TextureLoader, imageUrl);
     
   const xAxis = 3
-  useFrame( ({clock}) => {
-   meshRef.current.rotation.x = meshRotation[0]
-   meshRef.current.rotation.y = meshRotation[1]
-   meshRef.current.rotation.z = meshRotation[2]
+  //useFrame( ({clock}) => {
+  // meshRef.current.rotation.x = meshRotation[0]
+  // meshRef.current.rotation.y = meshRotation[1]
+  // meshRef.current.rotation.z = meshRotation[2]
 
-   if (meshRef.current) {
+  // if (meshRef.current) {
 
-   }
+  // }
  
-  })
+  //})
 
     return (
       <mesh position={position} ref={meshRef} onClick={onClick} scale={scale}>
       <sphereGeometry args={[1.8, 32, 32]} />
       <meshBasicMaterial map={texture} /> {/* Updated material */}
+      
+      {meshRef.current && meshRef.current.rotation.set(...meshRotation)}
     </mesh>
     );
   };
