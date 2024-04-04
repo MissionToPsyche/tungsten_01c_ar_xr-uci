@@ -116,6 +116,8 @@
   bottom: 18vh;
 }
 
+/* Controls */
+
 .controls-button {
   position: absolute;
   top: 1vh;
@@ -210,3 +212,12 @@
     font-size: 2vw;
   }
 }
+
+
+
+
+
+
+
+
+

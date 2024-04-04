@@ -26,7 +26,7 @@ const PsycheAsteroid =  ({ psycheRef }) => {
 	
 	
 	useFrame(() => {
-		psycheRef.current.rotation.y += ROTATION_SPEED
+		//psycheRef.current.rotation.y += ROTATION_SPEED
 		
 	})
 
