@@ -1,26 +1,24 @@
 import React, { useRef } from 'react';
 import { useLoader, useFrame } from '@react-three/fiber';
 import { TextureLoader, MeshBasicMaterial } from 'three';
-import { ROTATION_SPEED } from '../constants';
+import {GlobalStateContext} from '../../utils/useContext';
+import { useContext } from "react";
 
-const ItemHotspot = ({ position, onClick, scale, meshRotation, imageUrl }) => {
+import { hotspots } from '../constants';
+
+const ItemHotspot = ({ position, scale, meshRotation, boxImage, imageUrl }) => {
     const meshRef = useRef();
     const texture = useLoader(TextureLoader, imageUrl);
     
-  const xAxis = 3
-  //useFrame( ({clock}) => {
-  // meshRef.current.rotation.x = meshRotation[0]
-  // meshRef.current.rotation.y = meshRotation[1]
-  // meshRef.current.rotation.z = meshRotation[2]
-
-  // if (meshRef.current) {
-
-  // }
- 
-  //})
-
+    const { currentImage, setCurrentImage,} = useContext(GlobalStateContext);
+    
+    const handleIconClick = () => {
+      const imageToShow = boxImage;
+      setCurrentImage(imageToShow); // Show the iron info box, or hide if already shown
+    };
+    
     return (
-      <mesh position={position} ref={meshRef} onClick={onClick} scale={scale}>
+      <mesh position={position} ref={meshRef} onClick={handleIconClick} scale={scale}>
       <sphereGeometry args={[1.8, 32, 32]} />
       <meshBasicMaterial map={texture} /> {/* Updated material */}
       
@@ -29,5 +27,23 @@ const ItemHotspot = ({ position, onClick, scale, meshRotation, imageUrl }) => {
     );
   };
   
-  export default ItemHotspot;
+  
+  const ItemHotspots = () => {
+    
+    return (
+      <>
+      {
+        hotspots.map(
+          (hotspot, index) => (
+            <ItemHotspot key={index} {...hotspot} />
+          )
+        )
+      }
+      </>
+    )
+    
+  };
+  
+  
+  export default ItemHotspots;
   
