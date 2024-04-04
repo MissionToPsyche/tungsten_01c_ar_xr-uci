@@ -6,6 +6,9 @@ import { GlobalStateProvider } from './utils/useContext';
 import ProgressBarButton from './components/Buttons/ProgressBarButton';
 import ControlsPopup from './components/PopUps/ControlsPopup';
 import NotebookPopup from './components/PopUps/NotebookPopup';
+import PsycheSpacecraft from './components/PsycheSpacecraft';
+import SpaceCraftContainer from './components/SpaceCraftContainer';
+import AsteroidContainer from './components/AsteroidContainer';
 
 function PsycheApp() {
   const canvasRef = useRef();
@@ -19,7 +22,9 @@ function PsycheApp() {
 
   const [currentImage, setCurrentImage] = useState(null);
   
-  const useContextList = { currentImage, setCurrentImage, isOverview, setIsOverview, isOverviewClicked, setIsOverviewClicked, isStartClicked, setStartClicked, isCreditsClicked, setCreditsClicked };
+  const [step, setStep] = useState(0);
+  
+  const useContextList = { step, setStep, currentImage, setCurrentImage, isOverview, setIsOverview, isOverviewClicked, setIsOverviewClicked, isStartClicked, setStartClicked, isCreditsClicked, setCreditsClicked };
 
   const handleStartClick = () => {
     setIsStartAnimating(true);
@@ -55,12 +60,15 @@ function PsycheApp() {
     <GlobalStateProvider value={useContextList}>
       <div className="app-container">
         {!isStartClicked && <div className="title-container">Psyche Simulation</div>}
+        
         <Canvas ref={canvasRef} camera={{ fov: 45, position: [0, 0, 75] }}>
-          <MainPsycheContainer/>
+          {/*<MainPsycheContainer/>*/}
+          <SpaceCraftContainer/>
         </Canvas>
         
         {!isCreditsClicked && !isStartClicked && <button className={`ombre-button start-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleStartClick}>Start</button>}
         {!isCreditsClicked && !isStartClicked && <button className={`ombre-button credits-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleCreditsClick}>Credits</button>}
+        
         {isOverview && <button className="ombre-button" onClick={handleOverviewClick}>Overview</button>}
         
         {currentImage && (

@@ -14,7 +14,7 @@ import {GlobalStateContext} from '../utils/useContext';
 
 
 
-const MainPsycheContainer = () => {
+const AsteroidContainer = () => {
   const { camera } = useThree();
   
   const {step, setStep, setIsOverview, isOverviewClicked, isStartClicked} = useContext(GlobalStateContext);
@@ -30,13 +30,23 @@ const MainPsycheContainer = () => {
   
   useEffect(() => {
     if (isStartClicked) {
-      console.log("start zoom in");
-      animateCameraZoomIn(orbitControlsRef, camera, setShowSpacecraft, setIsOverview, psycheSpacecraftRef);
-      //setIsMoving(true);
-      orbitControlsRef.current.enableZoom = true;
-      orbitControlsRef.current.enableRotate = true;
-      orbitControlsRef.current.maxDistance = 30;
-
+      setShowCountdown(true);
+      const interval = setInterval(() => {
+        setCountdown((prevCountdown) => {
+          if (prevCountdown <= 1) {
+            clearInterval(interval);
+            setShowCountdown(false);
+            console.log("start zoom in");
+            animateCameraZoomIn(orbitControlsRef, camera, setShowSpacecraft, setIsOverview, psycheSpacecraftRef);
+            //setIsMoving(true);
+            orbitControlsRef.current.enableZoom = true;
+            orbitControlsRef.current.enableRotate = true;
+            orbitControlsRef.current.maxDistance = 30;
+            return prevCountdown;
+          }
+          return prevCountdown - 1;
+        });
+      }, 1000);
     }
   }, [isStartClicked]); 
 
@@ -55,29 +65,6 @@ const MainPsycheContainer = () => {
 
   return (
     <>
-      {showCountdown && (
-        <group position={[0, 20, 0]}>
-          <Text fontSize={4}
-                anchorX="center" anchorY="middle">
-            {countdown}
-          </Text>
-          <Text position={[0, -4, 0]}
-                fontSize={2}
-                anchorX="center" anchorY="middle">
-            Controls:
-          </Text>
-          <Text position={[0, -6, 0]}
-                fontSize={2}
-                anchorX="center" anchorY="middle">
-            Pinch to zoom
-          </Text>
-          <Text position={[0, -8, 0]}
-                fontSize={2} 
-                anchorX="center" anchorY="middle">
-            Swipe to move
-          </Text>
-        </group>
-      )}
       <OrbitControls 
         ref={orbitControlsRef} 
         minDistance={6}
@@ -89,13 +76,12 @@ const MainPsycheContainer = () => {
   
       <group>
         <PsycheAsteroid psycheRef={psycheRef} />
-        <PsycheSpacecraft scref={psycheSpacecraftRef} target={psycheRef} isMoving={isMoving}/>
       </group>
     </>
   )
 }
 
-export default MainPsycheContainer
+export default AsteroidContainer
 
 
 
