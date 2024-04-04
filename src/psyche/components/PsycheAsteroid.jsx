@@ -5,6 +5,7 @@ import { useMemo } from 'react';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
 import {useFrame} from '@react-three/fiber'
 import { ROTATION_SPEED} from './constants';
+import ItemHotspots from './Buttons/ItemHotspot';
 
 
 
@@ -26,15 +27,18 @@ const PsycheAsteroid =  ({ psycheRef }) => {
 	
 	
 	useFrame(() => {
-		//psycheRef.current.rotation.y += ROTATION_SPEED
+		psycheRef.current.rotation.z += 0.005;
 		
 	})
 
 	return (
+	<group ref={psycheRef}>
+		  <ItemHotspots/>
+			<mesh  geometry={geometry} scale={2} frustumCulled={false}>
+				<meshPhysicalMaterial color="gray" />
+			</mesh>
+	</group>
 
-		<mesh ref={psycheRef} geometry={geometry} scale={2} frustumCulled={false}>
-			<meshPhysicalMaterial color="gray" />
-		</mesh>
 	)
 }
 
