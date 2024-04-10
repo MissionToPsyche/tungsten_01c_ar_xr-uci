@@ -3,6 +3,7 @@ import MainPsycheContainer from './components/MainPsycheContainer';
 import { useRef, useState } from 'react';
 import './style.css';
 import { GlobalStateProvider } from './utils/useContext';
+import Menu from './components/Menu';
 
 
 //Icons and Boxes
@@ -66,9 +67,11 @@ function PsycheApp() {
           <CalendarIcon position={[-2.4, -1, -1]} onClick={handleCalendarClick} scale={[0.05, 0.3, 0.3]} />
           <PlanetCoreIcon position={[2.5, -1, -1]} onClick={handlePlanetCoreClick} scale={[0.05, 0.3, 0.3]} />
           <SizeIcon position={[-0.4, 2.1, -1.3]} onClick={handleSizeClick} scale={[0.05, 0.3, 0.3]} />
-
+          
+          
 
         </Canvas>
+        <Menu /> {/* Place the Menu component */}
         {isOverview && <button className="ombre-button" onClick={handleOverviewClick}>Overview</button>}
         
         {currentImage && (
