@@ -101,8 +101,8 @@ function TabPanel(props) {
        <Box sx={modalStyle}>
             <Button onClick={handleClose} sx={{position: 'absolute', top: '1vh', right: '1vh'}}><CloseIcon/></Button>
 
-            <Box sx={{ borderBottom: 1, borderColor: 'divider', marginTop: 2 }}>
-                <Tabs value = {value} onChange = {handleChange}>
+            <Box sx={{ borderBottom: 1, borderColor: 'divider', marginTop: 2 , width:'100%'}}>
+                <Tabs value = {value} onChange = {handleChange} variant='fullWidth'>
                     {activateTab && (
                             tabsArr.map((item)=>(
                                 <Tab {...item} />
@@ -113,10 +113,10 @@ function TabPanel(props) {
             </Box>
             
             <TabPanel value={value} index={0}>
-              <Box sx={{ flexGrow: 1, marginTop: '2vh', overflowY:'auto', width:'70vw'}}>
+              <Box sx={{ flexGrow: 1, marginTop: '2vh', width:'70vw'}}>
                 <Grid container spacing={{ xs: 1, md: 2 }} columns={{ xs: 4, sm: 8, md: 12 }} sx={{ overflowY: "scroll", maxHeight: "55vh" }}> 
                   {Array.from(Array(20)).map((_, index) => (
-                    <Grid item xs={2} sm={4} md={4} key={index}>
+                    <Grid item xs={2} sm={4} md={4} key={index} >
                     <Item>Item {index}</Item>
                   </Grid>
                   ))}
@@ -125,8 +125,8 @@ function TabPanel(props) {
             </TabPanel>
             
             <TabPanel value={value} index={1}>
-              <Box sx={{ flexGrow: 1, marginTop: '2vh', overflowY:'auto', width:'70vw'}}>
-                  <Grid container spacing={{ xs: 1, md: 2 }} columns={{ xs: 4, sm: 8, md: 12 }} sx={{ overflowY: "scroll", maxHeight: "60vh" }}> 
+              <Box sx={{ flexGrow: 1, marginTop: '2vh', width:'70vw'}}>
+                  <Grid container spacing={{ xs: 1, md: 2 }} columns={{ xs: 4, sm: 8, md: 12 }} sx={{ overflowY: "auto", maxHeight: "55vh" }}> 
                     {Array.from(Array(4)).map((_, index) => (
                       <Grid item xs={2} sm={4} md={4} key={index}>
                       <Item>Tool {index}</Item>
