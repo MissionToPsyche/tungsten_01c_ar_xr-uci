@@ -19,7 +19,23 @@ const PsycheSpacecraft = ({scref , target, isMoving}) => {
 		});
 		return g;
 	}, [obj]);
+	
+	useFrame(({clock}) => {
+		if (isMoving) {
+			scref.current.position.x = Math.sin(clock.getElapsedTime()*0.8) * 10
+			scref.current.position.z = Math.cos(clock.getElapsedTime()*0.8) * 10
+			
+			const direction = new THREE.Vector3();
+			target.current.getWorldPosition(direction);
+			direction.sub(scref.current.position).normalize();
 
+			scref.current.rotation.setFromRotationMatrix(
+				new THREE.Matrix4().lookAt(direction, new THREE.Vector3(0, 0, 0), new THREE.Vector3(0, 1, 0))
+			);
+			scref.current.rotateY(Math.PI / 2);
+		}
+		
+	})
 	
 	
 	return (

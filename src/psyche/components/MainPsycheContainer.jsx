@@ -17,26 +17,23 @@ import {GlobalStateContext} from '../utils/useContext';
 const MainPsycheContainer = () => {
   const { camera } = useThree();
   
-  const {step, setStep, setIsOverview, isOverviewClicked, isStartClicked} = useContext(GlobalStateContext);
+  const {step, setStep, setIsOverview, isOverviewClicked, isStartClicked, showCountdown, setShowCountdown, countdown, setCountdown, showSpacecraft, setShowSpacecraft,isMoving, setIsMoving, showAsteroid} = useContext(GlobalStateContext);
 
   const orbitControlsRef = useRef();
   const psycheSpacecraftRef = useRef();
   const psycheRef = useRef()
   
-  const [showCountdown, setShowCountdown] = useState(false);
-  const [countdown, setCountdown] = useState(3);
-  const [showSpacecraft, setShowSpacecraft] = useState(true);
-  const [isMoving, setIsMoving] = useState(true);
-  
   useEffect(() => {
     if (isStartClicked) {
       console.log("start zoom in");
-      animateCameraZoomIn(orbitControlsRef, camera, setShowSpacecraft, setIsOverview, psycheSpacecraftRef);
-      //setIsMoving(true);
-      orbitControlsRef.current.enableZoom = true;
-      orbitControlsRef.current.enableRotate = true;
-      orbitControlsRef.current.maxDistance = 30;
-
+      //orbitControlsRef.current.target.set(psycheSpacecraftRef.current.position.x, psycheSpacecraftRef.current.position.y, psycheSpacecraftRef.current.position.z);
+      animateCameraZoomIn(camera, psycheRef, 15, () => {
+        setIsOverview(true);
+        orbitControlsRef.current.enableZoom = true;
+        orbitControlsRef.current.enableRotate = true;
+        orbitControlsRef.current.maxDistance = 30;
+      });
+      setIsMoving(false);
     }
   }, [isStartClicked]); 
 
@@ -88,8 +85,8 @@ const MainPsycheContainer = () => {
       <Light />
   
       <group>
-        <PsycheAsteroid psycheRef={psycheRef} />
-        <PsycheSpacecraft scref={psycheSpacecraftRef} target={psycheRef} isMoving={isMoving}/>
+        {showAsteroid && <PsycheAsteroid psycheRef={psycheRef} />}
+        {showSpacecraft && <PsycheSpacecraft scref={psycheSpacecraftRef} target={psycheRef} isMoving={isMoving}/>}
       </group>
     </>
   )
