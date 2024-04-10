@@ -72,7 +72,7 @@ function PsycheApp() {
 
         </Canvas>
         <Menu /> {/* Place the Menu component */}
-        {isOverview && <button className="ombre-button" onClick={handleOverviewClick}>Overview</button>}
+       {/* {isOverview && <button className="ombre-button" onClick={handleOverviewClick}>Overview</button>} OVERVIEW Commented out */}
         
         {currentImage && (
           <div className="image-popup">
