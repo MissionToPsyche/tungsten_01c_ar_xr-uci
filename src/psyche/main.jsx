@@ -5,7 +5,6 @@ import './style.css';
 import { GlobalStateProvider } from './utils/useContext';
 import ProgressBarButton from './components/Buttons/ProgressBarButton';
 import ControlsPopup from './components/PopUps/ControlsPopup';
-import NotebookPopup from './components/PopUps/NotebookPopup';
 
 function PsycheApp() {
   const canvasRef = useRef();
@@ -17,9 +16,10 @@ function PsycheApp() {
   const [showControls, setShowControls] = useState(false);
   const [showNotebook, setShowNotebook] = useState(false);
 
+
   const [currentImage, setCurrentImage] = useState(null);
   
-  const useContextList = { currentImage, setCurrentImage, isOverview, setIsOverview, isOverviewClicked, setIsOverviewClicked, isStartClicked, setStartClicked, isCreditsClicked, setCreditsClicked };
+  const useContextList = { currentImage, setCurrentImage, isOverview, setIsOverview, isOverviewClicked, setIsOverviewClicked, isStartClicked, setStartClicked, isCreditsClicked, setCreditsClicked,  showNotebook, setShowNotebook};
 
   const handleStartClick = () => {
     setIsStartAnimating(true);
@@ -45,9 +45,6 @@ function PsycheApp() {
     setShowControls(!showControls);
   };
   
-  const handleNotebookClick = () => {
-    setShowNotebook(!showNotebook);
-  };
 
 
   
@@ -73,10 +70,10 @@ function PsycheApp() {
         {showControls && <ControlsPopup onClose={() => setShowControls(false)} />}
           
           
-        {isStartClicked && (<button onClick={handleNotebookClick}>        
-          <ProgressBarButton/> 
-        </button>)}
-        {showNotebook && <NotebookPopup onClose={() => setShowNotebook(false)} />}
+        {isStartClicked && (      
+        <ProgressBarButton /> )}
+        
+        {/*<Button onClick={handleOpen}>Open modal</Button>*/}
 
 
       </div>
