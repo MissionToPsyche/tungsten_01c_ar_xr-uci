@@ -103,7 +103,7 @@ function TabPanel(props) {
     }));
     
     const toolList = [
-      { icon: <ArchitectureIcon />, title: "Gamma Ray and Neutron Spectrometer",  text: "Tool 1 Description" },
+      { icon: <ArchitectureIcon />, title: "Gamma Ray and Neutron Spectrometer",  text: "Determine the chemical elements constituting Psyche."},
       { icon: <BuildIcon />,title: 'Multispectral Imager', text: "Tool 2 Description" },
       { icon: <HardwareIcon />,title: 'Magnetometer', text: "Tool 3 Description" },
       { icon: <BrushIcon />,title: 'X-band radio telecommunications system', text: "Tool 4 Description" },
@@ -113,17 +113,17 @@ function TabPanel(props) {
     ];
     
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const [openIndex, setOpenIndex] = React.useState(null);
 
-    const handleClick = (event) => {
+    const handleClick = (event, index) => {
+      setOpenIndex(index);
       setAnchorEl(event.currentTarget);
     };
 
     const handleClosePopover = () => {
+      setOpenIndex(null);
       setAnchorEl(null);
     };
-
-    const open = Boolean(anchorEl);
-    const id = open ? 'simple-popover' : undefined;
     
     
     return (
@@ -162,8 +162,8 @@ function TabPanel(props) {
                 <Grid container sx={{ overflowY: 'auto', maxHeight: '55vh' }}>
                   {toolList.map((tool, index) => (
                     <Grid item key={index} sx={{ width: '100%' }}>
-                    <Button aria-describedby={id} fullWidth sx={{ padding: 0, textTransform: 'none' }} onClick={handleClick}>
-                    <Item key={index} sx={{ width: '100%', marginBottom:'1vh', justifyContent:'flex-start'}} >
+                    <Button fullWidth sx={{ padding: 0, textTransform: 'none' }} onClick={(event) => handleClick(event, index)}>
+                    <Item   sx={{ width: '100%', marginBottom:'1vh', justifyContent:'flex-start'}} >
                       <Grid item padding={1}>
                         {tool.icon}
                       </Grid> 
@@ -182,17 +182,21 @@ function TabPanel(props) {
                     </Item> 
                     </Button>
                     <Popover
-                    id={id}
-                    open={open}
+                    open={openIndex === index}
                     anchorEl={anchorEl}
                     onClose={handleClosePopover}
                     anchorOrigin={{
                       vertical: 'bottom',
                       horizontal: 'left',
                     }}
-                  >
-                    <Typography sx={{ p: 2 }}>The content of the Popover.</Typography>
-                  </Popover>
+                    PaperProps={{
+                      sx: {
+                        boxShadow: '0px 1px 3px rgba(0, 0, 0, 0.1)', // Adjust the boxShadow property
+                      },
+                    }}
+                    >
+                      <Typography sx={{ p: 2 }}>{tool.text}</Typography>
+                    </Popover>
                   </Grid>
                   ))}
                 </Grid>
