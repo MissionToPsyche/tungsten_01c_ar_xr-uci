@@ -24,11 +24,10 @@ function TabPanel(props) {
 
   return (
       value === index && (
-              <Typography>{children}</Typography>
+              <Typography component={'span'}>{children}</Typography>
       )
   );
 }
-
 
   function NotebookPopup({ onClose }) {
     const { showNotebook, setShowNotebook} = useContext(GlobalStateContext);
