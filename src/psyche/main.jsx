@@ -18,14 +18,23 @@ function PsycheApp() {
   const [showNotebook, setShowNotebook] = useState(false);
 
   const [currentImage, setCurrentImage] = useState(null);
+  const [userName, setUserName] = useState("");
+  const [showNameInput, setShowNameInput] = useState(false);
+  const [showGreeting, setShowGreeting] = useState(false);
   
-  const useContextList = { currentImage, setCurrentImage, isOverview, setIsOverview, isOverviewClicked, setIsOverviewClicked, isStartClicked, setStartClicked, isCreditsClicked, setCreditsClicked };
+  const useContextList = { currentImage, setCurrentImage, isOverview, setIsOverview, isOverviewClicked, setIsOverviewClicked, isStartClicked, setStartClicked, isCreditsClicked, setCreditsClicked,  userName, setUserName, showGreeting, setShowGreeting};
 
   const handleStartClick = () => {
+    setShowNameInput(true);
+  };
+
+  const handleNameSubmit = () => {
+    setShowNameInput(false);
+    setShowGreeting(true);
+    setStartClicked(true);
     setIsStartAnimating(true);
     setTimeout(() => {
       setIsStartAnimating(false);
-      setStartClicked(true);
     }, 200);
   };
 
@@ -62,6 +71,27 @@ function PsycheApp() {
         {!isCreditsClicked && !isStartClicked && <button className={`ombre-button start-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleStartClick}>Start</button>}
         {!isCreditsClicked && !isStartClicked && <button className={`ombre-button credits-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleCreditsClick}>Credits</button>}
         {isOverview && <button className="ombre-button" onClick={handleOverviewClick}>Overview</button>}
+
+        {showNameInput && (
+          <div className="name-input">
+            <label htmlFor="name">What is your name?</label>
+            <input
+              type="text"
+              id="name"
+              placeholder=""
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
+            />
+            <button onClick={handleNameSubmit}>Submit</button>
+          </div>
+        )}
+
+        {showGreeting && (
+          <div className="text-box">
+            <p>Hello, {userName}!</p>
+            <button className="close-button" onClick={() => setShowGreeting(false)}>X</button>
+          </div>
+        )}
         
         {currentImage && (
           <div className="image-popup">
