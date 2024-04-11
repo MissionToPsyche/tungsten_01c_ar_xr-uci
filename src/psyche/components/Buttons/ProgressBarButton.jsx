@@ -6,8 +6,12 @@ import 'react-circular-progressbar/dist/styles.css';
 
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 import { useRef, useState, useContext } from 'react';
-import NotebookPopup from '../PopUps/NotebookPopup';
+
 import {GlobalStateContext} from '../../utils/useContext';
+
+//Choose one only
+import NotebookPopup from '../PopUps/NotebookPopup';
+
 
 
 const ProgressBarButton = () => {
@@ -23,16 +27,21 @@ const ProgressBarButton = () => {
   return (
     <>
       <button onClick={handleNotebookClick}>        
-    <div style={{ width: '4vh', height: '4vh' }} className='notebook-button'>
-      <CircularProgressbarWithChildren minValue={0} maxValue={100} value={66} strokeWidth={5}>
-        <MenuBookIcon fontSize="string"/>
-      </CircularProgressbarWithChildren>
-    </div>
-    </button>
+        <div style={{ width: '4vh', height: '4vh' }} className='notebook-button'>
+          <CircularProgressbarWithChildren minValue={0} maxValue={100} value={66} strokeWidth={5}>
+            <MenuBookIcon fontSize="string"/>
+          </CircularProgressbarWithChildren>
+        </div>
+      </button>
     
-    
+    {/* Popover popup */}
     {showNotebook && <NotebookPopup onClose={() => setShowNotebook(false)} />}
+    
+
     </>
+    
+    
+
 
   );
 };

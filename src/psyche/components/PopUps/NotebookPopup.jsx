@@ -8,7 +8,9 @@ import Modal from '@mui/material/Modal';
 import Grid from '@mui/material/Grid';
 import { experimentalStyled as styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
-import Popover from '@mui/material/Popover';
+import Tooltip from '@mui/material/Tooltip';
+import ClickAwayListener from '@mui/material/ClickAwayListener';
+import { tooltipClasses } from '@mui/material/Tooltip';
 
 //Delete the following imports after having the real icons
 import BuildIcon from '@mui/icons-material/Build';
@@ -21,6 +23,8 @@ import SquareFootIcon from '@mui/icons-material/SquareFoot';
 
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
+
+import Facts from './NotebookMenu';
 
 
 import CloseIcon from '@mui/icons-material/Close';
@@ -56,7 +60,7 @@ function TabPanel(props) {
       height:'65vh',
       
       transform: 'translate(-50%, -50%)',
-      backgroundColor: 'rgba(255, 255, 255, 0.7)',
+      backgroundColor: 'rgba(255, 255, 255, 1)',
       padding: '3vh',
       borderRadius: '15px',
       boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
@@ -104,7 +108,7 @@ function TabPanel(props) {
     
     const toolList = [
       { icon: <ArchitectureIcon />, title: "Gamma Ray and Neutron Spectrometer",  text: "Determine the chemical elements constituting Psyche."},
-      { icon: <BuildIcon />,title: 'Multispectral Imager', text: "Tool 2 Description" },
+      { icon: <BuildIcon />,title: 'Multispectral Imager', text: "Provide information about the mineral composition and topography of Psyche." },
       { icon: <HardwareIcon />,title: 'Magnetometer', text: "Tool 3 Description" },
       { icon: <BrushIcon />,title: 'X-band radio telecommunications system', text: "Tool 4 Description" },
       { icon: <SquareFootIcon />,title: 'Deep Space Optical Communication technology demo', text: "Tool 5 Description" },
@@ -114,95 +118,44 @@ function TabPanel(props) {
     
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [openIndex, setOpenIndex] = React.useState(null);
+    
+
+    const handleTooltipClose = () => {
+      setOpenIndex(null);
+    };
+  
+    const handleTooltipOpen = (index) => {
+      console.log('index',index);
+      setOpenIndex(index);
+      console.log('openIndex',openIndex);
+
+
+    };
 
     const handleClick = (event, index) => {
       setOpenIndex(index);
       setAnchorEl(event.currentTarget);
     };
+    
+    const CustomWidthTooltip = styled(({ className, ...props }) => (
+      <Tooltip {...props} classes={{ popper: className }} />
+    ))({
+      [`& .${tooltipClasses.tooltip}`]: {
+        maxWidth: 205,
+        fontSize: 14,
+        padding: '2vh'
+      },
+    });
 
-    const handleClosePopover = () => {
-      setOpenIndex(null);
-      setAnchorEl(null);
-    };
-    
-    
     return (
       <Modal 
           open={showNotebook}
           onClose={handleClose}
       >
        <Box sx={modalStyle}>
-            <Button onClick={handleClose} sx={{position: 'absolute', top: '1vh', right: '1vh'}}><CloseIcon/></Button>
-
-            <Box sx={{ borderBottom: 1, borderColor: 'divider', marginTop: 2 , width:'100%'}}>
-                <Tabs value = {value} onChange = {handleChange} variant='fullWidth'>
-                    {activateTab && (
-                            tabsArr.map((item)=>(
-                                <Tab {...item} />
-                            ))
-                        )
-                    }
-                </Tabs>
-            </Box>
-            
-            <TabPanel value={value} index={0}>
-              <Box sx={{ flexGrow: 1, marginTop: '2vh', width:'70vw'}}>
-                <Grid container spacing={{ xs: 1, md: 2 }} columns={{ xs: 4, sm: 8, md: 12 }} sx={{ overflowY: "scroll", maxHeight: "55vh" }}> 
-                  {Array.from(Array(20)).map((_, index) => (
-                    <Grid item xs={2} sm={4} md={4} key={index} >
-                      <Item>Item {index}</Item>
-                    </Grid>
-                  ))}
-                </Grid>
-              </Box>  
-            </TabPanel>
+            <Button onClick={handleClose} sx={{position: 'absolute', top: '1vh', right: '1vh', color:'#ffffff'}}><CloseIcon/></Button>
+            <Facts/>
                  
-            <TabPanel value={value} index={1}>
-              <Box sx={{ flexGrow: 1, marginTop: '2vh', width: '70vw' }}>
-                <Grid container sx={{ overflowY: 'auto', maxHeight: '55vh' }}>
-                  {toolList.map((tool, index) => (
-                    <Grid item key={index} sx={{ width: '100%' }}>
-                    <Button fullWidth sx={{ padding: 0, textTransform: 'none' }} onClick={(event) => handleClick(event, index)}>
-                    <Item   sx={{ width: '100%', marginBottom:'1vh', justifyContent:'flex-start'}} >
-                      <Grid item padding={1}>
-                        {tool.icon}
-                      </Grid> 
-                      <Grid item padding={1} sx={{ textAlign: 'left' }}>
-                          {tool.title}
-                        </Grid> 
-                      {/*Uncomment the following lines if need 1 row 2 cols layout
-                      <Grid container direction="column" alignItems="flex-start">
-                        <Grid item alignContent='flex-start'>
-                          {tool.title}
-                        </Grid> 
-                        <Grid item alignContent='flex-start'>
-                          {tool.text}
-                        </Grid> 
-                      </Grid>*/}
-                    </Item> 
-                    </Button>
-                    <Popover
-                    open={openIndex === index}
-                    anchorEl={anchorEl}
-                    onClose={handleClosePopover}
-                    anchorOrigin={{
-                      vertical: 'bottom',
-                      horizontal: 'left',
-                    }}
-                    PaperProps={{
-                      sx: {
-                        boxShadow: '0px 1px 3px rgba(0, 0, 0, 0.1)', // Adjust the boxShadow property
-                      },
-                    }}
-                    >
-                      <Typography sx={{ p: 2 }}>{tool.text}</Typography>
-                    </Popover>
-                  </Grid>
-                  ))}
-                </Grid>
-              </Box>
-            </TabPanel>
-            {/*<Button variant="contained" onClick={handleClose}>Close</Button>*/}
 
         </Box>
       
@@ -212,3 +165,49 @@ function TabPanel(props) {
 	
 	
 	export default NotebookPopup;
+  
+  //{Array.from(Array(20)).map((_, index) => (  
+  //  <Grid item xs={2} sm={4} md={4} key={index} >
+  //    {/*<Item>Item {index}</Item>*/}
+  //  </Grid>
+  //))}
+  
+  
+  //<Box sx={{ flexGrow: 1, marginTop: '2vh', width: '70vw' }}>
+  //              <Grid container sx={{ overflowY: 'auto', maxHeight: '55vh' }}>
+  //                {toolList.map((tool, index) => (
+  //                  <Grid item key={index} sx={{ width: '100%' }}>
+  //                  {/*<ClickAwayListener onClickAway={handleTooltipClose}>*/}
+  //                    <div>
+  //                      <CustomWidthTooltip
+  //                        arrow
+  //                        PopperProps={{
+  //                          disablePortal: true,
+  //                        }}
+                          
+  //                        //onClose={handleTooltipClose}
+  //                        open={openIndex === index}
+  //                        disableFocusListener
+  //                        disableHoverListener
+  //                        disableTouchListener
+  //                        title={tool.text}
+  //                      >
+  //                        <Button onClick={() => { handleTooltipOpen(index)}} sx={{width: '100%', padding: 0, textTransform: 'none' }}>
+  //                          <Item   sx={{ width: '100%', marginBottom:'1vh', justifyContent:'flex-start'}} >
+  //                            <Grid item padding={1}>
+  //                              {tool.icon}
+  //                            </Grid> 
+  //                            <Grid item padding={1} sx={{ textAlign: 'left' }}>
+  //                                {tool.title}
+  //                            </Grid> 
+  //                          </Item> 
+                            
+  //                        </Button>
+  //                      </CustomWidthTooltip>
+  //                    </div>
+  //                  {/*</ClickAwayListener>*/}
+                  
+  //                </Grid>
+  //              ))}
+  //              </Grid>
+  //            </Box>
