@@ -13,6 +13,7 @@ function PsycheApp() {
   const [isOverview, setIsOverview] = useState(false);
   const [isToSpaceCraft, setIsToSpaceCraft] = useState(false);
   const [isOverviewClicked, setIsOverviewClicked] = useState(false);
+  const [isToSpaceCraftClicked, setIsToSpaceCraftClicked] = useState(false);
   const [isStartClicked, setStartClicked] = useState(false);
   const [isCreditsClicked, setCreditsClicked] = useState(false);
   const [isStartAnimating, setIsStartAnimating] = useState(false);
@@ -28,9 +29,8 @@ function PsycheApp() {
   
   const [showSingleSpacecraft, setShowSingleSpacecraft] = useState(false);
   
-  const [step, setStep] = useState(0);
   
-  const useContextList = { showAsteroid, setShowAsteroid, showCountdown, setShowCountdown, countdown, setCountdown,showSpacecraft, setShowSpacecraft,isMoving, setIsMoving, step, setStep, currentImage, setCurrentImage, isOverview, setIsOverview, isOverviewClicked, setIsOverviewClicked, isStartClicked, setStartClicked, isCreditsClicked, setCreditsClicked };
+  const useContextList = {isToSpaceCraftClicked, isToSpaceCraft,setIsToSpaceCraft, showAsteroid, setShowAsteroid, showCountdown, setShowCountdown, countdown, setCountdown,showSpacecraft, setShowSpacecraft,isMoving, setIsMoving, currentImage, setCurrentImage, isOverview, setIsOverview, isOverviewClicked, setIsOverviewClicked, isStartClicked, setStartClicked, isCreditsClicked, setCreditsClicked };
 
   const handleStartClick = () => {
     //setShowAsteroid(false);
@@ -52,7 +52,7 @@ function PsycheApp() {
   };
   
   const handleToSpacecraftClick = () => {
-    setIsToSpaceCraft(true);
+    setIsToSpaceCraftClicked(true);
   }
   
   const handleOverviewClick = () => {
