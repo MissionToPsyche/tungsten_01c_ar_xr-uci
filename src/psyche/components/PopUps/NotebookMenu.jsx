@@ -142,9 +142,21 @@ function NotebookMenu() {
 	const toolList = [
 		{ icon: <ArchitectureIcon />, title: "Gamma Ray and Neutron Spectrometer",  text: "Determine the chemical elements constituting Psyche."},
 		{ icon: <BuildIcon />,title: 'Multispectral Imager', text: "Provide information about the mineral composition and topography of Psyche." },
-		{ icon: <HardwareIcon />,title: 'Magnetometer', text: "Tool 3 Description" },
-		{ icon: <BrushIcon />,title: 'X-band radio telecommunications system', text: "Tool 4 Description" },
-		{ icon: <SquareFootIcon />,title: 'Deep Space Optical Communication technology demo', text: "Tool 5 Description" },
+		{ icon: <HardwareIcon />,title: 'Magnetometer', text: "Search for evidence of an ancient magnetic field." },
+		{ icon: <BrushIcon />,title: 'X-band radio telecommunications system', text: (
+      <>
+        Used to send commands to and receive data from the spacecraft and to conduct gravity science.
+        <br /><br />
+        Waves for communication with Psyche, examining how Psyche influences the spacecraft's orbit.
+      </>
+    ) },
+		{ icon: <SquareFootIcon />,title: 'Deep Space Optical Communication technology demo', text: (
+      <>
+        Is not intended to relay Psyche mission data since the technology demonstration is planned for the first two years of the spacecraft’s cruise. 
+        <br /><br />
+        But if it proves successful, the technology will be used by future human and robotic spacecraft to transmit huge volumes of science data, allowing more innovative space mission concepts to take flight. Ultimately, DSOC may pave the way for broadband communications that will help support humanity’s next giant leap.
+      </>
+    ) },
 	];
 	
 	const [selectedItem, setSelectedItem] = useState(0);
