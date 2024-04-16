@@ -6,7 +6,7 @@ import { useContext } from "react";
 
 import { hotspots } from '../constants';
 
-const ItemHotspot = ({ position, scale, meshRotation, boxImage, imageUrl, type }) => {
+const ItemHotspot = ({ position, scale, meshRotation, boxImage, imageUrl, title }) => {
     const meshRef = useRef();
     const texture = useLoader(TextureLoader, imageUrl);
     
@@ -15,7 +15,13 @@ const ItemHotspot = ({ position, scale, meshRotation, boxImage, imageUrl, type }
     const handleIconClick = () => {
       const imageToShow = boxImage;
       setCurrentImage(imageToShow); // Show the iron info box, or hide if already shown
-      factList[0].isExplored = true;
+      for (let i=0; i<factList.length; i++){
+        if (factList[i].title === title){
+          factList[i].isExplored = true;
+        }
+      }
+
+      //factList[0].isExplored = true;
     };
     
     return (

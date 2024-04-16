@@ -13,20 +13,17 @@ import HardwareIcon from '@mui/icons-material/Hardware';
 import ArchitectureIcon from '@mui/icons-material/Architecture';
 import BrushIcon from '@mui/icons-material/Brush';
 import SquareFootIcon from '@mui/icons-material/SquareFoot';
-
 //Delete the above imports after having the real icons
 
+import ScaleImg from '../../public/assets/psyche_scale.svg';
+import OrbitTrimImg from '../../public/assets/psyche_orbit_trim.png';
+import OrbitImg from '../../public/assets/psyche_orbit.svg';
+import FormationTrimImg from '../../public/assets/psyche_formation_trim.png';
+import FormationImg from '../../public/assets/psyche_formation.svg';
+import PropsImg from '../../public/assets/psyche_props.png';
+import MetalImg from '../../public/assets/metal_icon.svg';
+import TrajectoryImg from '../../public/assets/psyche_trajectory.svg';
 
-
-import ScaleImage from '../../public/assets/psyche_scale.svg';
-
-import OrbitTrimImage from '../../public/assets/psyche_orbit_trim.png';
-import OrbitImage from '../../public/assets/psyche_orbit.svg';
-
-import FormationTrimImage from '../../public/assets/psyche_formation_trim.png';
-import FormationImage from '../../public/assets/psyche_formation.svg';
-
-import BlurOnIcon from '@mui/icons-material/BlurOn';
 import CombinedFact from './components/PopUps/CombinedFact';
 
 function PsycheApp() {
@@ -41,21 +38,22 @@ function PsycheApp() {
   const [showDescription, setShowDescription] = useState(false);
 
 
-  const [currentImage, setCurrentImage] = useState(null);
+  const [currentImg, setCurrentImg] = useState(null);
   
   
   const [factList, setFactList] = useState([
-		{ isExplored: false, icon: <BuildIcon />,title: 'Scientific Interest', text: "What gives asteroid Psyche great scientific interest is that it is likely rich in metal. It may consist largely of metal from the core of a planetesimal, one of the building blocks of the Sun’s planetary system. At Psyche scientists will explore, for the first time ever, a world made not of rock or ice, but rich in metal."},
-		{ isExplored: false, icon: <img src={OrbitTrimImage} alt="OrbitImage" height='40'/>,image:OrbitImage, title: 'The orbit', text: "Psyche follows an orbit in the outer part of the main asteroid belt, at an average distance from the Sun of 3 astronomical units (AU); Earth orbits at 1 AU." },
-		{ isExplored: false, icon: <img src={ScaleImage} alt="ScaleImage" height='40'/>,image:ScaleImage, title: "Size",  text: "If Psyche were a perfect sphere, it would have a diameter of 140 miles (226 kilometers), or about the length of the State of Massachusetts (leaving out Cape Cod). It is estimated to have a surface area of about 64,000 square miles or approximately 165,800 square kilometers."},
-		{ isExplored: false, icon: <img src={FormationTrimImage} alt="FormationImage" height='40'/>,image:FormationImage, title: "Formation",  text: "The asteroid is most likely a survivor of multiple violent hit-and-run collisions, common when the solar system was forming. Thus Psyche may be able to tell us how Earth’s core and the cores of the other terrestrial planets came to be."},
-		{ isExplored: false, icon: <BlurOnIcon/>,image:'', title: "Properties",  text: 
+		{ isExplored: false, icon: <img src={MetalImg} alt = "MetalImg" height='40'/>, Img: MetalImg ,title: 'Scientific Interest', text: "What gives asteroid Psyche great scientific interest is that it is likely rich in metal. It may consist largely of metal from the core of a planetesimal, one of the building blocks of the Sun’s planetary system. At Psyche scientists will explore, for the first time ever, a world made not of rock or ice, but rich in metal."},
+		{ isExplored: false, icon: <img src={OrbitTrimImg} alt="OrbitImg" height='40'/>,Img:OrbitImg, title: 'The orbit', text: "Psyche follows an orbit in the outer part of the main asteroid belt, at an average distance from the Sun of 3 astronomical units (AU); Earth orbits at 1 AU." },
+		{ isExplored: false, icon: <img src={ScaleImg} alt="ScaleImg" height='40'/>,Img:ScaleImg, title: "Size",  text: "If Psyche were a perfect sphere, it would have a diameter of 140 miles (226 kilometers), or about the length of the State of Massachusetts (leaving out Cape Cod). It is estimated to have a surface area of about 64,000 square miles or approximately 165,800 square kilometers."},
+		{ isExplored: false, icon: <img src={FormationTrimImg} alt="FormationImg" height='40'/>,Img:FormationImg, title: "Formation",  text: "The asteroid is most likely a survivor of multiple violent hit-and-run collisions, common when the solar system was forming. Thus Psyche may be able to tell us how Earth’s core and the cores of the other terrestrial planets came to be."},
+		{ isExplored: false, icon: <img src={PropsImg} alt="FormationImg" height='40'/>,Img:PropsImg, title: "Properties",  text: 
 		(
       <CombinedFact/>
     )},
+    { isExplored: false, icon: <img src={TrajectoryImg} alt="TrajectoryImg" height='40'/>,Img:TrajectoryImg, title: 'Build', text: 'The spacecraft is being built and tested at JPL, and will be powered by solar-electric propulsion. The Psyche spacecraft includes a gamma ray and neutron spectrometer, multispectral Imgr, magnetometer, and a radio science experiment.' },
 	]);
   
-  const useContextList = {factList, setFactList, currentImage, setCurrentImage, isOverview, setIsOverview, isOverviewClicked, setIsOverviewClicked, isStartClicked, setStartClicked, isCreditsClicked, setCreditsClicked,  showNotebook, setShowNotebook, showDescription, setShowDescription};
+  const useContextList = {factList, setFactList, currentImg, setCurrentImg, isOverview, setIsOverview, isOverviewClicked, setIsOverviewClicked, isStartClicked, setStartClicked, isCreditsClicked, setCreditsClicked,  showNotebook, setShowNotebook, showDescription, setShowDescription};
 
   const handleStartClick = () => {
     setIsStartAnimating(true);
@@ -96,10 +94,10 @@ function PsycheApp() {
         {!isCreditsClicked && !isStartClicked && <button className={`ombre-button credits-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleCreditsClick}>Credits</button>}
         {isOverview && <button className="ombre-button" onClick={handleOverviewClick}>Overview</button>}
         
-        {currentImage && (
-          <div className="image-popup">
-            <img src={currentImage} alt="Information" />
-            <button onClick={() => setCurrentImage(null)}>Close</button>
+        {currentImg && (
+          <div className="Img-popup">
+            <img src={currentImg} alt="Information" />
+            <button onClick={() => setCurrentImg(null)}>Close</button>
           </div>
         )}
         {isStartClicked && (<button className="controls-button" onClick={handleControlsClick}>?</button>)}

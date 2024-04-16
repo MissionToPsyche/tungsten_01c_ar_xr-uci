@@ -231,6 +231,7 @@ function NotebookMenu() {
                   px: 2.5,
                 }}
 								selected={selectedItem === index}
+                disabled={!item.isExplored}
 								onClick={() => handleTooltipOpen(index, factList)}
               >
                 <ListItemIcon
