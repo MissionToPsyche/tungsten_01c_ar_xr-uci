@@ -24,11 +24,13 @@ const ProgressBarButton = () => {
     setShowNotebook(!showNotebook);
   };
   
+  const progressValue = 66
+  
   return (
     <>
       <button onClick={handleNotebookClick}>        
         <div style={{ width: '4vh', height: '4vh' }} className='notebook-button'>
-          <CircularProgressbarWithChildren minValue={0} maxValue={100} value={66} strokeWidth={5}>
+          <CircularProgressbarWithChildren minValue={0} maxValue={100} value={progressValue} strokeWidth={5}>
             <MenuBookIcon fontSize="string"/>
           </CircularProgressbarWithChildren>
         </div>
