@@ -117,11 +117,12 @@ function NotebookMenu() {
     setOpen(false);
   };
 	
-	const handleTooltipOpen = (index) => {
+	const handleTooltipOpen = (index, array) => {
 		console.log('index',index);
 		//setOpenIndex(index);
 		//console.log('openIndex',openIndex);
 		setSelectedItem(index);
+    setSelectedArray(array);
 
 	};
 		
@@ -147,19 +148,21 @@ function NotebookMenu() {
 	];
 	
 	const [selectedItem, setSelectedItem] = useState(0);
+  const [selectedArray, setSelectedArray] =  useState(factList);
+
 	
-	const handleSelectedFact = (index) => {
+	const handleSelectedItem = (index, array) => {
 		return (
 			<>
 			<Typography paragraph>
-				{factList[index].text}
+				{array[index].text}
 			</Typography>
 			{index!==4 && (
       <img 
-        src={factList[index].image} 
+        src={array[index].image} 
         width='200vw' 
         style={{ display: 'block', margin: 'auto', padding: '2vh' }} 
-        alt={factList[index].image} 
+        alt={array[index].image} 
       />
     )}
 			</>
@@ -223,7 +226,7 @@ function NotebookMenu() {
                   px: 2.5,
                 }}
 								selected={selectedItem === index}
-								onClick={() => handleTooltipOpen(index)}
+								onClick={() => handleTooltipOpen(index, factList)}
               >
                 <ListItemIcon
                   sx={{
@@ -251,7 +254,7 @@ function NotebookMenu() {
                   px: 2.5,
                 }}
 								selected={selectedItem === index}
-								onClick={() => handleTooltipOpen(index)}
+								onClick={() => handleTooltipOpen(index, toolList)}
               >
                 <ListItemIcon
                   sx={{
@@ -270,7 +273,7 @@ function NotebookMenu() {
       </Drawer>
 			<Box component="main" sx={{ flexGrow: 1}}>
         <DrawerHeader />
-        {handleSelectedFact(selectedItem)}
+        {handleSelectedItem(selectedItem, selectedArray)}
         {/*{handleSelectedTool(selectedItem)}*/}
       </Box>
     </Box>
