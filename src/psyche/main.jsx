@@ -26,6 +26,7 @@ import TrajectoryImg from '../../public/assets/psyche_trajectory.svg';
 import ObitImg2 from '../../public/assets/psyche_orbit2.svg';
 import SpacecraftSizeImg from '../../public/assets/spacecraft_size.svg';
 import BusSizeImg from '../../public/assets/bus_size.svg';
+import PropulsionImg from '../../public/assets/propulsion_system.svg';
 
 import CombinedFact from './components/PopUps/CombinedFact';
 
@@ -64,15 +65,10 @@ function PsycheApp() {
       <br /><br />
       NASA aims to unravel the origins of the solar system through the Psyche mission.
     </>
-    )},
-    
+    )}, 
     { isExplored: false, icon: <img src={SpacecraftSizeImg} alt="SpacecraftSizeImg" height='40'/>,image:SpacecraftSizeImg, title: 'Spacecraft Size', text: 'The Psyche spacecraft (including the solar panels) is about the size of a singles tennis court.'},
-    
-    { isExplored: false, icon: <img src={BusSizeImg} alt="BusSizeImg" height='40'/>,image:BusSizeImg, title: 'Bus Size', text: ''},
-    { isExplored: false, icon: <img src={TrajectoryImg} alt="TrajectoryImg" height='40'/>,image:TrajectoryImg, title: 'Orbit', text: ''},
-    { isExplored: false, icon: <img src={TrajectoryImg} alt="TrajectoryImg" height='40'/>,image:TrajectoryImg, title: 'Orbit', text: ''},
-
-      
+    { isExplored: false, icon: <img src={BusSizeImg} alt="BusSizeImg" height='40'/>,image:BusSizeImg, title: 'Bus Size', text: 'The bus or “body” of the spacecraft is slightly bigger than a small van and about as tall as a regulation basketball hoop.'},
+    { isExplored: false, icon: <img src={PropulsionImg} alt="PropulsionImg" height='40'/>,image:PropulsionImg, title: 'Propulsion System', text: 'The spacecraft is propelled by solar electric propulsion.'},
 	]);
   
   const useContextList = {factList, setFactList, currentImg, setCurrentImg, isOverview, setIsOverview, isOverviewClicked, setIsOverviewClicked, isStartClicked, setStartClicked, isCreditsClicked, setCreditsClicked,  showNotebook, setShowNotebook, showDescription, setShowDescription};
