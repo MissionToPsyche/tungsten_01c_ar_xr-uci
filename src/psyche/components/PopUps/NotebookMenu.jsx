@@ -155,6 +155,8 @@ function NotebookMenu() {
 
 	
 	const handleSelectedItem = (index, array) => {
+    console.log("Image Path:", array[index].image);  // Debugging
+    console.log("Alt Text:", array[index].alt);  
 		return (
 			<>
 			<Typography paragraph>
@@ -165,32 +167,14 @@ function NotebookMenu() {
         src={array[index].image} 
         width='200vw' 
         style={{ display: 'block', margin: 'auto', padding: '2vh' }} 
-        alt={array[index].image} 
+        alt={array[index].alt} 
       />
     )}
 			</>
 		)
 	}
   
-  const handleSelectedTool = (index) => {
-		return (
-			<>
-			<Typography paragraph>
-				{toolList[index].text}
-			</Typography>
-			{index!==4 && (
-      <img 
-        src={toolList[index].image} 
-        width='200vw' 
-        style={{ display: 'block', margin: 'auto', padding: '2vh' }} 
-        alt={toolList[index].image} 
-      />
-    )}
-			</>
-		)
-	}
-  
-  console.log(factList)
+  //console.log(factList)
 
   return (
     <Box sx={{ display: 'flex', overflowY:'scroll', width:'80vw'}}>
@@ -231,7 +215,7 @@ function NotebookMenu() {
                   px: 2.5,
                 }}
 								selected={selectedItem === index}
-                disabled={!item.isExplored}
+                //disabled={!item.isExplored}
 								onClick={() => handleTooltipOpen(index, factList)}
               >
                 <ListItemIcon
@@ -280,7 +264,6 @@ function NotebookMenu() {
 			<Box component="main" sx={{ flexGrow: 1}}>
         <DrawerHeader />
         {handleSelectedItem(selectedItem, selectedArray)}
-        {/*{handleSelectedTool(selectedItem)}*/}
       </Box>
     </Box>
   );
