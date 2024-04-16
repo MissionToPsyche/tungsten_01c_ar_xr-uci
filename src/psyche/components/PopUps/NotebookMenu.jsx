@@ -16,6 +16,8 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+import { useContext } from "react";
+import {GlobalStateContext} from '../../utils/useContext';
 
 
 
@@ -126,19 +128,8 @@ function NotebookMenu() {
 
 	};
 		
-	const factList = [
-		{ icon: <BuildIcon />,title: 'Scientific Interest', text: "What gives asteroid Psyche great scientific interest is that it is likely rich in metal. It may consist largely of metal from the core of a planetesimal, one of the building blocks of the Sun’s planetary system. At Psyche scientists will explore, for the first time ever, a world made not of rock or ice, but rich in metal."},
-		{ icon: <img src={OrbitTrimImage} alt="OrbitImage" height='40'/>,image:OrbitImage, title: 'The orbit', text: "Psyche follows an orbit in the outer part of the main asteroid belt, at an average distance from the Sun of 3 astronomical units (AU); Earth orbits at 1 AU." },
-		{ icon: <img src={ScaleImage} alt="ScaleImage" height='40'/>,image:ScaleImage, title: "Size",  text: "If Psyche were a perfect sphere, it would have a diameter of 140 miles (226 kilometers), or about the length of the State of Massachusetts (leaving out Cape Cod). It is estimated to have a surface area of about 64,000 square miles or approximately 165,800 square kilometers."},
-		{ icon: <img src={FormationTrimImage} alt="FormationImage" height='40'/>,image:FormationImage, title: "Formation",  text: "The asteroid is most likely a survivor of multiple violent hit-and-run collisions, common when the solar system was forming. Thus Psyche may be able to tell us how Earth’s core and the cores of the other terrestrial planets came to be."},
-		{ icon: <BlurOnIcon/>,image:'', title: "Properties",  text: 
-		(
-    <>
-			<CombinedFact/>
-    </>
-  )},
-	];
-	
+  const {factList} = useContext(GlobalStateContext);
+	 
 	const toolList = [
 		{ icon: <ArchitectureIcon />, title: "Gamma Ray and Neutron Spectrometer",  text: "Determine the chemical elements constituting Psyche."},
 		{ icon: <BuildIcon />,title: 'Multispectral Imager', text: "Provide information about the mineral composition and topography of Psyche." },
@@ -198,6 +189,8 @@ function NotebookMenu() {
 			</>
 		)
 	}
+  
+  console.log(factList)
 
   return (
     <Box sx={{ display: 'flex', overflowY:'scroll', width:'80vw'}}>
