@@ -19,27 +19,6 @@ import ListItemText from '@mui/material/ListItemText';
 import { useContext } from "react";
 import {GlobalStateContext} from '../../utils/useContext';
 
-
-
-//Delete the following imports after having the real icons
-import BuildIcon from '@mui/icons-material/Build';
-import HardwareIcon from '@mui/icons-material/Hardware';
-import ArchitectureIcon from '@mui/icons-material/Architecture';
-import BrushIcon from '@mui/icons-material/Brush';
-import SquareFootIcon from '@mui/icons-material/SquareFoot';
-//Delete the above imports after having the real icons
-
-import ScaleImage from '../../../../public/assets/psyche_scale.svg';
-
-import OrbitTrimImage from '../../../../public/assets/psyche_orbit_trim.png';
-import OrbitImage from '../../../../public/assets/psyche_orbit.svg';
-
-import FormationTrimImage from '../../../../public/assets/psyche_formation_trim.png';
-import FormationImage from '../../../../public/assets/psyche_formation.svg';
-
-import BlurOnIcon from '@mui/icons-material/BlurOn';
-import CombinedFact from './CombinedFact';
-
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -130,33 +109,12 @@ function NotebookMenu() {
 		
   const {factList} = useContext(GlobalStateContext);
 	const {toolList} = useContext(GlobalStateContext);
-	//const toolList = [
-	//	{ icon: <ArchitectureIcon />, title: "Gamma Ray and Neutron Spectrometer",  text: "Determine the chemical elements constituting Psyche."},
-	//	{ icon: <BuildIcon />,title: 'Multispectral Imager', text: "Provide information about the mineral composition and topography of Psyche." },
-	//	{ icon: <HardwareIcon />,title: 'Magnetometer', text: "Search for evidence of an ancient magnetic field." },
-	//	{ icon: <BrushIcon />,title: 'X-band radio telecommunications system', text: (
-  //    <>
-  //      Used to send commands to and receive data from the spacecraft and to conduct gravity science.
-  //      <br /><br />
-  //      Waves for communication with Psyche, examining how Psyche influences the spacecraft's orbit.
-  //    </>
-  //  ) },
-	//	{ icon: <SquareFootIcon />,title: 'Deep Space Optical Communication technology demo', text: (
-  //    <>
-  //      Is not intended to relay Psyche mission data since the technology demonstration is planned for the first two years of the spacecraft’s cruise. 
-  //      <br /><br />
-  //      But if it proves successful, the technology will be used by future human and robotic spacecraft to transmit huge volumes of science data, allowing more innovative space mission concepts to take flight. Ultimately, DSOC may pave the way for broadband communications that will help support humanity’s next giant leap.
-  //    </>
-  //  ) },
-	//];
-	
+
 	const [selectedItem, setSelectedItem] = useState(0);
   const [selectedArray, setSelectedArray] =  useState(factList);
 
 	
 	const handleSelectedItem = (index, array) => {
-    console.log("Image Path:", array[index].image);  // Debugging
-    console.log("Alt Text:", array[index].alt);  
 		return (
 			<>
 			<Typography paragraph>
