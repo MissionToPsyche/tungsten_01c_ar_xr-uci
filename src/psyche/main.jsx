@@ -14,7 +14,10 @@ function PsycheApp() {
   const [isToSpaceCraft, setIsToSpaceCraft] = useState(false);
   const [isOverviewClicked, setIsOverviewClicked] = useState(false);
   const [isToSpaceCraftClicked, setIsToSpaceCraftClicked] = useState(false);
-  const [isStartClicked, setStartClicked] = useState(false);
+  const [isStartClicked, setStartClicked] = useState(null
+  
+  );
+  const [isLaunched, setIsLaunched] = useState(false);
   const [isCreditsClicked, setCreditsClicked] = useState(false);
   const [isStartAnimating, setIsStartAnimating] = useState(false);
   const [showControls, setShowControls] = useState(false);
@@ -23,8 +26,8 @@ function PsycheApp() {
   
   const [showCountdown, setShowCountdown] = useState(false);
   const [countdown, setCountdown] = useState(3);
-  const [showSpacecraft, setShowSpacecraft] = useState(true);
-  const [showAsteroid, setShowAsteroid] = useState(true);
+  const [showSpacecraft, setShowSpacecraft] = useState(false);
+  const [showAsteroid, setShowAsteroid] = useState(false);
   const [isMoving, setIsMoving] = useState(true);
   
   const [showSingleSpacecraft, setShowSingleSpacecraft] = useState(false);
@@ -51,12 +54,16 @@ function PsycheApp() {
     }, 200);
   };
   
+  const handleLaunchClick = () => {
+    setIsLaunched(true);
+  }
+  
   const handleToSpacecraftClick = () => {
-    setIsToSpaceCraftClicked(true);
+    setIsToSpaceCraftClicked(!isToSpaceCraftClicked);
   }
   
   const handleOverviewClick = () => {
-    setIsOverviewClicked(true);
+    setIsOverviewClicked(!isOverviewClicked);
   };
 
   const handleControlsClick = () => {
@@ -72,7 +79,9 @@ function PsycheApp() {
   return (
     <GlobalStateProvider value={useContextList}>
       <div className="app-container">
-        {!isStartClicked && <div className="title-container">Psyche Simulation</div>}
+        {!isLaunched && <div className="title-container">Psyche Simulation</div>}
+        {!isLaunched && <button className="launch-button" onClick={handleToSpacecraftClick}>Lauch</button>}
+        
         
         <Canvas ref={canvasRef} camera={{ fov: 45, position: [0, 0, 75] }}>
          <MainPsycheContainer/>
