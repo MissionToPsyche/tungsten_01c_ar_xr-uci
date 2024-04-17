@@ -13,6 +13,7 @@ const ItemHotspot = ({ position, scale, meshRotation, boxImage, imageUrl, title 
     const { currentImage, setCurrentImage, factList} = useContext(GlobalStateContext);
     
     const handleIconClick = () => {
+      console.log("clicked on icon" + title);
       const imageToShow = boxImage;
       setCurrentImage(imageToShow);
       for (let i=0; i<factList.length; i++){

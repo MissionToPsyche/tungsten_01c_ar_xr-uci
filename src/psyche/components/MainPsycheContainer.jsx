@@ -17,46 +17,145 @@ import {GlobalStateContext} from '../utils/useContext';
 const MainPsycheContainer = () => {
   const { camera } = useThree();
   
-  const { setIsOverview, isOverviewClicked, isStartClicked} = useContext(GlobalStateContext);
+  const {isLaunched, setShowAsteroid, isToSpaceCraftClicked, isToSpaceCraft, setIsToSpaceCraft, setIsOverview, isOverviewClicked, isStartClicked, showCountdown, setShowCountdown, countdown, setCountdown, showSpacecraft, setShowSpacecraft,isMoving, setIsMoving, showAsteroid} = useContext(GlobalStateContext);
 
   const orbitControlsRef = useRef();
   const psycheSpacecraftRef = useRef();
   const psycheRef = useRef()
   
-  const [showCountdown, setShowCountdown] = useState(false);
-  const [countdown, setCountdown] = useState(3);
-  const [showSpacecraft, setShowSpacecraft] = useState(true);
-  const [isMoving, setIsMoving] = useState(true);
-  
   useEffect(() => {
+    console.log("isStartClicked: ")
+    console.log(isStartClicked)
     if (isStartClicked) {
-      setShowCountdown(true);
-      const interval = setInterval(() => {
-        setCountdown((prevCountdown) => {
-          if (prevCountdown <= 1) {
-            clearInterval(interval);
-            setShowCountdown(false);
-            console.log("start zoom in");
-            animateCameraZoomIn(orbitControlsRef, camera, setShowSpacecraft, setIsOverview, psycheSpacecraftRef);
-            setIsMoving(true);
-            return prevCountdown;
-          }
-          return prevCountdown - 1;
-        });
-      }, 1000);
-    }
-  }, [isStartClicked]); 
-
-  useEffect(() => {
-    if (isOverviewClicked) {
       console.log("start zoom out")
-      setIsOverview(false);
-      setShowSpacecraft(true);
+      orbitControlsRef.current.target.set(0,0,0);
+      setShowAsteroid(true);
       setIsMoving(true);
       orbitControlsRef.current.enableZoom = false;
       orbitControlsRef.current.enableRotate = false;
       orbitControlsRef.current.maxDistance = 75;
-      animateCameraZoomOut(orbitControlsRef, camera);
+      animateCameraZoomOut(orbitControlsRef, camera, 50, ()=>{
+        //setShowSpacecraft(true);
+        
+        
+        setShowAsteroid(true);
+      },
+      () =>{
+        //orbitControlsRef.current.target.set(psycheSpacecraftRef.current.position.x, psycheSpacecraftRef.current.position.y, psycheSpacecraftRef.current.position.z);
+      
+        const currentTarget = orbitControlsRef.current.target.clone();
+        const newTarget = psycheRef.current.position.clone();
+        const lerpFactor = 0.09; // Adjust between 0 (instant change) and 1 (full transition in one frame)
+        let i = 0
+        function lerpTarget() {
+          i += lerpFactor
+          const lerpedTarget = currentTarget.lerp(newTarget, i);
+          orbitControlsRef.current.target.set(lerpedTarget.x, lerpedTarget.y, lerpedTarget.z);
+          console.log(i)
+          // Check if transition is complete
+          if (i < 1) {
+            requestAnimationFrame(lerpTarget);
+          }
+        }
+        
+        requestAnimationFrame(lerpTarget);
+      });
+      setIsToSpaceCraft(true);
+    }
+  }, [isStartClicked]); 
+  
+  
+  useEffect(() => {
+    //setShowAsteroid(true);
+    if (isLaunched) {
+      console.log("launching spacecraft");
+      setShowSpacecraft(true);
+      animateCameraZoomIn(camera, psycheSpacecraftRef, 15, () => {
+        //setIsToSpaceCraft(true);
+        orbitControlsRef.current.enableZoom = true;
+        orbitControlsRef.current.enableRotate = true;
+        orbitControlsRef.current.maxDistance = 30;
+        //setShowSpacecraft(false);
+      });
+      //orbitControlsRef.current.target.set(psycheSpacecraftRef.current.position.x, psycheSpacecraftRef.current.position.y, psycheSpacecraftRef.current.position.z);
+    }
+  }, [isLaunched]);  
+  
+  useEffect(() => {
+    if (isToSpaceCraftClicked) {
+      console.log("start zoom in spacecraft");
+      orbitControlsRef.current.enableZoom = false;
+      orbitControlsRef.current.enableRotate = false;
+      orbitControlsRef.current.maxDistance = 100;
+      animateCameraZoomOut(orbitControlsRef, camera, 50, ()=>{
+        //setShowSpacecraft(true);
+        setIsToSpaceCraft(false);
+
+        
+        animateCameraZoomIn(camera, psycheRef, 8, () => {
+          setIsOverview(true);
+          orbitControlsRef.current.enableZoom = true;
+          orbitControlsRef.current.enableRotate = true;
+          orbitControlsRef.current.maxDistance = 30;
+          setShowAsteroid(false);
+          
+        });
+        setIsMoving(false);
+      },
+      () =>{
+        //orbitControlsRef.current.target.set(psycheSpacecraftRef.current.position.x, psycheSpacecraftRef.current.position.y, psycheSpacecraftRef.current.position.z);
+      
+        const currentTarget = orbitControlsRef.current.target.clone();
+        const newTarget = psycheSpacecraftRef.current.position.clone();
+        const lerpFactor = 0.0009; // Adjust between 0 (instant change) and 1 (full transition in one frame)
+        let i = 0
+        function lerpTarget() {
+          i += lerpFactor
+          const lerpedTarget = currentTarget.lerp(newTarget, i);
+          orbitControlsRef.current.target.set(lerpedTarget.x, lerpedTarget.y, lerpedTarget.z);
+        
+          // Check if transition is complete
+          if (i < 1) {
+            requestAnimationFrame(lerpTarget);
+          }
+        }
+
+        requestAnimationFrame(lerpTarget);
+      });
+      
+    }
+  }, [isToSpaceCraftClicked]); 
+
+  useEffect(() => {
+    if (isOverviewClicked) {
+      console.log("start zoom out")
+      setShowAsteroid(true);
+      setShowSpacecraft(true);
+      setIsOverview(false);
+
+      setIsMoving(true);
+      orbitControlsRef.current.enableZoom = false;
+      orbitControlsRef.current.enableRotate = false;
+      orbitControlsRef.current.maxDistance = 75;
+      animateCameraZoomOut(orbitControlsRef, camera, 45, null, () =>{
+      
+        const currentTarget = orbitControlsRef.current.target.clone();
+        const newTarget = psycheRef.current.position.clone();
+        const lerpFactor = 0.0009; // Adjust between 0 (instant change) and 1 (full transition in one frame)
+        let i = 0
+        function lerpTarget() {
+          i += lerpFactor
+          const lerpedTarget = currentTarget.lerp(newTarget, i);
+          orbitControlsRef.current.target.set(lerpedTarget.x, lerpedTarget.y, lerpedTarget.z);
+        
+          // Check if transition is complete
+          if (i < 1) {
+            requestAnimationFrame(lerpTarget);
+          }
+        }
+
+        requestAnimationFrame(lerpTarget);
+      });
     }
   }, [isOverviewClicked]);
 
@@ -95,8 +194,8 @@ const MainPsycheContainer = () => {
       <Light />
   
       <group>
-        <PsycheAsteroid psycheRef={psycheRef} />
-        {showSpacecraft && <PsycheSpacecraft scref={psycheSpacecraftRef} target={psycheRef} isMoving={isMoving}/>}
+        <PsycheAsteroid psycheRef={psycheRef} visible={showAsteroid} />
+        <PsycheSpacecraft scref={psycheSpacecraftRef} target={psycheRef} isMoving={isMoving} visible={showSpacecraft}/>
       </group>
     </>
   )

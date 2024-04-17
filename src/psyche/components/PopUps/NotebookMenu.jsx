@@ -132,7 +132,7 @@ function NotebookMenu() {
 		)
 	}
   
-  //console.log(factList)
+  console.log(factList)
 
   return (
     <Box sx={{ display: 'flex', overflowY:'scroll', width:'80vw'}}>

@@ -9,7 +9,7 @@ import ItemHotspots from './Buttons/ItemHotspot';
 
 
 
-const PsycheAsteroid =  ({ psycheRef }) => {
+const PsycheAsteroid =  ({ psycheRef, visible }) => {
 	
 	const obj = useLoader(OBJLoader, '	/assets/psyche.obj')
 
@@ -32,9 +32,9 @@ const PsycheAsteroid =  ({ psycheRef }) => {
 	})
 
 	return (
-	<group ref={psycheRef}>
+	<group ref={psycheRef} visible={visible}>
 		  <ItemHotspots/>
-			<mesh  geometry={geometry} scale={2} frustumCulled={false}>
+			<mesh  geometry={geometry} scale={2} frustumCulled={false} >
 				<meshPhysicalMaterial color="gray" />
 			</mesh>
 	</group>
