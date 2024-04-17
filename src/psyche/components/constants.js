@@ -14,7 +14,7 @@ export const ROTATION_SPEED = 0.0002 // Rotation speed that will be for the aste
 export const hotspots = [
 	{
 		position: [0, 1, 2],
-		type: 'iron',
+		title: 'Scientific Interest',
 		scale: [0.05, 0.3, 0.3],
 		meshRotation: [0, 5, 0.5],
 		boxImage: IronBox,
@@ -22,7 +22,7 @@ export const hotspots = [
 	},
 	{
 		position: [-2.4, -1, -1],
-		type: 'calendar',
+		title: 'The orbit',
 		scale: [0.05, 0.3, 0.3],
 		meshRotation: [0, 2.3, -0.33],
 		boxImage: CalendarBox,
@@ -30,7 +30,7 @@ export const hotspots = [
 	},
 	{
 		position: [2.5, -1, -1],
-		type: 'planetCore',
+		title: 'Size',
 		scale: [0.05, 0.3, 0.3],
 		meshRotation: [0, 0.4, -0.2],
 		boxImage: PlanetCoreBox,
@@ -38,7 +38,7 @@ export const hotspots = [
 	},
 	{
 		position: [-0.4, 2.1, -1.3],
-		type: 'size',
+		title: 'Formation',
 		scale: [0.05, 0.3, 0.3],
 		meshRotation: [0, 1.7, 0.8],
 		boxImage: SizeBox,
