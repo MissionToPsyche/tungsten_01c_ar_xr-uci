@@ -6,7 +6,7 @@ import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
 import * as THREE from 'three';
 
 
-const PsycheSpacecraft = ({scref , target, isMoving}) => {
+const PsycheSpacecraft = ({scref , target, isMoving, visible}) => {
 	const obj = useLoader(OBJLoader, '/assets/psyche_spacecraft.obj')
 
 	const geometry = useMemo(() => {
@@ -39,7 +39,8 @@ const PsycheSpacecraft = ({scref , target, isMoving}) => {
 	
 	
 	return (
-		<mesh ref={scref} geometry={geometry}  scale={0.01} frustumCulled={false}>
+		<mesh ref={scref} geometry={geometry}  scale={0.01} frustumCulled={false} visible={visible}
+		rotation={[0, 30, 0]}>
 			<meshPhysicalMaterial color="pink" />
 		</mesh>
 	)

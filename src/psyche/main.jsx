@@ -14,9 +14,7 @@ function PsycheApp() {
   const [isToSpaceCraft, setIsToSpaceCraft] = useState(false);
   const [isOverviewClicked, setIsOverviewClicked] = useState(false);
   const [isToSpaceCraftClicked, setIsToSpaceCraftClicked] = useState(false);
-  const [isStartClicked, setStartClicked] = useState(null
-  
-  );
+  const [isStartClicked, setStartClicked] = useState(false);
   const [isLaunched, setIsLaunched] = useState(false);
   const [isCreditsClicked, setCreditsClicked] = useState(false);
   const [isStartAnimating, setIsStartAnimating] = useState(false);
@@ -28,12 +26,12 @@ function PsycheApp() {
   const [countdown, setCountdown] = useState(3);
   const [showSpacecraft, setShowSpacecraft] = useState(false);
   const [showAsteroid, setShowAsteroid] = useState(false);
-  const [isMoving, setIsMoving] = useState(true);
+  const [isMoving, setIsMoving] = useState(false);
   
   const [showSingleSpacecraft, setShowSingleSpacecraft] = useState(false);
   
   
-  const useContextList = {isToSpaceCraftClicked, isToSpaceCraft,setIsToSpaceCraft, showAsteroid, setShowAsteroid, showCountdown, setShowCountdown, countdown, setCountdown,showSpacecraft, setShowSpacecraft,isMoving, setIsMoving, currentImage, setCurrentImage, isOverview, setIsOverview, isOverviewClicked, setIsOverviewClicked, isStartClicked, setStartClicked, isCreditsClicked, setCreditsClicked };
+  const useContextList = {isLaunched, isToSpaceCraftClicked, isToSpaceCraft,setIsToSpaceCraft, showAsteroid, setShowAsteroid, showCountdown, setShowCountdown, countdown, setCountdown,showSpacecraft, setShowSpacecraft,isMoving, setIsMoving, currentImage, setCurrentImage, isOverview, setIsOverview, isOverviewClicked, setIsOverviewClicked, isStartClicked, setStartClicked, isCreditsClicked, setCreditsClicked };
 
   const handleStartClick = () => {
     //setShowAsteroid(false);
@@ -80,18 +78,20 @@ function PsycheApp() {
     <GlobalStateProvider value={useContextList}>
       <div className="app-container">
         {!isLaunched && <div className="title-container">Psyche Simulation</div>}
-        {!isLaunched && <button className="launch-button" onClick={handleToSpacecraftClick}>Lauch</button>}
+        
         
         
         <Canvas ref={canvasRef} camera={{ fov: 45, position: [0, 0, 75] }}>
          <MainPsycheContainer/>
         </Canvas>
         
-        {!isCreditsClicked && !isStartClicked && <button className={`ombre-button start-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleStartClick}>Start</button>}
-        {!isCreditsClicked && !isStartClicked && <button className={`ombre-button credits-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleCreditsClick}>Credits</button>}
+        
+        {isLaunched && !isCreditsClicked && !isStartClicked && <button className={`ombre-button start-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleStartClick}>Start</button>}
+        {!isLaunched && <button className={`ombre-button start-button`} onClick={handleLaunchClick}>Launch</button>}
+        {!isLaunched && !isCreditsClicked && !isStartClicked && <button className={`ombre-button credits-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleCreditsClick}>Credits</button>}
         
         {isOverview && <button className="ombre-button" onClick={handleOverviewClick}>Overview</button>}
-        {isToSpaceCraft && <button className="ombre-button" onClick={handleToSpacecraftClick}>Next</button>}
+        {isToSpaceCraft && <button className="ombre-button" onClick={handleToSpacecraftClick}>To Spacecraft</button>}
         
         {currentImage && (
           <div className="image-popup">
