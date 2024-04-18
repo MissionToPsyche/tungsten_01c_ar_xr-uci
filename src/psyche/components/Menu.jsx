@@ -1,6 +1,7 @@
 import React from 'react';
-
-
+import spectrometerImage from '../../assets/pysche_spectrometer.png';
+import magnometerImage from '../../assets/physce_magnometer.jpeg';
+import multiSpec from '../../assets/psyche-multispectral-imager.jpg';
 
 const Menu = () => {
   return (
@@ -33,9 +34,9 @@ const Menu = () => {
         <table>
           <thead>
             <tr>
-              <th>First Item</th>
-              <th>Second Item</th>
-              <th>Third Item</th>
+              <th><img src={spectrometerImage} alt="Spectrometer" style={{width: "100px"}} /></th>
+              <th><img src = {magnometerImage} alt = "MagnometerImage"style={{width: "100px"}}/> </th>
+              <th><img src = {multiSpec} alt = "multiSpec"style={{width: "100px"}}/></th>
               <th>Fourth Item</th>
             </tr>
           </thead>
