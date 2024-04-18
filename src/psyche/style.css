@@ -12,6 +12,7 @@
   border-radius: 20px;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+  font-family: 'Arial';
 	
 	position: absolute;
   bottom: 50vh;
@@ -47,6 +48,7 @@
   border-radius: 20px;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+  font-family: 'Arial';
 	
 	position: absolute;
   bottom: 5vh;
@@ -76,6 +78,7 @@
 
 .ombre-button:hover {
   background: linear-gradient(to bottom, #f4607e, #99d4ff);
+  font-family: 'Arial';
 }
 
 .image-popup {
@@ -142,6 +145,7 @@
 {
   position: absolute;
   bottom: 18vh;
+  font-family: 'Arial';
 }
 
 
@@ -163,6 +167,7 @@
   text-align: center;
   padding: 3vh 5vh;
   background-color: rgba(255, 255, 255, 0);
+  font-family: 'Arial';
   color: #ffffff;
   z-index: 10;
 
@@ -180,6 +185,52 @@
   }
 }
 
+.mission-intro-popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 500px;
+  background: white;
+  background: linear-gradient(to bottom right, #ffffff, #f9f9f9);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  z-index: 10;
+  transition: all 0.3s ease;
+}
+
+.mission-intro-popup h1 {
+  color: #333;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.mission-intro-popup p {
+  color: #666;
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.mission-intro-popup button {
+  background-color: #007bff;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.mission-intro-popup button:hover {
+  background-color: #0056b3;
+}
 
 
 

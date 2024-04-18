@@ -30,6 +30,9 @@ import PropulsionImg from '../../public/assets/propulsion_system.svg';
 
 import CombinedFact from './components/PopUps/CombinedFact';
 
+//into dialogue
+import MissionIntroPopup from './components/PopUps/MissionIntroPopup.jsx';
+
 
 function PsycheApp() {
   const canvasRef = useRef();
@@ -55,7 +58,26 @@ function PsycheApp() {
   
   const [showDescription, setShowDescription] = useState(false);
 
+  const [popupIndex, setPopupIndex] = useState(-1);
+
+  const popupContent = [
+    { title: "Welcome", message: "Welcome to the Psyche Mission Simulator!" },
+    { title: "Mission Overview", message: "Explore the asteroid Psyche in a virtual environment." },
+    { title: "Scientific Goals", message: "Learn about the scientific goals of the NASA Psyche Mission." },
+    { title: "Get Started", message: "Ready to start your journey? Click 'Finish' to begin exploring!" }
+  ];
   
+  const handleNextPopup = () => {
+    if (popupIndex < popupContent.length - 1) {
+      setPopupIndex(popupIndex + 1);
+    } else {
+      handleClosePopup(); // Close popups when finishing the last one
+    }
+  };
+
+  const handleClosePopup = () => {
+    setPopupIndex(-1); // Reset or close popups
+  };  
   
   const [factList, setFactList] = useState([
 		{ isExplored: false, icon: <img src={MetalImg} alt = "MetalImg" height='40'/>, image: MetalImg ,title: 'Scientific Interest', text: "What gives asteroid Psyche great scientific interest is that it is likely rich in metal. It may consist largely of metal from the core of a planetesimal, one of the building blocks of the Sun’s planetary system. At Psyche scientists will explore, for the first time ever, a world made not of rock or ice, but rich in metal."},
@@ -143,6 +165,7 @@ function PsycheApp() {
   
   const handleLaunchClick = () => {
     setIsLaunched(true);
+    setPopupIndex(0);
   }
   
   const handleToSpacecraftClick = () => {
@@ -170,6 +193,19 @@ function PsycheApp() {
         <Canvas ref={canvasRef} camera={{ fov: 45, position: [0, 0, 75] }}>
          <MainPsycheContainer/>
         </Canvas>
+        
+        
+        {popupIndex >= 0 && popupIndex < popupContent.length && (
+          <MissionIntroPopup
+            title={popupContent[popupIndex].title}
+            message={popupContent[popupIndex].message}
+            onNext={handleNextPopup}
+            onClose={handleClosePopup}
+            isLast={popupIndex === popupContent.length - 1}
+          />
+        )}
+        
+        {!isLaunched && <button onClick={handleLaunchClick}>Launch</button>}
         
         
         {isLaunched && !isCreditsClicked && !isStartClicked && <button className={`ombre-button start-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleStartClick}>Start</button>}
