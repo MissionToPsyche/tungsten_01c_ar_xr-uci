@@ -28,13 +28,11 @@ const ProgressBarButton = () => {
   
   return (
     <>
-      <button onClick={handleNotebookClick}>        
-        <div style={{ width: '4vh', height: '4vh' }} className='notebook-button'>
+        <div style={{ width: '4vh', height: '4vh' }} className='notebook-button' onClick={handleNotebookClick}>
           <CircularProgressbarWithChildren minValue={0} maxValue={100} value={progressValue} strokeWidth={5}>
             <MenuBookIcon fontSize="string"/>
           </CircularProgressbarWithChildren>
         </div>
-      </button>
     
     {/* Popover popup */}
     {showNotebook && <NotebookPopup onClose={() => setShowNotebook(false)} />}

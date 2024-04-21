@@ -30,6 +30,8 @@ import PropulsionImg from '../../public/assets/propulsion_system.svg';
 
 import CombinedFact from './components/PopUps/CombinedFact';
 
+import HotspotFact from './components/PopUps/HotspotFact';
+
 
 function PsycheApp() {
   const canvasRef = useRef();
@@ -43,7 +45,7 @@ function PsycheApp() {
   const [isStartAnimating, setIsStartAnimating] = useState(false);
   const [showControls, setShowControls] = useState(false);
   const [showNotebook, setShowNotebook] = useState(false);
-  const [currentImage, setCurrentImage] = useState(null);
+  const [currentFactIndex, setCurrentFactIndex] = useState(null);
   
   const [showCountdown, setShowCountdown] = useState(false);
   const [countdown, setCountdown] = useState(3);
@@ -114,7 +116,7 @@ function PsycheApp() {
     countdown, setCountdown,
     showSpacecraft, setShowSpacecraft,
     isMoving, setIsMoving, 
-    currentImage, setCurrentImage, 
+    currentFactIndex, setCurrentFactIndex, 
     isOverview, setIsOverview, 
     isOverviewClicked, setIsOverviewClicked, 
     isStartClicked, setStartClicked, 
@@ -179,12 +181,7 @@ function PsycheApp() {
         {isOverview && <button className="ombre-button" onClick={handleOverviewClick}>Overview</button>}
         {isToSpaceCraft && <button className="ombre-button" onClick={handleToSpacecraftClick}>To Spacecraft</button>}
         
-        {currentImage && (
-          <div className="image-popup">
-            <img src={currentImage} alt="Information" />
-            <button onClick={() => setCurrentImage(null)}>Close</button>
-          </div>
-        )}
+        {currentFactIndex!== null &&  <HotspotFact/>}
         {isLaunched && (<button className="controls-button" onClick={handleControlsClick}>?</button>)}
         {showControls && <ControlsPopup onClose={() => setShowControls(false)} />}
           
