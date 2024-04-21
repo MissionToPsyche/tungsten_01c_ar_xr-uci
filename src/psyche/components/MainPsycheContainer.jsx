@@ -19,9 +19,26 @@ const MainPsycheContainer = () => {
   
   const {isLaunched, setShowAsteroid, isToSpaceCraftClicked, isToSpaceCraft, setIsToSpaceCraft, setIsOverview, isOverviewClicked, isStartClicked, showCountdown, setShowCountdown, countdown, setCountdown, showSpacecraft, setShowSpacecraft,isMoving, setIsMoving, showAsteroid} = useContext(GlobalStateContext);
 
+  const [distanceFactor, setDistanceFactor] = useState(30)
   const orbitControlsRef = useRef();
   const psycheSpacecraftRef = useRef();
   const psycheRef = useRef()
+
+  useEffect(() => {
+    const handleZoomChange = () => {
+      const distanceToTarget = camera.position.distanceTo(psycheRef.current.position);
+      setDistanceFactor(distanceToTarget / 5);
+    };
+
+    // Add event listener for zoom change
+    orbitControlsRef.current.addEventListener('change', handleZoomChange);
+
+    return () => {
+      // Remove event listener on component unmount
+      orbitControlsRef.current.removeEventListener('change', handleZoomChange);
+    };
+  }, [camera, psycheRef]);
+
   
   useEffect(() => {
     console.log("isStartClicked: ")
@@ -77,6 +94,7 @@ const MainPsycheContainer = () => {
         orbitControlsRef.current.maxDistance = 30;
         //setShowSpacecraft(false);
       });
+
       //orbitControlsRef.current.target.set(psycheSpacecraftRef.current.position.x, psycheSpacecraftRef.current.position.y, psycheSpacecraftRef.current.position.z);
     }
   }, [isLaunched]);  
@@ -195,7 +213,7 @@ const MainPsycheContainer = () => {
   
       <group>
         <PsycheAsteroid psycheRef={psycheRef} visible={showAsteroid} />
-        <PsycheSpacecraft scref={psycheSpacecraftRef} target={psycheRef} isMoving={isMoving} visible={showSpacecraft}/>
+        <PsycheSpacecraft scref={psycheSpacecraftRef} target={psycheRef} isMoving={isMoving} visible={showSpacecraft} isLaunched={isLaunched} distanceFactor={distanceFactor}/>
       </group>
     </>
   )
