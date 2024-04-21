@@ -10,12 +10,12 @@ const ItemHotspot = ({ position, scale, meshRotation, boxImage, imageUrl, title 
     const meshRef = useRef();
     const texture = useLoader(TextureLoader, imageUrl);
     
-    const { currentImage, setCurrentImage, factList} = useContext(GlobalStateContext);
+    const { currentFactIndex, setCurrentFactIndex, factList} = useContext(GlobalStateContext);
     
     const handleIconClick = () => {
       console.log("clicked on icon" + title);
       const imageToShow = boxImage;
-      setCurrentImage(imageToShow);
+      setCurrentFactIndex(imageToShow);
       for (let i=0; i<factList.length; i++){
         if (factList[i].title === title){
           factList[i].isExplored = true;

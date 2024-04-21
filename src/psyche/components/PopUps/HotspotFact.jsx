@@ -13,9 +13,9 @@ import {GlobalStateContext} from '../../utils/useContext';
 
 function HotspotFact (){
 	
-	const { currentImage, setCurrentImage, factList} = useContext(GlobalStateContext);
+	const { currentFactIndex, setCurrentFactIndex, factList} = useContext(GlobalStateContext);
 	
-	const handleClose = () => setCurrentImage(null);
+	const handleClose = () => setCurrentFactIndex(null);
 	
 	const modalStyle = {
 		position: 'fixed',
@@ -41,7 +41,7 @@ function HotspotFact (){
 	
 	return (
 		<Modal 
-				open={currentImage != null}
+				open={currentFactIndex != null}
 				onClose={handleClose}
 		>
 		 <Box sx={modalStyle}>
