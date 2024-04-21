@@ -30,6 +30,8 @@ import PropulsionImg from '../../public/assets/propulsion_system.svg';
 
 import CombinedFact from './components/PopUps/CombinedFact';
 
+import HotspotFact from './components/PopUps/HotspotFact';
+
 
 function PsycheApp() {
   const canvasRef = useRef();
@@ -179,12 +181,7 @@ function PsycheApp() {
         {isOverview && <button className="ombre-button" onClick={handleOverviewClick}>Overview</button>}
         {isToSpaceCraft && <button className="ombre-button" onClick={handleToSpacecraftClick}>To Spacecraft</button>}
         
-        {currentImage && (
-          <div className="image-popup">
-            <img src={currentImage} alt="Information" />
-            <button onClick={() => setCurrentImage(null)}>Close</button>
-          </div>
-        )}
+        {currentImage &&  <HotspotFact/>}
         {isLaunched && (<button className="controls-button" onClick={handleControlsClick}>?</button>)}
         {showControls && <ControlsPopup onClose={() => setShowControls(false)} />}
           
