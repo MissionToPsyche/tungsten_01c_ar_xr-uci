@@ -15,10 +15,11 @@ const ItemHotspot = ({ position, scale, meshRotation, boxImage, imageUrl, title 
     const handleIconClick = () => {
       console.log("clicked on icon" + title);
       const imageToShow = boxImage;
-      setCurrentFactIndex(imageToShow);
       for (let i=0; i<factList.length; i++){
         if (factList[i].title === title){
           factList[i].isExplored = true;
+          setCurrentFactIndex(i);
+
         }
       }
     };

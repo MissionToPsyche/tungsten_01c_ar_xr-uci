@@ -18,6 +18,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import { useContext } from "react";
 import {GlobalStateContext} from '../../utils/useContext';
+import InfoContent from './InfoContent';
 
 const drawerWidth = 240;
 
@@ -116,19 +117,7 @@ function NotebookMenu() {
 	
 	const handleSelectedItem = (index, array) => {
 		return (
-			<>
-			<Typography paragraph>
-				{array[index].text}
-			</Typography>
-			{index!==4 && (
-      <img 
-        src={array[index].image} 
-        width='200vw' 
-        style={{ display: 'block', margin: 'auto', padding: '2vh' }} 
-        alt={array[index].alt} 
-      />
-    )}
-			</>
+			<InfoContent index={index} array={array}/>
 		)
 	}
   

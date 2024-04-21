@@ -181,7 +181,7 @@ function PsycheApp() {
         {isOverview && <button className="ombre-button" onClick={handleOverviewClick}>Overview</button>}
         {isToSpaceCraft && <button className="ombre-button" onClick={handleToSpacecraftClick}>To Spacecraft</button>}
         
-        {currentFactIndex &&  <HotspotFact/>}
+        {currentFactIndex!== null &&  <HotspotFact/>}
         {isLaunched && (<button className="controls-button" onClick={handleControlsClick}>?</button>)}
         {showControls && <ControlsPopup onClose={() => setShowControls(false)} />}
           

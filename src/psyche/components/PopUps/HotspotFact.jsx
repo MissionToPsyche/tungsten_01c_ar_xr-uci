@@ -5,11 +5,12 @@ import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
 import Facts from './NotebookMenu';
+import Typography from '@mui/material/Typography';
 
 
 import CloseIcon from '@mui/icons-material/Close';
 import {GlobalStateContext} from '../../utils/useContext';
-
+import InfoContent from './InfoContent';
 
 function HotspotFact (){
 	
@@ -19,24 +20,27 @@ function HotspotFact (){
 	
 	const modalStyle = {
 		position: 'fixed',
-		top: '50%',
-		left: '50%',
-		
-		maxHeight: '80vh',
-		maxWidth: '80vw',
-		height:'65vh',
-		
-		transform: 'translate(-50%, -50%)',
-		backgroundColor: 'rgba(255, 255, 255, 1)',
-		padding: '3vh',
-		borderRadius: '15px',
-		boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-		zIndex: 1000,
-		display: 'flex',
-		flexDirection: 'column',
-		justifyContent: 'top',
-		alignItems: 'center'
+      top: '50%',
+      left: '50%',
+      
+      maxHeight: '80vh',
+      //maxWidth: '65vw',
+			width:'70vw',
+      //height:'50vh',
+      
+      transform: 'translate(-50%, -50%)',
+      backgroundColor: 'rgba(255, 255, 255, 1)',
+      padding: '3vh',
+      borderRadius: '15px',
+      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+      zIndex: 1000,
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'top',
+      alignItems: 'center'
 	};
+	
+	console.log(currentFactIndex);
 	
 	
 	return (
@@ -45,8 +49,7 @@ function HotspotFact (){
 				onClose={handleClose}
 		>
 		 <Box sx={modalStyle}>
-					{/*<Button onClick={handleClose} sx={{position: 'absolute', top: '1vh', right: '1vh', color:'#ffffff'}}><CloseIcon/></Button>*/}
-					Hello World 12345
+		 	<InfoContent index={currentFactIndex} array={factList}/>
 			</Box>   
 		</Modal>
 	);
