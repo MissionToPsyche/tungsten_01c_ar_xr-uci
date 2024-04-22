@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './ToolBox.css'; // Make sure the path to your CSS file is correct
+import './ToolBox.css'; 
 
 const images = [
   'public/assets/multiSpec_Imager.png',
@@ -8,7 +8,7 @@ const images = [
 ];
 
 const GalleryComponent = () => {
-  // The initial state should match the number of images you have
+  
   const [visibleColumns, setVisibleColumns] = useState(images.map(() => true));
 
   const handleClick = index => {

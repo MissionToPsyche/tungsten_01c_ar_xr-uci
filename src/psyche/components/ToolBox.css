@@ -11,17 +11,17 @@
     margin: 0; /* No margin for columns */
     text-align: center;
     background: transparent; /* Ensure the background is transparent */
-    /* Adjust the width and height as necessary to fit your content */
-    width: 150px; /* Example width */
-    height: auto; /* Maintain the aspect ratio */
+  
+    width: 150px; 
+    height: auto; 
   }
   
   .gallery-image {
     display: block;
-    max-width: 100%; /* Image will scale down if its natural width is larger */
-    max-height: 100%; /* Adjust the height to maintain the aspect ratio */
-    border: 2px solid #ffffff; /* Example border: 2px solid white */
-    box-sizing: border-box; /* Make sure the border doesn't add to the width/height */
+    max-width: 100%;
+    max-height: 100%; 
+    border: 2px solid #ffffff; 
+    box-sizing: border-box; 
   }
   
   body {
