@@ -1,0 +1,32 @@
+/* ToolBox.css */
+.gallery-container {
+    display: flex;
+    justify-content: center; /* Center children horizontally in the container */
+    align-items: center; /* Center children vertically in the container */
+    height: 100vh; /* Make the container take up the full height of the viewport */
+    gap: 10px; /* Adjust the space between the items if needed */
+  }
+  
+  .gallery-column {
+    margin: 0; /* No margin for columns */
+    text-align: center;
+    background: transparent; /* Ensure the background is transparent */
+    /* Adjust the width and height as necessary to fit your content */
+    width: 150px; /* Example width */
+    height: auto; /* Maintain the aspect ratio */
+  }
+  
+  .gallery-image {
+    display: block;
+    max-width: 100%; /* Image will scale down if its natural width is larger */
+    max-height: 100%; /* Adjust the height to maintain the aspect ratio */
+    border: 2px solid #ffffff; /* Example border: 2px solid white */
+    box-sizing: border-box; /* Make sure the border doesn't add to the width/height */
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: black; /* This will not affect the transparency of .gallery-column */
+  }
+  
