@@ -7,7 +7,7 @@ const images = [
   'public/assets/gammaRayNeutronSpec.png',
 ];
 
-const GalleryComponent = () => {
+const ToolBox = () => {
   
   const [visibleColumns, setVisibleColumns] = useState(images.map(() => true));
 
@@ -32,5 +32,5 @@ const GalleryComponent = () => {
   );
 };
 
-export default GalleryComponent;
+export default ToolBox;
 
