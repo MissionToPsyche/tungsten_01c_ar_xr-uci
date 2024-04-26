@@ -17,6 +17,7 @@ import NotebookPopup from '../PopUps/NotebookPopup';
 const ProgressBarButton = () => {
   
   const { showNotebook, setShowNotebook} = useContext(GlobalStateContext);
+	const { progressValue, setProgressValue} = useContext(GlobalStateContext);
 
   //const [progress, setProgress] = React.useState(60);
 
@@ -24,7 +25,6 @@ const ProgressBarButton = () => {
     setShowNotebook(!showNotebook);
   };
   
-  const progressValue = 66
   
   return (
     <>
