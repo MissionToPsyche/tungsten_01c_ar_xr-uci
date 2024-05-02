@@ -117,8 +117,8 @@ function PsycheApp() {
     factList, setFactList, 
     toolList, setToolList, 
     isLaunched, 
-    isToSpaceCraftClicked,
-    isToAsteroidClicked,
+    isToSpaceCraftClicked, setIsToSpaceCraftClicked,
+    isToAsteroidClicked, setIsToAsteroidClicked,
     isToAsteroid, setIsToAsteroid, 
     isToSpaceCraft,setIsToSpaceCraft, 
     showAsteroid, setShowAsteroid, 
@@ -160,18 +160,20 @@ function PsycheApp() {
   }
   
   const handleOverviewClick = () => {
+    console.log("isToAsteroid: ", isToAsteroidClicked)
+    console.log("isToSpaceCraft: ", isToSpaceCraftClicked)
     setIsOverviewClicked(!isOverviewClicked);
   };
 
-  const handleControlsClick = () => {
-    setShowControls(!showControls);
-  };
-  
   const handleToAsteroidClick = () =>{
     
     setIsToAsteroidClicked(!isToAsteroidClicked);
     console.log("to asteroid clicked")
   }
+  
+  const handleControlsClick = () => {
+    setShowControls(!showControls);
+  };
   
 
 
