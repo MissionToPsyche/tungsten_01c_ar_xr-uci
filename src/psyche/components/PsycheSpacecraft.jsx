@@ -5,6 +5,8 @@ import { useMemo } from 'react';
 import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
 import { Html } from '@react-three/drei'
 import { useRef } from 'react'
+import { useContext } from 'react';
+import {GlobalStateContext} from '../utils/useContext';
 import * as THREE from 'three';
 
 
@@ -12,11 +14,20 @@ const PsycheSpacecraft = ({scref , target, isMoving, visible, isLaunched, distan
 	const obj = useLoader(OBJLoader, '/assets/psyche_spacecraft.obj')
 	const iconRef = useRef()
 
-	const handleIconClick = () => {
-		console.log('Icon clicked!')
-		// Add your desired functionality here
-	}
-
+	const { setCurrentFactIndex, factList, isModalOpen, setIsModalOpen, showNotebook } = useContext(GlobalStateContext);
+    
+	const handleIconClick = (title) => {
+		console.log("clicked on icon" + title);
+		setIsModalOpen(true);
+		for (let i=0; i<factList.length; i++){
+		  if (factList[i].title === title){
+			factList[i].isExplored = true;
+			setCurrentFactIndex(i);
+  
+		  }
+		}
+	  };
+	  
 	const geometry = useMemo(() => {
 		let g;
 		obj.traverse((c) => {
@@ -52,30 +63,37 @@ const PsycheSpacecraft = ({scref , target, isMoving, visible, isLaunched, distan
 			<mesh geometry={geometry} scale={0.01} frustumCulled={false} visible={visible}>
 				<meshPhysicalMaterial color="pink" />
 			</mesh>
-			{ isLaunched && !isMoving && (
-				<Html position={[0.2, 0.2, 0.2]} distanceFactor={distanceFactor} ref={iconRef} onClick={handleIconClick}>
-				<div className="icon">
+			{ isLaunched && !isMoving && !isModalOpen && !showNotebook &&(
+				<Html position={[0.2, 0.2, 0.2]} distanceFactor={distanceFactor} ref={iconRef}>
+				<div className="icon" onClick={() => handleIconClick('Trajectory')}>
 				</div>
 				</Html>
 			)}
 
-			{ isLaunched && !isMoving && (
-				<Html position={[0, 0.1, -0.75]} distanceFactor={distanceFactor} ref={iconRef} onClick={handleIconClick}>
-				<div className="icon">
+			{ isLaunched && !isMoving && !isModalOpen && !showNotebook &&(
+				<Html position={[0, 0.1, -0.75]} distanceFactor={distanceFactor} ref={iconRef}>
+				<div className="icon" onClick={() => handleIconClick('Orbit')}>
 				</div>
 				</Html>
 			)}
 
-			{ isLaunched && !isMoving && (
-				<Html position={[-0.05, 0.4, 0.05]} distanceFactor={distanceFactor} ref={iconRef} onClick={handleIconClick}>
-				<div className="icon">
+			{ isLaunched && !isMoving && !isModalOpen && !showNotebook && (
+				<Html position={[-0.05, 0.4, 0.05]} distanceFactor={distanceFactor} ref={iconRef}>
+				<div className="icon" onClick={() => handleIconClick('Spacecraft Size')}>
 				</div>
 				</Html>
 			)}
 
-			{ isLaunched && !isMoving && (
-				<Html position={[.1, -0.2, -0.15]} distanceFactor={distanceFactor} ref={iconRef} onClick={handleIconClick}>
-				<div className="icon">
+			{ isLaunched && !isMoving && !isModalOpen && !showNotebook && (
+				<Html position={[.1, -0.2, -0.15]} distanceFactor={distanceFactor} ref={iconRef}>
+				<div className="icon" onClick={() => handleIconClick('Bus Size')}>
+				</div>
+				</Html>
+			)}
+
+			{ isLaunched && !isMoving && !isModalOpen && !showNotebook && (
+				<Html position={[.2, 0, 0]} distanceFactor={distanceFactor} ref={iconRef}>
+				<div className="icon" onClick={() => handleIconClick('Propulsion System')}>
 				</div>
 				</Html>
 			)}
