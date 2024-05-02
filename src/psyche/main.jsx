@@ -195,7 +195,7 @@ function PsycheApp() {
         {isOverview && <button className="ombre-button" onClick={handleOverviewClick}>Overview</button>}
         
         {isToAsteroid && <button className="ombre-button start-button" onClick={handleToAsteroidClick}>To Psyche</button>}
-        {isToSpaceCraft && <button className="ombre-button" onClick={handleToSpacecraftClick}>To Spacecraft</button>}
+        {isToSpaceCraft && <button className={`ombre-button ${isOverview ? 'start-button' : ""}`} onClick={handleToSpacecraftClick}>To Spacecraft</button>}
 
         
         {currentFactIndex!== null &&  <HotspotFact/>}

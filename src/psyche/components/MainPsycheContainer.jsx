@@ -40,11 +40,16 @@ const MainPsycheContainer = () => {
       orbitControlsRef.current.enableZoom = false;
       orbitControlsRef.current.enableRotate = false;
       orbitControlsRef.current.maxDistance = 100;
+      setIsToAsteroid(false);
+      setIsOverview(false);
+      setIsToSpaceCraft(false);
       animateCameraZoomOut(orbitControlsRef, camera, 50, ()=>{
         //setShowSpacecraft(true);
         setIsToAsteroid(false);
         animateCameraZoomIn(camera, psycheRef, 20, () => {
           setIsMoving(false);
+          setIsOverview(true);
+          setIsToSpaceCraft(true);
           orbitControlsRef.current.enableZoom = true;
           orbitControlsRef.current.enableRotate = true;
           orbitControlsRef.current.maxDistance = 30;
@@ -148,6 +153,7 @@ const MainPsycheContainer = () => {
         
         animateCameraZoomIn(camera, psycheRef, 8, () => {
           setIsOverview(true);
+          setIsToAsteroid(true);
           orbitControlsRef.current.enableZoom = true;
           orbitControlsRef.current.enableRotate = true;
           orbitControlsRef.current.maxDistance = 30;
@@ -203,8 +209,14 @@ const MainPsycheContainer = () => {
           orbitControlsRef.current.target.set(lerpedTarget.x, lerpedTarget.y, lerpedTarget.z);
         
           // Check if transition is complete
-          if (i < 1) {
+          //if (i < 1) {
+          if (i < 0.2) {
+            
             requestAnimationFrame(lerpTarget);
+          }
+          else{
+            setIsToSpaceCraft(true);
+            setIsToAsteroid(true);
           }
         }
 
