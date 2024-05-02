@@ -2,7 +2,7 @@ import * as THREE from 'three';
 
 export const animateCameraZoomIn = (camera, targetRef, distance, callback) => {
   
-  let zoomSpeed = 0.5;
+  let zoomSpeed = 5;
   
   function updatePosition() {
     const targetPosition = targetRef.current.position.clone();
@@ -29,7 +29,7 @@ export const animateCameraZoomIn = (camera, targetRef, distance, callback) => {
 
 export const animateCameraZoomOut = (orbitControlsRef, camera, distance, callback, callback2) => {
   
-  let zoomSpeed = 0.5;
+  let zoomSpeed = 5;
   const targetPosition = new THREE.Vector3(0, 0, distance);
   
   function updatePosition() {
