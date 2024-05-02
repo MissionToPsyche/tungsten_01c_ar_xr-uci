@@ -3,8 +3,8 @@
 
 .controls-button {
   position: absolute;
-  top: 1vh;
-  left: 1vh;
+  top: 3vw;
+  left: 3vw;
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -27,14 +27,14 @@
 
   @media (min-width: 768px) and (max-width: 1024px) {
     font-size: 2vw;
-    width: 6vw;
-    height: 6vw;
+    width: 8vw;
+    height: 8vw;
   }
 
   @media (min-width: 1024px) {
-    font-size: 1vw;
-    width: 4vw;
-    height: 4vw;
+    font-size: 3vw;
+    width: 7vw;
+    height: 7vw;
   }
 }
 
@@ -64,8 +64,8 @@
 /* Notebook */
 .notebook-button {
   position: absolute;
-  top: 7vh;
-  left: 1vh;
+  top: 13vw;
+  left: 3vw;
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -90,14 +90,14 @@
 
   @media (min-width: 768px) and (max-width: 1024px) {
     font-size: 2vw;
-    width: 6vw;
-    height: 6vw;
+    width: 8vw;
+    height: 8vw;
   }
 
   @media (min-width: 1024px) {
-    font-size: 1vw;
-    width: 4vw;
-    height: 4vw;
+    font-size: 3vw;
+    width: 7vw;
+    height: 7vw;
   }
 }
 

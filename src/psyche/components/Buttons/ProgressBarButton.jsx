@@ -23,7 +23,7 @@ const ProgressBarButton = () => {
   
   return (
     <>
-      <div style={{ width: '4vh', height: '4vh' }} className='notebook-button' onClick={handleNotebookClick}>
+      <div className='notebook-button' onClick={handleNotebookClick}>
         <CircularProgressbarWithChildren minValue={0} maxValue={100} value={progressValue} strokeWidth={5}>
           <MenuBookIcon fontSize="string"/>
         </CircularProgressbarWithChildren>
