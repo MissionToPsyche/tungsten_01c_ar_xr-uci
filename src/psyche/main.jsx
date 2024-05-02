@@ -37,8 +37,10 @@ function PsycheApp() {
   const canvasRef = useRef();
   const [isOverview, setIsOverview] = useState(false);
   const [isToSpaceCraft, setIsToSpaceCraft] = useState(false);
+  const [isToAsteroid, setIsToAsteroid] = useState(false);
   const [isOverviewClicked, setIsOverviewClicked] = useState(false);
   const [isToSpaceCraftClicked, setIsToSpaceCraftClicked] = useState(false);
+  const [isToAsteroidClicked, setIsToAsteroidClicked] = useState(false);
   const [isStartClicked, setStartClicked] = useState(false);
   const [isLaunched, setIsLaunched] = useState(false);
   const [isCreditsClicked, setCreditsClicked] = useState(false);
@@ -56,6 +58,8 @@ function PsycheApp() {
   const [showSingleSpacecraft, setShowSingleSpacecraft] = useState(false);
   
   const [showDescription, setShowDescription] = useState(false);
+  
+  
 
   
   
@@ -109,7 +113,9 @@ function PsycheApp() {
     factList, setFactList, 
     toolList, setToolList, 
     isLaunched, 
-    isToSpaceCraftClicked, 
+    isToSpaceCraftClicked,
+    isToAsteroidClicked,
+    isToAsteroid, setIsToAsteroid, 
     isToSpaceCraft,setIsToSpaceCraft, 
     showAsteroid, setShowAsteroid, 
     showCountdown, setShowCountdown, 
@@ -159,6 +165,12 @@ function PsycheApp() {
     setShowControls(!showControls);
   };
   
+  const handleToAsteroidClick = () =>{
+    
+    setIsToAsteroidClicked(!isToAsteroidClicked);
+    console.log("to asteroid clicked")
+  }
+  
 
 
   
@@ -174,12 +186,15 @@ function PsycheApp() {
         </Canvas>
         
         
-        {isLaunched && !isCreditsClicked && !isStartClicked && <button className={`ombre-button start-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleStartClick}>Launch</button>}
+        {isLaunched && !isCreditsClicked && !isStartClicked && <button className={`ombre-button  ${isStartAnimating ? 'clicked' : ''}`} onClick={handleStartClick}>Launch</button>}
         {!isLaunched && <button className={`ombre-button start-button`} onClick={handleLaunchClick}>Start</button>}
         {!isLaunched && !isCreditsClicked && !isStartClicked && <button className={`ombre-button credits-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleCreditsClick}>Credits</button>}
         
         {isOverview && <button className="ombre-button" onClick={handleOverviewClick}>Overview</button>}
+        
+        {isToAsteroid && <button className="ombre-button start-button" onClick={handleToAsteroidClick}>To Psyche</button>}
         {isToSpaceCraft && <button className="ombre-button" onClick={handleToSpacecraftClick}>To Spacecraft</button>}
+
         
         {currentFactIndex!== null &&  <HotspotFact/>}
         {isLaunched && (<button className="controls-button" onClick={handleControlsClick}>?</button>)}
