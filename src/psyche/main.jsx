@@ -35,34 +35,38 @@ import HotspotFact from './components/PopUps/HotspotFact';
 
 function PsycheApp() {
   const canvasRef = useRef();
+  
+  // flow state
   const [isOverview, setIsOverview] = useState(false);
   const [isToSpaceCraft, setIsToSpaceCraft] = useState(false);
   const [isToAsteroid, setIsToAsteroid] = useState(false);
+  const [isLaunched, setIsLaunched] = useState(false);
+  
+  // button state
   const [isOverviewClicked, setIsOverviewClicked] = useState(false);
   const [isToSpaceCraftClicked, setIsToSpaceCraftClicked] = useState(false);
   const [isToAsteroidClicked, setIsToAsteroidClicked] = useState(false);
   const [isStartClicked, setStartClicked] = useState(false);
-  const [isLaunched, setIsLaunched] = useState(false);
   const [isCreditsClicked, setCreditsClicked] = useState(false);
+  
+  //animation state
   const [isStartAnimating, setIsStartAnimating] = useState(false);
+  
+  // instruction/ user intraction state
   const [showControls, setShowControls] = useState(false);
   const [showNotebook, setShowNotebook] = useState(false);
   const [currentFactIndex, setCurrentFactIndex] = useState(null);
   
-  const [showCountdown, setShowCountdown] = useState(false);
-  const [countdown, setCountdown] = useState(3);
+  // object state
   const [showSpacecraft, setShowSpacecraft] = useState(false);
   const [showAsteroid, setShowAsteroid] = useState(false);
   const [isMoving, setIsMoving] = useState(false);
   
-  const [showSingleSpacecraft, setShowSingleSpacecraft] = useState(false);
   
   const [showDescription, setShowDescription] = useState(false);
   
-  
-
-  
-  
+ 
+  //information state
   const [factList, setFactList] = useState([
 		{ isExplored: false, icon: <img src={MetalImg} alt = "MetalImg" height='40'/>, image: MetalImg ,title: 'Scientific Interest', text: "What gives asteroid Psyche great scientific interest is that it is likely rich in metal. It may consist largely of metal from the core of a planetesimal, one of the building blocks of the Sun’s planetary system. At Psyche scientists will explore, for the first time ever, a world made not of rock or ice, but rich in metal."},
 		{ isExplored: false, icon: <img src={OrbitTrimImg} alt="OrbitImg" height='40'/>,image:OrbitImg, title: 'The orbit', text: "Psyche follows an orbit in the outer part of the main asteroid belt, at an average distance from the Sun of 3 astronomical units (AU); Earth orbits at 1 AU." },
@@ -118,8 +122,6 @@ function PsycheApp() {
     isToAsteroid, setIsToAsteroid, 
     isToSpaceCraft,setIsToSpaceCraft, 
     showAsteroid, setShowAsteroid, 
-    showCountdown, setShowCountdown, 
-    countdown, setCountdown,
     showSpacecraft, setShowSpacecraft,
     isMoving, setIsMoving, 
     currentFactIndex, setCurrentFactIndex, 
