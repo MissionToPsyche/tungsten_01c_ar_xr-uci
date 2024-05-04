@@ -33,6 +33,7 @@ import CombinedFact from './components/PopUps/CombinedFact';
 import HotspotFact from './components/PopUps/HotspotFact';
 
 
+
 function PsycheApp() {
   const canvasRef = useRef();
   
@@ -112,7 +113,7 @@ function PsycheApp() {
       </>
     ) },
   ]);
-  
+
   const useContextList = {
     factList, setFactList, 
     toolList, setToolList, 
@@ -131,8 +132,8 @@ function PsycheApp() {
     isCreditsClicked, setCreditsClicked, 
     showNotebook, setShowNotebook, 
     showDescription, setShowDescription};
-
-  const handleStartClick = () => {
+  
+    const handleStartClick = () => {
     //setShowAsteroid(false);
     setIsMoving(false);
     //setShowSingleSpacecraft(true);
@@ -183,8 +184,6 @@ function PsycheApp() {
       <div className="app-container">
         {!isLaunched && <div className="title-container">Psyche Simulation</div>}
         
-        
-        
         <Canvas ref={canvasRef} camera={{ fov: 45, position: [0, 0, 75] }}>
          <MainPsycheContainer/>
         </Canvas>
@@ -207,13 +206,11 @@ function PsycheApp() {
           
         {isLaunched && (      
         <ProgressBarButton /> )}
-        
-        {/*<Button onClick={handleOpen}>Open modal</Button>*/}
-
 
       </div>
     </GlobalStateProvider>
   );
 }
+
 
 export default PsycheApp;
