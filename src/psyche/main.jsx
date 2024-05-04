@@ -53,6 +53,7 @@ function PsycheApp() {
   const [showSpacecraft, setShowSpacecraft] = useState(false);
   const [showAsteroid, setShowAsteroid] = useState(false);
   const [isMoving, setIsMoving] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false)
   
   const [showSingleSpacecraft, setShowSingleSpacecraft] = useState(false);
   
@@ -122,9 +123,10 @@ function PsycheApp() {
     isStartClicked, setStartClicked, 
     isCreditsClicked, setCreditsClicked, 
     showNotebook, setShowNotebook, 
-    showDescription, setShowDescription};
-  
-    const handleStartClick = () => {
+    showDescription, setShowDescription,
+    isModalOpen, setIsModalOpen};
+
+  const handleStartClick = () => {
     //setShowAsteroid(false);
     setIsMoving(false);
     //setShowSingleSpacecraft(true);
