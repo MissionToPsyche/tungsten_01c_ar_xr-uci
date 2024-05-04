@@ -33,6 +33,7 @@ import CombinedFact from './components/PopUps/CombinedFact';
 import HotspotFact from './components/PopUps/HotspotFact';
 
 
+
 function PsycheApp() {
   const canvasRef = useRef();
   const [isOverview, setIsOverview] = useState(false);
@@ -57,7 +58,6 @@ function PsycheApp() {
   
   const [showDescription, setShowDescription] = useState(false);
 
-  
   
   const [factList, setFactList] = useState([
 		{ isExplored: false, icon: <img src={MetalImg} alt = "MetalImg" height='40'/>, image: MetalImg ,title: 'Scientific Interest', text: "What gives asteroid Psyche great scientific interest is that it is likely rich in metal. It may consist largely of metal from the core of a planetesimal, one of the building blocks of the Sun’s planetary system. At Psyche scientists will explore, for the first time ever, a world made not of rock or ice, but rich in metal."},
@@ -104,7 +104,7 @@ function PsycheApp() {
       </>
     ) },
   ]);
-  
+
   const useContextList = {
     factList, setFactList, 
     toolList, setToolList, 
@@ -123,8 +123,8 @@ function PsycheApp() {
     isCreditsClicked, setCreditsClicked, 
     showNotebook, setShowNotebook, 
     showDescription, setShowDescription};
-
-  const handleStartClick = () => {
+  
+    const handleStartClick = () => {
     //setShowAsteroid(false);
     setIsMoving(false);
     //setShowSingleSpacecraft(true);
@@ -167,12 +167,9 @@ function PsycheApp() {
       <div className="app-container">
         {!isLaunched && <div className="title-container">Psyche Simulation</div>}
         
-        
-        
         <Canvas ref={canvasRef} camera={{ fov: 45, position: [0, 0, 75] }}>
          <MainPsycheContainer/>
         </Canvas>
-        
         
         {isLaunched && !isCreditsClicked && !isStartClicked && <button className={`ombre-button start-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleStartClick}>Launch</button>}
         {!isLaunched && <button className={`ombre-button start-button`} onClick={handleLaunchClick}>Start</button>}
@@ -188,13 +185,11 @@ function PsycheApp() {
           
         {isLaunched && (      
         <ProgressBarButton /> )}
-        
-        {/*<Button onClick={handleOpen}>Open modal</Button>*/}
-
 
       </div>
     </GlobalStateProvider>
   );
 }
+
 
 export default PsycheApp;

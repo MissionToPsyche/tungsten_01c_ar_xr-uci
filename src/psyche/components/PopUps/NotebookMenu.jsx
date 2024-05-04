@@ -125,9 +125,9 @@ function NotebookMenu() {
 
   return (
     <Box sx={{ display: 'flex', overflowY:'scroll', width:'80vw'}}>
-      <AppBar open={open} sx={{backgroundColor: 'rgb(11, 61, 145)'}}>
+      <AppBar open={open} sx={{background: 'linear-gradient(to right, #ef5966, #a53f5b)'}}>
         <Toolbar>
-          <IconButton
+          {/*<IconButton
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
@@ -138,18 +138,18 @@ function NotebookMenu() {
             }}
           >
             <MenuIcon />
-          </IconButton>
+          </IconButton>*/}
           <Typography variant="h6" noWrap component="div">
             Summary
           </Typography>
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>
-        <DrawerHeader >
+        {/*<DrawerHeader >
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
-        </DrawerHeader>
+        </DrawerHeader>*/}
         {/* Facts */}
         <Divider />
         <List >
@@ -174,7 +174,7 @@ function NotebookMenu() {
                 >
                   {item.icon}
                 </ListItemIcon>
-                <ListItemText primary={item.title} sx={{ opacity: open ? 1 : 0 }} />
+                {/*<ListItemText primary={item.title} sx={{ opacity: open ? 1 : 0 }} />*/}
               </ListItemButton>
             </ListItem>
           ))}
@@ -202,7 +202,7 @@ function NotebookMenu() {
                 >
                   {item.icon}
                 </ListItemIcon>
-                <ListItemText primary={item.title} sx={{ opacity: open ? 1 : 0 }} />
+                {/*<ListItemText primary={item.title} sx={{ opacity: open ? 1 : 0 }} />*/}
               </ListItemButton>
             </ListItem>
           ))}
