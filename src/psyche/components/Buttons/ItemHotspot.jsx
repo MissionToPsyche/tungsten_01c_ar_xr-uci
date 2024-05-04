@@ -1,25 +1,31 @@
 import React, { useRef } from 'react';
+
 import { useLoader, useFrame } from '@react-three/fiber';
 import { TextureLoader, MeshBasicMaterial } from 'three';
 import {GlobalStateContext} from '../../utils/useContext';
 import { useContext } from "react";
-
 import { hotspots } from '../constants';
+
+export let progressValue = 0
 
 const ItemHotspot = ({ position, scale, meshRotation, boxImage, imageUrl, title }) => {
     const meshRef = useRef();
     const texture = useLoader(TextureLoader, imageUrl);
     
-    const { currentFactIndex, setCurrentFactIndex, factList} = useContext(GlobalStateContext);
+    const { currentFactIndex, setCurrentFactIndex, factList, toolList} = useContext(GlobalStateContext);
+    
+    const sumPercentage = 100/(factList.length+toolList.length)
     
     const handleIconClick = () => {
       console.log("clicked on icon" + title);
       const imageToShow = boxImage;
       for (let i=0; i<factList.length; i++){
         if (factList[i].title === title){
+          if (progressValue<100 && !factList[i].isExplored){
+            progressValue += sumPercentage;
+          }
           factList[i].isExplored = true;
           setCurrentFactIndex(i);
-
         }
       }
     };
@@ -34,9 +40,7 @@ const ItemHotspot = ({ position, scale, meshRotation, boxImage, imageUrl, title 
     );
   };
   
-  
   const ItemHotspots = () => {
-    
     return (
       <>
       {
@@ -47,10 +51,8 @@ const ItemHotspot = ({ position, scale, meshRotation, boxImage, imageUrl, title 
         )
       }
       </>
-    )
-    
+    ) 
   };
-  
   
   export default ItemHotspots;
   

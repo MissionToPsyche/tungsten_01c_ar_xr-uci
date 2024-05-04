@@ -6,7 +6,7 @@
 }
 
 .launch-button {
-  background: linear-gradient(to bottom, #f2717a, #a8ceff);
+  background: linear-gradient(to right, rgba(165, 63, 91, 1), rgba(89, 38, 81, 1));
   border: none;
   color: white;
   border-radius: 20px;
@@ -41,7 +41,7 @@
 }
 
 .ombre-button {
-  background: linear-gradient(to bottom, #f2717a, #a8ceff);
+  background: linear-gradient(to right, rgba(165, 63, 91, 1), rgba(89, 38, 81, 1));
   border: none;
   color: white;
   border-radius: 20px;
@@ -75,7 +75,7 @@
 }
 
 .ombre-button:hover {
-  background: linear-gradient(to bottom, #f4607e, #99d4ff);
+  background: linear-gradient(to right, rgba(165, 63, 91, 1), rgba(89, 38, 81, 1));
 }
 
 .image-popup {
