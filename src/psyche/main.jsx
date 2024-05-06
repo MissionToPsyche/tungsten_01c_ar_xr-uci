@@ -31,7 +31,7 @@ import PropulsionImg from '../../public/assets/propulsion_system.svg';
 import CombinedFact from './components/PopUps/CombinedFact';
 
 import HotspotFact from './components/PopUps/HotspotFact';
-
+import useDoubleClick from './utils/useDoubleClick';
 
 
 function PsycheApp() {
@@ -62,6 +62,7 @@ function PsycheApp() {
   const [showSpacecraft, setShowSpacecraft] = useState(false);
   const [showAsteroid, setShowAsteroid] = useState(false);
   const [isMoving, setIsMoving] = useState(false);
+  const [isAsteroidSpinning, setIsAsteroidSpinning] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false)
   
   
@@ -125,6 +126,7 @@ function PsycheApp() {
     isToSpaceCraft,setIsToSpaceCraft, 
     showAsteroid, setShowAsteroid, 
     showSpacecraft, setShowSpacecraft,
+    isAsteroidSpinning, setIsAsteroidSpinning,
     isMoving, setIsMoving, 
     currentFactIndex, setCurrentFactIndex, 
     isOverview, setIsOverview, 
@@ -178,7 +180,15 @@ function PsycheApp() {
     setShowControls(!showControls);
   };
   
+  const handleDoubleClick = () => {
+    console.log('Double click detected!');
+    if (isToAsteroid && isToSpaceCraft){ //condition when it is in overview mode
+      setIsMoving(!isMoving);
+      setIsAsteroidSpinning(!isAsteroidSpinning);
+    }
+  };
 
+  useDoubleClick(handleDoubleClick);
 
   
   return (
