@@ -5,6 +5,7 @@ import './style.css';
 import { GlobalStateProvider } from './utils/useContext';
 import ProgressBarButton from './components/Buttons/ProgressBarButton';
 import ControlsPopup from './components/PopUps/ControlsPopup';
+import CertificationPopup from './components/PopUps/CompletionCertification';
 
 
 //Delete the following imports after having the real icons
@@ -67,7 +68,7 @@ function PsycheApp() {
   
   const [showDescription, setShowDescription] = useState(false);
   
-  const [progressValue, setProgressValue] = useState(0);
+  const [progressValue, setProgressValue] = useState(100);
   
  
   //information state
@@ -216,6 +217,8 @@ function PsycheApp() {
           
         {isLaunched && (      
         <ProgressBarButton /> )}
+        
+        <CertificationPopup/>
 
       </div>
     </GlobalStateProvider>
