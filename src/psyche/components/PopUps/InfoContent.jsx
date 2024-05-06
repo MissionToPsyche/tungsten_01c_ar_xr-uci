@@ -5,7 +5,6 @@ import Box from '@mui/material/Box';
 function InfoContent({ index, array}) {
 	return (
 		<>
-			
 				<Typography variant='h6' paragraph>
 					<Box sx={{ fontWeight: 'bold' }}>{array[index].title}</Box>
 				</Typography>
