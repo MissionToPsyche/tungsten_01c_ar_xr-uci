@@ -286,7 +286,7 @@ const MainPsycheContainer = () => {
   
       <group>
         <PsycheAsteroid psycheRef={psycheRef} visible={showAsteroid} />
-        <PsycheSpacecraft scref={psycheSpacecraftRef} target={psycheRef} isMoving={isMoving} visible={showSpacecraft} isLaunched={isLaunched} distanceFactor={distanceFactor}/>
+        <PsycheSpacecraft scref={psycheSpacecraftRef} target={psycheRef} distanceFactor={distanceFactor}/>
       </group>
     </>
   )
