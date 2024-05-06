@@ -33,7 +33,7 @@ const MainPsycheContainer = () => {
      showSpacecraft, setShowSpacecraft,
      isMoving, setIsMoving, 
      showAsteroid,
-
+     setIsAsteroidSpinning
     } = useContext(GlobalStateContext);
     
     
@@ -75,7 +75,7 @@ const MainPsycheContainer = () => {
       orbitControlsRef.current.maxDistance = 100;
       hideFlowButtons();
       setShowAsteroid(true);
-      
+      setIsAsteroidSpinning(false)
       animateCameraZoomOut(orbitControlsRef, camera, 50, ()=>{
         //setShowSpacecraft(true);
         setIsToAsteroid(false);
@@ -214,7 +214,7 @@ const MainPsycheContainer = () => {
           i += lerpFactor
           const lerpedTarget = currentTarget.lerp(newTarget, i);
           orbitControlsRef.current.target.set(lerpedTarget.x, lerpedTarget.y, lerpedTarget.z);
-          console.log(i)
+          //console.log(i)
           // Check if transition is complete
           if (i < 1) {
           //if (i < 0.2) {
@@ -238,7 +238,7 @@ const MainPsycheContainer = () => {
       setShowAsteroid(true);
       setShowSpacecraft(true);
       hideFlowButtons();
-
+      setIsAsteroidSpinning(true)
       setIsMoving(true);
       orbitControlsRef.current.enableZoom = false;
       orbitControlsRef.current.enableRotate = false;
