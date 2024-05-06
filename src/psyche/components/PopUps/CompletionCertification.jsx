@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -8,10 +8,14 @@ import Facts from './NotebookMenu';
 
 import CloseIcon from '@mui/icons-material/Close';
 import {GlobalStateContext} from '../../utils/useContext';
+import { Typography } from '@mui/material';
 
-  function NotebookPopup({ onClose }) {
-    const { showNotebook, setShowNotebook} = useContext(GlobalStateContext);
-    const handleClose = () => setShowNotebook(false);
+  function CertificationPopup() {
+    const {progressValue }= useContext(GlobalStateContext);
+    const handleClose = () => {
+			setShowCertification(false);
+		}
+		const [showCertification, setShowCertification] = useState(true);
     
     const modalStyle = {
       position: 'fixed',
@@ -36,16 +40,26 @@ import {GlobalStateContext} from '../../utils/useContext';
 
     return (
       <Modal 
-          open={showNotebook}
+          open={progressValue === 100 && showCertification} 
           onClose={handleClose}
       >
        <Box sx={modalStyle}>
             {/*<Button onClick={handleClose} sx={{position: 'absolute', top: '1vh', right: '1vh', color:'#ffffff'}}><CloseIcon/></Button>*/}
-            <Facts/>
+            <Typography variant='h6' paragraph> 
+							<Box sx={{ fontWeight: 'bold' }}>Hello World This is certification</Box>
+						</Typography>
+						<Typography paragraph>
+							You have successfully completed the Psyche Mission. You have unlocked the Psyche Certification.
+						</Typography>
+						
+						<Button onClick={handleClose}>Continue Exploring</Button>
+						<Button onClick={() =>{
+							window.location.reload();
+						}}>Start Over</Button>
         </Box>   
       </Modal>
     );
   }
 	
 	
-	export default NotebookPopup;
+	export default CertificationPopup;
