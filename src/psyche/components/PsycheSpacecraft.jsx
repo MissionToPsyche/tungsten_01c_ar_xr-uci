@@ -6,19 +6,34 @@ import { useRef } from 'react'
 import { useContext } from 'react';
 import { GlobalStateContext } from '../utils/useContext';
 import * as THREE from 'three';
-import { spacecraftFacts } from './constants';
+import { spacecraftFacts, sumPercentage } from './constants';
+
 
 const PsycheSpacecraft = ({ scref, target, distanceFactor }) => {
   const obj = useLoader(OBJLoader, '/assets/psyche_spacecraft.obj')
   const iconRef = useRef()
 
-  const { setCurrentFactIndex, factList, isModalOpen, setIsModalOpen, showNotebook, isMoving, showSpacecraft, isLaunched } = useContext(GlobalStateContext);
+  const { 
+		setCurrentFactIndex, 
+		factList, 
+		isModalOpen, 
+		setIsModalOpen, 
+		showNotebook, 
+		isMoving, 
+		showSpacecraft, 
+		isLaunched, 
+		progressValue, 
+		setProgressValue 
+	} = useContext(GlobalStateContext);
 
   const handleIconClick = (title) => {
     console.log("clicked on icon" + title);
     setIsModalOpen(true);
     for (let i = 0; i < factList.length; i++) {
       if (factList[i].title === title) {
+				if (progressValue < 100 && !factList[i].isExplored){
+					setProgressValue(progressValue + sumPercentage);
+				}
         factList[i].isExplored = true;
         setCurrentFactIndex(i);
       }

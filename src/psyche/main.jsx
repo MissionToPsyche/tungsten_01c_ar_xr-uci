@@ -67,6 +67,8 @@ function PsycheApp() {
   
   const [showDescription, setShowDescription] = useState(false);
   
+  const [progressValue, setProgressValue] = useState(0);
+  
  
   //information state
   const [factList, setFactList] = useState([
@@ -80,6 +82,8 @@ function PsycheApp() {
 		(
       <CombinedFact/>
     )},
+    
+    
     { isExplored: false, icon: <img src={TrajectoryImg} alt="TrajectoryImg" height='40'/>,image:TrajectoryImg, title: 'Trajectory', text: 'The Psyche spacecraft is targeted to travel to the asteroid using solar-electric (low-thrust) propulsion, following a Mars flyby and gravity-assist. After arrival, the mission plan calls for mapping the asteroid and studying its properties.'},
     { isExplored: false, icon: <img src={ObitImg2} alt="ObitImg2" height='40'/>,image:ObitImg2, title: 'Orbit', text: (
       <>
@@ -135,7 +139,9 @@ function PsycheApp() {
     isCreditsClicked, setCreditsClicked, 
     showNotebook, setShowNotebook, 
     showDescription, setShowDescription,
-    isModalOpen, setIsModalOpen};
+    isModalOpen, setIsModalOpen,
+    progressValue, setProgressValue
+  };
 
   const handleStartClick = () => {
     //setShowAsteroid(false);

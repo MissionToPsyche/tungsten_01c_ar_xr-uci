@@ -10,13 +10,12 @@ import { useContext } from 'react';
 import {GlobalStateContext} from '../../utils/useContext';
 
 import NotebookPopup from '../PopUps/NotebookPopup';
-import { progressValue } from '../Buttons/ItemHotspot';
 
 
 
 const ProgressBarButton = () => {
   
-  const { showNotebook, setShowNotebook} = useContext(GlobalStateContext);
+  const { showNotebook, setShowNotebook, progressValue} = useContext(GlobalStateContext);
   const handleNotebookClick = () => {
     setShowNotebook(!showNotebook);
   };
