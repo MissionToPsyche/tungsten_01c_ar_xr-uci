@@ -18,6 +18,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import { useContext } from "react";
 import {GlobalStateContext} from '../../utils/useContext';
+import InfoContent from './InfoContent';
 
 const drawerWidth = 240;
 
@@ -116,19 +117,7 @@ function NotebookMenu() {
 	
 	const handleSelectedItem = (index, array) => {
 		return (
-			<>
-			<Typography paragraph>
-				{array[index].text}
-			</Typography>
-			{index!==4 && (
-      <img 
-        src={array[index].image} 
-        width='200vw' 
-        style={{ display: 'block', margin: 'auto', padding: '2vh' }} 
-        alt={array[index].alt} 
-      />
-    )}
-			</>
+			<InfoContent index={index} array={array}/>
 		)
 	}
   
@@ -136,9 +125,9 @@ function NotebookMenu() {
 
   return (
     <Box sx={{ display: 'flex', overflowY:'scroll', width:'80vw'}}>
-      <AppBar open={open} sx={{backgroundColor: 'rgb(11, 61, 145)'}}>
+      <AppBar open={open} sx={{background: 'linear-gradient(to right, #ef5966, #a53f5b)'}}>
         <Toolbar>
-          <IconButton
+          {/*<IconButton
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
@@ -149,18 +138,18 @@ function NotebookMenu() {
             }}
           >
             <MenuIcon />
-          </IconButton>
+          </IconButton>*/}
           <Typography variant="h6" noWrap component="div">
             Summary
           </Typography>
         </Toolbar>
       </AppBar>
       <Drawer variant="permanent" open={open}>
-        <DrawerHeader >
+        {/*<DrawerHeader >
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
-        </DrawerHeader>
+        </DrawerHeader>*/}
         {/* Facts */}
         <Divider />
         <List >
@@ -173,7 +162,7 @@ function NotebookMenu() {
                   px: 2.5,
                 }}
 								selected={selectedItem === index}
-                //disabled={!item.isExplored}
+                disabled={!item.isExplored}
 								onClick={() => handleTooltipOpen(index, factList)}
               >
                 <ListItemIcon
@@ -185,7 +174,7 @@ function NotebookMenu() {
                 >
                   {item.icon}
                 </ListItemIcon>
-                <ListItemText primary={item.title} sx={{ opacity: open ? 1 : 0 }} />
+                {/*<ListItemText primary={item.title} sx={{ opacity: open ? 1 : 0 }} />*/}
               </ListItemButton>
             </ListItem>
           ))}
@@ -213,7 +202,7 @@ function NotebookMenu() {
                 >
                   {item.icon}
                 </ListItemIcon>
-                <ListItemText primary={item.title} sx={{ opacity: open ? 1 : 0 }} />
+                {/*<ListItemText primary={item.title} sx={{ opacity: open ? 1 : 0 }} />*/}
               </ListItemButton>
             </ListItem>
           ))}

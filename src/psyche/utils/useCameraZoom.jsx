@@ -76,3 +76,40 @@ export const animateCameraZoomOut = (orbitControlsRef, camera, distance, callbac
   
   updatePosition();
 };
+
+
+export function getRefreshRate(callback) {
+  let frameTimes = [];
+  let lastFrameTime;
+  let measurementStartTime;
+
+  function measureRefreshRate() {
+      requestAnimationFrame(function(timestamp) {
+          if (!measurementStartTime) {
+              measurementStartTime = timestamp;
+          }
+
+          if (timestamp - measurementStartTime < 2000) { // Measure over 5 seconds
+              if (lastFrameTime) {
+                  let frameTime = timestamp - lastFrameTime;
+                  frameTimes.push(frameTime);
+              }
+              lastFrameTime = timestamp;
+              measureRefreshRate();
+          } else {
+              if (frameTimes.length > 0) {
+                  let totalFrameTime = frameTimes.reduce((acc, val) => acc + val, 0);
+                  let averageFrameTime = totalFrameTime / frameTimes.length;
+                  let refreshRate = Math.round(1000 / averageFrameTime);
+                  callback(refreshRate);
+              }
+              // Reset variables for the next measurement
+              lastFrameTime = null;
+              measurementStartTime = null;
+          }
+      });
+  }
+
+  // Start measuring
+  measureRefreshRate();
+}

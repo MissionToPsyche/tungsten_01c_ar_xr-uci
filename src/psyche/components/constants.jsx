@@ -45,3 +45,29 @@ export const hotspots = [
 		imageUrl: 'src/assets/size_icon.png',
 	},
 ]
+
+export const spacecraftFacts = [
+	{
+		position: [0.2, 0.2, 0.2],
+		title: 'Trajectory'
+	},
+	{
+		position: [0, 0.1, -0.75],
+		title: 'Orbit'
+	},
+	{
+		position: [-0.05, 0.4, 0.05],
+		title: 'Spacecraft Size'
+	},
+	{
+		position: [.1, -0.2, -0.15],
+		title: 'Bus Size'
+	},
+	{
+		position: [.2, 0, 0],
+		title: 'Propulsion System'
+	},
+]
+
+
+export const sumPercentage = 6.25

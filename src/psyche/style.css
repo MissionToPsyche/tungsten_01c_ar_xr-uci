@@ -6,7 +6,7 @@
 }
 
 .launch-button {
-  background: linear-gradient(to bottom, #f2717a, #a8ceff);
+  background: linear-gradient(to right, rgba(165, 63, 91, 1), rgba(89, 38, 81, 1));
   border: none;
   color: white;
   border-radius: 20px;
@@ -42,7 +42,7 @@
 }
 
 .ombre-button {
-  background: linear-gradient(to bottom, #f2717a, #a8ceff);
+  background: linear-gradient(to right, rgba(165, 63, 91, 1), rgba(89, 38, 81, 1));
   border: none;
   color: white;
   border-radius: 20px;
@@ -77,6 +77,7 @@
 }
 
 .ombre-button:hover {
+  background: linear-gradient(to right, rgba(165, 63, 91, 1), rgba(89, 38, 81, 1));
   background: linear-gradient(to bottom, #f4607e, #99d4ff);
   font-family: 'Arial';
 }
@@ -185,6 +186,19 @@
   }
 }
 
+.icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 50%;
+  color: #333;
+  font-size: 20px;
+  cursor: pointer;
+}
+
 /* .mission-intro-popup {
   position: absolute;
   top: 50%;
@@ -243,13 +257,13 @@
 .mission-intro-popup {
   display: flex;
   position: absolute;
-  bottom: 10px;
+  bottom: 60px;
   left: 50%;
   transform: translateX(-50%);
   width: 50%;
   /* min-height: 100px;
   max-height: 20%; */
-  height: 100px; 
+  height: 110px; 
   background: rgb(91, 91, 117);
   border: 2.5px solid #4d1678;
   box-shadow: 0 4px 8px rgba(92, 47, 255, 0.2);
