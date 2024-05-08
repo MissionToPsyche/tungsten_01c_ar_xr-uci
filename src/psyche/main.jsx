@@ -61,10 +61,11 @@ function PsycheApp() {
   const [popupIndex, setPopupIndex] = useState(-1);
 
   const popupContent = [
-    { title: "Welcome", message: "Welcome to the Psyche Mission Simulator!" },
-    { title: "Mission Overview", message: "Explore the asteroid Psyche in a virtual environment." },
-    { title: "Scientific Goals", message: "Learn about the scientific goals of the NASA Psyche Mission." },
-    { title: "Get Started", message: "Ready to start your journey? Click 'Finish' to begin exploring!" }
+    { title: "Welcome", message: "My Name is Skyi! I'll be your virtual assistant for the remainder of the experience" },
+    { title: "Introduction", message: "What is your name?" },
+    { title: "Introduction", message: "Hi [Name] its great to meet you. Today we will be exploring NASA's latest mission to the asteroid Psyche." },
+    {title: "Getting Started", message: "This experience will teach you about the Spacecraft technologies, the Asteroid, and more details about the mission!" },
+    { title: "Getting Started", message: "Ready to start your journey? Click 'Finish' to begin exploring!" }
   ];
   
   const handleNextPopup = () => {

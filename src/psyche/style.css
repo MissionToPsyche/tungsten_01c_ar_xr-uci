@@ -185,7 +185,7 @@
   }
 }
 
-.mission-intro-popup {
+/* .mission-intro-popup {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -230,8 +230,104 @@
 
 .mission-intro-popup button:hover {
   background-color: #0056b3;
+} */
+
+
+
+.jersey-10-regular {
+  font-family: "Jersey 10", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 
+.mission-intro-popup {
+  display: flex;
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
+  /* min-height: 100px;
+  max-height: 20%; */
+  height: 100px; 
+  background: rgb(91, 91, 117);
+  border: 2.5px solid #4d1678;
+  box-shadow: 0 4px 8px rgba(92, 47, 255, 0.2);
+  z-index: 10;
+  overflow: hidden;
+}
+
+.popup-content {
+  display: flex;
+  align-items: center; /* Align children vertically in the center */
+  height: 100%;
+  width: 100%;
+}
+
+.character-image img {
+  display: block;
+  image-rendering: pixelated;
+  margin-left: 7px;
+  margin-bottom: 16px;
+  margin-top: 16px;
+  width: 12vh; /* Set a fixed width for the image */
+  height: auto; /* Adjust height automatically */
+  object-fit: contain;
+  border: 2px solid #4d1678;
+  text-shadow: 20px 20px 20px rgba(0, 0, 0, 0.3);
+}
+          
+.text-content {
+  flex-grow: 1;
+  padding: 8px 20px; /* Adjust padding to your preference */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%; /* Adjust if necessary to take full width */
+  height: 100%; /* Auto height to wrap content */
+  
+  color: rgba(255, 255, 255, 0.849);
+  letter-spacing: 2px;
+  box-shadow: 0 4px 8px rgba(92, 47, 255, 0.2);
+}
+
+.mission-intro-popup h1, .mission-intro-popup p, .mission-intro-popup button {
+  font-family: 'Jersey 10', sans-serif; /* Ensure all text has the pixelated font */
+}
+
+
+/* Adjustments for smaller screens */
+@media (max-width: 768px) {
+  .mission-intro-popup {
+    width: 80%; /* Increase the width for mobile to maintain the rectangle shape */
+    /* Remove min-height or adjust as needed so it does not force the box to become square */
+    min-height: 80  px; /* Adjust height as necessary */
+  }
+
+  .character-image img {
+    width: 60px; /* Smaller image for mobile */
+    margin-left: 7px;
+    margin-bottom: 25px;
+  }
+
+  .text-content  {  
+    padding: 4px 10px; /* Smaller padding for text content on mobile */
+  }
+
+  .mission-intro-popup h1 {
+    font-size: 5vw;
+    /* font-size: 24px; Smaller font size for title on mobile */
+  }
+
+  .mission-intro-popup p {
+    font-size: 3vw;
+    /* font-size: 18px; Smaller font size for message on mobile */
+  }
+
+  .mission-intro-popup button {
+    padding: 1px 12px; /* Smaller buttons on mobile */
+  }
+}
 
 
 
