@@ -50,10 +50,14 @@ function PsycheApp() {
   const [isOverviewClicked, setIsOverviewClicked] = useState(false);
   const [isToSpaceCraftClicked, setIsToSpaceCraftClicked] = useState(false);
   const [isToAsteroidClicked, setIsToAsteroidClicked] = useState(false);
-  const [showStartButton, setShowStartButton] = useState(false);
   const [isStartClicked, setStartClicked] = useState(false);
   const [isCreditsClicked, setCreditsClicked] = useState(false);
   
+  //buttom state appearing dissapearing
+  const [showStartButton, setShowStartButton] = useState(false);
+  const [showToPsycheButton, setShowToPsycheButton] = useState(false);
+  const [showToSpacecraftButton, setShowToSpaceCraftButton] = useState(false);
+
   //animation state
   const [isStartAnimating, setIsStartAnimating] = useState(false);
   
@@ -73,11 +77,11 @@ function PsycheApp() {
   const [showDescription, setShowDescription] = useState(false);
   
   const [progressValue, setProgressValue] = useState(0);
-  
  
   //information state
 
   const [popupIndex, setPopupIndex] = useState(-1);
+  const [currentPopupContent, setCurrentPopupContent] = useState([]);
 
   const popupContentLaunch = [
     { title: "Welcome", message: "My Name is Skyi! I'll be your virtual assistant for the remainder of the experience" },
@@ -86,9 +90,16 @@ function PsycheApp() {
     {title: "Getting Started", message: "This experience will teach you about the Spacecraft technologies, the Asteroid, and more details about the mission!" },
     { title: "Getting Started", message: "Ready to start your journey? Click 'Finish' to begin exploring!" }
   ];
+  const popupContentStart = [
+    { title: "Tutorial", message: "Lets start with a quick tutorial." },
+    { title: "Movement", message: "To traverse through space you can swipe to move and pitch to zoom. Give it a try!" },
+    { title: "Mission Goal", message: "The goal of the mission is to collect fun facts and details about NASA's Psyche Mission." },
+    { title: "Notebook", message: "You can view the facts you collected by clicking on the notebook button in the top left." },
+    { title: "Notebook", message: "Currently you don't have any facts. Go out and collect some by exploring the spacecraft or Pysche Asteroid!" }
+];
   
   const handleNextPopup = () => {
-    if (popupIndex < popupContentLaunch.length - 1) {
+    if (popupIndex < currentPopupContent.length - 1) {
       setPopupIndex(popupIndex + 1);
     } else {
       handleClosePopup(); // Close popups when finishing the last one
@@ -180,6 +191,8 @@ function PsycheApp() {
     setTimeout(() => {
       setIsStartAnimating(false);
       setStartClicked(true);
+      setCurrentPopupContent(popupContentStart);
+      setPopupIndex(0);
     }, 200);
   };
 
@@ -193,6 +206,7 @@ function PsycheApp() {
   
   const handleLaunchClick = () => {
     setIsLaunched(true);
+    setCurrentPopupContent(popupContentLaunch);
     setPopupIndex(0);
   }
   
@@ -237,21 +251,26 @@ function PsycheApp() {
         </Canvas>
         
         
-        {popupIndex >= 0 && popupIndex < popupContentLaunch.length && (
+        {popupIndex >= 0 && (
           <MissionIntroPopup
-            title={popupContentLaunch[popupIndex].title}
-            message={popupContentLaunch[popupIndex].message}
-            onNext={handleNextPopup}
+            title={currentPopupContent[popupIndex].title}
+            message={currentPopupContent[popupIndex].message}
+            onNext={() => handleNextPopup()}
             onClose={() => {
               handleClosePopup();
-              setShowStartButton(true);
+              if (currentPopupContent[1].message === popupContentLaunch[1].message) { setShowStartButton(true); }
+              if (currentPopupContent[1].message === popupContentStart[1].message) { 
+                setShowToPsycheButton(true);
+                setShowToSpaceCraftButton(true);
+              }
             }}
-            isLast={popupIndex === popupContentLaunch.length - 1}
+            isLast={popupIndex === currentPopupContent.length - 1}
           />
         )}
         
         {/* {showStartButton && !isCreditsClicked && <button className={`ombre-button start-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleStartClick}>Start</button>} */}
         {!isLaunched && <button onClick={handleLaunchClick}>Launch</button>}
+  
         
         
         {showStartButton && isLaunched && !isCreditsClicked && !isStartClicked && <button className={`ombre-button start-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleStartClick}>Start</button>}
@@ -260,8 +279,8 @@ function PsycheApp() {
         
         {isOverview && <button className="ombre-button" onClick={handleOverviewClick}>Overview</button>}
         
-        {isToAsteroid && <button className="ombre-button start-button" onClick={handleToAsteroidClick}>To Psyche</button>}
-        {isToSpaceCraft && <button className={`ombre-button ${isOverview ? 'start-button' : ""}`} onClick={handleToSpacecraftClick}>To Spacecraft</button>}
+        {showToPsycheButton && isToAsteroid && <button className="ombre-button start-button" onClick={handleToAsteroidClick}>To Psyche</button>}
+        {showToSpacecraftButton && isToSpaceCraft && <button className={`ombre-button ${isOverview ? 'start-button' : ""}`} onClick={handleToSpacecraftClick}>To Spacecraft</button>}
 
         
         {currentFactIndex!== null &&  <HotspotFact/>}
