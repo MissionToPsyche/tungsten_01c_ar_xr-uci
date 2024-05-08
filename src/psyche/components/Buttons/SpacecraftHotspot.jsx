@@ -4,12 +4,11 @@ import { useLoader, useFrame } from '@react-three/fiber';
 import { TextureLoader, MeshBasicMaterial } from 'three';
 import {GlobalStateContext} from '../../utils/useContext';
 import { useContext } from "react";
-import { hotspots, sumPercentage } from '../constants';
+import { spacecraftFacts, sumPercentage } from '../constants';
 import { Html } from '@react-three/drei';
 
-const ItemHotspot = ({ position, scale, meshRotation, boxImage, imageUrl, title, distanceFactor }) => {
+const SpacecraftHotspot = ({ position, title, distanceFactor }) => {
     const meshRef = useRef();
-    const texture = useLoader(TextureLoader, imageUrl);
     
     const { currentFactIndex, setCurrentFactIndex, factList, toolList, progressValue, setProgressValue, setIsModalOpen} = useContext(GlobalStateContext);
     
@@ -32,20 +31,20 @@ const ItemHotspot = ({ position, scale, meshRotation, boxImage, imageUrl, title,
     };
     
     return (
-      <Html position={position} distanceFactor={ distanceFactor } ref={meshRef}>
+      <Html position={position} distanceFactor={distanceFactor} ref={meshRef}>
 					<div className="icon" onClick={() => {handleIconClick(title)}}>
 					</div>
     	</Html>
     );
   };
   
-  const ItemHotspots = ({ distanceFactor }) => {
+  const SpacecraftHotspots = ({ distanceFactor }) => {
     return (
       <>
       {
-        hotspots.map(
+        spacecraftFacts.map(
           (hotspot, index) => (
-            <ItemHotspot key={index} {...hotspot} distanceFactor={distanceFactor + 6}/>
+            <SpacecraftHotspot key={index} {...hotspot} distanceFactor={distanceFactor} />
           )
         )
       }
@@ -53,5 +52,5 @@ const ItemHotspot = ({ position, scale, meshRotation, boxImage, imageUrl, title,
     ) 
   };
   
-  export default ItemHotspots;
+  export default SpacecraftHotspots;
   

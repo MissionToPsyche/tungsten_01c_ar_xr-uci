@@ -7,6 +7,7 @@ import { useContext } from 'react';
 import { GlobalStateContext } from '../utils/useContext';
 import * as THREE from 'three';
 import { useTimer } from 'use-timer';
+import SpacecraftHotspots from './Buttons/SpacecraftHotspot';
 
 import { spacecraftFacts, sumPercentage } from './constants';
 
@@ -19,7 +20,8 @@ const PsycheSpacecraft = ({ scref, target, distanceFactor }) => {
 		setCurrentFactIndex, 
 		factList, 
 		isModalOpen, 
-		setIsModalOpen, 
+		setIsModalOpen,
+		showAsteroid,
 		showNotebook, 
 		isMoving, 
 		showSpacecraft, 
@@ -27,20 +29,6 @@ const PsycheSpacecraft = ({ scref, target, distanceFactor }) => {
 		progressValue, 
 		setProgressValue 
 	} = useContext(GlobalStateContext);
-
-  const handleIconClick = (title) => {
-    console.log("clicked on icon" + title);
-    setIsModalOpen(true);
-    for (let i = 0; i < factList.length; i++) {
-      if (factList[i].title === title) {
-				if (progressValue < 100 && !factList[i].isExplored){
-					setProgressValue(progressValue + sumPercentage);
-				}
-        factList[i].isExplored = true;
-        setCurrentFactIndex(i);
-      }
-    }
-  };
 
 	const geometry = useMemo(() => {
 		let g;
@@ -81,25 +69,12 @@ const PsycheSpacecraft = ({ scref, target, distanceFactor }) => {
 		}	
 	})
 
-	const FactIcons = () => (
-		<>
-		{	spacecraftFacts.map(
-			(hotspot, index) => (
-				<Html key={index} position={hotspot.position} distanceFactor={distanceFactor} ref={iconRef}>
-					<div className="icon" onClick={() => {handleIconClick(hotspot.title)}}>
-					</div>
-    		</Html>
-			)
-		)}
-		</>
-	)
-
   return (
     <group ref={scref} rotation={[0, 30, 0]}>
       <mesh geometry={geometry} scale={0.01} frustumCulled={false} visible={showSpacecraft}>
         <meshPhysicalMaterial color="pink" />
       </mesh>
-      {isLaunched && !isMoving && !isModalOpen && !showNotebook && <FactIcons />}
+      {isLaunched && !showAsteroid && !isModalOpen && !showNotebook && <SpacecraftHotspots distanceFactor={distanceFactor} />}
     </group>
   )
 }
