@@ -73,22 +73,24 @@
 
 .ombre-button-certificate {
   background: linear-gradient(to right, rgba(165, 63, 91, 1), rgba(89, 38, 81, 1));
-  border: none;
+  /*border: none;*/
   color: white;
-  border-radius: 20px;
+  /*border-radius: 20px;*/
   cursor: pointer;
   transition: all 0.2s ease-in-out;
+  /*width: 80vw;*/
+  height: 10vw;
 	
-	position: absolute;
-  bottom: 3vh;
-  left: 50%;
-  transform: translateX(-50%);
+	/*position: absolute;*/
+  /*bottom: 3vh;
+  left: 50%;*/
+  /*transform: translateX(-50%);*/
   
-	padding: 2vh 5vw;
+	/*padding: 2vh 5vw;*/
 
 	
   /*Add media queries for responsive sizing*/
-  @media (max-width: 768px) {
+  /*@media (max-width: 768px) {
 		font-size: 5vw;
 		width: 55vw;
   }
@@ -101,7 +103,7 @@
   @media (min-width: 1024px) {
 		font-size: 2vw;
     width: 50vw;
-  }
+  }*/
 }
 
 .ombre-button:hover {
@@ -174,7 +176,7 @@
   bottom: 18vh;
 }
 
-.start-over-certificate 
+/*.start-over-certificate 
 {
   position: absolute;
   bottom: 25vw;
@@ -194,7 +196,7 @@
   @media (min-width: 1366px) {
     bottom: 10vw
   }
-}
+}*/
 
 
 .close-button {
@@ -239,7 +241,7 @@
   transform: translate(-50%, -50%);
   max-height: 80vh;
   max-width: 80vw;
-  height: 120vw; /* This seems unusual. Should it be height: 120vh? */
+  /*height: 60%; This seems unusual. Should it be height: 120vh?*/
   background-color: rgba(255, 255, 255, 1);
   padding: 3vh;
   border-radius: 15px;
@@ -249,19 +251,6 @@
   flex-direction: column;
   justify-content: top; /* This should be flex-start */
   align-items: center;
-  
-  
-  @media (max-width: 768px) {
-    height: 120vw;
-  }
-
-  @media (min-width: 768px) and (max-width: 1024px) {
-    height: 90vw;
-  }
-
-  @media (min-width: 1024px) {
-    font-size: 2vw;
-  }
 }
 
 
@@ -280,37 +269,7 @@
 }
 
 .logo {
-  height: 30vw;
-  padding: 5vw; /* Default width */
-  /*width: 40vw; Default height*/
-}
-
-@media (max-width: 768px) {
-  .logo {
-    height: 30vw;
-    /* Padding and other styles */
-  }
-}
-
-@media (min-width: 768px) and (max-width: 1024px) {
-  .logo {
-    height: 30vw;
-    /* Padding and other styles */
-  }
-}
-
-@media (min-width: 1024px) and (max-width: 1365px) {
-  .logo {
-    height: 30vw;
-    /* Padding and other styles */
-  }
-}
-
-@media (min-width: 1366px) {
-  .logo {
-    height: 20vw;
-    /* Padding and other styles */
-  }
+  height: 150px;
 }
 
 

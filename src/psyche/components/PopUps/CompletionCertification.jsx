@@ -49,20 +49,19 @@ import '../../style.css'
   open={progressValue === 100 && showCertification} 
   onClose={handleClose}
 >
-  <Box sx={{ display: 'flex',  alignItems: 'center'}} className="modal-container">
-    <Box sx={{ overflowY: 'scroll', width: '80vw', textAlign: 'center', padding:'2vw'  }}>
+  <Box sx={{ display: 'flex',  alignItems: 'center', justifyContent:'center'}} className="modal-container">
+    <Box sx={{ overflowY: 'scroll', width: '80vw', textAlign: 'center', padding:'2vw' }}>
       <img src={Logo} alt="Psyche Badge" className="logo" />
-      <Typography variant='h6' paragraph> 
-        <Box sx={{ fontWeight: 'bold' }}>Congratulations!</Box>
+      <Typography variant='h6' paragraph > 
+        <Box sx={{ fontWeight: 'bold', paddingTop: '20px' }}>Congratulations!</Box>
       </Typography>
-      <Typography paragraph>
-        <Box>You're an official Psyche explorer!</Box>
+      <Typography paragraph >
+        <Box sx={{paddingBottom:'20px'}}>You're an official Psyche explorer!</Box>
       </Typography>
-      <button className="ombre-button-certificate" onClick={handleClose}>Continue Exploring</button>
-      <br/>
-      <button className="ombre-button-certificate start-over-certificate" onClick={() => window.location.reload()}>
+      <Button style={{ color: 'white', borderRadius:'15px' }} fullWidth sx={{marginY:'5px', padding:'10px', background: 'linear-gradient(to right, #a53f5b, #592651)', textTransform: 'none', fontSize: '100%'}} onClick={handleClose}>Continue Exploring</Button>
+      <Button style={{ color: 'white', borderRadius:'15px' }} fullWidth sx={{marginY:'5px', padding:'10px', background: 'linear-gradient(to right, #a53f5b, #592651)', textTransform: 'none', fontSize: '100%'}} onClick={() => window.location.reload()}>
         Start Over
-      </button>
+      </Button>
     </Box>
   </Box>   
 </Modal>
