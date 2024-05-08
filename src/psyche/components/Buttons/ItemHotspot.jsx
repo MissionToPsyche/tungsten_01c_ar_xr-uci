@@ -5,6 +5,7 @@ import { TextureLoader, MeshBasicMaterial } from 'three';
 import {GlobalStateContext} from '../../utils/useContext';
 import { useContext } from "react";
 import { hotspots, sumPercentage } from '../constants';
+import { Html } from '@react-three/drei';
 
 const ItemHotspot = ({ position, scale, meshRotation, boxImage, imageUrl, title }) => {
     const meshRef = useRef();
@@ -31,12 +32,10 @@ const ItemHotspot = ({ position, scale, meshRotation, boxImage, imageUrl, title 
     };
     
     return (
-      <mesh position={position} ref={meshRef} onClick={handleIconClick} scale={scale}>
-      <sphereGeometry args={[1.8, 32, 32]} />
-      <meshBasicMaterial map={texture} /> {/* Updated material */}
-      
-      {meshRef.current && meshRef.current.rotation.set(...meshRotation)}
-    </mesh>
+      <Html position={position} distanceFactor={12} ref={meshRef}>
+					<div className="icon" onClick={() => {handleIconClick(title)}}>
+					</div>
+    	</Html>
     );
   };
   
