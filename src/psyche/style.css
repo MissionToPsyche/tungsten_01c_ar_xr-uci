@@ -52,11 +52,8 @@
   bottom: 5vh;
   left: 50%;
   transform: translateX(-50%);
-	
-	
 	padding: 3vh 5vh;
 
-	
   /*Add media queries for responsive sizing*/
   @media (max-width: 768px) {
 		font-size: 5vw;
@@ -71,6 +68,39 @@
   @media (min-width: 1024px) {
 		font-size: 2vw;
     width: 20vw;
+  }
+}
+
+.ombre-button-certificate {
+  background: linear-gradient(to right, rgba(165, 63, 91, 1), rgba(89, 38, 81, 1));
+  border: none;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+	
+	position: absolute;
+  bottom: 3vh;
+  left: 50%;
+  transform: translateX(-50%);
+  
+	padding: 2vh 5vw;
+
+	
+  /*Add media queries for responsive sizing*/
+  @media (max-width: 768px) {
+		font-size: 5vw;
+		width: 55vw;
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+		font-size: 3vw;
+		width: 45vw;
+  }
+
+  @media (min-width: 1024px) {
+		font-size: 2vw;
+    width: 50vw;
   }
 }
 
@@ -144,6 +174,28 @@
   bottom: 18vh;
 }
 
+.start-over-certificate 
+{
+  position: absolute;
+  bottom: 25vw;
+  
+  
+  @media (max-width: 768px) {
+    bottom: 25vw
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    bottom: 16vw
+  }
+
+  @media (min-width: 1024px) and (max-width: 1365px) {
+    bottom: 13vw
+  }
+  @media (min-width: 1366px) {
+    bottom: 10vw
+  }
+}
+
 
 .close-button {
   position: absolute;
@@ -180,6 +232,40 @@
   }
 }
 
+.modal-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-height: 80vh;
+  max-width: 80vw;
+  height: 120vw; /* This seems unusual. Should it be height: 120vh? */
+  background-color: rgba(255, 255, 255, 1);
+  padding: 3vh;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  justify-content: top; /* This should be flex-start */
+  align-items: center;
+  
+  
+  @media (max-width: 768px) {
+    height: 120vw;
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    height: 90vw;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 2vw;
+  }
+}
+
+
+
 .icon {
   display: flex;
   justify-content: center;
@@ -193,6 +279,39 @@
   cursor: pointer;
 }
 
+.logo {
+  height: 30vw;
+  padding: 5vw; /* Default width */
+  /*width: 40vw; Default height*/
+}
+
+@media (max-width: 768px) {
+  .logo {
+    height: 30vw;
+    /* Padding and other styles */
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .logo {
+    height: 30vw;
+    /* Padding and other styles */
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1365px) {
+  .logo {
+    height: 30vw;
+    /* Padding and other styles */
+  }
+}
+
+@media (min-width: 1366px) {
+  .logo {
+    height: 20vw;
+    /* Padding and other styles */
+  }
+}
 
 
 

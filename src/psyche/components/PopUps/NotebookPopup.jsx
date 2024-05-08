@@ -4,7 +4,8 @@ import { useContext } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
-import Facts from './NotebookMenu';
+//import Facts from './NotebookMenu';
+import NotebookMenu from './NotebookMenu';
 
 import CloseIcon from '@mui/icons-material/Close';
 import {GlobalStateContext} from '../../utils/useContext';
@@ -41,7 +42,8 @@ import {GlobalStateContext} from '../../utils/useContext';
       >
        <Box sx={modalStyle}>
             {/*<Button onClick={handleClose} sx={{position: 'absolute', top: '1vh', right: '1vh', color:'#ffffff'}}><CloseIcon/></Button>*/}
-            <Facts/>
+            {/*<Facts/>*/}
+            <NotebookMenu/>
         </Box>   
       </Modal>
     );

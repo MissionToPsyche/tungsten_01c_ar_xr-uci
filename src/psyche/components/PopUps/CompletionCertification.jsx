@@ -9,6 +9,11 @@ import Facts from './NotebookMenu';
 import CloseIcon from '@mui/icons-material/Close';
 import {GlobalStateContext} from '../../utils/useContext';
 import { Typography } from '@mui/material';
+import Logo from '../../../assets/psyche_badge.png';
+
+import '../../style.css'
+
+
 
   function CertificationPopup() {
     const {progressValue }= useContext(GlobalStateContext);
@@ -17,47 +22,50 @@ import { Typography } from '@mui/material';
 		}
 		const [showCertification, setShowCertification] = useState(true);
     
-    const modalStyle = {
-      position: 'fixed',
-      top: '50%',
-      left: '50%',
+    //const modalStyle = {
+    //  position: 'fixed',
+    //  top: '50%',
+    //  left: '50%',
       
-      maxHeight: '80vh',
-      maxWidth: '80vw',
-      height:'65vh',
+    //  maxHeight: '80vh',
+    //  maxWidth: '80vw',
+    //  height:'120vw',
       
-      transform: 'translate(-50%, -50%)',
-      backgroundColor: 'rgba(255, 255, 255, 1)',
-      padding: '3vh',
-      borderRadius: '15px',
-      boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-      zIndex: 1000,
-      display: 'flex',
-      flexDirection: 'column',
-      justifyContent: 'top',
-      alignItems: 'center'
-    };
+    //  transform: 'translate(-50%, -50%)',
+    //  backgroundColor: 'rgba(255, 255, 255, 1)',
+    //  padding: '3vh',
+    //  borderRadius: '15px',
+    //  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
+    //  zIndex: 1000,
+    //  display: 'flex',
+    //  flexDirection: 'column',
+    //  justifyContent: 'top',
+    //  alignItems: 'center'
+      
+    //};
 
     return (
       <Modal 
-          open={progressValue === 100 && showCertification} 
-          onClose={handleClose}
-      >
-       <Box sx={modalStyle}>
-            {/*<Button onClick={handleClose} sx={{position: 'absolute', top: '1vh', right: '1vh', color:'#ffffff'}}><CloseIcon/></Button>*/}
-            <Typography variant='h6' paragraph> 
-							<Box sx={{ fontWeight: 'bold' }}>Hello World This is certification</Box>
-						</Typography>
-						<Typography paragraph>
-							You have successfully completed the Psyche Mission. You have unlocked the Psyche Certification.
-						</Typography>
-						
-						<Button onClick={handleClose}>Continue Exploring</Button>
-						<Button onClick={() =>{
-							window.location.reload();
-						}}>Start Over</Button>
-        </Box>   
-      </Modal>
+  open={progressValue === 100 && showCertification} 
+  onClose={handleClose}
+>
+  <Box sx={{ display: 'flex',  alignItems: 'center'}} className="modal-container">
+    <Box sx={{ overflowY: 'scroll', width: '80vw', textAlign: 'center', padding:'2vw'  }}>
+      <img src={Logo} alt="Psyche Badge" className="logo" />
+      <Typography variant='h6' paragraph> 
+        <Box sx={{ fontWeight: 'bold' }}>Congratulations!</Box>
+      </Typography>
+      <Typography paragraph>
+        <Box>You're an official Psyche explorer!</Box>
+      </Typography>
+      <button className="ombre-button-certificate" onClick={handleClose}>Continue Exploring</button>
+      <br/>
+      <button className="ombre-button-certificate start-over-certificate" onClick={() => window.location.reload()}>
+        Start Over
+      </button>
+    </Box>
+  </Box>   
+</Modal>
     );
   }
 	
