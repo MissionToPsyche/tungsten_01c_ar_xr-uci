@@ -50,6 +50,7 @@ function PsycheApp() {
   const [isOverviewClicked, setIsOverviewClicked] = useState(false);
   const [isToSpaceCraftClicked, setIsToSpaceCraftClicked] = useState(false);
   const [isToAsteroidClicked, setIsToAsteroidClicked] = useState(false);
+  const [showStartButton, setShowStartButton] = useState(false);
   const [isStartClicked, setStartClicked] = useState(false);
   const [isCreditsClicked, setCreditsClicked] = useState(false);
   
@@ -78,7 +79,7 @@ function PsycheApp() {
 
   const [popupIndex, setPopupIndex] = useState(-1);
 
-  const popupContent = [
+  const popupContentLaunch = [
     { title: "Welcome", message: "My Name is Skyi! I'll be your virtual assistant for the remainder of the experience" },
     { title: "Introduction", message: "What is your name?" },
     { title: "Introduction", message: "Hi [Name] its great to meet you. Today we will be exploring NASA's latest mission to the asteroid Psyche." },
@@ -87,7 +88,7 @@ function PsycheApp() {
   ];
   
   const handleNextPopup = () => {
-    if (popupIndex < popupContent.length - 1) {
+    if (popupIndex < popupContentLaunch.length - 1) {
       setPopupIndex(popupIndex + 1);
     } else {
       handleClosePopup(); // Close popups when finishing the last one
@@ -236,20 +237,24 @@ function PsycheApp() {
         </Canvas>
         
         
-        {popupIndex >= 0 && popupIndex < popupContent.length && (
+        {popupIndex >= 0 && popupIndex < popupContentLaunch.length && (
           <MissionIntroPopup
-            title={popupContent[popupIndex].title}
-            message={popupContent[popupIndex].message}
+            title={popupContentLaunch[popupIndex].title}
+            message={popupContentLaunch[popupIndex].message}
             onNext={handleNextPopup}
-            onClose={handleClosePopup}
-            isLast={popupIndex === popupContent.length - 1}
+            onClose={() => {
+              handleClosePopup();
+              setShowStartButton(true);
+            }}
+            isLast={popupIndex === popupContentLaunch.length - 1}
           />
         )}
         
+        {/* {showStartButton && !isCreditsClicked && <button className={`ombre-button start-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleStartClick}>Start</button>} */}
         {!isLaunched && <button onClick={handleLaunchClick}>Launch</button>}
         
         
-        {isLaunched && !isCreditsClicked && !isStartClicked && <button className={`ombre-button start-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleStartClick}>Start</button>}
+        {showStartButton && isLaunched && !isCreditsClicked && !isStartClicked && <button className={`ombre-button start-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleStartClick}>Start</button>}
         {!isLaunched && <button className={`ombre-button start-button`} onClick={handleLaunchClick}>Launch</button>}
         {!isLaunched && !isCreditsClicked && !isStartClicked && <button className={`ombre-button credits-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleCreditsClick}>Credits</button>}
         
