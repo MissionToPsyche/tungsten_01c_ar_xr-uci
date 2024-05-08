@@ -30,12 +30,17 @@ const ItemHotspot = ({ position, scale, meshRotation, boxImage, imageUrl, title,
         }
       }
     };
+
+    const isExplored = factList.find(fact => fact.title === title)?.isExplored;
     
     return (
-      <Html position={position} distanceFactor={ distanceFactor } ref={meshRef}>
-					<div className="icon" onClick={() => {handleIconClick(title)}}>
-					</div>
-    	</Html>
+      <>
+            {!isExplored && (
+                <Html position={position} distanceFactor={distanceFactor} ref={meshRef}>
+                    <div className="icon" onClick={handleIconClick}></div>
+                </Html>
+            )}
+        </>
     );
   };
   
