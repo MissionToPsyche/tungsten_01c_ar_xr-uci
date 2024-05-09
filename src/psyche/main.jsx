@@ -193,7 +193,7 @@ function PsycheApp() {
   return (
     <GlobalStateProvider value={useContextList}>
       <div className="app-container">
-        {!isLaunched && <div className="title-container">Psyche Simulation</div>}
+        {!isLaunched && <div className="title-container title ">Psyche Simulation</div>}
         
         <Canvas ref={canvasRef} camera={{ fov: 45, position: [0, 0, 75] }}>
          <MainPsycheContainer/>
@@ -201,7 +201,7 @@ function PsycheApp() {
         
         
         {isLaunched && !isCreditsClicked && !isStartClicked && <button className={`ombre-button  ${isStartAnimating ? 'clicked' : ''}`} onClick={handleStartClick}>Launch</button>}
-        {!isLaunched && <button className={`ombre-button start-button`} onClick={handleLaunchClick}>Start</button>}
+        {!isLaunched && <button className="ombre-button start-button" onClick={handleLaunchClick}>Start</button>}
         {!isLaunched && !isCreditsClicked && !isStartClicked && <button className={`ombre-button credits-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleCreditsClick}>Credits</button>}
         
         {isOverview && <button className="ombre-button" onClick={handleOverviewClick}>Overview</button>}

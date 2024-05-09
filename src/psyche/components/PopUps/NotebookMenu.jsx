@@ -20,6 +20,8 @@ import { useContext } from "react";
 import {GlobalStateContext} from '../../utils/useContext';
 import InfoContent from './InfoContent';
 
+import '../../style.css'
+
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -139,11 +141,14 @@ function NotebookMenu() {
           >
             <MenuIcon />
           </IconButton>*/}
-          <Typography variant="h6" noWrap component="div">
-            Summary
+          <Typography className="title" variant="h6" noWrap component="div">
+            <Box paddingX={1} className="title">
+            SUMMARY
+            </Box>
           </Typography>
         </Toolbar>
       </AppBar>
+      <Box >
       <Drawer variant="permanent" open={open}>
         {/*<DrawerHeader >
           <IconButton onClick={handleDrawerClose}>
@@ -151,13 +156,12 @@ function NotebookMenu() {
           </IconButton>
         </DrawerHeader>*/}
         {/* Facts */}
-        <Divider />
         <List >
           {factList.map((item, index) => (
             <ListItem key={index} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={{
-                  minHeight: 48,
+                  minHeight: 57,
                   justifyContent: open ? 'initial' : 'center',
                   px: 2.5,
                 }}
@@ -186,7 +190,7 @@ function NotebookMenu() {
             <ListItem key={index} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={{
-                  minHeight: 48,
+                  minHeight: 57,
                   justifyContent: open ? 'initial' : 'center',
                   px: 2.5,
                 }}
@@ -208,6 +212,7 @@ function NotebookMenu() {
           ))}
         </List>
       </Drawer>
+      </Box>
 			<Box component="main" sx={{ flexGrow: 1}}>
         <DrawerHeader />
         {handleSelectedItem(selectedItem, selectedArray)}
