@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './ToolBox.css'; 
+import './ToolBox.css';
 
 const images = [
   'public/assets/multiSpec_Imager.png',
@@ -7,27 +7,42 @@ const images = [
   'public/assets/gammaRayNeutronSpec.png',
 ];
 
+const imageTitles = [
+  'Multi-Spectral Imager',
+  'Magnetometer',
+  'Gamma-Ray Spectrometer'
+];
+
 const ToolBox = () => {
-  
   const [visibleColumns, setVisibleColumns] = useState(images.map(() => true));
 
   const handleClick = index => {
     setVisibleColumns(visibleColumns.map((isVisible, columnIndex) =>
-      columnIndex === index ? false : isVisible
+      columnIndex === index ? !isVisible : isVisible
     ));
   };
 
+  // Check if all images are invisible
+  const allInvisible = visibleColumns.every(isVisible => !isVisible);
+
+  // If all images are invisible, do not render the ToolBox
+  if (allInvisible) {
+    return null;
+  }
+
   return (
     <div className="gallery-container">
-      {images.map((image, index) => {
-        if (!visibleColumns[index]) return null;
-        return (
-          <div key={index} className="gallery-column" onClick={() => handleClick(index)}>
-            <img src={image} alt={`Column ${index}`} className="gallery-image" />
-            
-          </div>
-        );
-      })}
+      {images.map((image, index) => (
+        <div key={index} className="gallery-column" onClick={() => handleClick(index)}
+             style={{
+               visibility: visibleColumns[index] ? 'visible' : 'hidden',
+               opacity: visibleColumns[index] ? 1 : 0,
+               transition: 'opacity 0.5s, visibility 0.5s'
+             }}>
+          <img src={image} alt={imageTitles[index]} className="gallery-image" />
+          <div className="image-title">{imageTitles[index]}</div>
+        </div>
+      ))}
     </div>
   );
 };
