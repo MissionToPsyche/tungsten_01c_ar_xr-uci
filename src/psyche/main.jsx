@@ -247,7 +247,7 @@ function PsycheApp() {
   return (
     <GlobalStateProvider value={useContextList}>
       <div className="app-container">
-        {!isLaunched && <div className="title-container title ">Psyche Simulation</div>}
+        {!isLaunched && <div className="title-container title-white ">Psyche Simulation</div>}
         
         <Canvas ref={canvasRef} camera={{ fov: 45, position: [0, 0, 75] }}>
          <MainPsycheContainer/>
