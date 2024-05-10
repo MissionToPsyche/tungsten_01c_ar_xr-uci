@@ -33,7 +33,10 @@ import CombinedFact from './components/PopUps/CombinedFact';
 
 import HotspotFact from './components/PopUps/HotspotFact';
 import ControlsButton from './components/Buttons/ControlsButton';
+import useDoubleClick from './utils/useDoubleClick';
 
+//into dialogue
+import MissionIntroPopup from './components/PopUps/MissionIntroPopup.jsx';
 
 
 function PsycheApp() {
@@ -52,6 +55,11 @@ function PsycheApp() {
   const [isStartClicked, setStartClicked] = useState(false);
   const [isCreditsClicked, setCreditsClicked] = useState(false);
   
+  //buttom state appearing dissapearing
+  const [showStartButton, setShowStartButton] = useState(false);
+  const [showToPsycheButton, setShowToPsycheButton] = useState(false);
+  const [showToSpacecraftButton, setShowToSpaceCraftButton] = useState(false);
+
   //animation state
   const [isStartAnimating, setIsStartAnimating] = useState(false);
   
@@ -64,16 +72,46 @@ function PsycheApp() {
   const [showSpacecraft, setShowSpacecraft] = useState(false);
   const [showAsteroid, setShowAsteroid] = useState(false);
   const [isMoving, setIsMoving] = useState(false);
+  const [isAsteroidSpinning, setIsAsteroidSpinning] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false)
   
   
   const [showDescription, setShowDescription] = useState(false);
   
-  const [progressValue, setProgressValue] = useState(100);
-  
-  
+  const [progressValue, setProgressValue] = useState(0);
  
   //information state
+
+  const [popupIndex, setPopupIndex] = useState(-1);
+  const [currentPopupContent, setCurrentPopupContent] = useState([]);
+
+  const popupContentLaunch = [
+    { title: "Welcome", message: "My Name is Skyi! I'll be your virtual assistant for the remainder of the experience" },
+    { title: "Introduction", message: "What is your name?" },
+    { title: "Introduction", message: "Hi [Name] its great to meet you. Today we will be exploring NASA's latest mission to the asteroid Psyche." },
+    {title: "Getting Started", message: "This experience will teach you about the Spacecraft technologies, the Asteroid, and more details about the mission!" },
+    { title: "Getting Started", message: "Ready to start your journey? Click 'Finish' to begin exploring!" }
+  ];
+  const popupContentStart = [
+    { title: "Tutorial", message: "Lets start with a quick tutorial." },
+    { title: "Movement", message: "To traverse through space you can swipe to move and pitch to zoom. Give it a try!" },
+    { title: "Mission Goal", message: "The goal of the mission is to collect fun facts and details about NASA's Psyche Mission." },
+    { title: "Notebook", message: "You can view the facts you collected by clicking on the notebook button in the top left." },
+    { title: "Notebook", message: "Currently you don't have any facts. Go out and collect some by exploring the spacecraft or Pysche Asteroid!" }
+];
+  
+  const handleNextPopup = () => {
+    if (popupIndex < currentPopupContent.length - 1) {
+      setPopupIndex(popupIndex + 1);
+    } else {
+      handleClosePopup(); // Close popups when finishing the last one
+    }
+  };
+
+  const handleClosePopup = () => {
+    setPopupIndex(-1); // Reset or close popups
+  };  
+  
   const [factList, setFactList] = useState([
     {isExplored: true, title: "Overview", text: "Welcome to the notebook, please choose on the left to see facts about the Psyche mission that you have explored."},
 		
@@ -134,6 +172,7 @@ function PsycheApp() {
     isToSpaceCraft,setIsToSpaceCraft, 
     showAsteroid, setShowAsteroid, 
     showSpacecraft, setShowSpacecraft,
+    isAsteroidSpinning, setIsAsteroidSpinning,
     isMoving, setIsMoving, 
     currentFactIndex, setCurrentFactIndex, 
     isOverview, setIsOverview, 
@@ -155,6 +194,8 @@ function PsycheApp() {
     setTimeout(() => {
       setIsStartAnimating(false);
       setStartClicked(true);
+      setCurrentPopupContent(popupContentStart);
+      setPopupIndex(0);
     }, 200);
   };
 
@@ -168,6 +209,8 @@ function PsycheApp() {
   
   const handleLaunchClick = () => {
     setIsLaunched(true);
+    setCurrentPopupContent(popupContentLaunch);
+    setPopupIndex(0);
   }
   
   const handleToSpacecraftClick = () => {
@@ -190,7 +233,15 @@ function PsycheApp() {
   //  setShowControls(!showControls);
   //};
   
+  const handleDoubleClick = () => {
+    console.log('Double click detected!');
+    if (isToAsteroid && isToSpaceCraft){ //condition when it is in overview mode
+      setIsMoving(!isMoving);
+      setIsAsteroidSpinning(!isAsteroidSpinning);
+    }
+  };
 
+  useDoubleClick(handleDoubleClick);
 
   
   return (
@@ -203,14 +254,36 @@ function PsycheApp() {
         </Canvas>
         
         
-        {isLaunched && !isCreditsClicked && !isStartClicked && <button className={`ombre-button  ${isStartAnimating ? 'clicked' : ''}`} onClick={handleStartClick}>Launch</button>}
-        {!isLaunched && <button className="ombre-button start-button" onClick={handleLaunchClick}>Start</button>}
+        {popupIndex >= 0 && (
+          <MissionIntroPopup
+            title={currentPopupContent[popupIndex].title}
+            message={currentPopupContent[popupIndex].message}
+            onNext={() => handleNextPopup()}
+            onClose={() => {
+              handleClosePopup();
+              if (currentPopupContent[1].message === popupContentLaunch[1].message) { setShowStartButton(true); }
+              if (currentPopupContent[1].message === popupContentStart[1].message) { 
+                setShowToPsycheButton(true);
+                setShowToSpaceCraftButton(true);
+              }
+            }}
+            isLast={popupIndex === currentPopupContent.length - 1}
+          />
+        )}
+        
+        {/* {showStartButton && !isCreditsClicked && <button className={`ombre-button start-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleStartClick}>Start</button>} */}
+        {/*{!isLaunched && <button onClick={handleLaunchClick}>Launch</button>}*/}
+  
+        
+        
+        {showStartButton && isLaunched && !isCreditsClicked && !isStartClicked && <button className={`ombre-button start-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleStartClick}>Start</button>}
+        {!isLaunched && <button className={`ombre-button start-button`} onClick={handleLaunchClick}>Launch</button>}
         {!isLaunched && !isCreditsClicked && !isStartClicked && <button className={`ombre-button credits-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleCreditsClick}>Credits</button>}
         
         {isOverview && <button className="ombre-button" onClick={handleOverviewClick}>Overview</button>}
         
-        {isToAsteroid && <button className="ombre-button start-button" onClick={handleToAsteroidClick}>To Psyche</button>}
-        {isToSpaceCraft && <button className={`ombre-button ${isOverview ? 'start-button' : ""}`} onClick={handleToSpacecraftClick}>To Spacecraft</button>}
+        {showToPsycheButton && isToAsteroid && <button className="ombre-button start-button" onClick={handleToAsteroidClick}>To Psyche</button>}
+        {showToSpacecraftButton && isToSpaceCraft && <button className={`ombre-button ${isOverview ? 'start-button' : ""}`} onClick={handleToSpacecraftClick}>To Spacecraft</button>}
 
         
         {currentFactIndex!== null &&  <HotspotFact/>}
