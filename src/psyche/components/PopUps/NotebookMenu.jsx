@@ -8,17 +8,15 @@ import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
 import { useContext } from "react";
 import {GlobalStateContext} from '../../utils/useContext';
 import InfoContent from './InfoContent';
+
+import '../../style.css'
 
 const drawerWidth = 240;
 
@@ -139,11 +137,14 @@ function NotebookMenu() {
           >
             <MenuIcon />
           </IconButton>*/}
-          <Typography variant="h6" noWrap component="div">
-            Summary
+          <Typography  variant="h6" noWrap component="div">
+            <Box paddingX={1} className="title-white">
+            SUMMARY
+            </Box>
           </Typography>
         </Toolbar>
       </AppBar>
+      <Box >
       <Drawer variant="permanent" open={open}>
         {/*<DrawerHeader >
           <IconButton onClick={handleDrawerClose}>
@@ -151,13 +152,12 @@ function NotebookMenu() {
           </IconButton>
         </DrawerHeader>*/}
         {/* Facts */}
-        <Divider />
         <List >
           {factList.map((item, index) => (
             <ListItem key={index} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={{
-                  minHeight: 48,
+                  minHeight: 57,
                   justifyContent: open ? 'initial' : 'center',
                   px: 2.5,
                 }}
@@ -186,7 +186,7 @@ function NotebookMenu() {
             <ListItem key={index} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={{
-                  minHeight: 48,
+                  minHeight: 57,
                   justifyContent: open ? 'initial' : 'center',
                   px: 2.5,
                 }}
@@ -208,6 +208,7 @@ function NotebookMenu() {
           ))}
         </List>
       </Drawer>
+      </Box>
 			<Box component="main" sx={{ flexGrow: 1}}>
         <DrawerHeader />
         {handleSelectedItem(selectedItem, selectedArray)}

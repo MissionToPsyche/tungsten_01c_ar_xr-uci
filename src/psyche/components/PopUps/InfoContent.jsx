@@ -1,12 +1,13 @@
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import '../../../index.css'
 
 
 function InfoContent({ index, array}) {
 	return (
 		<>
 				<Typography variant='h6' paragraph>
-					<Box sx={{ fontWeight: 'bold' }}>{array[index].title}</Box>
+					<Box className="header">{array[index].title}</Box>
 				</Typography>
 				
 			<Typography paragraph>

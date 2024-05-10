@@ -5,6 +5,7 @@ import './style.css';
 import { GlobalStateProvider } from './utils/useContext';
 import ProgressBarButton from './components/Buttons/ProgressBarButton';
 import ControlsPopup from './components/PopUps/ControlsPopup';
+import CertificationPopup from './components/PopUps/CompletionCertification';
 
 
 //Delete the following imports after having the real icons
@@ -31,6 +32,7 @@ import PropulsionImg from '../../public/assets/propulsion_system.svg';
 import CombinedFact from './components/PopUps/CombinedFact';
 
 import HotspotFact from './components/PopUps/HotspotFact';
+import ControlsButton from './components/Buttons/ControlsButton';
 import useDoubleClick from './utils/useDoubleClick';
 
 //into dialogue
@@ -180,7 +182,8 @@ function PsycheApp() {
     showNotebook, setShowNotebook, 
     showDescription, setShowDescription,
     isModalOpen, setIsModalOpen,
-    progressValue, setProgressValue
+    progressValue, setProgressValue,
+    showControls, setShowControls,
   };
 
   const handleStartClick = () => {
@@ -226,9 +229,9 @@ function PsycheApp() {
     console.log("to asteroid clicked")
   }
   
-  const handleControlsClick = () => {
-    setShowControls(!showControls);
-  };
+  //const handleControlsClick = () => {
+  //  setShowControls(!showControls);
+  //};
   
   const handleDoubleClick = () => {
     console.log('Double click detected!');
@@ -244,7 +247,7 @@ function PsycheApp() {
   return (
     <GlobalStateProvider value={useContextList}>
       <div className="app-container">
-        {!isLaunched && <div className="title-container">Psyche Simulation</div>}
+        {!isLaunched && <div className="title-container title ">Psyche Simulation</div>}
         
         <Canvas ref={canvasRef} camera={{ fov: 45, position: [0, 0, 75] }}>
          <MainPsycheContainer/>
@@ -269,7 +272,7 @@ function PsycheApp() {
         )}
         
         {/* {showStartButton && !isCreditsClicked && <button className={`ombre-button start-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleStartClick}>Start</button>} */}
-        {!isLaunched && <button onClick={handleLaunchClick}>Launch</button>}
+        {/*{!isLaunched && <button onClick={handleLaunchClick}>Launch</button>}*/}
   
         
         
@@ -284,12 +287,13 @@ function PsycheApp() {
 
         
         {currentFactIndex!== null &&  <HotspotFact/>}
-        {isLaunched && (<button className="controls-button" onClick={handleControlsClick}>?</button>)}
-        {showControls && <ControlsPopup onClose={() => setShowControls(false)} />}
+        {isLaunched && (<ControlsButton/>)}
+
           
           
-        {isLaunched && (      
-        <ProgressBarButton /> )}
+        {isLaunched && (<ProgressBarButton /> )}
+        
+        <CertificationPopup/>
 
       </div>
     </GlobalStateProvider>
