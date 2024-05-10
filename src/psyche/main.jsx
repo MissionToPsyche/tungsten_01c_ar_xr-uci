@@ -5,7 +5,7 @@ import './style.css';
 import { GlobalStateProvider } from './utils/useContext';
 import ProgressBarButton from './components/Buttons/ProgressBarButton';
 import ControlsPopup from './components/PopUps/ControlsPopup';
-import ToolBox from './components/ToolBox';
+import CertificationPopup from './components/PopUps/CompletionCertification';
 
 
 //Delete the following imports after having the real icons
@@ -32,36 +32,90 @@ import PropulsionImg from '../../public/assets/propulsion_system.svg';
 import CombinedFact from './components/PopUps/CombinedFact';
 
 import HotspotFact from './components/PopUps/HotspotFact';
+import ControlsButton from './components/Buttons/ControlsButton';
+import useDoubleClick from './utils/useDoubleClick';
+
+//into dialogue
+import MissionIntroPopup from './components/PopUps/MissionIntroPopup.jsx';
 
 
 function PsycheApp() {
   const canvasRef = useRef();
+  
+  // flow state
   const [isOverview, setIsOverview] = useState(false);
   const [isToSpaceCraft, setIsToSpaceCraft] = useState(false);
+  const [isToAsteroid, setIsToAsteroid] = useState(false);
+  const [isLaunched, setIsLaunched] = useState(false);
+  
+  // button state
   const [isOverviewClicked, setIsOverviewClicked] = useState(false);
   const [isToSpaceCraftClicked, setIsToSpaceCraftClicked] = useState(false);
+  const [isToAsteroidClicked, setIsToAsteroidClicked] = useState(false);
   const [isStartClicked, setStartClicked] = useState(false);
-  const [isLaunched, setIsLaunched] = useState(false);
   const [isCreditsClicked, setCreditsClicked] = useState(false);
+  
+  //buttom state appearing dissapearing
+  const [showStartButton, setShowStartButton] = useState(false);
+  const [showToPsycheButton, setShowToPsycheButton] = useState(false);
+  const [showToSpacecraftButton, setShowToSpaceCraftButton] = useState(false);
+
+  //animation state
   const [isStartAnimating, setIsStartAnimating] = useState(false);
+  
+  // instruction/ user intraction state
   const [showControls, setShowControls] = useState(false);
   const [showNotebook, setShowNotebook] = useState(false);
   const [currentFactIndex, setCurrentFactIndex] = useState(null);
   
-  const [showCountdown, setShowCountdown] = useState(false);
-  const [countdown, setCountdown] = useState(3);
+  // object state
   const [showSpacecraft, setShowSpacecraft] = useState(false);
   const [showAsteroid, setShowAsteroid] = useState(false);
   const [isMoving, setIsMoving] = useState(false);
+  const [isAsteroidSpinning, setIsAsteroidSpinning] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false)
   
-  const [showSingleSpacecraft, setShowSingleSpacecraft] = useState(false);
   
   const [showDescription, setShowDescription] = useState(false);
-
   
+  const [progressValue, setProgressValue] = useState(0);
+ 
+  //information state
+
+  const [popupIndex, setPopupIndex] = useState(-1);
+  const [currentPopupContent, setCurrentPopupContent] = useState([]);
+
+  const popupContentLaunch = [
+    { title: "Welcome", message: "My Name is Skyi! I'll be your virtual assistant for the remainder of the experience" },
+    { title: "Introduction", message: "What is your name?" },
+    { title: "Introduction", message: "Hi [Name] its great to meet you. Today we will be exploring NASA's latest mission to the asteroid Psyche." },
+    {title: "Getting Started", message: "This experience will teach you about the Spacecraft technologies, the Asteroid, and more details about the mission!" },
+    { title: "Getting Started", message: "Ready to start your journey? Click 'Finish' to begin exploring!" }
+  ];
+  const popupContentStart = [
+    { title: "Tutorial", message: "Lets start with a quick tutorial." },
+    { title: "Movement", message: "To traverse through space you can swipe to move and pitch to zoom. Give it a try!" },
+    { title: "Mission Goal", message: "The goal of the mission is to collect fun facts and details about NASA's Psyche Mission." },
+    { title: "Notebook", message: "You can view the facts you collected by clicking on the notebook button in the top left." },
+    { title: "Notebook", message: "Currently you don't have any facts. Go out and collect some by exploring the spacecraft or Pysche Asteroid!" }
+];
+  
+  const handleNextPopup = () => {
+    if (popupIndex < currentPopupContent.length - 1) {
+      setPopupIndex(popupIndex + 1);
+    } else {
+      handleClosePopup(); // Close popups when finishing the last one
+    }
+  };
+
+  const handleClosePopup = () => {
+    setPopupIndex(-1); // Reset or close popups
+  };  
   
   const [factList, setFactList] = useState([
-		{ isExplored: false, icon: <img src={MetalImg} alt = "MetalImg" height='40'/>, image: MetalImg ,title: 'Scientific Interest', text: "What gives asteroid Psyche great scientific interest is that it is likely rich in metal. It may consist largely of metal from the core of a planetesimal, one of the building blocks of the Sun’s planetary system. At Psyche scientists will explore, for the first time ever, a world made not of rock or ice, but rich in metal."},
+    {isExplored: true, title: "Overview", text: "Welcome to the notebook, please choose on the left to see facts about the Psyche mission that you have explored."},
+		
+    { isExplored: false, icon: <img src={MetalImg} alt = "MetalImg" height='40'/>, image: MetalImg ,title: 'Scientific Interest', text: "What gives asteroid Psyche great scientific interest is that it is likely rich in metal. It may consist largely of metal from the core of a planetesimal, one of the building blocks of the Sun’s planetary system. At Psyche scientists will explore, for the first time ever, a world made not of rock or ice, but rich in metal."},
 		{ isExplored: false, icon: <img src={OrbitTrimImg} alt="OrbitImg" height='40'/>,image:OrbitImg, title: 'The orbit', text: "Psyche follows an orbit in the outer part of the main asteroid belt, at an average distance from the Sun of 3 astronomical units (AU); Earth orbits at 1 AU." },
 		{ isExplored: false, icon: <img src={ScaleImg} alt="ScaleImg" height='40'/>,image:ScaleImg, title: "Size",  text: "If Psyche were a perfect sphere, it would have a diameter of 140 miles (226 kilometers), or about the length of the State of Massachusetts (leaving out Cape Cod). It is estimated to have a surface area of about 64,000 square miles or approximately 165,800 square kilometers."},
 		{ isExplored: false, icon: <img src={FormationTrimImg} alt="FormationImg" height='40'/>,image:FormationImg, title: "Formation",  text: "The asteroid is most likely a survivor of multiple violent hit-and-run collisions, common when the solar system was forming. Thus Psyche may be able to tell us how Earth’s core and the cores of the other terrestrial planets came to be."},
@@ -69,6 +123,8 @@ function PsycheApp() {
 		(
       <CombinedFact/>
     )},
+    
+    
     { isExplored: false, icon: <img src={TrajectoryImg} alt="TrajectoryImg" height='40'/>,image:TrajectoryImg, title: 'Trajectory', text: 'The Psyche spacecraft is targeted to travel to the asteroid using solar-electric (low-thrust) propulsion, following a Mars flyby and gravity-assist. After arrival, the mission plan calls for mapping the asteroid and studying its properties.'},
     { isExplored: false, icon: <img src={ObitImg2} alt="ObitImg2" height='40'/>,image:ObitImg2, title: 'Orbit', text: (
       <>
@@ -105,17 +161,18 @@ function PsycheApp() {
       </>
     ) },
   ]);
-  
+
   const useContextList = {
     factList, setFactList, 
     toolList, setToolList, 
     isLaunched, 
-    isToSpaceCraftClicked, 
+    isToSpaceCraftClicked, setIsToSpaceCraftClicked,
+    isToAsteroidClicked, setIsToAsteroidClicked,
+    isToAsteroid, setIsToAsteroid, 
     isToSpaceCraft,setIsToSpaceCraft, 
     showAsteroid, setShowAsteroid, 
-    showCountdown, setShowCountdown, 
-    countdown, setCountdown,
     showSpacecraft, setShowSpacecraft,
+    isAsteroidSpinning, setIsAsteroidSpinning,
     isMoving, setIsMoving, 
     currentFactIndex, setCurrentFactIndex, 
     isOverview, setIsOverview, 
@@ -123,7 +180,11 @@ function PsycheApp() {
     isStartClicked, setStartClicked, 
     isCreditsClicked, setCreditsClicked, 
     showNotebook, setShowNotebook, 
-    showDescription, setShowDescription};
+    showDescription, setShowDescription,
+    isModalOpen, setIsModalOpen,
+    progressValue, setProgressValue,
+    showControls, setShowControls,
+  };
 
   const handleStartClick = () => {
     //setShowAsteroid(false);
@@ -133,6 +194,8 @@ function PsycheApp() {
     setTimeout(() => {
       setIsStartAnimating(false);
       setStartClicked(true);
+      setCurrentPopupContent(popupContentStart);
+      setPopupIndex(0);
     }, 200);
   };
 
@@ -146,6 +209,8 @@ function PsycheApp() {
   
   const handleLaunchClick = () => {
     setIsLaunched(true);
+    setCurrentPopupContent(popupContentLaunch);
+    setPopupIndex(0);
   }
   
   const handleToSpacecraftClick = () => {
@@ -153,22 +218,36 @@ function PsycheApp() {
   }
   
   const handleOverviewClick = () => {
+    console.log("isToAsteroid: ", isToAsteroidClicked)
+    console.log("isToSpaceCraft: ", isToSpaceCraftClicked)
     setIsOverviewClicked(!isOverviewClicked);
   };
 
-  const handleControlsClick = () => {
-    setShowControls(!showControls);
-  };
+  const handleToAsteroidClick = () =>{
+    
+    setIsToAsteroidClicked(!isToAsteroidClicked);
+    console.log("to asteroid clicked")
+  }
   
+  //const handleControlsClick = () => {
+  //  setShowControls(!showControls);
+  //};
+  
+  const handleDoubleClick = () => {
+    console.log('Double click detected!');
+    if (isToAsteroid && isToSpaceCraft){ //condition when it is in overview mode
+      setIsMoving(!isMoving);
+      setIsAsteroidSpinning(!isAsteroidSpinning);
+    }
+  };
 
+  useDoubleClick(handleDoubleClick);
 
   
   return (
     <GlobalStateProvider value={useContextList}>
       <div className="app-container">
-        {!isLaunched && <div className="title-container">Psyche Simulation</div>}
-        <ToolBox />
-        
+        {!isLaunched && <div className="title-container title-white ">PSYCHE SIMULATION</div>}
         
         <Canvas ref={canvasRef} camera={{ fov: 45, position: [0, 0, 75] }}>
          <MainPsycheContainer/>
@@ -176,27 +255,51 @@ function PsycheApp() {
         </Canvas>
         
         
-        {isLaunched && !isCreditsClicked && !isStartClicked && <button className={`ombre-button start-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleStartClick}>Start</button>}
+        {popupIndex >= 0 && (
+          <MissionIntroPopup
+            title={currentPopupContent[popupIndex].title}
+            message={currentPopupContent[popupIndex].message}
+            onNext={() => handleNextPopup()}
+            onClose={() => {
+              handleClosePopup();
+              if (currentPopupContent[1].message === popupContentLaunch[1].message) { setShowStartButton(true); }
+              if (currentPopupContent[1].message === popupContentStart[1].message) { 
+                setShowToPsycheButton(true);
+                setShowToSpaceCraftButton(true);
+              }
+            }}
+            isLast={popupIndex === currentPopupContent.length - 1}
+          />
+        )}
+        
+        {/* {showStartButton && !isCreditsClicked && <button className={`ombre-button start-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleStartClick}>Start</button>} */}
+        {/*{!isLaunched && <button onClick={handleLaunchClick}>Launch</button>}*/}
+  
+        
+        
+        {showStartButton && isLaunched && !isCreditsClicked && !isStartClicked && <button className={`ombre-button start-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleStartClick}>Start</button>}
         {!isLaunched && <button className={`ombre-button start-button`} onClick={handleLaunchClick}>Launch</button>}
         {!isLaunched && !isCreditsClicked && !isStartClicked && <button className={`ombre-button credits-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleCreditsClick}>Credits</button>}
         
         {isOverview && <button className="ombre-button" onClick={handleOverviewClick}>Overview</button>}
-        {isToSpaceCraft && <button className="ombre-button" onClick={handleToSpacecraftClick}>To Spacecraft</button>}
+        
+        {showToPsycheButton && isToAsteroid && <button className="ombre-button start-button" onClick={handleToAsteroidClick}>To Psyche</button>}
+        {showToSpacecraftButton && isToSpaceCraft && <button className={`ombre-button ${isOverview ? 'start-button' : ""}`} onClick={handleToSpacecraftClick}>To Spacecraft</button>}
+
         
         {currentFactIndex!== null &&  <HotspotFact/>}
-        {isLaunched && (<button className="controls-button" onClick={handleControlsClick}>?</button>)}
-        {showControls && <ControlsPopup onClose={() => setShowControls(false)} />}
-          
-          
-        {isLaunched && (      
-        <ProgressBarButton /> )}
-        
-        {/*<Button onClick={handleOpen}>Open modal</Button>*/}
+        {isLaunched && (<ControlsButton/>)}
 
+          
+          
+        {isLaunched && (<ProgressBarButton /> )}
+        
+        <CertificationPopup/>
 
       </div>
     </GlobalStateProvider>
   );
 }
+
 
 export default PsycheApp;

@@ -8,17 +8,15 @@ import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
-import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
 import { useContext } from "react";
 import {GlobalStateContext} from '../../utils/useContext';
 import InfoContent from './InfoContent';
+
+import '../../style.css'
 
 const drawerWidth = 240;
 
@@ -125,9 +123,9 @@ function NotebookMenu() {
 
   return (
     <Box sx={{ display: 'flex', overflowY:'scroll', width:'80vw'}}>
-      <AppBar open={open} sx={{backgroundColor: 'rgb(11, 61, 145)'}}>
+      <AppBar open={open} sx={{background: 'linear-gradient(to right, #ef5966, #a53f5b)'}}>
         <Toolbar>
-          <IconButton
+          {/*<IconButton
             aria-label="open drawer"
             onClick={handleDrawerOpen}
             edge="start"
@@ -138,26 +136,28 @@ function NotebookMenu() {
             }}
           >
             <MenuIcon />
-          </IconButton>
-          <Typography variant="h6" noWrap component="div">
-            Summary
+          </IconButton>*/}
+          <Typography  variant="h6" noWrap component="div">
+            <Box paddingX={1} className="title-white">
+            SUMMARY
+            </Box>
           </Typography>
         </Toolbar>
       </AppBar>
+      <Box >
       <Drawer variant="permanent" open={open}>
-        <DrawerHeader >
+        {/*<DrawerHeader >
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
           </IconButton>
-        </DrawerHeader>
+        </DrawerHeader>*/}
         {/* Facts */}
-        <Divider />
         <List >
           {factList.map((item, index) => (
             <ListItem key={index} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={{
-                  minHeight: 48,
+                  minHeight: 57,
                   justifyContent: open ? 'initial' : 'center',
                   px: 2.5,
                 }}
@@ -174,7 +174,7 @@ function NotebookMenu() {
                 >
                   {item.icon}
                 </ListItemIcon>
-                <ListItemText primary={item.title} sx={{ opacity: open ? 1 : 0 }} />
+                {/*<ListItemText primary={item.title} sx={{ opacity: open ? 1 : 0 }} />*/}
               </ListItemButton>
             </ListItem>
           ))}
@@ -186,7 +186,7 @@ function NotebookMenu() {
             <ListItem key={index} disablePadding sx={{ display: 'block' }}>
               <ListItemButton
                 sx={{
-                  minHeight: 48,
+                  minHeight: 57,
                   justifyContent: open ? 'initial' : 'center',
                   px: 2.5,
                 }}
@@ -202,12 +202,13 @@ function NotebookMenu() {
                 >
                   {item.icon}
                 </ListItemIcon>
-                <ListItemText primary={item.title} sx={{ opacity: open ? 1 : 0 }} />
+                {/*<ListItemText primary={item.title} sx={{ opacity: open ? 1 : 0 }} />*/}
               </ListItemButton>
             </ListItem>
           ))}
         </List>
       </Drawer>
+      </Box>
 			<Box component="main" sx={{ flexGrow: 1}}>
         <DrawerHeader />
         {handleSelectedItem(selectedItem, selectedArray)}

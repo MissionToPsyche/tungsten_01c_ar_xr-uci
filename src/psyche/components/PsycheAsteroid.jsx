@@ -6,12 +6,16 @@ import { OBJLoader } from 'three/examples/jsm/loaders/OBJLoader'
 import {useFrame} from '@react-three/fiber'
 import { ROTATION_SPEED} from './constants';
 import ItemHotspots from './Buttons/ItemHotspot';
+import { useContext } from 'react';
+import {GlobalStateContext} from '../utils/useContext';
 
 
 
-const PsycheAsteroid =  ({ psycheRef, visible }) => {
+const PsycheAsteroid =  ({ psycheRef, visible, distanceFactor }) => {
 	
 	const obj = useLoader(OBJLoader, '	/assets/psyche.obj')
+	const {isAsteroidSpinning, isModalOpen, showNotebook}= useContext(GlobalStateContext);
+    
 
 	const geometry = useMemo(() => {
 		let g;
@@ -27,13 +31,16 @@ const PsycheAsteroid =  ({ psycheRef, visible }) => {
 	
 	
 	useFrame(() => {
-		psycheRef.current.rotation.z += 0.005;
+		if (isAsteroidSpinning){
+			psycheRef.current.rotation.z += 0.005;
+			
+		}
 		
 	})
 
 	return (
 	<group ref={psycheRef} visible={visible}>
-		  <ItemHotspots/>
+		  {visible && !isModalOpen && !showNotebook && <ItemHotspots distanceFactor={distanceFactor} />}
 			<mesh  geometry={geometry} scale={2} frustumCulled={false} >
 				<meshPhysicalMaterial color="gray" />
 			</mesh>

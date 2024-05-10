@@ -2,7 +2,7 @@ import * as THREE from 'three';
 
 export const animateCameraZoomIn = (camera, targetRef, distance, callback) => {
   
-  let zoomSpeed = 5;
+  let zoomSpeed = 0.5;
   
   function updatePosition() {
     const targetPosition = targetRef.current.position.clone();
@@ -29,7 +29,7 @@ export const animateCameraZoomIn = (camera, targetRef, distance, callback) => {
 
 export const animateCameraZoomOut = (orbitControlsRef, camera, distance, callback, callback2) => {
   
-  let zoomSpeed = 5;
+  let zoomSpeed = 0.5;
   const targetPosition = new THREE.Vector3(0, 0, distance);
   
   function updatePosition() {
@@ -76,3 +76,40 @@ export const animateCameraZoomOut = (orbitControlsRef, camera, distance, callbac
   
   updatePosition();
 };
+
+
+export function getRefreshRate(callback) {
+  let frameTimes = [];
+  let lastFrameTime;
+  let measurementStartTime;
+
+  function measureRefreshRate() {
+      requestAnimationFrame(function(timestamp) {
+          if (!measurementStartTime) {
+              measurementStartTime = timestamp;
+          }
+
+          if (timestamp - measurementStartTime < 2000) { // Measure over 5 seconds
+              if (lastFrameTime) {
+                  let frameTime = timestamp - lastFrameTime;
+                  frameTimes.push(frameTime);
+              }
+              lastFrameTime = timestamp;
+              measureRefreshRate();
+          } else {
+              if (frameTimes.length > 0) {
+                  let totalFrameTime = frameTimes.reduce((acc, val) => acc + val, 0);
+                  let averageFrameTime = totalFrameTime / frameTimes.length;
+                  let refreshRate = Math.round(1000 / averageFrameTime);
+                  callback(refreshRate);
+              }
+              // Reset variables for the next measurement
+              lastFrameTime = null;
+              measurementStartTime = null;
+          }
+      });
+  }
+
+  // Start measuring
+  measureRefreshRate();
+}

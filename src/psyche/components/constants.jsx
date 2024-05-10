@@ -13,7 +13,7 @@ export const ROTATION_SPEED = 0.0002 // Rotation speed that will be for the aste
 // Hotspots that will be displayed on the asteroid, adding more hotspot here
 export const hotspots = [
 	{
-		position: [0, 1, 2],
+		position: [0, 1, 1.9],
 		title: 'Scientific Interest',
 		scale: [0.05, 0.3, 0.3],
 		meshRotation: [0, 5, 0.5],
@@ -21,7 +21,7 @@ export const hotspots = [
 		imageUrl: '/assets/nickle_icon.png',
 	},
 	{
-		position: [-2.4, -1, -1],
+		position: [-2.4, -.5, -.9],
 		title: 'The orbit',
 		scale: [0.05, 0.3, 0.3],
 		meshRotation: [0, 2.3, -0.33],
@@ -29,7 +29,7 @@ export const hotspots = [
 		imageUrl: 'src/assets/calendar_icon.png',
 	},
 	{
-		position: [2.5, -1, -1],
+		position: [1.8, -1, -1],
 		title: 'Size',
 		scale: [0.05, 0.3, 0.3],
 		meshRotation: [0, 0.4, -0.2],
@@ -45,3 +45,29 @@ export const hotspots = [
 		imageUrl: 'src/assets/size_icon.png',
 	},
 ]
+
+export const spacecraftFacts = [
+	{
+		position: [0.2, 0.2, 0.2],
+		title: 'Trajectory'
+	},
+	{
+		position: [0, 0.1, -0.75],
+		title: 'Orbit'
+	},
+	{
+		position: [-0.05, 0.4, 0.05],
+		title: 'Spacecraft Size'
+	},
+	{
+		position: [.1, -0.2, -0.15],
+		title: 'Bus Size'
+	},
+	{
+		position: [.2, 0, 0],
+		title: 'Propulsion System'
+	},
+]
+
+
+export const sumPercentage = 6.25

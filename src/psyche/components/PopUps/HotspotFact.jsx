@@ -14,9 +14,13 @@ import InfoContent from './InfoContent';
 
 function HotspotFact (){
 	
-	const { currentFactIndex, setCurrentFactIndex, factList} = useContext(GlobalStateContext);
+	const { currentFactIndex, setCurrentFactIndex, factList, setIsModalOpen } = useContext(GlobalStateContext);
 	
-	const handleClose = () => setCurrentFactIndex(null);
+	const handleClose = () => {
+		setCurrentFactIndex(null);
+		setIsModalOpen(false);
+	}
+
 	
 	const modalStyle = {
 		position: 'fixed',
