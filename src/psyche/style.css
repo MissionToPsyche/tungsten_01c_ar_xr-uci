@@ -276,11 +276,40 @@
   height: 150px;
 }
 
-.title {
+.title-white {
   font-family: 'Knockout', sans-serif;
   font-weight: 300;
   font-size: 6vw;
   color: #fff;
+  @media (max-width: 768px) {
+    font-size: 5vw;
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    font-size: 3vw;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 2vw;
+  }
+}
+
+.title-color {
+  font-family: 'Knockout', sans-serif;
+  font-weight: 300;
+  font-size: 6vw;
+  color: #a53f5b;
+  @media (max-width: 768px) {
+    font-size: 5vw;
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    font-size: 3vw;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 2vw;
+  }
 }
 
 .header {

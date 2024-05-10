@@ -32,6 +32,7 @@ import PropulsionImg from '../../public/assets/propulsion_system.svg';
 import CombinedFact from './components/PopUps/CombinedFact';
 
 import HotspotFact from './components/PopUps/HotspotFact';
+import ControlsButton from './components/Buttons/ControlsButton';
 
 
 
@@ -69,6 +70,7 @@ function PsycheApp() {
   const [showDescription, setShowDescription] = useState(false);
   
   const [progressValue, setProgressValue] = useState(100);
+  
   
  
   //information state
@@ -141,7 +143,8 @@ function PsycheApp() {
     showNotebook, setShowNotebook, 
     showDescription, setShowDescription,
     isModalOpen, setIsModalOpen,
-    progressValue, setProgressValue
+    progressValue, setProgressValue,
+    showControls, setShowControls,
   };
 
   const handleStartClick = () => {
@@ -183,9 +186,9 @@ function PsycheApp() {
     console.log("to asteroid clicked")
   }
   
-  const handleControlsClick = () => {
-    setShowControls(!showControls);
-  };
+  //const handleControlsClick = () => {
+  //  setShowControls(!showControls);
+  //};
   
 
 
@@ -211,12 +214,11 @@ function PsycheApp() {
 
         
         {currentFactIndex!== null &&  <HotspotFact/>}
-        {isLaunched && (<button className="controls-button" onClick={handleControlsClick}>?</button>)}
-        {showControls && <ControlsPopup onClose={() => setShowControls(false)} />}
+        {isLaunched && (<ControlsButton/>)}
+
           
           
-        {isLaunched && (      
-        <ProgressBarButton /> )}
+        {isLaunched && (<ProgressBarButton /> )}
         
         <CertificationPopup/>
 

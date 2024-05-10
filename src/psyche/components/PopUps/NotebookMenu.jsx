@@ -141,8 +141,8 @@ function NotebookMenu() {
           >
             <MenuIcon />
           </IconButton>*/}
-          <Typography className="title" variant="h6" noWrap component="div">
-            <Box paddingX={1} className="title">
+          <Typography  variant="h6" noWrap component="div">
+            <Box paddingX={1} className="title-white">
             SUMMARY
             </Box>
           </Typography>
