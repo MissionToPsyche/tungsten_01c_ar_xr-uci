@@ -1,24 +1,19 @@
 import * as React from 'react';
 import { useContext } from 'react';
-
-import Button from '@mui/material/Button';
-import Modal from '@mui/material/Modal';
-//import Facts from './NotebookMenu';
-import NotebookMenu from './NotebookMenu';
-
-import CloseIcon from '@mui/icons-material/Close';
 import {GlobalStateContext} from '../../utils/useContext';
+
+import Modal from '@mui/material/Modal';
+import Box  from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import FolderIcon from '@mui/icons-material/Folder';
-import Box  from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import '../../style.css'
+
 import PinchIcon from '@mui/icons-material/Pinch';
 import SwipeRightIcon from '@mui/icons-material/SwipeRight';
 
+import '../../style.css'
 
   function ControlsPopup({ onClose }) {
     const { showControls, setShowControls} = useContext(GlobalStateContext);
@@ -29,7 +24,6 @@ import SwipeRightIcon from '@mui/icons-material/SwipeRight';
       top: '50%',
       left: '50%',
 			width: '70%',
-      
       maxHeight: '80vh',
       
       transform: 'translate(-50%, -50%)',
@@ -78,25 +72,4 @@ import SwipeRightIcon from '@mui/icons-material/SwipeRight';
     );
   }
 	
-	
 	export default ControlsPopup;
-
-
-
-//function ControlsPopup({ onClose }) {
-//	return (
-//		<div className="controls-popup">
-//			<button className="close-button" onClick={onClose}>X</button>
-//			<div className="controls-content">
-//				<p>Controls:</p>
-//				<ul>
-//					<li>Pinch to zoom</li>
-//					<li>Swipe to move</li>
-//				</ul>
-//			</div>
-//		</div>
-//	);
-//}
-
-
-//export default ControlsPopup;

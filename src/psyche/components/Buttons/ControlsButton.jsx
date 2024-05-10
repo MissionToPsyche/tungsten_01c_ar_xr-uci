@@ -1,19 +1,13 @@
 import React from 'react';
-import './style.css'; // Import CSS for styling
-
-import { CircularProgressbarWithChildren , buildStyles} from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
-import MenuBookIcon from '@mui/icons-material/MenuBook';
 import { useContext } from 'react';
-
 import {GlobalStateContext} from '../../utils/useContext';
 
-import NotebookPopup from '../PopUps/NotebookPopup';
 import ControlsPopup from '../PopUps/ControlsPopup';
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import QuestionMarkIcon from '@mui/icons-material/QuestionMark';
 
+import './style.css';
 
 
 const ControlsButton = () => {
