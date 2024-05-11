@@ -1,8 +1,18 @@
 import * as THREE from 'three';
 
-export const animateCameraZoomIn = (camera, targetRef, distance, callback) => {
-  
-  let zoomSpeed = 0.5;
+const calculateSpeedByRefreshRate = (refreshRate) => {
+
+  const base_speed = 1 / refreshRate
+
+  const adjustment_factor = (76 - refreshRate) / (76 - 50)
+  const speed = base_speed * adjustment_factor
+
+  return speed
+}
+
+export const animateCameraZoomIn = (refreshRate, camera, targetRef, distance, callback) => {
+  console.log(refreshRate)
+  let zoomSpeed = calculateSpeedByRefreshRate(refreshRate.refreshRate);
   
   function updatePosition() {
     const targetPosition = targetRef.current.position.clone();
@@ -27,9 +37,9 @@ export const animateCameraZoomIn = (camera, targetRef, distance, callback) => {
   updatePosition();
 };
 
-export const animateCameraZoomOut = (orbitControlsRef, camera, distance, callback, callback2) => {
+export const animateCameraZoomOut = (refreshRate, orbitControlsRef, camera, distance, callback, callback2) => {
   
-  let zoomSpeed = 0.5;
+  let zoomSpeed = calculateSpeedByRefreshRate(refreshRate.refreshRate)
   const targetPosition = new THREE.Vector3(0, 0, distance);
   
   function updatePosition() {

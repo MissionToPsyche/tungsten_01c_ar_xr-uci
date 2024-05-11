@@ -39,7 +39,7 @@ import useDoubleClick from './utils/useDoubleClick';
 import MissionIntroPopup from './components/PopUps/MissionIntroPopup.jsx';
 
 
-function PsycheApp() {
+function PsycheApp(refreshRate) {
   const canvasRef = useRef();
   
   // flow state
@@ -164,6 +164,7 @@ function PsycheApp() {
   ]);
 
   const useContextList = {
+    refreshRate,
     factList, setFactList, 
     toolList, setToolList, 
     isLaunched,
