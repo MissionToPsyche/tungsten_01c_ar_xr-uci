@@ -47,6 +47,7 @@ function PsycheApp() {
   const [isToSpaceCraft, setIsToSpaceCraft] = useState(false);
   const [isToAsteroid, setIsToAsteroid] = useState(false);
   const [isLaunched, setIsLaunched] = useState(false);
+  const [startZooming, setStartZooming] = useState(false);
   
   // button state
   const [isOverviewClicked, setIsOverviewClicked] = useState(false);
@@ -165,7 +166,9 @@ function PsycheApp() {
   const useContextList = {
     factList, setFactList, 
     toolList, setToolList, 
-    isLaunched, 
+    isLaunched,
+    showStartButton, setShowStartButton,
+    startZooming, setStartZooming,
     isToSpaceCraftClicked, setIsToSpaceCraftClicked,
     isToAsteroidClicked, setIsToAsteroidClicked,
     isToAsteroid, setIsToAsteroid, 
@@ -208,9 +211,9 @@ function PsycheApp() {
   };
   
   const handleLaunchClick = () => {
-    setIsLaunched(true);
     setCurrentPopupContent(popupContentLaunch);
     setPopupIndex(0);
+    setIsLaunched(true);
   }
   
   const handleToSpacecraftClick = () => {
@@ -260,12 +263,18 @@ function PsycheApp() {
             message={currentPopupContent[popupIndex].message}
             onNext={() => handleNextPopup()}
             onClose={() => {
+              
               handleClosePopup();
-              if (currentPopupContent[1].message === popupContentLaunch[1].message) { setShowStartButton(true); }
+              if (currentPopupContent[1].message === popupContentLaunch[1].message) { 
+                setShowStartButton(true); 
+                setStartZooming(true);
+                
+              }
               if (currentPopupContent[1].message === popupContentStart[1].message) { 
                 setShowToPsycheButton(true);
                 setShowToSpaceCraftButton(true);
               }
+              
             }}
             isLast={popupIndex === currentPopupContent.length - 1}
           />
@@ -276,7 +285,7 @@ function PsycheApp() {
   
         
         
-        {showStartButton && isLaunched && !isCreditsClicked && !isStartClicked && <button className={`ombre-button start-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleStartClick}>Start</button>}
+        {showStartButton && isLaunched && !isCreditsClicked && !isStartClicked && <button className={`ombre-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleStartClick}>Start</button>}
         {!isLaunched && <button className={`ombre-button start-button`} onClick={handleLaunchClick}>Launch</button>}
         {!isLaunched && !isCreditsClicked && !isStartClicked && <button className={`ombre-button credits-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleCreditsClick}>Credits</button>}
         
