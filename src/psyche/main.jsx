@@ -38,6 +38,9 @@ import useDoubleClick from './utils/useDoubleClick';
 //into dialogue
 import MissionIntroPopup from './components/PopUps/MissionIntroPopup.jsx';
 
+// ToolBox
+import ToolBox from './components/ToolBox';
+
 
 function PsycheApp() {
   const canvasRef = useRef();
@@ -47,6 +50,9 @@ function PsycheApp() {
   const [isToSpaceCraft, setIsToSpaceCraft] = useState(false);
   const [isToAsteroid, setIsToAsteroid] = useState(false);
   const [isLaunched, setIsLaunched] = useState(false);
+
+  const [showToolBox, setShowToolBox] = useState(false); {/*for toolbox*/}
+
   
   // button state
   const [isOverviewClicked, setIsOverviewClicked] = useState(false);
@@ -211,10 +217,12 @@ function PsycheApp() {
     setIsLaunched(true);
     setCurrentPopupContent(popupContentLaunch);
     setPopupIndex(0);
+    setShowToolBox(true);  // Set the flag to show the ToolBox
   }
   
   const handleToSpacecraftClick = () => {
     setIsToSpaceCraftClicked(!isToSpaceCraftClicked);
+
   }
   
   const handleOverviewClick = () => {
@@ -274,7 +282,7 @@ function PsycheApp() {
         
         {/* {showStartButton && !isCreditsClicked && <button className={`ombre-button start-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleStartClick}>Start</button>} */}
         {/*{!isLaunched && <button onClick={handleLaunchClick}>Launch</button>}*/}
-  
+        
         
         
         {showStartButton && isLaunched && !isCreditsClicked && !isStartClicked && <button className={`ombre-button start-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleStartClick}>Start</button>}
@@ -285,7 +293,8 @@ function PsycheApp() {
         
         {showToPsycheButton && isToAsteroid && <button className="ombre-button start-button" onClick={handleToAsteroidClick}>To Psyche</button>}
         {showToSpacecraftButton && isToSpaceCraft && <button className={`ombre-button ${isOverview ? 'start-button' : ""}`} onClick={handleToSpacecraftClick}>To Spacecraft</button>}
-
+        
+        {showToolBox && <ToolBox />} {/* For rendering ToolBox  */ }   
         
         {currentFactIndex!== null &&  <HotspotFact/>}
         {isLaunched && (<ControlsButton/>)}
