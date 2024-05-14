@@ -22,6 +22,9 @@ const MainPsycheContainer = () => {
   const { camera } = useThree();
   
   const {
+    setShowStartButton,
+    disabledAllFlowButton, setDisabledAllFlowButton,
+    startZooming,
     setIsToAsteroid,
     isToAsteroidClicked , setIsToAsteroidClicked,
     isLaunched, setShowAsteroid, 
@@ -42,6 +45,7 @@ const MainPsycheContainer = () => {
     setIsToAsteroid(false);
     setIsToSpaceCraft(false);
     setIsOverview(false);
+    setShowStartButton(false);
   }
 
   const [distanceFactor, setDistanceFactor] = useState(30)
@@ -163,7 +167,8 @@ const MainPsycheContainer = () => {
   
   useEffect(() => {
     //setShowAsteroid(true);
-    if (isLaunched) {
+    if (startZooming) {
+      hideFlowButtons();
       console.log("launching spacecraft");
       setShowSpacecraft(true);
       animateCameraZoomIn(camera, psycheSpacecraftRef, 15, () => {
@@ -172,11 +177,12 @@ const MainPsycheContainer = () => {
         orbitControlsRef.current.enableRotate = true;
         orbitControlsRef.current.maxDistance = 30;
         //setShowSpacecraft(false);
+        setShowStartButton(true); 
       });
 
       //orbitControlsRef.current.target.set(psycheSpacecraftRef.current.position.x, psycheSpacecraftRef.current.position.y, psycheSpacecraftRef.current.position.z);
     }
-  }, [isLaunched]);  
+  }, [startZooming]);  
   
   useEffect(() => {
     if (isToSpaceCraftClicked) {

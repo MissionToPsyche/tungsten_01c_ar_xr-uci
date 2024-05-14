@@ -17,6 +17,7 @@ const PsycheSpacecraft = ({ scref, target, distanceFactor }) => {
   const iconRef = useRef()
 
   const { 
+		startZooming,
 		setCurrentFactIndex, 
 		factList, 
 		isModalOpen, 
@@ -27,7 +28,8 @@ const PsycheSpacecraft = ({ scref, target, distanceFactor }) => {
 		showSpacecraft, 
 		isLaunched, 
 		progressValue, 
-		setProgressValue 
+		setProgressValue ,
+		isStartClicked
 	} = useContext(GlobalStateContext);
 
 	const geometry = useMemo(() => {
@@ -74,7 +76,7 @@ const PsycheSpacecraft = ({ scref, target, distanceFactor }) => {
       <mesh geometry={geometry} scale={0.01} frustumCulled={false} visible={showSpacecraft}>
         <meshPhysicalMaterial color="pink" />
       </mesh>
-      {isLaunched && !showAsteroid && !isModalOpen && !showNotebook && <SpacecraftHotspots distanceFactor={distanceFactor} />}
+      {startZooming && isStartClicked && !showAsteroid && !isModalOpen && !showNotebook && <SpacecraftHotspots distanceFactor={distanceFactor} />}
     </group>
   )
 }
