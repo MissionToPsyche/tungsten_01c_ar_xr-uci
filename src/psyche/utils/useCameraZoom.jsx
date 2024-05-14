@@ -1,18 +1,23 @@
 import * as THREE from 'three';
 
 const calculateSpeedByRefreshRate = (refreshRate) => {
-
+  
+  //refreshRate = 50
   const base_speed = 1 / refreshRate
 
-  const adjustment_factor = (76 - refreshRate) / (76 - 50)
-  const speed = base_speed * adjustment_factor
+  const adjustment_factor = 540/ ((refreshRate + 81 + 50)/3)
+  console.log("adjustment_factor", adjustment_factor)
+  console.log("base_speed", base_speed )
+  
+  const speed = base_speed * adjustment_factor * 10
 
   return speed
 }
 
 export const animateCameraZoomIn = (refreshRate, camera, targetRef, distance, callback) => {
-  console.log(refreshRate)
+  console.log(refreshRate.refreshRate)
   let zoomSpeed = calculateSpeedByRefreshRate(refreshRate.refreshRate);
+  console.log("zoomSpeed: ", zoomSpeed)
   
   function updatePosition() {
     const targetPosition = targetRef.current.position.clone();
@@ -79,8 +84,8 @@ export const animateCameraZoomOut = (refreshRate, orbitControlsRef, camera, dist
       requestAnimationFrame(updatePosition);
     }
     
-    if (zoomSpeed > 0.15){
-      zoomSpeed -= 0.08;
+    if (zoomSpeed > 0.25){
+      zoomSpeed -= 0.04;
     }
   }
   

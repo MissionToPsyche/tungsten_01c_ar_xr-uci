@@ -102,13 +102,13 @@ const MainPsycheContainer = () => {
       
         const currentTarget = orbitControlsRef.current.target.clone();
         const newTarget = psycheRef.current.position.clone();
-        const lerpFactor = 0.009; // Adjust between 0 (instant change) and 1 (full transition in one frame)
+        const lerpFactor = 0.01; // Adjust between 0 (instant change) and 1 (full transition in one frame)
         let i = 0
         function lerpTarget() {
           i += lerpFactor
           const lerpedTarget = currentTarget.lerp(newTarget, i);
           orbitControlsRef.current.target.set(lerpedTarget.x, lerpedTarget.y, lerpedTarget.z);
-        
+          console.log(i)
           // Check if transition is complete
           if (i < 1) {
             requestAnimationFrame(lerpTarget);
@@ -145,7 +145,7 @@ const MainPsycheContainer = () => {
       
         const currentTarget = orbitControlsRef.current.target.clone();
         const newTarget = psycheRef.current.position.clone();
-        const lerpFactor = 0.09; // Adjust between 0 (instant change) and 1 (full transition in one frame)
+        const lerpFactor = 0.01; // Adjust between 0 (instant change) and 1 (full transition in one frame)
         let i = 0
         function lerpTarget() {
           i += lerpFactor
@@ -216,7 +216,7 @@ const MainPsycheContainer = () => {
         //orbitControlsRef.current.target.set(psycheSpacecraftRef.current.position.x, psycheSpacecraftRef.current.position.y, psycheSpacecraftRef.current.position.z);
         const currentTarget = orbitControlsRef.current.target.clone();
         const newTarget = psycheSpacecraftRef.current.position.clone();
-        const lerpFactor = 0.009; // Adjust between 0 (instant change) and 1 (full transition in one frame)
+        const lerpFactor = 0.01; // Adjust between 0 (instant change) and 1 (full transition in one frame)
         let i = 0
         function lerpTarget() {
           i += lerpFactor
@@ -224,6 +224,7 @@ const MainPsycheContainer = () => {
           orbitControlsRef.current.target.set(lerpedTarget.x, lerpedTarget.y, lerpedTarget.z);
           //console.log(i)
           // Check if transition is complete
+          console.log(i)
           if (i < 1) {
           //if (i < 0.2) {
             
@@ -255,7 +256,7 @@ const MainPsycheContainer = () => {
       
         const currentTarget = orbitControlsRef.current.target.clone();
         const newTarget = psycheRef.current.position.clone();
-        const lerpFactor = 0.0009; // Adjust between 0 (instant change) and 1 (full transition in one frame)
+        const lerpFactor = 0.01; // Adjust between 0 (instant change) and 1 (full transition in one frame)
         let i = 0
         function lerpTarget() {
           i += lerpFactor
