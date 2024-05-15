@@ -5,11 +5,11 @@ const calculateSpeedByRefreshRate = (refreshRate) => {
   //refreshRate = 50
   const base_speed = 1 / refreshRate
 
-  const adjustment_factor = 540/ ((refreshRate + 81 + 50)/3)
+  const adjustment_factor = 540/ ((refreshRate + 60 + 50)/3)
   console.log("adjustment_factor", adjustment_factor)
   console.log("base_speed", base_speed )
   
-  const speed = base_speed * adjustment_factor * 10
+  const speed = base_speed * adjustment_factor * 2
 
   return speed
 }
@@ -34,9 +34,9 @@ export const animateCameraZoomIn = (refreshRate, camera, targetRef, distance, ca
       requestAnimationFrame(updatePosition);
     }
     
-    if (zoomSpeed > 0.25){
-      zoomSpeed -= 0.04;
-    }
+    //if (zoomSpeed > 0.25){
+    //  zoomSpeed -= 0.04;
+    //}
   }
   
   updatePosition();
@@ -59,7 +59,7 @@ export const animateCameraZoomOut = (refreshRate, orbitControlsRef, camera, dist
       callback2();
     }
     
-    if (currentDistance <= 0.1) {
+    if (currentDistance <= 0.5) {
       orbitControlsRef.current.enableZoom = true;
       orbitControlsRef.current.enableRotate = true;
       
@@ -85,7 +85,7 @@ export const animateCameraZoomOut = (refreshRate, orbitControlsRef, camera, dist
     }
     
     if (zoomSpeed > 0.25){
-      zoomSpeed -= 0.04;
+      zoomSpeed -= 0.02;
     }
   }
   
