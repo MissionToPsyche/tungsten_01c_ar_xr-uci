@@ -38,7 +38,7 @@
 
 .gallery-image {
   max-width: 100%;
-  height: auto; /* Auto height for proper aspect ratio */
+  height: 100%; /* Auto height for proper aspect ratio */
   object-fit: contain; 
   flex-grow: 1; /* Allows the image to grow to fill available space */
 }
