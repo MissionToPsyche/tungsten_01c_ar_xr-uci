@@ -1,8 +1,23 @@
 import * as THREE from 'three';
 
-export const animateCameraZoomIn = (camera, targetRef, distance, callback) => {
+const calculateSpeedByRefreshRate = (refreshRate) => {
   
-  let zoomSpeed = 0.5;
+  //refreshRate = 50
+  const base_speed = 1 / refreshRate
+
+  const adjustment_factor = 540/ ((refreshRate + 60 + 50)/3)
+  console.log("adjustment_factor", adjustment_factor)
+  console.log("base_speed", base_speed )
+  
+  const speed = base_speed * adjustment_factor * 2
+
+  return speed
+}
+
+export const animateCameraZoomIn = (refreshRate, camera, targetRef, distance, callback) => {
+  console.log(refreshRate.refreshRate)
+  let zoomSpeed = calculateSpeedByRefreshRate(refreshRate.refreshRate);
+  console.log("zoomSpeed: ", zoomSpeed)
   
   function updatePosition() {
     const targetPosition = targetRef.current.position.clone();
@@ -19,17 +34,17 @@ export const animateCameraZoomIn = (camera, targetRef, distance, callback) => {
       requestAnimationFrame(updatePosition);
     }
     
-    if (zoomSpeed > 0.25){
-      zoomSpeed -= 0.04;
-    }
+    //if (zoomSpeed > 0.25){
+    //  zoomSpeed -= 0.04;
+    //}
   }
   
   updatePosition();
 };
 
-export const animateCameraZoomOut = (orbitControlsRef, camera, distance, callback, callback2) => {
+export const animateCameraZoomOut = (refreshRate, orbitControlsRef, camera, distance, callback, callback2) => {
   
-  let zoomSpeed = 0.5;
+  let zoomSpeed = calculateSpeedByRefreshRate(refreshRate.refreshRate)
   const targetPosition = new THREE.Vector3(0, 0, distance);
   
   function updatePosition() {
@@ -44,7 +59,7 @@ export const animateCameraZoomOut = (orbitControlsRef, camera, distance, callbac
       callback2();
     }
     
-    if (currentDistance <= 0.1) {
+    if (currentDistance <= 0.5) {
       orbitControlsRef.current.enableZoom = true;
       orbitControlsRef.current.enableRotate = true;
       
@@ -69,8 +84,8 @@ export const animateCameraZoomOut = (orbitControlsRef, camera, distance, callbac
       requestAnimationFrame(updatePosition);
     }
     
-    if (zoomSpeed > 0.15){
-      zoomSpeed -= 0.08;
+    if (zoomSpeed > 0.25){
+      zoomSpeed -= 0.02;
     }
   }
   
