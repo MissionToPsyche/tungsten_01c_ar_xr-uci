@@ -38,6 +38,9 @@ import useDoubleClick from './utils/useDoubleClick';
 //into dialogue
 import MissionIntroPopup from './components/PopUps/MissionIntroPopup.jsx';
 
+// ToolBox
+import ToolBox from './components/ToolBox';
+
 
 function PsycheApp(refreshRate) {
   const canvasRef = useRef();
@@ -48,6 +51,9 @@ function PsycheApp(refreshRate) {
   const [isToAsteroid, setIsToAsteroid] = useState(false);
   const [isLaunched, setIsLaunched] = useState(false);
   const [startZooming, setStartZooming] = useState(false);
+
+  const [showToolBox, setShowToolBox] = useState(false); {/*for toolbox*/}
+
   
   // button state
   const [isOverviewClicked, setIsOverviewClicked] = useState(false);
@@ -215,10 +221,12 @@ function PsycheApp(refreshRate) {
     setCurrentPopupContent(popupContentLaunch);
     setPopupIndex(0);
     setIsLaunched(true);
+    setShowToolBox(true);  // Set the flag to show the ToolBox
   }
   
   const handleToSpacecraftClick = () => {
     setIsToSpaceCraftClicked(!isToSpaceCraftClicked);
+
   }
   
   const handleOverviewClick = () => {
@@ -255,6 +263,7 @@ function PsycheApp(refreshRate) {
         
         <Canvas ref={canvasRef} camera={{ fov: 45, position: [0, 0, 75] }}>
          <MainPsycheContainer/>
+       
         </Canvas>
         
         
@@ -283,7 +292,7 @@ function PsycheApp(refreshRate) {
         
         {/* {showStartButton && !isCreditsClicked && <button className={`ombre-button start-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleStartClick}>Start</button>} */}
         {/*{!isLaunched && <button onClick={handleLaunchClick}>Launch</button>}*/}
-  
+        
         
         
         {showStartButton && isLaunched && !isCreditsClicked && !isStartClicked && <button className={`ombre-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleStartClick}>Start</button>}
@@ -294,7 +303,8 @@ function PsycheApp(refreshRate) {
         
         {showToPsycheButton && isToAsteroid && <button className="ombre-button start-button" onClick={handleToAsteroidClick}>To Psyche</button>}
         {showToSpacecraftButton && isToSpaceCraft && <button className={`ombre-button ${isOverview ? 'start-button' : ""}`} onClick={handleToSpacecraftClick}>To Spacecraft</button>}
-
+        
+        {showToolBox && <ToolBox />} {/* For rendering ToolBox  */ }   
         
         {currentFactIndex!== null &&  <HotspotFact/>}
         {isLaunched && (<ControlsButton/>)}

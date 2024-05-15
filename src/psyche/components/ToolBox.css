@@ -1,0 +1,65 @@
+/* ToolBox.css */
+.gallery-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  position: fixed;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 3px;
+  gap: 2px;
+  background-color: black;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  border-radius: 8px;
+  z-index: 1000;
+  width: fit-content;
+  max-width: auto;
+}
+
+.gallery-column {
+  width: 150px;
+  height: 150px; /* Adjusted height to ensure text is visible */
+  margin: 1px;
+  text-align: center;
+  background: transparent;
+  display: flex;
+  flex-direction: column; /* Ensures image and text are stacked */
+  justify-content: space-between; /* Distributes space evenly between image and text */
+  overflow: visible; 
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.gallery-column:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.7);
+}
+
+.gallery-image {
+  max-width: 100%;
+  height: auto; /* Auto height for proper aspect ratio */
+  object-fit: contain; 
+  flex-grow: 1; /* Allows the image to grow to fill available space */
+}
+
+.image-title {
+  font-size: 14px;
+  color: white;
+  margin-top: 4px; /* minimize white space */
+}
+
+body {
+  background-color: transparent;
+}
+
+@media (max-width: 768px) {
+  .gallery-container {
+    top: 5%;
+    padding: 3px;
+  }
+  .gallery-column {
+    width: 120px;
+    height: 180px; /* Proportionally smaller on smaller screens */
+  }
+}
