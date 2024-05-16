@@ -2,6 +2,7 @@ import { Canvas } from '@react-three/fiber';
 import MainPsycheContainer from './components/MainPsycheContainer';
 import { useRef, useState } from 'react';
 import './style.css';
+
 import { GlobalStateProvider } from './utils/useContext';
 import ProgressBarButton from './components/Buttons/ProgressBarButton';
 import ControlsPopup from './components/PopUps/ControlsPopup';

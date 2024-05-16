@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { GlobalStateContext } from '../utils/useContext';
 
 import './ToolBox.css';
+import '../style.css'
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import InfoContent from './PopUps/InfoContent';
@@ -71,19 +72,22 @@ const ToolBox = () => {
     <>
     <Box className="gallery-container">
       {toolList.map((tool, index) => (
-          <>
-          <Box key={index} className="gallery-column" onClick={() => handleClick(index)}
-             style={{
-               visibility: visibleColumns[index] ? 'visible' : 'hidden',
-               opacity: visibleColumns[index] ? 1 : 0,
-               transition: 'opacity 0.5s, visibility 0.5s'
-             }}>
-          {tool.icon}
-          {tool.title}
-        </Box>
-        
-
-          </>
+        <>
+          <Box key={index} onClick={() => handleClick(index)}
+              style={{
+                visibility: visibleColumns[index] ? 'visible' : 'hidden',
+                opacity: visibleColumns[index] ? 1 : 0,
+                transition: 'opacity 0.5s, visibility 0.5s',
+                margin:'1vw',
+              }}>
+                <Box>
+                {tool.icon}
+                </Box>
+                <Box className='text'>
+                {tool.title}
+                </Box>
+          </Box>
+         </>
       ))}
         
 
