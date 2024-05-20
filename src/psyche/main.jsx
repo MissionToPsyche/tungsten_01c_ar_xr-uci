@@ -98,7 +98,6 @@ function PsycheApp(refreshRate) {
     { title: "Introduction", message: "Hi [Name] its great to meet you. Today we will be exploring NASA's latest mission to the asteroid Psyche." },
     {title: "Getting Started", message: "This experience will teach you about the Spacecraft technologies, the Asteroid, and more details about the mission!" },
     {title: "Getting Started", message: "Ready to start your journey? Click 'Finish' to begin exploring!" },
-   { title: "Getting Ready", message: "Before the mission can start, we need to add the tools that will be used for our mission."}
    
   ];
   const popupContentStart = [
@@ -110,6 +109,7 @@ function PsycheApp(refreshRate) {
 ];
 
 // Toolbox syki dialogue
+
 const toolBoxDialogue = [
 { title: "Getting Ready", message: "Before the mission can start, we need to add the tools that will be used for our mission." },
 { title: "Tool Box", message: "Above, you will see a tool box with a Multispectral Imager, a Magnetometer, and a Gamma Ray and Neutron Spectrometer."},
@@ -117,6 +117,7 @@ const toolBoxDialogue = [
 
 
 ];
+
 
 
 
@@ -296,17 +297,11 @@ const toolBoxDialogue = [
                 setShowStartButton(true); 
                 setStartZooming(true);
                 
-                
+               
                 
 
                 
               }
-
-              
-
-
-
-
               if (currentPopupContent[1].message === popupContentStart[1].message) { 
                 setShowToPsycheButton(true);
                 setShowToSpaceCraftButton(true);
