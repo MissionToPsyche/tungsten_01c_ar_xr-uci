@@ -118,6 +118,14 @@ function PsycheApp() {
   const handleClosePopup = () => {
     setPopupIndex(-1); // Reset or close popups
   };  
+
+  const renderToolBox = () => {
+    setShowToolBox(true);  // Set the flag to show the ToolBox when the popup closes
+    
+  };
+  
+
+
   
   const [factList, setFactList] = useState([
     {isExplored: true, title: "Overview", text: "Welcome to the notebook, please choose on the left to see facts about the Psyche mission that you have explored."},
@@ -220,7 +228,7 @@ function PsycheApp() {
     setCurrentPopupContent(popupContentLaunch);
     setPopupIndex(0);
     setIsLaunched(true);
-    setShowToolBox(true);  // Set the flag to show the ToolBox
+   
   }
   
   const handleToSpacecraftClick = () => {
@@ -283,7 +291,7 @@ function PsycheApp() {
                 setShowToPsycheButton(true);
                 setShowToSpaceCraftButton(true);
               }
-              
+              renderToolBox();
             }}
             isLast={popupIndex === currentPopupContent.length - 1}
           />
