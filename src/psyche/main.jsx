@@ -97,7 +97,9 @@ function PsycheApp(refreshRate) {
     { title: "Introduction", message: "What is your name?" },
     { title: "Introduction", message: "Hi [Name] its great to meet you. Today we will be exploring NASA's latest mission to the asteroid Psyche." },
     {title: "Getting Started", message: "This experience will teach you about the Spacecraft technologies, the Asteroid, and more details about the mission!" },
-    { title: "Getting Started", message: "Ready to start your journey? Click 'Finish' to begin exploring!" }
+    {title: "Getting Started", message: "Ready to start your journey? Click 'Finish' to begin exploring!" },
+   { title: "Getting Ready", message: "Before the mission can start, we need to add the tools that will be used for our mission."}
+   
   ];
   const popupContentStart = [
     { title: "Tutorial", message: "Lets start with a quick tutorial." },
@@ -106,6 +108,21 @@ function PsycheApp(refreshRate) {
     { title: "Notebook", message: "You can view the facts you collected by clicking on the notebook button in the top left." },
     { title: "Notebook", message: "Currently you don't have any facts. Go out and collect some by exploring the spacecraft or Pysche Asteroid!" }
 ];
+
+// Toolbox syki dialogue
+const toolBoxDialogue = [
+{ title: "Getting Ready", message: "Before the mission can start, we need to add the tools that will be used for our mission." },
+{ title: "Tool Box", message: "Above, you will see a tool box with a Multispectral Imager, a Magnetometer, and a Gamma Ray and Neutron Spectrometer."},
+{ title: "Tool Box" , message: "We will need these tools for our journey and exploration. Click on them to add them to the spacecraft!"}
+
+
+];
+
+
+
+
+
+
   
   const handleNextPopup = () => {
     if (popupIndex < currentPopupContent.length - 1) {
@@ -279,7 +296,17 @@ function PsycheApp(refreshRate) {
                 setShowStartButton(true); 
                 setStartZooming(true);
                 
+                
+                
+
+                
               }
+
+              
+
+
+
+
               if (currentPopupContent[1].message === popupContentStart[1].message) { 
                 setShowToPsycheButton(true);
                 setShowToSpaceCraftButton(true);
