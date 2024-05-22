@@ -67,7 +67,11 @@ export const spacecraftFacts = [
 		position: [.2, 0, 0],
 		title: 'Propulsion System'
 	},
+	{
+		position: [-0.2, -0.1, 0],
+		title:'Properties'
+	}
 ]
 
 
-export const sumPercentage = 6.25
+export const sumPercentage = 100/13
