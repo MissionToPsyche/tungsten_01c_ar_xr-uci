@@ -2,6 +2,7 @@ import { Canvas } from '@react-three/fiber';
 import MainPsycheContainer from './components/MainPsycheContainer';
 import { useRef, useState, useEffect } from 'react';
 import './style.css';
+
 import { GlobalStateProvider } from './utils/useContext';
 import ProgressBarButton from './components/Buttons/ProgressBarButton';
 import ControlsPopup from './components/PopUps/ControlsPopup';
@@ -28,6 +29,9 @@ import ObitImg2 from '../../public/assets/psyche_orbit2.svg';
 import SpacecraftSizeImg from '../../public/assets/spacecraft_size.svg';
 import BusSizeImg from '../../public/assets/bus_size.svg';
 import PropulsionImg from '../../public/assets/propulsion_system.svg';
+import MultispectralImager from '../../public/assets/multiSpec_Imager.png';
+import Magnetometer from '../../public/assets/Magnetometer.png';
+import GammaRayNeutronSpec from '../../public/assets/gammaRayNeutronSpec.png';
 
 import CombinedFact from './components/PopUps/CombinedFact';
 
@@ -35,6 +39,7 @@ import HotspotFact from './components/PopUps/HotspotFact';
 import ControlsButton from './components/Buttons/ControlsButton';
 import useDoubleClick from './utils/useDoubleClick';
 
+import CreditsModal from './components/PopUps/CreditsModal';
 //into dialogue
 import MissionIntroPopup from './components/PopUps/MissionIntroPopup.jsx';
 
@@ -61,6 +66,7 @@ function PsycheApp(refreshRate) {
   const [isToAsteroidClicked, setIsToAsteroidClicked] = useState(false);
   const [isStartClicked, setStartClicked] = useState(false);
   const [isCreditsClicked, setCreditsClicked] = useState(false);
+  const [showCreditsModal, setShowCreditsModal] = useState(false);
   
   //buttom state appearing dissapearing
   const [showStartButton, setShowStartButton] = useState(false);
@@ -74,6 +80,8 @@ function PsycheApp(refreshRate) {
   const [showControls, setShowControls] = useState(false);
   const [showNotebook, setShowNotebook] = useState(false);
   const [currentFactIndex, setCurrentFactIndex] = useState(null);
+  const [currentToolIndex, setCurrentToolIndex] = useState(null);
+
   
   // object state
   const [showSpacecraft, setShowSpacecraft] = useState(false);
@@ -169,23 +177,23 @@ const toolBoxDialogue = [
 	]);
   
   const [toolList, setToolList] = useState([
-    { icon: <ArchitectureIcon />, title: "Gamma Ray and Neutron Spectrometer",  text: "Determine the chemical elements constituting Psyche."},
-    { icon: <BuildIcon />,title: 'Multispectral Imager', text: "Provide information about the mineral composition and topography of Psyche." },
-    { icon: <HardwareIcon />,title: 'Magnetometer', text: "Search for evidence of an ancient magnetic field." },
-    { icon: <BrushIcon />,title: 'X-band radio telecommunications system', text: (
-      <>
-        Used to send commands to and receive data from the spacecraft and to conduct gravity science.
-        <br /><br />
-        Waves for communication with Psyche, examining how Psyche influences the spacecraft's orbit.
-      </>
-    ) },
-    { icon: <SquareFootIcon />,title: 'Deep Space Optical Communication technology demo', text: (
-      <>
-        Is not intended to relay Psyche mission data since the technology demonstration is planned for the first two years of the spacecraft’s cruise. 
-        <br /><br />
-        But if it proves successful, the technology will be used by future human and robotic spacecraft to transmit huge volumes of science data, allowing more innovative space mission concepts to take flight. Ultimately, DSOC may pave the way for broadband communications that will help support humanity’s next giant leap.
-      </>
-    ) },
+    { isExplored: false, icon: <img src={GammaRayNeutronSpec} className="gallery-image"/>, image:GammaRayNeutronSpec, title: "Gamma Ray and Neutron Spectrometer",  text: "Determine the chemical elements constituting Psyche."},
+    { isExplored: false, icon: <img src={MultispectralImager} className="gallery-image"/>, image:MultispectralImager ,title: 'Multispectral Imager', text: "Provide information about the mineral composition and topography of Psyche." },
+    { isExplored: false, icon: <img src={Magnetometer} className="gallery-image"/>, image:Magnetometer,title: 'Magnetometer', text: "Search for evidence of an ancient magnetic field." },
+    //{ isExplored: false, icon: <BrushIcon />,title: 'X-band radio telecommunications system', text: (
+    //  <>
+    //    Used to send commands to and receive data from the spacecraft and to conduct gravity science.
+    //    <br /><br />
+    //    Waves for communication with Psyche, examining how Psyche influences the spacecraft's orbit.
+    //  </>
+    //) },
+    //{ icon: <SquareFootIcon />,title: 'Deep Space Optical Communication technology demo', text: (
+    //  <>
+    //    Is not intended to relay Psyche mission data since the technology demonstration is planned for the first two years of the spacecraft’s cruise. 
+    //    <br /><br />
+    //    But if it proves successful, the technology will be used by future human and robotic spacecraft to transmit huge volumes of science data, allowing more innovative space mission concepts to take flight. Ultimately, DSOC may pave the way for broadband communications that will help support humanity’s next giant leap.
+    //  </>
+    //) },
   ]);
 
   const useContextList = {
@@ -204,6 +212,7 @@ const toolBoxDialogue = [
     isAsteroidSpinning, setIsAsteroidSpinning,
     isMoving, setIsMoving, 
     currentFactIndex, setCurrentFactIndex, 
+    currentToolIndex, setCurrentToolIndex,
     isOverview, setIsOverview, 
     isOverviewClicked, setIsOverviewClicked, 
     isStartClicked, setStartClicked, 
@@ -229,11 +238,7 @@ const toolBoxDialogue = [
   };
 
   const handleCreditsClick = () => {
-    setIsStartAnimating(true);
-    setTimeout(() => {
-      setIsStartAnimating(false);
-      setCreditsClicked(true);
-    }, 200);
+    setShowCreditsModal(true);
   };
   
   const handleLaunchClick = () => {
@@ -333,6 +338,13 @@ const toolBoxDialogue = [
         {showStartButton && isLaunched && !isCreditsClicked && !isStartClicked && <button className={`ombre-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleStartClick}>Start</button>}
         {!isLaunched && <button className={`ombre-button start-button`} onClick={handleLaunchClick}>Launch</button>}
         {!isLaunched && !isCreditsClicked && !isStartClicked && <button className={`ombre-button credits-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleCreditsClick}>Credits</button>}
+
+        {showCreditsModal && (
+          <CreditsModal
+            isOpen={showCreditsModal}
+            onClose={() => setShowCreditsModal(false)}
+          />
+        )}
         
         {isOverview && <button className="ombre-button" onClick={handleOverviewClick}>Overview</button>}
         
@@ -342,6 +354,9 @@ const toolBoxDialogue = [
         {showToolBox && <ToolBox />} {/* For rendering ToolBox  */ }   
         
         {currentFactIndex!== null &&  <HotspotFact/>}
+        {currentToolIndex!== null &&  <ToolBox/>}
+        
+        
         {isLaunched && (<ControlsButton/>)}
 
           
