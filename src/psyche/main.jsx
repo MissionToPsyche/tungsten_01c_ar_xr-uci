@@ -143,6 +143,9 @@ function PsycheApp(refreshRate) {
     {
       text: "Finish",
     },
+    {
+      text: "Finish",
+    },
   ]
 
   const handleNextPopup = () => {
