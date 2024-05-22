@@ -25,7 +25,7 @@ const imageTitles = [
 const ToolBox = () => {
   const [visibleColumns, setVisibleColumns] = useState(images.map(() => true));
 
-  const { currentFactIndex, setCurrentFactIndex, factList, toolList,currentToolIndex,setCurrentToolIndex,progressValue, setProgressValue, setIsModalOpen } = useContext(GlobalStateContext);
+  const { numExploredTools, setNumExploredTools,currentFactIndex, setCurrentFactIndex, factList, toolList,currentToolIndex,setCurrentToolIndex,progressValue, setProgressValue, setIsModalOpen } = useContext(GlobalStateContext);
 
   const handleClick = index => {
     setVisibleColumns(visibleColumns.map((isVisible, columnIndex) =>
@@ -36,6 +36,9 @@ const ToolBox = () => {
       setProgressValue(progressValue + sumPercentage);
     }
     toolList[index].isExplored = true;
+    setNumExploredTools(numExploredTools + 1);
+    
+    console.log('numExploredTools',numExploredTools);
   };
   
   const handleClose = () => {

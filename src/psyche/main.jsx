@@ -94,6 +94,8 @@ function PsycheApp(refreshRate) {
   const [showDescription, setShowDescription] = useState(false);
   
   const [progressValue, setProgressValue] = useState(0);
+  
+  const [numExploredTools, setNumExploredTools] = useState(0);
  
   //information state
 
@@ -101,39 +103,51 @@ function PsycheApp(refreshRate) {
   const [currentPopupContent, setCurrentPopupContent] = useState([]);
 
   const popupContentLaunch = [
-    { title: "Welcome", message: "My Name is Syki! I'll be your virtual assistant for the remainder of the experience" },
-    {title: "Getting Started", message: "This experience will teach you about the Spacecraft technologies, the Asteroid, and more details about the mission!" },
-    { title: "Getting Ready", message: "Before the mission can start, we need to add the tools that will be used for our mission." },
-    { title: "Tool Box", message: "Above, you will see a tool box with a Multispectral Imager, a Magnetometer, and a Gamma Ray and Neutron Spectrometer."},
-    { title: "Tool Box" , message: "We will need these tools for our journey and exploration. Click on them to add them to the spacecraft! When you are done, press next."},
-    {title: "Getting Started", message: "Great job adding the tools! Are you ready to start your journey? Click 'Finish' to begin exploring!" },
+    { title: "", message: "Hey... I'm Psyche Bot. I'm lost … I … I miss my home." },
+    {title: "", message: "You wanna help me find my way back? That's really nice of you... but I'm not sure if we'll ever make it." },
+    { title: "", message: "Psyche is a mysterious asteroid that no one has ever visited before. Psyche orbits the Sun between Mars and Jupiter at a distance about three times farther away from the Sun than is Earth." },
+    { title: "", message: "Psyche is different!!! You’ve never seen an asteroid that is as metal-rich as Psyche." },
+    { title: "", message: "I guess we can try... but I'm not very good at this space stuff." },
+    { title: "Tool Box", message: "Hey, it'd be awesome if humans could recognize my home! Here are some tools we will need for our journey and exploration."},
+    { title: "" , message: "Click on them to add them to the spacecraft! When you are done, press \"Finish\"."},
+    {title: "Getting Started", message: "Great job adding the tools! Are you ready to start your journey?" },
    
   ];
   const popupContentStart = [
-    { title: "Tutorial", message: "Lets start with a quick tutorial." },
+    { title: "Tutorial", message: "We made it! That's my home! Thanks so much for bringing me back! Now let me show you around!" },
     { title: "Movement", message: "To traverse through space you can swipe to move and pitch to zoom. Give it a try!" },
     { title: "Mission Goal", message: "The goal of the mission is to collect fun facts and details about NASA's Psyche Mission." },
     { title: "Notebook", message: "You can view the facts you collected by clicking on the notebook button in the top left." },
     { title: "Notebook", message: "Currently you don't have any facts. Go out and collect some by exploring the spacecraft or Pysche Asteroid!" }
 ];
 
-// Toolbox syki dialogue
-/*
-const toolBoxDialogue = [
-{ title: "Getting Ready", message: "Before the mission can start, we need to add the tools that will be used for our mission." },
-{ title: "Tool Box", message: "Above, you will see a tool box with a Multispectral Imager, a Magnetometer, and a Gamma Ray and Neutron Spectrometer."},
-{ title: "Tool Box" , message: "We will need these tools for our journey and exploration. Click on them to add them to the spacecraft!"}
+  const btnTextLaunch = [
+    { 
+      text: "Maybe I can help!",
+    },
+    {
+      text: "Why?",
+    },
+    {
+      text: "Why don’t you just stay on Earth?",
+    },
+    {
+      text: "Chill chill, I can help you to go back!",
+    },
+    {
+      text: "You know what our humans usually do? We build spacecraft to explore asteroids!",
+    },
+    {
+      text: "Next",
+    },
+    {
+      text: "Finish",
+    },
+    {
+      text: "Finish",
+    },
+  ]
 
-
-];
-
-*/
-
-
-
-
-
-  
   const handleNextPopup = () => {
     if (popupIndex < currentPopupContent.length - 1) {
       setPopupIndex(popupIndex + 1);
@@ -222,6 +236,7 @@ const toolBoxDialogue = [
     isModalOpen, setIsModalOpen,
     progressValue, setProgressValue,
     showControls, setShowControls,
+    numExploredTools, setNumExploredTools,
   };
 
   const handleStartClick = () => {
@@ -305,6 +320,7 @@ const toolBoxDialogue = [
         
         {popupIndex >= 0 && (
           <MissionIntroPopup
+            btnTextLaunch={btnTextLaunch[popupIndex].text}
             title={currentPopupContent[popupIndex].title}
             message={currentPopupContent[popupIndex].message}
             onNext={() => handleNextPopup()}
