@@ -101,7 +101,7 @@ function PsycheApp(refreshRate) {
   const [currentPopupContent, setCurrentPopupContent] = useState([]);
 
   const popupContentLaunch = [
-    { title: "Welcome", message: "My Name is Skyi! I'll be your virtual assistant for the remainder of the experience" },
+    { title: "Welcome", message: "My Name is Syki! I'll be your virtual assistant for the remainder of the experience" },
     {title: "Getting Started", message: "This experience will teach you about the Spacecraft technologies, the Asteroid, and more details about the mission!" },
     { title: "Getting Ready", message: "Before the mission can start, we need to add the tools that will be used for our mission." },
     { title: "Tool Box", message: "Above, you will see a tool box with a Multispectral Imager, a Magnetometer, and a Gamma Ray and Neutron Spectrometer."},
