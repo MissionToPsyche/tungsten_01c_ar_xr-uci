@@ -1,6 +1,6 @@
 import { Canvas } from '@react-three/fiber';
 import MainPsycheContainer from './components/MainPsycheContainer';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import './style.css';
 
 import { GlobalStateProvider } from './utils/useContext';
@@ -101,11 +101,12 @@ function PsycheApp(refreshRate) {
   const [currentPopupContent, setCurrentPopupContent] = useState([]);
 
   const popupContentLaunch = [
-    { title: "Welcome", message: "My Name is Skyi! I'll be your virtual assistant for the remainder of the experience" },
-    { title: "Introduction", message: "What is your name?" },
-    { title: "Introduction", message: "Hi [Name] its great to meet you. Today we will be exploring NASA's latest mission to the asteroid Psyche." },
+    { title: "Welcome", message: "My Name is Syki! I'll be your virtual assistant for the remainder of the experience" },
     {title: "Getting Started", message: "This experience will teach you about the Spacecraft technologies, the Asteroid, and more details about the mission!" },
-    {title: "Getting Started", message: "Ready to start your journey? Click 'Finish' to begin exploring!" },
+    { title: "Getting Ready", message: "Before the mission can start, we need to add the tools that will be used for our mission." },
+    { title: "Tool Box", message: "Above, you will see a tool box with a Multispectral Imager, a Magnetometer, and a Gamma Ray and Neutron Spectrometer."},
+    { title: "Tool Box" , message: "We will need these tools for our journey and exploration. Click on them to add them to the spacecraft! When you are done, press next."},
+    {title: "Getting Started", message: "Great job adding the tools! Are you ready to start your journey? Click 'Finish' to begin exploring!" },
    
   ];
   const popupContentStart = [
@@ -117,7 +118,7 @@ function PsycheApp(refreshRate) {
 ];
 
 // Toolbox syki dialogue
-
+/*
 const toolBoxDialogue = [
 { title: "Getting Ready", message: "Before the mission can start, we need to add the tools that will be used for our mission." },
 { title: "Tool Box", message: "Above, you will see a tool box with a Multispectral Imager, a Magnetometer, and a Gamma Ray and Neutron Spectrometer."},
@@ -126,7 +127,7 @@ const toolBoxDialogue = [
 
 ];
 
-
+*/
 
 
 
@@ -244,7 +245,8 @@ const toolBoxDialogue = [
     setCurrentPopupContent(popupContentLaunch);
     setPopupIndex(0);
     setIsLaunched(true);
-    setShowToolBox(true);  // Set the flag to show the ToolBox
+    
+ //   setShowToolBox(true);  // Set the flag to show the ToolBox
   }
   
   const handleToSpacecraftClick = () => {
@@ -277,6 +279,17 @@ const toolBoxDialogue = [
   };
 
   useDoubleClick(handleDoubleClick);
+
+  // Tool Box will render alongside its associated dialogue  
+  useEffect(() => {
+    if (popupIndex >= 0 && currentPopupContent[popupIndex].title === "Tool Box") // Render when dialogue title in popupContentLaunch is "Tool Box"
+    {
+      setShowToolBox(true); // Sets ToolBox flag
+    }
+  }, [popupIndex, currentPopupContent]);
+
+
+
 
   
   return (
