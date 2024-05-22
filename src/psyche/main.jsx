@@ -39,6 +39,7 @@ import HotspotFact from './components/PopUps/HotspotFact';
 import ControlsButton from './components/Buttons/ControlsButton';
 import useDoubleClick from './utils/useDoubleClick';
 
+import CreditsModal from './components/PopUps/CreditsModal';
 //into dialogue
 import MissionIntroPopup from './components/PopUps/MissionIntroPopup.jsx';
 
@@ -65,6 +66,7 @@ function PsycheApp(refreshRate) {
   const [isToAsteroidClicked, setIsToAsteroidClicked] = useState(false);
   const [isStartClicked, setStartClicked] = useState(false);
   const [isCreditsClicked, setCreditsClicked] = useState(false);
+  const [showCreditsModal, setShowCreditsModal] = useState(false);
   
   //buttom state appearing dissapearing
   const [showStartButton, setShowStartButton] = useState(false);
@@ -235,11 +237,7 @@ const toolBoxDialogue = [
   };
 
   const handleCreditsClick = () => {
-    setIsStartAnimating(true);
-    setTimeout(() => {
-      setIsStartAnimating(false);
-      setCreditsClicked(true);
-    }, 200);
+    setShowCreditsModal(true);
   };
   
   const handleLaunchClick = () => {
@@ -327,6 +325,13 @@ const toolBoxDialogue = [
         {showStartButton && isLaunched && !isCreditsClicked && !isStartClicked && <button className={`ombre-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleStartClick}>Start</button>}
         {!isLaunched && <button className={`ombre-button start-button`} onClick={handleLaunchClick}>Launch</button>}
         {!isLaunched && !isCreditsClicked && !isStartClicked && <button className={`ombre-button credits-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleCreditsClick}>Credits</button>}
+
+        {showCreditsModal && (
+          <CreditsModal
+            isOpen={showCreditsModal}
+            onClose={() => setShowCreditsModal(false)}
+          />
+        )}
         
         {isOverview && <button className="ombre-button" onClick={handleOverviewClick}>Overview</button>}
         
