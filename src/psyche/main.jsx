@@ -1,6 +1,6 @@
 import { Canvas } from '@react-three/fiber';
 import MainPsycheContainer from './components/MainPsycheContainer';
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import './style.css';
 
 import { GlobalStateProvider } from './utils/useContext';
@@ -58,6 +58,8 @@ function PsycheApp(refreshRate) {
   const [startZooming, setStartZooming] = useState(false);
 
   const [showToolBox, setShowToolBox] = useState(false); {/*for toolbox*/}
+  const [isCountdown, setIsCountdown] = useState(false);
+  const [count, setCount] = useState(3);
 
   
   // button state
@@ -128,7 +130,22 @@ const toolBoxDialogue = [
 
 
 
+  useEffect(() => {
+    const timerId = setInterval(() => {
+      if (isCountdown){
+        if (count > 0) {
+          setCount(count - 1);
+        } else if (count === 0) {
+          console.log("countdown finished")
+          setCount(null); // Trigger action after countdown finishes (optional)
+          setIsCountdown(false);
+          setStartZooming(true);
+        }
+      }
+    }, 1000);
 
+    return () => clearInterval(timerId); // Cleanup function
+  }, [isCountdown, count]);
 
 
 
@@ -283,6 +300,7 @@ const toolBoxDialogue = [
     <GlobalStateProvider value={useContextList}>
       <div className="app-container">
         {!isLaunched && <div className="title-container title-white ">PSYCHE SIMULATION</div>}
+        {isCountdown && count > 0 && <div className="countdown">{count}</div>}
         
         <Canvas ref={canvasRef} camera={{ fov: 45, position: [0, 0, 75] }}>
          <MainPsycheContainer/>
@@ -299,10 +317,8 @@ const toolBoxDialogue = [
               
               handleClosePopup();
               if (currentPopupContent[1].message === popupContentLaunch[1].message) { 
-                setShowStartButton(true); 
-                setStartZooming(true);
-                
-               
+
+               setIsCountdown(true);
                 
 
                 

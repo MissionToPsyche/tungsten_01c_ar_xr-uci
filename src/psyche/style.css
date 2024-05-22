@@ -243,6 +243,52 @@
   }
 }
 
+.countdown{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  padding: 3vh 5vh;
+  background-color: rgba(255, 255, 255, 0);
+  font-family: 'Arial';
+  color: #ffffff;
+  z-index: 10;
+  
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+  font-style: normal;
+
+  /*Add media queries for responsive sizing*/
+  @media (max-width: 768px) {
+    font-size: 5vw;
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    font-size: 3vw;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 2vw;
+  }
+  
+  font-family: 'Knockout', sans-serif;
+  font-weight: 300;
+  font-size: 27vw;
+  color: #fff;
+  @media (max-width: 768px) {
+    font-size: 25vw;
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    font-size: 15vw;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 10vw;
+  }
+}
+
 .modal-container {
   position: fixed;
   top: 50%;
