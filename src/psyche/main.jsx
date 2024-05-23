@@ -34,7 +34,7 @@ import Magnetometer from '../../public/assets/Magnetometer.png';
 import GammaRayNeutronSpec from '../../public/assets/gammaRayNeutronSpec.png';
 import PsycheBot from '../../public/assets/Psyche_Bot_Full.png';
 import CombinedFact from './components/PopUps/CombinedFact';
-
+import Psyche_Badge from '../../public/assets/Psyche_Badge.svg';
 import HotspotFact from './components/PopUps/HotspotFact';
 import ControlsButton from './components/Buttons/ControlsButton';
 import useDoubleClick from './utils/useDoubleClick';
@@ -310,6 +310,7 @@ function PsycheApp(refreshRate) {
   return (
     <GlobalStateProvider value={useContextList}>
       <div className="app-container">
+        <div className="psyche-logo"><img src = {Psyche_Badge} alt="Psyche Badge"></img></div>
       {!isLaunched && <div >
           <div className="title-container title-white" style={{textAlign: "center"}}>
             <div style={{fontSize: "5.5rem", textAlign: "left"}}>Psyche</div>
@@ -339,11 +340,6 @@ function PsycheApp(refreshRate) {
               if (currentPopupContent[1].message === popupContentLaunch[1].message) { 
                 setShowStartButton(true); 
                 setStartZooming(true);
-                
-               
-                
-
-                
               }
               if (currentPopupContent[1].message === popupContentStart[1].message) { 
                 setShowToPsycheButton(true);

@@ -221,7 +221,14 @@
   width: 55%;
   z-index: 10;
 }
-
+.psyche-logo{
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 15%;
+  z-index: 10;
+  padding: 2vh 2vh;
+}
 .title-container {
   /* width: 100%; */
   position: absolute;
