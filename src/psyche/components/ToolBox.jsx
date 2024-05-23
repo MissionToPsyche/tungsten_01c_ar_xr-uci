@@ -25,20 +25,32 @@ const imageTitles = [
 const ToolBox = () => {
   const [visibleColumns, setVisibleColumns] = useState(images.map(() => true));
 
-  const { numExploredTools, setNumExploredTools,currentFactIndex, setCurrentFactIndex, factList, toolList,currentToolIndex,setCurrentToolIndex,progressValue, setProgressValue, setIsModalOpen } = useContext(GlobalStateContext);
+  const { 
+    numExploredTools, setNumExploredTools,
+    currentFactIndex, setCurrentFactIndex, 
+    factList, toolList,
+    currentToolIndex,setCurrentToolIndex,
+    progressValue, setProgressValue, 
+    setIsModalOpen,
+    toolPlacementDisable, 
+  } = useContext(GlobalStateContext);
 
   const handleClick = index => {
-    setVisibleColumns(visibleColumns.map((isVisible, columnIndex) =>
-      columnIndex === index ? !isVisible : isVisible
-    ));
-    setCurrentToolIndex(index);
-    if (progressValue < 100 && !toolList[index].isExplored){
-      setProgressValue(progressValue + sumPercentage);
-    }
-    toolList[index].isExplored = true;
-    setNumExploredTools(numExploredTools + 1);
     
-    console.log('numExploredTools',numExploredTools);
+    if (!toolPlacementDisable) {
+      
+      setVisibleColumns(visibleColumns.map((isVisible, columnIndex) =>
+        columnIndex === index ? !isVisible : isVisible
+      ));
+      setCurrentToolIndex(index);
+      if (progressValue < 100 && !toolList[index].isExplored){
+        setProgressValue(progressValue + sumPercentage);
+      }
+      toolList[index].isExplored = true;
+      setNumExploredTools(numExploredTools + 1);
+      
+      console.log('numExploredTools',numExploredTools);
+    }
   };
   
   const handleClose = () => {
@@ -80,7 +92,6 @@ const ToolBox = () => {
     <>
     <Box className="gallery-container">
       {toolList.map((tool, index) => (
-        <>
           <Box key={index} onClick={() => handleClick(index)}
               style={{
                 visibility: visibleColumns[index] ? 'visible' : 'hidden',
@@ -95,7 +106,6 @@ const ToolBox = () => {
                 {tool.title}
                 </Box>
           </Box>
-         </>
       ))}
         
 

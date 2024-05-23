@@ -26,7 +26,7 @@ const MainPsycheContainer = () => {
     
     setShowStartButton,
     disabledAllFlowButton, setDisabledAllFlowButton,
-    startZooming,
+    startZooming, setStartZooming,
     setIsToAsteroid,
     isToAsteroidClicked , setIsToAsteroidClicked,
     isLaunched, setShowAsteroid, 
@@ -38,7 +38,9 @@ const MainPsycheContainer = () => {
      showSpacecraft, setShowSpacecraft,
      isMoving, setIsMoving, 
      showAsteroid,
-     setIsAsteroidSpinning
+     setIsAsteroidSpinning,
+     setShowToolBox,
+     setIsStartAnimating
     } = useContext(GlobalStateContext);
     
     
@@ -48,6 +50,7 @@ const MainPsycheContainer = () => {
     setIsToSpaceCraft(false);
     setIsOverview(false);
     setShowStartButton(false);
+    setStartZooming(true);
   }
 
   const [distanceFactor, setDistanceFactor] = useState(30)
@@ -94,6 +97,9 @@ const MainPsycheContainer = () => {
           orbitControlsRef.current.enableRotate = true;
           orbitControlsRef.current.maxDistance = 30;
           setShowSpacecraft(false);
+          setStartZooming(false);
+          
+          
 
         });
       },
@@ -102,16 +108,21 @@ const MainPsycheContainer = () => {
       
         const currentTarget = orbitControlsRef.current.target.clone();
         const newTarget = psycheRef.current.position.clone();
-        const lerpFactor = 0.01; // Adjust between 0 (instant change) and 1 (full transition in one frame)
+        const lerpFactor = 0.1; // Adjust between 0 (instant change) and 1 (full transition in one frame)
         let i = 0
+        //setIsStartAnimating(true)
         function lerpTarget() {
           i += lerpFactor
           const lerpedTarget = currentTarget.lerp(newTarget, i);
           orbitControlsRef.current.target.set(lerpedTarget.x, lerpedTarget.y, lerpedTarget.z);
           console.log(i)
           // Check if transition is complete
+          
           if (i < 1) {
             requestAnimationFrame(lerpTarget);
+          }
+          else{
+            //setIsStartAnimating(false)
           }
         }
 
@@ -145,16 +156,21 @@ const MainPsycheContainer = () => {
       
         const currentTarget = orbitControlsRef.current.target.clone();
         const newTarget = psycheRef.current.position.clone();
-        const lerpFactor = 0.01; // Adjust between 0 (instant change) and 1 (full transition in one frame)
+        const lerpFactor = 0.1; // Adjust between 0 (instant change) and 1 (full transition in one frame)
         let i = 0
+        //setIsStartAnimating(true)
         function lerpTarget() {
           i += lerpFactor
           const lerpedTarget = currentTarget.lerp(newTarget, i);
           orbitControlsRef.current.target.set(lerpedTarget.x, lerpedTarget.y, lerpedTarget.z);
+          
           console.log(i)
           // Check if transition is complete
           if (i < 1) {
             requestAnimationFrame(lerpTarget);
+          }
+          else{
+            //setIsStartAnimating(false)
           }
         }
         
@@ -179,7 +195,12 @@ const MainPsycheContainer = () => {
         orbitControlsRef.current.enableRotate = true;
         orbitControlsRef.current.maxDistance = 30;
         //setShowSpacecraft(false);
-        setShowStartButton(true); 
+        //setShowStartButton(true);
+        setShowToolBox(true); // Sets ToolBox flag
+        setStartZooming(false);
+        
+         
+        
       });
 
       //orbitControlsRef.current.target.set(psycheSpacecraftRef.current.position.x, psycheSpacecraftRef.current.position.y, psycheSpacecraftRef.current.position.z);
@@ -208,6 +229,8 @@ const MainPsycheContainer = () => {
           orbitControlsRef.current.maxDistance = 30;
 
           setShowAsteroid(false);
+          setStartZooming(false);
+          
           
         });
 
@@ -216,22 +239,23 @@ const MainPsycheContainer = () => {
         //orbitControlsRef.current.target.set(psycheSpacecraftRef.current.position.x, psycheSpacecraftRef.current.position.y, psycheSpacecraftRef.current.position.z);
         const currentTarget = orbitControlsRef.current.target.clone();
         const newTarget = psycheSpacecraftRef.current.position.clone();
-        const lerpFactor = 0.01; // Adjust between 0 (instant change) and 1 (full transition in one frame)
+        const lerpFactor = 0.1; // Adjust between 0 (instant change) and 1 (full transition in one frame)
         let i = 0
+        //setIsStartAnimating(true)
         function lerpTarget() {
           i += lerpFactor
           const lerpedTarget = currentTarget.lerp(newTarget, i);
           orbitControlsRef.current.target.set(lerpedTarget.x, lerpedTarget.y, lerpedTarget.z);
-          //console.log(i)
           // Check if transition is complete
           console.log(i)
+          
           if (i < 1) {
           //if (i < 0.2) {
             
             requestAnimationFrame(lerpTarget);
           }
           else{
-            
+            //setIsStartAnimating(false)
           }
         }
 
@@ -272,6 +296,8 @@ const MainPsycheContainer = () => {
           else{
             setIsToSpaceCraft(true);
             setIsToAsteroid(true);
+            setStartZooming(false);
+            
           }
         }
 

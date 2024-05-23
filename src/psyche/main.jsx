@@ -91,6 +91,7 @@ function PsycheApp(refreshRate) {
   const [isMoving, setIsMoving] = useState(false);
   const [isAsteroidSpinning, setIsAsteroidSpinning] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [toolPlacementDisable, setToolPlacementDisable] = useState(true);
   
   
   const [showDescription, setShowDescription] = useState(false);
@@ -158,33 +159,19 @@ function PsycheApp(refreshRate) {
 
   ];
 
-
-
-  useEffect(() => {
-    const timerId = setInterval(() => {
-      if (isCountdown){
-        if (count > 0) {
-          setCount(count - 1);
-        } else if (count === 0) {
-          console.log("countdown finished")
-          setCount(null); // Trigger action after countdown finishes (optional)
-          setIsCountdown(false);
-          setStartZooming(true);
-        }
-      }
-    }, 1000);
-
-    return () => clearInterval(timerId); // Cleanup function
-  }, [isCountdown, count]);
-
-
-
   
   const handleNextPopup = () => {
     if (popupIndex < currentPopupContent.length - 1) {
       setPopupIndex(popupIndex + 1);
     } else {
       handleClosePopup(); // Close popups when finishing the last one
+    }
+    
+    if (currentPopupContent[1].message === popupContentLaunch[1].message) { 
+      if (popupIndex === 5) {
+        console.log("Anable tool box click here")
+        setToolPlacementDisable(false);
+      }
     }
   };
 
@@ -269,6 +256,9 @@ function PsycheApp(refreshRate) {
     progressValue, setProgressValue,
     showControls, setShowControls,
     numExploredTools, setNumExploredTools,
+    showToolBox, setShowToolBox, 
+    toolPlacementDisable, setToolPlacementDisable,
+    isStartAnimating, setIsStartAnimating,
   };
 
   const handleStartClick = () => {
@@ -331,11 +321,39 @@ function PsycheApp(refreshRate) {
   useEffect(() => {
     if (popupIndex >= 0 && currentPopupContent[popupIndex].title === "Tool Box") // Render when dialogue title in popupContentLaunch is "Tool Box"
     {
-      setShowToolBox(true); // Sets ToolBox flag
+      setStartZooming(true);
+      
     }
   }, [popupIndex, currentPopupContent]);
 
+    useEffect(() => {
+      const timerId = setInterval(() => {
+        if (isCountdown){
+          if (count > 0) {
+            setCount(count - 1);
+          } else if (count === 0) {
+            console.log("countdown finished")
+            setCount(null); // Trigger action after countdown finishes (optional)
+            setIsCountdown(false);
+            
+            //setShowAsteroid(false);
+            setIsMoving(false);
+            //setShowSingleSpacecraft(true);
+            setIsStartAnimating(true);
+            setTimeout(() => {
+              setIsStartAnimating(false);
+              setStartClicked(true);
+              setCurrentPopupContent(popupContentStart);
+              setPopupIndex(0);
+              
+            }, 200);
+            
+          }
+        }
+      }, 1000);
 
+      return () => clearInterval(timerId); // Cleanup function
+    }, [isCountdown, count]);
 
 
   
@@ -382,7 +400,7 @@ function PsycheApp(refreshRate) {
         
         
         
-        {showStartButton && isLaunched && !isCreditsClicked && !isStartClicked && <button className={`ombre-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleStartClick}>Start</button>}
+        {/*{showStartButton && isLaunched && !isCreditsClicked && !isStartClicked && <button className={`ombre-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleStartClick}>Start</button>}*/}
         {!isLaunched && <button className={`ombre-button start-button`} onClick={handleLaunchClick}>Launch</button>}
         {!isLaunched && !isCreditsClicked && !isStartClicked && <button className={`ombre-button credits-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleCreditsClick}>Credits</button>}
 
