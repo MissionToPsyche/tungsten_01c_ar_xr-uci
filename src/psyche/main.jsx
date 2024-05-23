@@ -32,7 +32,7 @@ import PropulsionImg from '../../public/assets/propulsion_system.svg';
 import MultispectralImager from '../../public/assets/multiSpec_Imager.png';
 import Magnetometer from '../../public/assets/Magnetometer.png';
 import GammaRayNeutronSpec from '../../public/assets/gammaRayNeutronSpec.png';
-
+import PsycheBot from '../../public/assets/Psyche_Bot_Full.png';
 import CombinedFact from './components/PopUps/CombinedFact';
 
 import HotspotFact from './components/PopUps/HotspotFact';
@@ -310,8 +310,17 @@ function PsycheApp(refreshRate) {
   return (
     <GlobalStateProvider value={useContextList}>
       <div className="app-container">
-        {!isLaunched && <div className="title-container title-white ">PSYCHE SIMULATION</div>}
-        
+      {!isLaunched && <div >
+          <div className="title-container title-white" style={{textAlign: "center"}}>
+            <div style={{fontSize: "5.5rem", textAlign: "left"}}>Psyche</div>
+            <div style={{fontSize: "3.5rem", textAlign: "center"}}>Journey</div>
+            <div style={{fontSize: "1.5rem", textAlign: "left"}}>to the</div>
+            <div style={{fontSize: "2.5rem", textAlign: "right"}}>Metal World</div>
+          </div>
+          <div className="psyche-bot">
+            <img src={PsycheBot} alt="Psyche Bot" style={{ width: "100%" }} />
+          </div>
+        </div>}
         <Canvas ref={canvasRef} camera={{ fov: 45, position: [0, 0, 75] }}>
          <MainPsycheContainer/>
        
@@ -351,8 +360,8 @@ function PsycheApp(refreshRate) {
         
         
         
-        {showStartButton && isLaunched && !isCreditsClicked && !isStartClicked && <button className={`ombre-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleStartClick}>Start</button>}
-        {!isLaunched && <button className={`ombre-button start-button`} onClick={handleLaunchClick}>Launch</button>}
+        {showStartButton && isLaunched && !isCreditsClicked && !isStartClicked && <button className={`ombre-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleStartClick}>Lift Off</button>}
+        {!isLaunched && <button className={`ombre-button start-button`} onClick={handleLaunchClick}>Start</button>}
         {!isLaunched && !isCreditsClicked && !isStartClicked && <button className={`ombre-button credits-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleCreditsClick}>Credits</button>}
 
         {showCreditsModal && (
@@ -378,7 +387,7 @@ function PsycheApp(refreshRate) {
           
           
         {isLaunched && (<ProgressBarButton /> )}
-        
+
         <CertificationPopup/>
 
       </div>

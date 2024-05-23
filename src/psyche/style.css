@@ -12,7 +12,7 @@
   border-radius: 20px;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  font-family: 'Arial';
+  font-family: 'Jersey 10';
 	
 	position: absolute;
   bottom: 50vh;
@@ -48,7 +48,7 @@
   border-radius: 20px;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  font-family: 'Arial';
+  font-family: 'Jersey 10';
 	
 	position: absolute;
   bottom: 5vh;
@@ -110,7 +110,7 @@
 
 .ombre-button:hover {
   background: linear-gradient(to right, rgba(165, 63, 91, 1), rgba(89, 38, 81, 1));
-  font-family: 'Arial';
+  font-family: 'Jersey 10';
 }
 
 .image-popup {
@@ -177,7 +177,7 @@
 {
   position: absolute;
   bottom: 18vh;
-  font-family: 'Arial';
+  font-family: 'Jersey 10';
 }
 
 /*.start-over-certificate 
@@ -213,15 +213,25 @@
   font-size: 24px;
 }
 
-.title-container {
+.psyche-bot {
   position: absolute;
-  top: 0;
-  left: 50%;
+  bottom: 0;
+  left: 0;
+  transform: translateX(-10%); 
+  width: 55%;
+  z-index: 10;
+}
+
+.title-container {
+  /* width: 100%; */
+  position: absolute;
+  top: 15%;
+  left: 65%;
   transform: translateX(-50%); 
   text-align: center;
   padding: 3vh 5vh;
   background-color: rgba(255, 255, 255, 0);
-  font-family: 'Arial';
+  font-family: 'Jersey 10';
   color: #ffffff;
   z-index: 10;
   
@@ -282,7 +292,7 @@
 }
 
 .title-white {
-  font-family: 'Knockout', sans-serif;
+  font-family: 'Jersey 10', sans-serif;
   font-weight: 300;
   font-size: 6vw;
   color: #fff;
@@ -300,7 +310,7 @@
 }
 
 .title-color {
-  font-family: 'Knockout', sans-serif;
+  font-family: 'Jersey 10', sans-serif;
   font-weight: 300;
   font-size: 6vw;
   color: #a53f5b;
