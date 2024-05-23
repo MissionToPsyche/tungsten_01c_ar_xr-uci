@@ -115,6 +115,8 @@ function PsycheApp(refreshRate) {
   const [progressValue, setProgressValue] = useState(0);
   
   const [numExploredTools, setNumExploredTools] = useState(0);
+  
+  const [isPlayedMusic, setIsPlayedMusic] = useState(false);
  
   //information state
 
@@ -282,12 +284,19 @@ function PsycheApp(refreshRate) {
   };
 
   const handleCreditsClick = () => {
-    BackgroundAudio.play();
+    if (!isPlayedMusic){
+      BackgroundAudio.play();
+      setIsPlayedMusic(true);
+    }
+
     setShowCreditsModal(true);
   };
   
   const handleLaunchClick = () => {
-    BackgroundAudio.play();
+    if (!isPlayedMusic){
+      BackgroundAudio.play();
+      setIsPlayedMusic(true);
+    }
     setCurrentPopupContent(popupContentLaunch);
     setPopupIndex(0);
     setIsLaunched(true);
@@ -386,7 +395,7 @@ function PsycheApp(refreshRate) {
       <div className="app-container">
         {isCountdown && count > 0 && <div className="countdown">{count}</div>}
         
-        <div className="psyche-logo"><img src = {Psyche_Badge} alt="Psyche Badge"></img></div>
+        <div className={isLaunched? "psyche-small-logo" : "psyche-logo"}><img src = {Psyche_Badge} alt="Psyche Badge"></img></div>
       {!isLaunched && <div >
           <div className="title-container title-white" style={{textAlign: "center"}}>
             <div style={{fontSize: "5.5rem", textAlign: "left"}}>Psyche</div>
