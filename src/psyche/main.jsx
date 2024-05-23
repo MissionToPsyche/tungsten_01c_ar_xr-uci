@@ -121,7 +121,7 @@ function PsycheApp(refreshRate) {
   ];
   const popupContentStart = [
     { title: "Tutorial", message: "We made it! That's my home! Thanks so much for bringing me back! Now let me show you around!" },
-    { title: "Movement", message: "To traverse through space you can swipe to move and pitch to zoom. Give it a try!" },
+    { title: "Movement", message: "To traverse through space you can swipe to move, pitch to zoom and double click to pause. Give it a try!" },
     { title: "Mission Goal", message: "The goal of the mission is to collect fun facts and details about NASA's Psyche Mission." },
     { title: "Notebook", message: "You can view the facts you collected by clicking on the notebook button in the top left." },
     { title: "Notebook", message: "Currently you don't have any facts. Go out and collect some by exploring the spacecraft or Pysche Asteroid!" }
@@ -184,11 +184,10 @@ function PsycheApp(refreshRate) {
   
   const [factList, setFactList] = useState([
     {isExplored: true, title: "Overview", text: "Welcome to the notebook, please choose on the left to see facts about the Psyche mission that you have explored."},
-		
-    { isExplored: false, icon: <img src={MetalImg} alt = "MetalImg" height='40'/>, image: MetalImg ,title: 'Scientific Interest', text: "What gives asteroid Psyche great scientific interest is that it is likely rich in metal. It may consist largely of metal from the core of a planetesimal, one of the building blocks of the Sun’s planetary system. At Psyche scientists will explore, for the first time ever, a world made not of rock or ice, but rich in metal."},
+    { isExplored: false, icon: <img src={MetalImg} alt = "MetalImg" height='40'/>, image: MetalImg ,title: 'Scientific Interest', text: "Psyche is likely rich in metal. The mission will seek to aid our understanding of iron cores, which have not yet been explored. It will allow us to explore a world not made of rock or ice, but of metal."},
 		{ isExplored: false, icon: <img src={OrbitTrimImg} alt="OrbitImg" height='40'/>,image:OrbitImg, title: 'The orbit', text: "Psyche follows an orbit in the outer part of the main asteroid belt, at an average distance from the Sun of 3 astronomical units (AU); Earth orbits at 1 AU." },
-		{ isExplored: false, icon: <img src={ScaleImg} alt="ScaleImg" height='40'/>,image:ScaleImg, title: "Size",  text: "If Psyche were a perfect sphere, it would have a diameter of 140 miles (226 kilometers), or about the length of the State of Massachusetts (leaving out Cape Cod). It is estimated to have a surface area of about 64,000 square miles or approximately 165,800 square kilometers."},
-		{ isExplored: false, icon: <img src={FormationTrimImg} alt="FormationImg" height='40'/>,image:FormationImg, title: "Formation",  text: "The asteroid is most likely a survivor of multiple violent hit-and-run collisions, common when the solar system was forming. Thus Psyche may be able to tell us how Earth’s core and the cores of the other terrestrial planets came to be."},
+		{ isExplored: false, icon: <img src={ScaleImg} alt="ScaleImg" height='40'/>,image:ScaleImg, title: "Size",  text: "Psyche is about the length of the State of Massachusetts (leaving out Cape Cod) if it were a perfect sphere. It would have a diameter of 140 miles and a surface area of about 64,000 square miles."},
+		{ isExplored: false, icon: <img src={FormationTrimImg} alt="FormationTrimImg" height='40'/>,image:FormationTrimImg, title: "Formation",  text: "The asteroid is most likely a survivor of multiple violent hit-and-run collisions, common when the solar system was forming. Thus Psyche may be able to tell us how Earth’s core and the cores of the other terrestrial planets came to be."},
 		{ isExplored: false, icon: <img src={PropsImg} alt="FormationImg" height='40'/>,image:PropsImg, title: "Properties",  text: 
 		(
       <CombinedFact/>
@@ -200,12 +199,10 @@ function PsycheApp(refreshRate) {
       <>
       Once the spacecraft arrives at the asteroid, plans call for it to perform science operations from four staging orbits, which become successively closer.
       <br /><br />
-      The mission will help scientists understand how planets and other bodies separated into their layers – including cores, mantles and crusts – early in their histories.
+      Orbit A: Characterization (56 Days)   Orbit B: Topography (B1: 92 Days, B2: 100 Days)
       <br /><br />
-      The mission will seek to aid our understanding of iron cores, which have not yet been explored. It will allow us to explore a world not made of rock or ice, but of metal.
-      <br /><br />
-      NASA aims to unravel the origins of the solar system through the Psyche mission.
-    </>
+      Orbit C: Gravity Science (100 Days)   Orbit D: Elemental Mapping (100 Days)
+      </>
     )}, 
     { isExplored: false, icon: <img src={SpacecraftSizeImg} alt="SpacecraftSizeImg" height='40'/>,image:SpacecraftSizeImg, title: 'Spacecraft Size', text: 'The Psyche spacecraft (including the solar panels) is about the size of a singles tennis court.'},
     { isExplored: false, icon: <img src={BusSizeImg} alt="BusSizeImg" height='40'/>,image:BusSizeImg, title: 'Bus Size', text: 'The bus or “body” of the spacecraft is slightly bigger than a small van and about as tall as a regulation basketball hoop.'},
@@ -425,8 +422,8 @@ function PsycheApp(refreshRate) {
         
         
         
-        {showStartButton && isLaunched && !isCreditsClicked && !isStartClicked && <button className={`ombre-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleStartClick}>Start</button>}
-        {!isLaunched && <button className={`ombre-button start-button`} onClick={handleLaunchClick}>Launch</button>}
+        {showStartButton && isLaunched && !isCreditsClicked && !isStartClicked && <button className={`ombre-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleStartClick}>Lift off</button>}
+        {!isLaunched && <button className={`ombre-button start-button`} onClick={handleLaunchClick}>Start</button>}
         {!isLaunched && !isCreditsClicked && !isStartClicked && <button className={`ombre-button credits-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleCreditsClick}>Credits</button>}
 
         {showCreditsModal && (
@@ -447,11 +444,8 @@ function PsycheApp(refreshRate) {
         {currentToolIndex!== null &&  <ToolBox/>}
         
         
-        {isLaunched && (<ControlsButton/>)}
-
-          
-          
-        {isLaunched && (<ProgressBarButton /> )}
+        {isStartClicked && isLaunched && (<ControlsButton/>)}
+        {isStartClicked && isLaunched && (<ProgressBarButton /> )}
         
         <CertificationPopup/>
 
