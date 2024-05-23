@@ -373,11 +373,8 @@ function PsycheApp(refreshRate) {
         {currentToolIndex!== null &&  <ToolBox/>}
         
         
-        {isLaunched && (<ControlsButton/>)}
-
-          
-          
-        {isLaunched && (<ProgressBarButton /> )}
+        {isStartClicked && isLaunched && (<ControlsButton/>)}
+        {isStartClicked && isLaunched && (<ProgressBarButton /> )}
         
         <CertificationPopup/>
 
