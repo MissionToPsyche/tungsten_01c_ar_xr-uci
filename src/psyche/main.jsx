@@ -32,9 +32,9 @@ import PropulsionImg from '../../public/assets/propulsion_system.svg';
 import MultispectralImager from '../../public/assets/multiSpec_Imager.png';
 import Magnetometer from '../../public/assets/Magnetometer.png';
 import GammaRayNeutronSpec from '../../public/assets/gammaRayNeutronSpec.png';
-
+import PsycheBot from '../../public/assets/Psyche_Bot_Full.png';
 import CombinedFact from './components/PopUps/CombinedFact';
-
+import Psyche_Badge from '../../public/assets/Psyche_Badge.svg';
 import HotspotFact from './components/PopUps/HotspotFact';
 import ControlsButton from './components/Buttons/ControlsButton';
 import useDoubleClick from './utils/useDoubleClick';
@@ -384,9 +384,20 @@ function PsycheApp(refreshRate) {
   return (
     <GlobalStateProvider value={useContextList}>
       <div className="app-container">
-        {!isLaunched && <div className="title-container title-white ">PSYCHE SIMULATION</div>}
         {isCountdown && count > 0 && <div className="countdown">{count}</div>}
         
+        <div className="psyche-logo"><img src = {Psyche_Badge} alt="Psyche Badge"></img></div>
+      {!isLaunched && <div >
+          <div className="title-container title-white" style={{textAlign: "center"}}>
+            <div style={{fontSize: "5.5rem", textAlign: "left"}}>Psyche</div>
+            <div style={{fontSize: "3.5rem", textAlign: "center"}}>Journey</div>
+            <div style={{fontSize: "1.5rem", textAlign: "left"}}>to the</div>
+            <div style={{fontSize: "2.5rem", textAlign: "right"}}>Metal World</div>
+          </div>
+          <div className="psyche-bot">
+            <img src={PsycheBot} alt="Psyche Bot" style={{ width: "100%" }} />
+          </div>
+        </div>}
         <Canvas ref={canvasRef} camera={{ fov: 45, position: [0, 0, 75] }}>
          <MainPsycheContainer/>
         </Canvas>
