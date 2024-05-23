@@ -51,8 +51,6 @@ const CreditsModal = ({ onClose, isOpen }) => {
           </h2>
           <p style={{ marginBottom: '1rem' }}>ASU/Isaac Wisdom, Psyche Inspired
           Titanium Class (2017-2018)</p>
-
-            Cobalt Class</p>
           <h2>
             <strong>Spacecraft Tool Images</strong>
           </h2>
