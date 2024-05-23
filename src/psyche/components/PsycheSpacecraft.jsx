@@ -100,7 +100,7 @@ const PsycheSpacecraft = ({ scref, target, distanceFactor }) => {
       {model && (
         <primitive object={model} scale={0.01} frustumCulled={false} visible={showSpacecraft} />
       )}
-      {startZooming && isStartClicked && !showAsteroid && !isModalOpen && !showNotebook && (
+      {isStartClicked && !showAsteroid && !isModalOpen && !showNotebook && (
         <SpacecraftHotspots distanceFactor={distanceFactor} />
       )}
     </group>

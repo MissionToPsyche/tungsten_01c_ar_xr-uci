@@ -39,8 +39,7 @@ const MainPsycheContainer = () => {
      isMoving, setIsMoving, 
      showAsteroid,
      setIsAsteroidSpinning,
-     setShowToolBox,
-     setIsStartAnimating
+     setShowToolBox
     } = useContext(GlobalStateContext);
     
     
@@ -50,7 +49,7 @@ const MainPsycheContainer = () => {
     setIsToSpaceCraft(false);
     setIsOverview(false);
     setShowStartButton(false);
-    setStartZooming(true);
+    //setStartZooming(true);
   }
 
   const [distanceFactor, setDistanceFactor] = useState(30)
@@ -97,7 +96,7 @@ const MainPsycheContainer = () => {
           orbitControlsRef.current.enableRotate = true;
           orbitControlsRef.current.maxDistance = 30;
           setShowSpacecraft(false);
-          setStartZooming(false);
+          //setStartZooming(false);
           
           
 
@@ -158,7 +157,7 @@ const MainPsycheContainer = () => {
         const newTarget = psycheRef.current.position.clone();
         const lerpFactor = 0.1; // Adjust between 0 (instant change) and 1 (full transition in one frame)
         let i = 0
-        //setIsStartAnimating(true)
+        
         function lerpTarget() {
           i += lerpFactor
           const lerpedTarget = currentTarget.lerp(newTarget, i);
@@ -170,7 +169,7 @@ const MainPsycheContainer = () => {
             requestAnimationFrame(lerpTarget);
           }
           else{
-            //setIsStartAnimating(false)
+            
           }
         }
         
@@ -289,14 +288,14 @@ const MainPsycheContainer = () => {
         
           // Check if transition is complete
           //if (i < 1) { 
-          if (i < 0.2) {
+          if (i < 1) {
             
             requestAnimationFrame(lerpTarget);
           }
           else{
             setIsToSpaceCraft(true);
             setIsToAsteroid(true);
-            setStartZooming(false);
+            //setStartZooming(false);
             
           }
         }

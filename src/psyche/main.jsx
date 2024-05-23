@@ -262,16 +262,8 @@ function PsycheApp(refreshRate) {
   };
 
   const handleStartClick = () => {
-    //setShowAsteroid(false);
-    setIsMoving(false);
-    //setShowSingleSpacecraft(true);
-    setIsStartAnimating(true);
-    setTimeout(() => {
-      setIsStartAnimating(false);
-      setStartClicked(true);
-      setCurrentPopupContent(popupContentStart);
-      setPopupIndex(0);
-    }, 200);
+    setIsCountdown(true);
+
   };
 
   const handleCreditsClick = () => {
@@ -322,6 +314,7 @@ function PsycheApp(refreshRate) {
     if (popupIndex >= 0 && currentPopupContent[popupIndex].title === "Tool Box") // Render when dialogue title in popupContentLaunch is "Tool Box"
     {
       setStartZooming(true);
+      //setShowToolBox(true);
       
     }
   }, [popupIndex, currentPopupContent]);
@@ -348,10 +341,10 @@ function PsycheApp(refreshRate) {
               
             }, 200);
             
+            
           }
         }
       }, 1000);
-
       return () => clearInterval(timerId); // Cleanup function
     }, [isCountdown, count]);
 
@@ -380,8 +373,12 @@ function PsycheApp(refreshRate) {
               handleClosePopup();
               if (currentPopupContent[1].message === popupContentLaunch[1].message) { 
 
-               setIsCountdown(true);
+               
+                //setShowStartButton(true);
+                //setStartZooming(true);
                 
+                setIsCountdown(true);
+               
 
                 
               }
@@ -400,7 +397,7 @@ function PsycheApp(refreshRate) {
         
         
         
-        {/*{showStartButton && isLaunched && !isCreditsClicked && !isStartClicked && <button className={`ombre-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleStartClick}>Start</button>}*/}
+        {showStartButton && isLaunched && !isCreditsClicked && !isStartClicked && <button className={`ombre-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleStartClick}>Start</button>}
         {!isLaunched && <button className={`ombre-button start-button`} onClick={handleLaunchClick}>Launch</button>}
         {!isLaunched && !isCreditsClicked && !isStartClicked && <button className={`ombre-button credits-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleCreditsClick}>Credits</button>}
 

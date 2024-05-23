@@ -9,7 +9,7 @@ import '../../../psyche/style.css'
 function MissionIntroPopup({ btnTextLaunch,title, message, onClose, onNext, isLast }) {
   const typedMessage = useTypingText(message, 23); //speed
 
-  const {numExploredTools, setNumExploredTools, startZooming, isStartAnimating} = useContext(GlobalStateContext);
+  const {numExploredTools, setNumExploredTools, startZooming} = useContext(GlobalStateContext);
 
   return (
     <Box className="mission-intro-popup">
@@ -27,7 +27,7 @@ function MissionIntroPopup({ btnTextLaunch,title, message, onClose, onNext, isLa
           {isLast ? (
             <button onClick={onClose}>I'm ready!</button>
           ) : (
-            <button onClick={onNext} disabled={startZooming || isStartAnimating || (btnTextLaunch === "Finish" && numExploredTools<3)}>{btnTextLaunch}</button>
+            <button onClick={onNext} disabled={startZooming  || (btnTextLaunch === "Finish" && numExploredTools<3)}>{btnTextLaunch}</button>
           )}
         </Box>
       </Box>
