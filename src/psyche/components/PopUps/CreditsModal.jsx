@@ -9,7 +9,7 @@ const CreditsModal = ({ onClose, isOpen }) => {
     left: '50%',
     maxHeight: '80vh',
     maxWidth: '100vw',
-    width: '75vw',
+    width: '70vw',
     height: '65vh',
     transform: 'translate(-50%, -50%)',
     backgroundColor: 'rgba(255, 255, 255, 1)',
@@ -42,8 +42,12 @@ const CreditsModal = ({ onClose, isOpen }) => {
           <h2>
             <strong>Psyche Bot Image</strong>
           </h2>
-          <p style={{ marginBottom: '1rem' }}>NASA/JPL-Caltech/ASU/Sarah Tennan, Psyche Inspired
+          <p style={{ marginBottom: '1rem' }}>NASA/JPL-Caltech/ASU/Sarah Tennant, Psyche Inspired
             Cobalt Class</p>
+          <h2>
+            <strong>Spacecraft Tool Images</strong>
+          </h2>
+          <p style={{ marginBottom: '1rem' }}>NASA/JPL-Caltech/ASU/Anne Elliott, Psyche Inspired Nickel Class</p>
 
           <h2>
             <strong>Disclaimer</strong>
