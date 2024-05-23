@@ -39,7 +39,9 @@ const MainPsycheContainer = () => {
      isMoving, setIsMoving, 
      showAsteroid,
      setIsAsteroidSpinning,
-     setShowToolBox
+     setShowToolBox,
+     showTravelAnimation,
+     setDoneStartAnimation
     } = useContext(GlobalStateContext);
     
     
@@ -71,6 +73,18 @@ const MainPsycheContainer = () => {
       orbitControlsRef.current.removeEventListener('change', handleZoomChange);
     };
   }, [camera, psycheRef]);
+  
+  
+  useEffect(() => {
+    
+    if (showTravelAnimation != null && !showTravelAnimation){
+      animateCameraZoomIn(refreshRate, camera, psycheRef, 30, () => {
+        
+      })
+    }
+
+
+}, [showTravelAnimation]);
 
   
   
@@ -143,38 +157,18 @@ const MainPsycheContainer = () => {
       setIsMoving(true);
       orbitControlsRef.current.enableZoom = false;
       orbitControlsRef.current.enableRotate = false;
-      orbitControlsRef.current.maxDistance = 75;
-      animateCameraZoomOut(refreshRate, orbitControlsRef, camera, 50, ()=>{
+      orbitControlsRef.current.maxDistance = 100;
+      const newTarget = psycheRef.current.position.clone();
+
+        
+      orbitControlsRef.current.target.set(newTarget.x, newTarget.y, newTarget.z);
+      animateCameraZoomOut(refreshRate, orbitControlsRef, camera, 75, ()=>{
         //setShowSpacecraft(true);
-        
-        
+        console.log("Done zoom out")
+        setDoneStartAnimation(true);
         setShowAsteroid(true);
-      },
-      () =>{
-        //orbitControlsRef.current.target.set(psycheSpacecraftRef.current.position.x, psycheSpacecraftRef.current.position.y, psycheSpacecraftRef.current.position.z);
+      }, null);
       
-        const currentTarget = orbitControlsRef.current.target.clone();
-        const newTarget = psycheRef.current.position.clone();
-        const lerpFactor = 0.1; // Adjust between 0 (instant change) and 1 (full transition in one frame)
-        let i = 0
-        
-        function lerpTarget() {
-          i += lerpFactor
-          const lerpedTarget = currentTarget.lerp(newTarget, i);
-          orbitControlsRef.current.target.set(lerpedTarget.x, lerpedTarget.y, lerpedTarget.z);
-          
-          console.log(i)
-          // Check if transition is complete
-          if (i < 1) {
-            requestAnimationFrame(lerpTarget);
-          }
-          else{
-            
-          }
-        }
-        
-        requestAnimationFrame(lerpTarget);
-      });
       setIsToSpaceCraft(true);
       setIsToAsteroid(true);
       

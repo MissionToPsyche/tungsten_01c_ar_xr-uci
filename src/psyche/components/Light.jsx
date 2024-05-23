@@ -11,12 +11,6 @@ const Light  = () => {
   const directionalLightRef4 = useRef()
   const directionalLightRef5 = useRef()
   const directionalLightRef6 = useRef()
-  //useHelper(directionalLightRef1, THREE.DirectionalLightHelper, 1, 'hotpink')
-  //useHelper(directionalLightRef2, THREE.DirectionalLightHelper, 1, 'hotpink')
-	//useHelper(directionalLightRef3, THREE.DirectionalLightHelper, 1, 'hotpink')
-  //useHelper(directionalLightRef4, THREE.DirectionalLightHelper, 1, 'hotpink')
-  //useHelper(directionalLightRef5, THREE.DirectionalLightHelper, 1, 'hotpink')
-  //useHelper(directionalLightRef6, THREE.DirectionalLightHelper, 1, 'hotpink')
 	
 	
 	return (

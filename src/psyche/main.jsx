@@ -45,6 +45,7 @@ import MissionIntroPopup from './components/PopUps/MissionIntroPopup.jsx';
 
 // ToolBox
 import ToolBox from './components/ToolBox';
+import StarryBackground from './components/TravelStars.jsx';
 
 
 function PsycheApp(refreshRate) {
@@ -77,6 +78,8 @@ function PsycheApp(refreshRate) {
 
   //animation state
   const [isStartAnimating, setIsStartAnimating] = useState(false);
+  const [showTravelAnimation, setShowTravelAnimation] = useState(null);
+  const [doneStartAnimation, setDoneStartAnimation] = useState(false);
   
   // instruction/ user intraction state
   const [showControls, setShowControls] = useState(false);
@@ -259,6 +262,8 @@ function PsycheApp(refreshRate) {
     showToolBox, setShowToolBox, 
     toolPlacementDisable, setToolPlacementDisable,
     isStartAnimating, setIsStartAnimating,
+    showTravelAnimation, setShowTravelAnimation,
+    doneStartAnimation, setDoneStartAnimation,
   };
 
   const handleStartClick = () => {
@@ -321,13 +326,17 @@ function PsycheApp(refreshRate) {
 
     useEffect(() => {
       const timerId = setInterval(() => {
+        console.log("countdown ", count)
         if (isCountdown){
           if (count > 0) {
             setCount(count - 1);
           } else if (count === 0) {
             console.log("countdown finished")
-            setCount(null); // Trigger action after countdown finishes (optional)
-            setIsCountdown(false);
+            
+            
+            setShowTravelAnimation(true);
+            setCount(count - 1);
+            
             
             //setShowAsteroid(false);
             setIsMoving(false);
@@ -336,17 +345,31 @@ function PsycheApp(refreshRate) {
             setTimeout(() => {
               setIsStartAnimating(false);
               setStartClicked(true);
-              setCurrentPopupContent(popupContentStart);
-              setPopupIndex(0);
+              
               
             }, 200);
             
+          }
+
+          else if (count <= -4 && doneStartAnimation){
+            console.log("countdown hello hu")
+            setIsCountdown(false);
+            setShowTravelAnimation(false);
             
+            setCurrentPopupContent(popupContentStart);
+            setPopupIndex(0);
+
+          }
+          else if (count < 0){
+            console.log("countdown hello")
+            setCount(count - 1);
           }
         }
       }, 1000);
       return () => clearInterval(timerId); // Cleanup function
     }, [isCountdown, count]);
+    
+
 
 
   
@@ -358,9 +381,14 @@ function PsycheApp(refreshRate) {
         
         <Canvas ref={canvasRef} camera={{ fov: 45, position: [0, 0, 75] }}>
          <MainPsycheContainer/>
-       
         </Canvas>
         
+        
+        
+        {showTravelAnimation && <StarryBackground/>}
+        
+        
+       
         
         {popupIndex >= 0 && (
           <MissionIntroPopup
