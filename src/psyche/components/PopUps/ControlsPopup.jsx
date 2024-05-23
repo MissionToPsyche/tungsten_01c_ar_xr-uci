@@ -9,7 +9,7 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-
+import TouchAppIcon from '@mui/icons-material/TouchApp';
 import PinchIcon from '@mui/icons-material/Pinch';
 import SwipeRightIcon from '@mui/icons-material/SwipeRight';
 
@@ -55,7 +55,7 @@ import '../../style.css'
 							<PinchIcon />
 						</ListItemIcon>
 						<ListItemText
-							primary="Pinch to zoom"
+							primary="Pinch to Zoom"
 						/>
 					</ListItem>
 					<ListItem>
@@ -63,7 +63,15 @@ import '../../style.css'
 							<SwipeRightIcon />
 						</ListItemIcon>
 						<ListItemText
-							primary="Swipe to move"
+							primary="Swipe to Move"
+						/>
+					</ListItem>
+          <ListItem>
+						<ListItemIcon>
+							<TouchAppIcon />
+						</ListItemIcon>
+						<ListItemText
+							primary="Double Tap to Pause"
 						/>
 					</ListItem>
 					</List>
