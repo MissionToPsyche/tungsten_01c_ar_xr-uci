@@ -54,7 +54,7 @@ const CreditsModal = ({ onClose, isOpen }) => {
           <h2>
             <strong>Spacecraft Tool Images</strong>
           </h2>
-          <p style={{ marginBottom: '1rem' }}>NASA/JPL-Caltech/ASU/Anne Elliott, Psyche Inspired Nickel Class</p>
+          <p style={{ marginBottom: '1rem' }}>NASA/JPL-Caltech/ASU/Anne Elliott, Psyche Inspired Nickel Class (2020-2021)</p>
 
           <h2>
             <strong>Disclaimer</strong>
