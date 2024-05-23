@@ -89,7 +89,6 @@ const MainPsycheContainer = () => {
   
   
   useEffect(() => {
-    console.log("to asteroid clicked")
     if (isToAsteroidClicked){
       console.log("start zoom in asteroid")
       orbitControlsRef.current.enableZoom = false;
@@ -148,8 +147,6 @@ const MainPsycheContainer = () => {
   }, [isToAsteroidClicked]);
   
   useEffect(() => {
-    console.log("isStartClicked: ")
-    console.log(isStartClicked)
     if (isStartClicked) {
       console.log("start zoom out")
       orbitControlsRef.current.target.set(0,0,0);

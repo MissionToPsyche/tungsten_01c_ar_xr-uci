@@ -338,14 +338,12 @@ function PsycheApp(refreshRate) {
 
     useEffect(() => {
       const timerId = setInterval(() => {
-        console.log("countdown ", count)
         if (isCountdown){
           if (count > 0) {
             setCount(count - 1);
           } else if (count === 0) {
             console.log("countdown finished")
-            
-            
+  
             setShowTravelAnimation(true);
             setCount(count - 1);
             
@@ -364,7 +362,6 @@ function PsycheApp(refreshRate) {
           }
 
           else if (count <= -4 && doneStartAnimation){
-            console.log("countdown hello hu")
             setIsCountdown(false);
             setShowTravelAnimation(false);
             
@@ -373,7 +370,6 @@ function PsycheApp(refreshRate) {
 
           }
           else if (count < 0){
-            console.log("countdown hello")
             setCount(count - 1);
           }
         }
