@@ -434,7 +434,7 @@ button {
 }
 
 body {
-  color: #592651
+  color: rgba(89, 38, 81, 1)
 }
 .mission-intro-popup {
   display: flex;
@@ -451,6 +451,7 @@ body {
   box-shadow: 0 4px 8px rgba(92, 47, 255, 0.2);
   z-index: 10;
   overflow: hidden;
+  padding: 10px;
 }
 
 .popup-content {
@@ -461,30 +462,30 @@ body {
 }
 
 .character-image img {
-  display: block;
+  display: flex;
   image-rendering: pixelated;
-  margin-left: 7px;
+  /*margin-left: 7px;
   margin-bottom: 16px;
-  margin-top: 16px;
-  width: 12vh; /* Set a fixed width for the image */
-  height: auto; /* Adjust height automatically */
+  margin-top: 16px;*/
+  width: 3vw;
+  /*height: auto;*/
   object-fit: contain;
-  border: 2px solid #4d1678;
-  text-shadow: 20px 20px 20px rgba(0, 0, 0, 0.3);
+  border: 2px solid rgba(89, 38, 81, 1);
+  text-shadow: 20px 20px 20px rgba(89, 38, 81, 0.3);
 }
           
 .text-content {
   flex-grow: 1;
-  padding: 8px 20px; /* Adjust padding to your preference */
+  padding: 10px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 100%; /* Adjust if necessary to take full width */
-  height: 100%; /* Auto height to wrap content */
-  
+  /*width: 100%;
+  height: 100%;*/
   color: rgba(255, 255, 255, 0.849);
   letter-spacing: 2px;
   box-shadow: 0 4px 8px rgba(92, 47, 255, 0.2);
+
 }
 
 .mission-intro-popup h1, .mission-intro-popup p, .mission-intro-popup button {
@@ -497,17 +498,17 @@ body {
   .mission-intro-popup {
     width: 80%; /* Increase the width for mobile to maintain the rectangle shape */
     /* Remove min-height or adjust as needed so it does not force the box to become square */
-    min-height: 80  px; /* Adjust height as necessary */
+    min-height: 80px; /* Adjust height as necessary */
   }
 
   .character-image img {
-    width: 60px; /* Smaller image for mobile */
-    margin-left: 7px;
-    margin-bottom: 25px;
+    width: 20vw;
+
   }
 
   .text-content  {  
-    padding: 4px 10px; /* Smaller padding for text content on mobile */
+    padding: 10px; /* Smaller padding for text content on mobile */
+    justify-content: space-between;
   }
 
   .mission-intro-popup h1 {
@@ -521,6 +522,6 @@ body {
   }
 
   .mission-intro-popup button {
-    padding: 1px 12px; /* Smaller buttons on mobile */
+    padding: 2px 12px; /* Smaller buttons on mobile */
   }
 }

@@ -6,6 +6,7 @@ import '../style.css'
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import InfoContent from './PopUps/InfoContent';
+import { hotspots, sumPercentage } from './constants';
 
 
 
@@ -24,13 +25,20 @@ const imageTitles = [
 const ToolBox = () => {
   const [visibleColumns, setVisibleColumns] = useState(images.map(() => true));
 
-  const { currentFactIndex, setCurrentFactIndex, factList, toolList,currentToolIndex,setCurrentToolIndex, setIsModalOpen } = useContext(GlobalStateContext);
+  const { numExploredTools, setNumExploredTools,currentFactIndex, setCurrentFactIndex, factList, toolList,currentToolIndex,setCurrentToolIndex,progressValue, setProgressValue, setIsModalOpen } = useContext(GlobalStateContext);
 
   const handleClick = index => {
     setVisibleColumns(visibleColumns.map((isVisible, columnIndex) =>
       columnIndex === index ? !isVisible : isVisible
     ));
     setCurrentToolIndex(index);
+    if (progressValue < 100 && !toolList[index].isExplored){
+      setProgressValue(progressValue + sumPercentage);
+    }
+    toolList[index].isExplored = true;
+    setNumExploredTools(numExploredTools + 1);
+    
+    console.log('numExploredTools',numExploredTools);
   };
   
   const handleClose = () => {
