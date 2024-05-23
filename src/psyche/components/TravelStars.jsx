@@ -7,7 +7,7 @@ const StarryBackground = () => {
   const mountRef = useRef(null);
 
   useEffect(() => {
-    let scene, camera, renderer, stars, geom, starMaterial;
+    let scene, camera, renderer, geom;
 		
 					
 		let LINE_COUNT = 2000;
@@ -60,64 +60,7 @@ const StarryBackground = () => {
 			let mat = new THREE.LineBasicMaterial({color: 0xffffff});
 			let lines = new THREE.LineSegments(geom, mat);
 			
-			scene.add(lines);
-			
-			//// Add a 3D object (e.g., a cube)
-			//const geometry = new THREE.BoxGeometry(50, 50, 50);
-			//const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-			//const cube = new THREE.Mesh(geometry, material);
-			//cube.position.set(0, 0, 0);
-			//scene.add(cube);
-			
-			//const light1 = new THREE.DirectionalLight(0xffffff, 0.7)
-			//light1.position.set(0, 0, 10)
-			//scene.add(light1)
-	
-			//const light2 = new THREE.DirectionalLight(0xffffff, 0.7)
-			//light2.position.set(0, 0, -10)
-			//scene.add(light2)
-	
-			//const light3 = new THREE.DirectionalLight(0xffffff, 0.3)
-			//light3.position.set(0, 10, 0)
-			//scene.add(light3)
-	
-			//const light4 = new THREE.DirectionalLight(0xffffff, 0.3)
-			//light4.position.set(0, -10, 0)
-			//scene.add(light4)
-	
-			//const light5 = new THREE.DirectionalLight(0xffffff, 0.5)
-			//light5.position.set(10, 0, 0)
-			//scene.add(light5)
-	
-			//const light6 = new THREE.DirectionalLight(0xffffff, 0.5)
-			//light6.position.set(-10, 0, 0)
-			//scene.add(light6)
-			
-			//var mesh = null;
-
-			//var mtlLoader = new MTLLoader();
-			//mtlLoader.setPath( '/assets/' );
-			//mtlLoader.load( 'spacecraft.mtl', function( materials ) {
-
-			//	materials.preload();
-
-			//	var objLoader = new OBJLoader();
-			//	objLoader.setMaterials( materials );
-			//	objLoader.setPath( "/assets/" );
-			//	objLoader.load( 'spacecraft.obj', function ( object ) {
-
-			//		mesh = object;
-			//		mesh.position.y = -10;
-			//		mesh.position.x = 0;
-			//		mesh.position.z = 0;
-			//		mesh.scale.set(0.3, 0.3, 0.3);
-			//		mesh.rotateY(Math.PI / 2)
-			//		scene.add( mesh );
-
-			//	} );
-
-			//} );
-			
+			scene.add(lines);			
 
       window.addEventListener('resize', onWindowResize, false);
 
