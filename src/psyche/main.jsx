@@ -115,7 +115,7 @@ function PsycheApp(refreshRate) {
   ];
   const popupContentStart = [
     { title: "Tutorial", message: "We made it! That's my home! Thanks so much for bringing me back! Now let me show you around!" },
-    { title: "Movement", message: "To traverse through space you can swipe to move and pitch to zoom. Give it a try!" },
+    { title: "Movement", message: "To traverse through space you can swipe to move, pitch to zoom and double click to pause. Give it a try!" },
     { title: "Mission Goal", message: "The goal of the mission is to collect fun facts and details about NASA's Psyche Mission." },
     { title: "Notebook", message: "You can view the facts you collected by clicking on the notebook button in the top left." },
     { title: "Notebook", message: "Currently you don't have any facts. Go out and collect some by exploring the spacecraft or Pysche Asteroid!" }
