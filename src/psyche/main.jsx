@@ -45,9 +45,23 @@ import MissionIntroPopup from './components/PopUps/MissionIntroPopup.jsx';
 
 // ToolBox
 import ToolBox from './components/ToolBox';
+import StarryBackground from './components/TravelStars.jsx';
 
 
 function PsycheApp(refreshRate) {
+  
+  
+  const BackgroundAudio = new Audio("/assets/music.mp3");
+  
+  function replayAudio() {
+    console.log("replay audio")
+    BackgroundAudio.currentTime = 0;
+    BackgroundAudio.play();
+  }
+
+  BackgroundAudio.addEventListener('ended', replayAudio);
+  
+  
   const canvasRef = useRef();
   
   // flow state
@@ -58,6 +72,8 @@ function PsycheApp(refreshRate) {
   const [startZooming, setStartZooming] = useState(false);
 
   const [showToolBox, setShowToolBox] = useState(false); {/*for toolbox*/}
+  const [isCountdown, setIsCountdown] = useState(false);
+  const [count, setCount] = useState(3);
 
   
   // button state
@@ -75,6 +91,8 @@ function PsycheApp(refreshRate) {
 
   //animation state
   const [isStartAnimating, setIsStartAnimating] = useState(false);
+  const [showTravelAnimation, setShowTravelAnimation] = useState(null);
+  const [doneStartAnimation, setDoneStartAnimation] = useState(false);
   
   // instruction/ user intraction state
   const [showControls, setShowControls] = useState(false);
@@ -89,6 +107,7 @@ function PsycheApp(refreshRate) {
   const [isMoving, setIsMoving] = useState(false);
   const [isAsteroidSpinning, setIsAsteroidSpinning] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [toolPlacementDisable, setToolPlacementDisable] = useState(true);
   
   
   const [showDescription, setShowDescription] = useState(false);
@@ -96,6 +115,8 @@ function PsycheApp(refreshRate) {
   const [progressValue, setProgressValue] = useState(0);
   
   const [numExploredTools, setNumExploredTools] = useState(0);
+  
+  const [isPlayedMusic, setIsPlayedMusic] = useState(false);
  
   //information state
 
@@ -148,11 +169,27 @@ function PsycheApp(refreshRate) {
     },
   ]
 
+  const toolBoxDialogue = [
+  { title: "Getting Ready", message: "Before the mission can start, we need to add the tools that will be used for our mission." },
+  { title: "Tool Box", message: "Above, you will see a tool box with a Multispectral Imager, a Magnetometer, and a Gamma Ray and Neutron Spectrometer."},
+  { title: "Tool Box" , message: "We will need these tools for our journey and exploration. Click on them to add them to the spacecraft!"}
+
+
+  ];
+
+  
   const handleNextPopup = () => {
     if (popupIndex < currentPopupContent.length - 1) {
       setPopupIndex(popupIndex + 1);
     } else {
       handleClosePopup(); // Close popups when finishing the last one
+    }
+    
+    if (currentPopupContent[1].message === popupContentLaunch[1].message) { 
+      if (popupIndex === 5) {
+        console.log("Anable tool box click here")
+        setToolPlacementDisable(false);
+      }
     }
   };
 
@@ -234,26 +271,32 @@ function PsycheApp(refreshRate) {
     progressValue, setProgressValue,
     showControls, setShowControls,
     numExploredTools, setNumExploredTools,
+    showToolBox, setShowToolBox, 
+    toolPlacementDisable, setToolPlacementDisable,
+    isStartAnimating, setIsStartAnimating,
+    showTravelAnimation, setShowTravelAnimation,
+    doneStartAnimation, setDoneStartAnimation,
   };
 
   const handleStartClick = () => {
-    //setShowAsteroid(false);
-    setIsMoving(false);
-    //setShowSingleSpacecraft(true);
-    setIsStartAnimating(true);
-    setTimeout(() => {
-      setIsStartAnimating(false);
-      setStartClicked(true);
-      setCurrentPopupContent(popupContentStart);
-      setPopupIndex(0);
-    }, 200);
+    setIsCountdown(true);
+
   };
 
   const handleCreditsClick = () => {
+    if (!isPlayedMusic){
+      BackgroundAudio.play();
+      setIsPlayedMusic(true);
+    }
+
     setShowCreditsModal(true);
   };
   
   const handleLaunchClick = () => {
+    if (!isPlayedMusic){
+      BackgroundAudio.play();
+      setIsPlayedMusic(true);
+    }
     setCurrentPopupContent(popupContentLaunch);
     setPopupIndex(0);
     setIsLaunched(true);
@@ -296,10 +339,53 @@ function PsycheApp(refreshRate) {
   useEffect(() => {
     if (popupIndex >= 0 && currentPopupContent[popupIndex].title === "Tool Box") // Render when dialogue title in popupContentLaunch is "Tool Box"
     {
-      setShowToolBox(true); // Sets ToolBox flag
+      setStartZooming(true);
+      //setShowToolBox(true);
+      
     }
   }, [popupIndex, currentPopupContent]);
 
+    useEffect(() => {
+      const timerId = setInterval(() => {
+        if (isCountdown){
+          if (count > 0) {
+            setCount(count - 1);
+          } else if (count === 0) {
+            console.log("countdown finished")
+  
+            setShowTravelAnimation(true);
+            setCount(count - 1);
+            
+            
+            //setShowAsteroid(false);
+            setIsMoving(false);
+            //setShowSingleSpacecraft(true);
+            setIsStartAnimating(true);
+            setTimeout(() => {
+              setIsStartAnimating(false);
+              setStartClicked(true);
+              
+              
+            }, 200);
+            
+          }
+
+          else if (count <= -4 && doneStartAnimation){
+            setIsCountdown(false);
+            setShowTravelAnimation(false);
+            
+            setCurrentPopupContent(popupContentStart);
+            setPopupIndex(0);
+
+          }
+          else if (count < 0){
+            setCount(count - 1);
+          }
+        }
+      }, 1000);
+      return () => clearInterval(timerId); // Cleanup function
+    }, [isCountdown, count]);
+    
 
 
 
@@ -307,7 +393,9 @@ function PsycheApp(refreshRate) {
   return (
     <GlobalStateProvider value={useContextList}>
       <div className="app-container">
-        <div className="psyche-logo"><img src = {Psyche_Badge} alt="Psyche Badge"></img></div>
+        {isCountdown && count > 0 && <div className="countdown">{count}</div>}
+        
+        <div className={isLaunched? "psyche-small-logo" : "psyche-logo"}><img src = {Psyche_Badge} alt="Psyche Badge"></img></div>
       {!isLaunched && <div >
           <div className="title-container title-white" style={{textAlign: "center"}}>
             <div style={{fontSize: "5.5rem", textAlign: "left"}}>Psyche</div>
@@ -321,9 +409,14 @@ function PsycheApp(refreshRate) {
         </div>}
         <Canvas ref={canvasRef} camera={{ fov: 45, position: [0, 0, 75] }}>
          <MainPsycheContainer/>
-       
         </Canvas>
         
+        
+        
+        {showTravelAnimation && <StarryBackground/>}
+        
+        
+       
         
         {popupIndex >= 0 && (
           <MissionIntroPopup
@@ -335,8 +428,15 @@ function PsycheApp(refreshRate) {
               
               handleClosePopup();
               if (currentPopupContent[1].message === popupContentLaunch[1].message) { 
-                setShowStartButton(true); 
-                setStartZooming(true);
+
+               
+                //setShowStartButton(true);
+                //setStartZooming(true);
+                
+                setIsCountdown(true);
+               
+
+                
               }
               if (currentPopupContent[1].message === popupContentStart[1].message) { 
                 setShowToPsycheButton(true);
@@ -353,7 +453,7 @@ function PsycheApp(refreshRate) {
         
         
         
-        {showStartButton && isLaunched && !isCreditsClicked && !isStartClicked && <button className={`ombre-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleStartClick}>Lift off</button>}
+        {/*{showStartButton && isLaunched && !isCreditsClicked && !isStartClicked && <button className={`ombre-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleStartClick}>Lift off</button>}*/}
         {!isLaunched && <button className={`ombre-button start-button`} onClick={handleLaunchClick}>Start</button>}
         {!isLaunched && !isCreditsClicked && !isStartClicked && <button className={`ombre-button credits-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleCreditsClick}>Credits</button>}
 

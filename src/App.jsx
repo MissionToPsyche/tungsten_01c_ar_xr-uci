@@ -13,7 +13,13 @@ function App() {
     });
   }
   return (
-    <PsycheApp refreshRate={refreshRate}/>
+    <>
+      <PsycheApp refreshRate={refreshRate}/>
+
+    </>
+
+    
+    
   )
 }
 

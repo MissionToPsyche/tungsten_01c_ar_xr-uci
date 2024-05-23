@@ -9,7 +9,7 @@ import Facts from './NotebookMenu';
 import CloseIcon from '@mui/icons-material/Close';
 import {GlobalStateContext} from '../../utils/useContext';
 import { Typography } from '@mui/material';
-import Logo from '../../../assets/psyche_badge.png';
+import Logo from '/assets/psyche_badge.png';
 
 import '../../style.css'
 

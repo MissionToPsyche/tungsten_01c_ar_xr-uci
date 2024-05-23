@@ -43,7 +43,14 @@ const CreditsModal = ({ onClose, isOpen }) => {
             <strong>Psyche Bot Image</strong>
           </h2>
           <p style={{ marginBottom: '1rem' }}>NASA/JPL-Caltech/ASU/Sarah Tennant, Psyche Inspired
-            Cobalt Class</p>
+            Cobalt Class (2019-2020)</p>
+            
+            
+          <h2>
+            <strong>Background Music: Ideas</strong>
+          </h2>
+          <p style={{ marginBottom: '1rem' }}>ASU/Isaac Wisdom, Psyche Inspired
+          Titanium Class (2017-2018)</p>
           <h2>
             <strong>Spacecraft Tool Images</strong>
           </h2>
