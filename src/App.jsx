@@ -12,8 +12,18 @@ function App() {
       setRefreshRate(refreshRate);
     });
   }
+  
+  window.onload = () => {
+
+  }
   return (
-    <PsycheApp refreshRate={refreshRate}/>
+    <>
+      <PsycheApp refreshRate={refreshRate}/>
+
+    </>
+
+    
+    
   )
 }
 

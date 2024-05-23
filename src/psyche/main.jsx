@@ -49,6 +49,19 @@ import StarryBackground from './components/TravelStars.jsx';
 
 
 function PsycheApp(refreshRate) {
+  
+  
+  const BackgroundAudio = new Audio("/assets/music.mp3");
+  
+  function replayAudio() {
+    console.log("replay audio")
+    BackgroundAudio.currentTime = 0;
+    BackgroundAudio.play();
+  }
+
+  BackgroundAudio.addEventListener('ended', replayAudio);
+  
+  
   const canvasRef = useRef();
   
   // flow state
@@ -269,10 +282,12 @@ function PsycheApp(refreshRate) {
   };
 
   const handleCreditsClick = () => {
+    BackgroundAudio.play();
     setShowCreditsModal(true);
   };
   
   const handleLaunchClick = () => {
+    BackgroundAudio.play();
     setCurrentPopupContent(popupContentLaunch);
     setPopupIndex(0);
     setIsLaunched(true);
@@ -422,7 +437,7 @@ function PsycheApp(refreshRate) {
         
         
         
-        {showStartButton && isLaunched && !isCreditsClicked && !isStartClicked && <button className={`ombre-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleStartClick}>Lift off</button>}
+        {/*{showStartButton && isLaunched && !isCreditsClicked && !isStartClicked && <button className={`ombre-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleStartClick}>Lift off</button>}*/}
         {!isLaunched && <button className={`ombre-button start-button`} onClick={handleLaunchClick}>Start</button>}
         {!isLaunched && !isCreditsClicked && !isStartClicked && <button className={`ombre-button credits-button ${isStartAnimating ? 'clicked' : ''}`} onClick={handleCreditsClick}>Credits</button>}
 
