@@ -99,8 +99,8 @@ const ToolBox = () => {
                 transition: 'opacity 0.5s, visibility 0.5s',
                 margin:'1vw',
               }}>
-                <Box>
-                {tool.icon}
+                <Box >
+                  <img className='gallery-image' src={tool.image} alt={tool.title} />
                 </Box>
                 <Box className='text'>
                 {tool.title}
