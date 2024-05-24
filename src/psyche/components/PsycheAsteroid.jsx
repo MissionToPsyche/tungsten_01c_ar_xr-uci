@@ -14,7 +14,7 @@ import {GlobalStateContext} from '../utils/useContext';
 const PsycheAsteroid =  ({ psycheRef, visible, distanceFactor }) => {
 	
 	const obj = useLoader(OBJLoader, '	/assets/psyche.obj')
-	const {isAsteroidSpinning, isModalOpen, showNotebook, showTravelAnimation}= useContext(GlobalStateContext);
+	const {isAsteroidSpinning, isModalOpen, showNotebook, showTravelAnimation, showHotspot, setShowHotspot,}= useContext(GlobalStateContext);
     
 
 	const geometry = useMemo(() => {
@@ -40,7 +40,7 @@ const PsycheAsteroid =  ({ psycheRef, visible, distanceFactor }) => {
 
 	return (
 	<group ref={psycheRef} visible={visible}>
-		  {!showTravelAnimation && visible && !isModalOpen && !showNotebook && <ItemHotspots distanceFactor={distanceFactor} />}
+		  {!showTravelAnimation && visible && !isModalOpen && !showNotebook && showHotspot && <ItemHotspots distanceFactor={distanceFactor} />}
 			<mesh  geometry={geometry} scale={2} frustumCulled={false} >
 				<meshPhysicalMaterial color="gray" />
 			</mesh>
