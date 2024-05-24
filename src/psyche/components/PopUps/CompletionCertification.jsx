@@ -16,11 +16,12 @@ import '../../style.css'
 
 
   function CertificationPopup() {
-    const {progressValue }= useContext(GlobalStateContext);
+    const {progressValue, showCertification, setShowCertification }= useContext(GlobalStateContext);
     const handleClose = () => {
 			setShowCertification(false);
 		}
-		const [showCertification, setShowCertification] = useState(true);
+
+		
     
     //const modalStyle = {
     //  position: 'fixed',

@@ -44,8 +44,6 @@ function HotspotFact (){
       alignItems: 'center'
 	};
 	
-	console.log(currentFactIndex);
-	
 	
 	return (
 		<Modal 
