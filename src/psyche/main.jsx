@@ -116,6 +116,8 @@ function PsycheApp(refreshRate) {
   const [volumeOn, setVolumeOn] = useState(true);
   const [psycheLaunchInfo, setPsycheLaunchInfo] = useState(false);
   const [showCertification, setShowCertification] = useState(true);
+  const [showHotspot, setShowHotspot] = useState(false);
+  
   
   
   
@@ -324,6 +326,7 @@ const preCertificationContent = [
     doneStartAnimation, setDoneStartAnimation,
     volumeOn, setVolumeOn,
     showCertification, setShowCertification,
+    showHotspot, setShowHotspot,
   };
 
   const handleStartClick = () => {
@@ -521,6 +524,7 @@ const preCertificationContent = [
               if (currentPopupContent[1].message === popupContentStart[1].message) { 
                 setShowToPsycheButton(true);
                 setShowToSpaceCraftButton(true);
+                setShowHotspot(true);
               }
               if (currentPopupContent[1].message === preCertificationContent[1].message) {
                 
