@@ -560,12 +560,12 @@ body {
 
 .mission-intro-popup h1 {
   font-family: 'Jersey 10', sans-serif; /* Ensure all text has the pixelated font */
-  font-size: 1.9vw;
+  font-size: 2.7vw;
 }
 
 .mission-intro-popup p{
   font-family: 'Jersey 10', sans-serif; /* Ensure all text has the pixelated font */
-  font-size: 1.5vw;
+  font-size: 2vw;
 }
 .mission-intro-popup button {
   font-family: 'Jersey 10', sans-serif;
