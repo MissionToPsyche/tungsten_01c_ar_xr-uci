@@ -223,20 +223,18 @@
 }
 .psyche-logo{
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 3vw;
+  right: 3vw;
   width: 15%;
   z-index: 10;
-  padding: 2vh 2vh;
 }
 
 .psyche-small-logo{
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 3vw;
+  right: 3vw;
   width: 10%;
   z-index: 10;
-  padding: 2vh 2vh;
 }
 
 .title-container {
