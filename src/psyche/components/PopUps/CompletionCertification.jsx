@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { useContext, useState } from 'react';
 
+import PsycheApp from '/src/psyche/main.jsx'
+
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Modal from '@mui/material/Modal';
@@ -47,7 +49,7 @@ import '../../style.css'
 
     return (
       <Modal 
-  open={progressValue === 100 && showCertification} 
+   open={progressValue === 100 && showCertification } 
   onClose={handleClose}
 >
   <Box sx={{ display: 'flex',  alignItems: 'center', justifyContent:'center'}} className="modal-container">
