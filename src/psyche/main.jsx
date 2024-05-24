@@ -37,6 +37,7 @@ import CombinedFact from './components/PopUps/CombinedFact';
 import Psyche_Badge from '../../public/assets/Psyche_Badge.svg';
 import HotspotFact from './components/PopUps/HotspotFact';
 import ControlsButton from './components/Buttons/ControlsButton';
+import VolumeButton from './components/Buttons/VolumesButton';
 import useDoubleClick from './utils/useDoubleClick';
 
 import CreditsModal from './components/PopUps/CreditsModal';
@@ -63,6 +64,7 @@ function PsycheApp(refreshRate) {
   
   
   const canvasRef = useRef();
+  const audioRef = useRef(null);
   
   // flow state
   const [isOverview, setIsOverview] = useState(false);
@@ -108,6 +110,9 @@ function PsycheApp(refreshRate) {
   const [isAsteroidSpinning, setIsAsteroidSpinning] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [toolPlacementDisable, setToolPlacementDisable] = useState(true);
+  const [volumeOn, setVolumeOn] = useState(true);
+  const [psycheLaunchInfo, setPsycheLaunchInfo] = useState(false);
+  
   
   
   const [showDescription, setShowDescription] = useState(false);
@@ -276,6 +281,7 @@ function PsycheApp(refreshRate) {
     isStartAnimating, setIsStartAnimating,
     showTravelAnimation, setShowTravelAnimation,
     doneStartAnimation, setDoneStartAnimation,
+    volumeOn, setVolumeOn,
   };
 
   const handleStartClick = () => {
@@ -285,7 +291,9 @@ function PsycheApp(refreshRate) {
 
   const handleCreditsClick = () => {
     if (!isPlayedMusic){
-      BackgroundAudio.play();
+      if (volumeOn){
+        audioRef.current.play();
+      }
       setIsPlayedMusic(true);
     }
 
@@ -294,7 +302,9 @@ function PsycheApp(refreshRate) {
   
   const handleLaunchClick = () => {
     if (!isPlayedMusic){
-      BackgroundAudio.play();
+      if (volumeOn){
+        audioRef.current.play();
+      }
       setIsPlayedMusic(true);
     }
     setCurrentPopupContent(popupContentLaunch);
@@ -341,8 +351,8 @@ function PsycheApp(refreshRate) {
     {
       setStartZooming(true);
       //setShowToolBox(true);
-      
     }
+    //else if ()
   }, [popupIndex, currentPopupContent]);
 
     useEffect(() => {
@@ -352,7 +362,7 @@ function PsycheApp(refreshRate) {
             setCount(count - 1);
           } else if (count === 0) {
             console.log("countdown finished")
-  
+            setPsycheLaunchInfo(false);
             setShowTravelAnimation(true);
             setCount(count - 1);
             
@@ -386,6 +396,27 @@ function PsycheApp(refreshRate) {
       return () => clearInterval(timerId); // Cleanup function
     }, [isCountdown, count]);
     
+    
+    useEffect(() => {
+      
+      console.log("isplayed", isPlayedMusic)
+      console.log("volume", volumeOn)
+      
+      if (isPlayedMusic){
+        if (volumeOn){
+          console.log("audio play")
+          audioRef.current.play();
+        }
+        else {
+          console.log("audio pause")
+          audioRef.current.pause();
+          
+        }
+      }
+      
+      
+    },[volumeOn, isPlayedMusic]);
+    
 
 
 
@@ -393,6 +424,9 @@ function PsycheApp(refreshRate) {
   return (
     <GlobalStateProvider value={useContextList}>
       <div className="app-container">
+        <audio ref={audioRef} loop>
+          <source src="/assets/music.mp3" type="audio/mpeg"></source>
+        </audio>
         {isCountdown && count > 0 && <div className="countdown">{count}</div>}
         
         <div className={isLaunched? "psyche-small-logo" : "psyche-logo"}><img src = {Psyche_Badge} alt="Psyche Badge"></img></div>
@@ -434,6 +468,7 @@ function PsycheApp(refreshRate) {
                 //setStartZooming(true);
                 
                 setIsCountdown(true);
+                setPsycheLaunchInfo(true);
                
 
                 
@@ -476,9 +511,12 @@ function PsycheApp(refreshRate) {
         
         
         {isStartClicked && isLaunched && (<ControlsButton/>)}
+        <VolumeButton/>
         {isStartClicked && isLaunched && (<ProgressBarButton /> )}
         
         <CertificationPopup/>
+        
+        {psycheLaunchInfo && <div style={{fontSize: "1.5rem", textAlign: "center"}} className='ombre-button'>Psyche launched Oct. 13, 2023, at 10:19 a.m. EDT from Kennedy Space Center</div>}
 
       </div>
     </GlobalStateProvider>

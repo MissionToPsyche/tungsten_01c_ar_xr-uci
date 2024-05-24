@@ -1,9 +1,48 @@
 
 /* Controls */
 
-.controls-button {
+.volumes-button {
   position: absolute;
   top: 3vw;
+  left: 3vw;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  /*background: linear-gradient(to right, rgba(245, 125, 50, 1), rgba(239, 89, 102, 1));*/
+  background: linear-gradient(to right, rgba(165, 63, 91, 1), rgba(89, 38, 81, 1));
+  color: white;
+  border: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background 0.2s ease-in-out;
+  width: 4vh;
+  height: 4vh;
+  font-size: 1vh;
+
+  @media (max-width: 768px) {
+    font-size: 3vw;
+    width: 8vw;
+    height: 8vw;
+  }
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    font-size: 2vw;
+    width: 8vw;
+    height: 8vw;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 3vw;
+    width: 7vw;
+    height: 7vw;
+  }
+}
+
+
+.controls-button {
+  position: absolute;
+  top: 13vw;
   left: 3vw;
   border-radius: 50%;
   display: flex;
@@ -65,7 +104,7 @@
 /* Notebook */
 .notebook-button {
   position: absolute;
-  top: 13vw;
+  top: 23vw;
   left: 3vw;
   border-radius: 50%;
   display: flex;
