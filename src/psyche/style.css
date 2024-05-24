@@ -593,16 +593,18 @@ body {
   }
 
   .mission-intro-popup h1 {
-    font-size: 5vw;
+    font-size: 5.5vw;
     /* font-size: 24px; Smaller font size for title on mobile */
   }
 
   .mission-intro-popup p {
-    font-size: 3vw;
+    font-size: 4vw;
     /* font-size: 18px; Smaller font size for message on mobile */
   }
 
   .mission-intro-popup button {
-    padding: 2px 12px; /* Smaller buttons on mobile */
+    font-size: 3.5vw;
+    padding: 2px 12px;
+    /*  Smaller buttons on mobile */
   }
 }
