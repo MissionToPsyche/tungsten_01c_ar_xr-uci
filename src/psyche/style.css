@@ -217,36 +217,68 @@
   position: absolute;
   bottom: 0;
   left: 0;
-  transform: translateX(-10%); 
-  width: 55%;
   z-index: 10;
+
+  /*Add media queries for responsive sizing*/
+  @media (max-width: 768px) {
+		width: 50vw;
+  }
+
+  @media (min-width: 768px) and (max-width: 2048px) {
+		width: 30vw;
+  }
+
+  @media (min-width: 1024px) {
+    width: 20vw;
+  }
 }
 .psyche-logo{
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 3vw;
+  right: 3vw;
   width: 15%;
   z-index: 10;
-  padding: 2vh 2vh;
 }
 
 .psyche-small-logo{
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 3vw;
+  right: 3vw;
   width: 10%;
   z-index: 10;
-  padding: 2vh 2vh;
 }
-
+.title-big{
+  position: fixed;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0);
+  font-family: 'Jersey 10';
+  color: #ffffff;
+}
+.hint-badge {
+  /* background-color: rgba(0, 0, 0, 0.7); */
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 12px;
+  position: absolute;
+  left: 50%;
+  width: 70%;
+  text-align: center;
+  transform: translateX(-50%);
+  /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); */
+  z-index: 10;
+}
 .title-container {
   /* width: 100%; */
   position: absolute;
-  top: 15%;
+  top: 31%;
   left: 65%;
   transform: translateX(-50%); 
   text-align: center;
-  padding: 3vh 5vh;
+  /* padding: 3vh 5vh; */
   background-color: rgba(255, 255, 255, 0);
   font-family: 'Jersey 10';
   color: #ffffff;
@@ -499,6 +531,18 @@ body {
   object-fit: contain;
   border: 2px solid rgba(89, 38, 81, 1);
   text-shadow: 20px 20px 20px rgba(89, 38, 81, 0.3);
+  
+  @media (max-width: 768px) {
+		width: 30vw;
+  }
+
+  @media (min-width: 768px) and (max-width: 2048px) {
+		width: 20vw;
+  }
+
+  @media (min-width: 1024px) {
+    width: 10vw;
+  }
 }
           
 .text-content {

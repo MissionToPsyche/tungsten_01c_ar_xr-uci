@@ -11,8 +11,10 @@ function useDoubleClick(callback, delay = 300) {
       //  // Clickable element - ignore
       //  return;
       //}
+      
+      //console.log('event', event.target.tagName);
 			
-			if (event.target.tagName.toLowerCase() === 'canvas'){
+			if (event.target.tagName.toLowerCase() === 'div'){
 				clickRef.current++;
 
 				if (clickRef.current === 2) {

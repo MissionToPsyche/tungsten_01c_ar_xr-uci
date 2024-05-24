@@ -40,6 +40,7 @@ import CombinedFact from './components/PopUps/CombinedFact';
 import Psyche_Badge from '../../public/assets/Psyche_Badge.svg';
 import HotspotFact from './components/PopUps/HotspotFact';
 import ControlsButton from './components/Buttons/ControlsButton';
+import VolumeButton from './components/Buttons/VolumesButton';
 import useDoubleClick from './utils/useDoubleClick';
 
 import CreditsModal from './components/PopUps/CreditsModal';
@@ -66,6 +67,7 @@ function PsycheApp(refreshRate) {
   
   
   const canvasRef = useRef();
+  const audioRef = useRef(null);
   
   // flow state
   const [isOverview, setIsOverview] = useState(false);
@@ -111,6 +113,9 @@ function PsycheApp(refreshRate) {
   const [isAsteroidSpinning, setIsAsteroidSpinning] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [toolPlacementDisable, setToolPlacementDisable] = useState(true);
+  const [volumeOn, setVolumeOn] = useState(true);
+  const [psycheLaunchInfo, setPsycheLaunchInfo] = useState(false);
+  
   
   
   const [showDescription, setShowDescription] = useState(false);
@@ -202,24 +207,26 @@ function PsycheApp(refreshRate) {
   
   const [factList, setFactList] = useState([
     {isExplored: true, title: "Overview", text: "Welcome to the notebook, please choose on the left to see facts about the Psyche mission that you have explored."},
-    { isExplored: false, icon: <img src={MetalImg} alt = "MetalImg" height='40'/>, image: MetalImg ,title: 'Scientific Interest', text: "Psyche is likely rich in metal. The mission will seek to aid our understanding of iron cores, which have not yet been explored. It will allow us to explore a world not made of rock or ice, but of metal."},
+    { isExplored: false, icon: <img src={MetalImg} alt = "MetalImg" height='40'/>, image: MetalImg ,title: 'Scientific Interest', text: "Psyche is likely rich in metal. The mission will seek to enhance our understanding of iron cores, which have not yet been explored. It will allow us to explore a world not made of rock or ice, but of metal."},
 		{ isExplored: false, icon: <img src={OrbitTrimImg} alt="OrbitImg" height='40'/>,image:OrbitImg, title: 'The orbit', text: "Psyche follows an orbit in the outer part of the main asteroid belt, at an average distance from the Sun of 3 astronomical units (AU); Earth orbits at 1 AU." },
-		{ isExplored: false, icon: <img src={ScaleImg} alt="ScaleImg" height='40'/>,image:ScaleImg, title: "Size",  text: "Psyche is about the length of the State of Massachusetts (leaving out Cape Cod) if it were a perfect sphere. It would have a diameter of 140 miles and a surface area of about 64,000 square miles."},
+		{ isExplored: false, icon: <img src={ScaleImg} alt="ScaleImg" height='40'/>,image:ScaleImg, title: "Size",  text: "If Psyche were a perfect sphere, it would have a diameter of 140 miles, or about the length of the State of Massachusetts (leaving out Cape Cod). It is estimated to have a surface area of about 64,000 square miles."},
 		{ isExplored: false, icon: <img src={FormationTrimImg} alt="FormationTrimImg" height='40'/>, image:FormationImg, title: "Formation",  text: "The asteroid is most likely a survivor of multiple violent hit-and-run collisions, common when the solar system was forming. Thus Psyche may be able to tell us how Earth’s core and the cores of the other terrestrial planets came to be."},
-		{ isExplored: false, icon: <img src={PropsImg} alt="Properties Image" height='40'/>,image:PropsImg, title: "Properties",  text: 
+		{ isExplored: false, icon: <img src={PropsImg} alt="FormationImg" height='40'/>,image:PropsImg, title: "Properties",  text: 
 		(
       <CombinedFact/>
     )},
     
     
-    { isExplored: false, icon: <img src={TrajectoryImg} alt="TrajectoryImg" height='40'/>,image:TrajectoryImg, title: 'Trajectory', text: 'The Psyche spacecraft is targeted to travel to the asteroid using solar-electric (low-thrust) propulsion, following a Mars flyby and gravity-assist. After arrival, the mission plan calls for mapping the asteroid and studying its properties.'},
+    { isExplored: false, icon: <img src={TrajectoryImg} alt="TrajectoryImg" height='40'/>,image:TrajectoryImg, title: 'Trajectory', text: 'The Psyche spacecraft is set to travel to the asteroid using solar-electric (low-thrust) propulsion, following a Mars flyby and gravity-assist. Upon arrival, the mission plan involves mapping the asteroid and studying its properties.'},
     { isExplored: false, icon: <img src={ObitImg2} alt="ObitImg2" height='40'/>,image:ObitImg2, title: 'Orbit', text: (
       <>
-      Once the spacecraft arrives at the asteroid, plans call for it to perform science operations from four staging orbits, which become successively closer.
+       Once the spacecraft arrives at the asteroid, plans call for it to perform science operations from four staging orbits, which become successively closer.
       <br /><br />
-      Orbit A: Characterization (56 Days)   Orbit B: Topography (B1: 92 Days, B2: 100 Days)
-      <br /><br />
-      Orbit C: Gravity Science (100 Days)   Orbit D: Elemental Mapping (100 Days)
+      Orbit A: Characterization (56 Days)  <br />
+      Orbit B: Topography (B1: 92 Days, B2: 100 Days) <br />
+      
+      Orbit C: Gravity Science (100 Days)   <br />
+      Orbit D: Elemental Mapping (100 Days)
       </>
     )}, 
     { isExplored: false, icon: <img src={SpacecraftSizeImg} alt="SpacecraftSizeImg" height='40'/>,image:SpacecraftSizeImg, title: 'Spacecraft Size', text: 'The Psyche spacecraft (including the solar panels) is about the size of a singles tennis court.'},
@@ -265,6 +272,7 @@ function PsycheApp(refreshRate) {
     isStartAnimating, setIsStartAnimating,
     showTravelAnimation, setShowTravelAnimation,
     doneStartAnimation, setDoneStartAnimation,
+    volumeOn, setVolumeOn,
   };
 
   const handleStartClick = () => {
@@ -274,7 +282,9 @@ function PsycheApp(refreshRate) {
 
   const handleCreditsClick = () => {
     if (!isPlayedMusic){
-      BackgroundAudio.play();
+      if (volumeOn){
+        audioRef.current.play();
+      }
       setIsPlayedMusic(true);
     }
 
@@ -283,7 +293,9 @@ function PsycheApp(refreshRate) {
   
   const handleLaunchClick = () => {
     if (!isPlayedMusic){
-      BackgroundAudio.play();
+      if (volumeOn){
+        audioRef.current.play();
+      }
       setIsPlayedMusic(true);
     }
     setCurrentPopupContent(popupContentLaunch);
@@ -330,8 +342,8 @@ function PsycheApp(refreshRate) {
     {
       setStartZooming(true);
       //setShowToolBox(true);
-      
     }
+    //else if ()
   }, [popupIndex, currentPopupContent]);
 
     useEffect(() => {
@@ -341,7 +353,7 @@ function PsycheApp(refreshRate) {
             setCount(count - 1);
           } else if (count === 0) {
             console.log("countdown finished")
-  
+            setPsycheLaunchInfo(false);
             setShowTravelAnimation(true);
             setCount(count - 1);
             
@@ -375,6 +387,24 @@ function PsycheApp(refreshRate) {
       return () => clearInterval(timerId); // Cleanup function
     }, [isCountdown, count]);
     
+    
+    useEffect(() => {
+       
+      if (isPlayedMusic){
+        if (volumeOn){
+          console.log("audio play")
+          audioRef.current.play();
+        }
+        else {
+          console.log("audio pause")
+          audioRef.current.pause();
+          
+        }
+      }
+      
+      
+    },[volumeOn, isPlayedMusic]);
+    
 
 
 
@@ -382,25 +412,29 @@ function PsycheApp(refreshRate) {
   return (
     <GlobalStateProvider value={useContextList}>
       <div className="app-container">
+        <audio ref={audioRef} loop>
+          <source src="/assets/music.mp3" type="audio/mpeg"></source>
+        </audio>
         {isCountdown && count > 0 && <div className="countdown">{count}</div>}
         
         <div className={isLaunched? "psyche-small-logo" : "psyche-logo"}><img src = {Psyche_Badge} alt="Psyche Badge"></img></div>
       {!isLaunched && <div >
+          <div className="title-big" style={{fontSize: "17vw"}}>Psyche</div>
           <div className="title-container title-white" style={{textAlign: "center"}}>
-            <div style={{fontSize: "5.5rem", textAlign: "left"}}>Psyche</div>
-            <div style={{fontSize: "3.5rem", textAlign: "center"}}>Journey</div>
-            <div style={{fontSize: "1.5rem", textAlign: "left"}}>to the</div>
-            <div style={{fontSize: "2.5rem", textAlign: "right"}}>Metal World</div>
+            <div style={{fontSize: "8vw", textAlign: "center"}}>Journey</div>
+            <div style={{fontSize: "4vw", textAlign: "left"}}>to the</div>
+            <div style={{fontSize: "7vw", textAlign: "center"}}>Metal World</div>
           </div>
           <div className="psyche-bot">
             <img src={PsycheBot} alt="Psyche Bot" style={{ width: "100%" }} />
+          </div>
+          <div className="hint-badge">
+          Please note: This experience includes audio. We recommend lowering your volume.          
           </div>
         </div>}
         <Canvas ref={canvasRef} camera={{ fov: 45, position: [0, 0, 75] }}>
          <MainPsycheContainer/>
         </Canvas>
-        
-        
         
         {showTravelAnimation && <StarryBackground/>}
         
@@ -423,6 +457,7 @@ function PsycheApp(refreshRate) {
                 //setStartZooming(true);
                 
                 setIsCountdown(true);
+                setPsycheLaunchInfo(true);
                
 
                 
@@ -465,9 +500,12 @@ function PsycheApp(refreshRate) {
         
         
         {isStartClicked && isLaunched && (<ControlsButton/>)}
+        <VolumeButton/>
         {isStartClicked && isLaunched && (<ProgressBarButton /> )}
         
         <CertificationPopup/>
+        
+        {psycheLaunchInfo && <div style={{fontSize: "1.5rem", textAlign: "center"}} className='ombre-button'>Psyche launched Oct. 13, 2023, at 10:19 a.m. EDT from Kennedy Space Center</div>}
 
       </div>
     </GlobalStateProvider>
