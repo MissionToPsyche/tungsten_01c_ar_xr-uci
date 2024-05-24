@@ -157,7 +157,7 @@ function PsycheApp(refreshRate) {
 const preCertificationContent = [
   { title: "Almost There!", message: "Well I think that’s everything, I’ve always dreamed of our planet getting recognized by humans some days.", text: "Finish"  },
   { title: "Review", message: "Before you go, do you know that Psyche is either the exposed core of an early planetary building block or a rarer type of primordial solar system object. Isn't that cool?", text: "Finish"  },
-  { title: "Final Steps", message: "Congrats on your joruney!", text: "Finish" }
+  { title: "Final Steps", message: "Congrats on your joruney! I have a certificate for you. You can view it by clicking on the top right corner icon.", text: "Finish" }
 ];
 
   const certCompleteText = [
