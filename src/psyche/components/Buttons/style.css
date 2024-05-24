@@ -24,18 +24,24 @@
     font-size: 3vw;
     width: 8vw;
     height: 8vw;
+    top: 5vw;
+    left: 5vw;
   }
 
   @media (min-width: 768px) and (max-width: 1024px) {
     font-size: 2vw;
-    width: 8vw;
-    height: 8vw;
+    width: 6vw;
+    height: 6vw;
+    top: 2vw;
+    left: 2vw;
   }
 
   @media (min-width: 1024px) {
     font-size: 3vw;
-    width: 7vw;
-    height: 7vw;
+    width: 5vw;
+    height: 5vw;
+    top: 1.5vw;
+    left: 1.5vw;
   }
 }
 

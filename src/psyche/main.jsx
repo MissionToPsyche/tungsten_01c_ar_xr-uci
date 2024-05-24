@@ -400,10 +400,7 @@ function PsycheApp(refreshRate) {
     
     
     useEffect(() => {
-      
-      console.log("isplayed", isPlayedMusic)
-      console.log("volume", volumeOn)
-      
+       
       if (isPlayedMusic){
         if (volumeOn){
           console.log("audio play")
