@@ -533,6 +533,18 @@ body {
   object-fit: contain;
   border: 2px solid rgba(89, 38, 81, 1);
   text-shadow: 20px 20px 20px rgba(89, 38, 81, 0.3);
+  
+  @media (max-width: 768px) {
+		width: 30vw;
+  }
+
+  @media (min-width: 768px) and (max-width: 2048px) {
+		width: 20vw;
+  }
+
+  @media (min-width: 1024px) {
+    width: 10vw;
+  }
 }
           
 .text-content {
