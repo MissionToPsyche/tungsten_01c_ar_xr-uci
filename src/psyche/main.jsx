@@ -475,7 +475,7 @@ const preCertificationContent = [
     <GlobalStateProvider value={useContextList}>
       <Div100vh className="app-container">
         <audio ref={audioRef} loop>
-          <source src="/assets/music.mp3" type="audio/mpeg"></source>
+          <source src="https://sese.asu.edu/sites/default/files/psyche_inspired_mallets.mp3" type="audio/mpeg"></source>
         </audio>
         {isCountdown && count > 0 && <div className="countdown">{count}</div>}
         
