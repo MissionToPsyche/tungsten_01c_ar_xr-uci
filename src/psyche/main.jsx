@@ -136,7 +136,7 @@ function PsycheApp(refreshRate) {
   const popupContentLaunch = [
     { title: "", message: "Hey... I'm Psyche Bot. I'm lost … I … I miss my home." },
     {title: "", message: "You wanna help me find my way back? That's really nice of you... but I'm not sure if we'll ever make it." },
-    { title: "", message: "Psyche is a mysterious asteroid that no one has ever visited before. Psyche orbits the Sun between Mars and Jupiter at a distance about three times farther away from the Sun than is Earth." },
+    { title: "", message: "Psyche is a mysterious asteroid that no one has ever visited before." },
     { title: "", message: "Psyche is different!!! You’ve never seen an asteroid that is as metal-rich as Psyche." },
     { title: "", message: "I guess we can try... but I'm not very good at this space stuff." },
     { title: "Tool Box", message: "Hey, it'd be awesome if humans could recognize my home! Here are some tools we will need for our journey and exploration."},
@@ -149,12 +149,12 @@ function PsycheApp(refreshRate) {
     { title: "Movement", message: "To traverse through space you can swipe to move, pitch to zoom and double click to pause. Give it a try!" },
     { title: "Mission Goal", message: "The goal of the mission is to collect fun facts and details about NASA's Psyche Mission." },
     { title: "Notebook", message: "You can view the facts you collected by clicking on the notebook button in the top left." },
-    { title: "Notebook", message: "Currently you don't have any facts. Go out and collect some by exploring the spacecraft or Pysche Asteroid!" }
+    //{ title: "Notebook", message: "Currently you don't have any facts. Go out and collect some by exploring the spacecraft or Pysche Asteroid!" }
 ];
 
 const preCertificationContent = [
   { title: "Almost There!", message: "Well I think that’s everything, I’ve always dreamed of our planet getting recognized by humans some days.", text: "Finish"  },
-  { title: "Review", message: "Well before I ask you to go, do you know that Psyche is either the exposed core of an early planetary building block or a rarer type of primordial solar system object. isn't that cool?", text: "Finish"  },
+  { title: "Review", message: "Before you go, do you know that Psyche is either the exposed core of an early planetary building block or a rarer type of primordial solar system object. Isn't that cool?", text: "Finish"  },
   { title: "Final Steps", message: "Congrats on your joruney!", text: "Finish" }
 ];
 
@@ -175,10 +175,10 @@ const preCertificationContent = [
       text: "Glad we made it!"
     },
     {
-      text: "Ill Try it out."
+      text: "I'll try it out."
     },
     {
-      text: "Wow, Interesting"
+      text: "Wow, interesting!"
     },
     {
       text: "Let me take a look"
