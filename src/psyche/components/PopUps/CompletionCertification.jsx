@@ -18,11 +18,12 @@ import '../../style.css'
 
 
   function CertificationPopup() {
-    const {progressValue }= useContext(GlobalStateContext);
+    const {progressValue, showCertification, setShowCertification }= useContext(GlobalStateContext);
     const handleClose = () => {
 			setShowCertification(false);
 		}
-		const [showCertification, setShowCertification] = useState(true);
+
+		
     
     //const modalStyle = {
     //  position: 'fixed',
@@ -61,7 +62,7 @@ import '../../style.css'
         <Box sx={{paddingBottom:'20px'}}>You're an official Psyche explorer!</Box>
       </Typography>
       <Button style={{ color: 'white', borderRadius:'15px' }} fullWidth sx={{marginY:'5px', padding:'10px', background: 'linear-gradient(to right, #a53f5b, #592651)', textTransform: 'none', fontSize: '100%'}} onClick={handleClose}>Continue Exploring</Button>
-      <Button style={{ color: 'white', borderRadius:'15px' }} fullWidth sx={{marginY:'5px', padding:'10px', background: 'linear-gradient(to right, #a53f5b, #592651)', textTransform: 'none', fontSize: '100%'}} onClick={() => window.location.href = 'https://www.nasa.gov/psyche'}>Learn More About Psyche</Button>
+      <Button style={{ color: 'white', borderRadius:'15px' }} fullWidth sx={{marginY:'5px', padding:'10px', background: 'linear-gradient(to right, #a53f5b, #592651)', textTransform: 'none', fontSize: '100%'}} onClick={() => window.location.href = 'https://psyche.asu.edu/'}>Learn More About Psyche</Button>
       <Button style={{ color: 'white', borderRadius:'15px' }} fullWidth sx={{marginY:'5px', padding:'10px', background: 'linear-gradient(to right, #a53f5b, #592651)', textTransform: 'none', fontSize: '100%'}} onClick={() => window.location.reload()}>
         Start Over
       </Button>

@@ -25,7 +25,7 @@ function MissionIntroPopup({ btnTextLaunch,title, message, onClose, onNext, isLa
           </Typography>
           <Typography>{typedMessage}</Typography>
           {isLast ? (
-            <button onClick={onClose}>I'm ready!</button>
+            <button onClick={onClose}>Great!</button>
           ) : (
             <button onClick={onNext} disabled={startZooming  || (btnTextLaunch === "Finish" && numExploredTools<3)}>{btnTextLaunch}</button>
           )}

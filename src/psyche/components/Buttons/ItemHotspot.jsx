@@ -36,7 +36,7 @@ const ItemHotspot = ({ position, scale, meshRotation, boxImage, imageUrl, title,
     return (
       <>
             {!isExplored && (
-                <Html position={position} distanceFactor={distanceFactor} ref={meshRef}>
+                <Html position={position} distanceFactor={distanceFactor} ref={meshRef} zIndexRange={[0,16779]} >
                     <div className="icon" onClick={handleIconClick}></div>
                 </Html>
             )}
