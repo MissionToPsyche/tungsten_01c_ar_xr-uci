@@ -55,18 +55,6 @@ import StarryBackground from './components/TravelStars.jsx';
 
 function PsycheApp(refreshRate) {
   
-  
-  const BackgroundAudio = new Audio("/assets/music.mp3");
-  
-  function replayAudio() {
-    console.log("replay audio")
-    BackgroundAudio.currentTime = 0;
-    BackgroundAudio.play();
-  }
-
-  BackgroundAudio.addEventListener('ended', replayAudio);
-  
-  
   const canvasRef = useRef();
   const audioRef = useRef(null);
   
