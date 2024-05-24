@@ -115,6 +115,7 @@ function PsycheApp(refreshRate) {
   const [toolPlacementDisable, setToolPlacementDisable] = useState(true);
   const [volumeOn, setVolumeOn] = useState(true);
   const [psycheLaunchInfo, setPsycheLaunchInfo] = useState(false);
+  const [showCertification, setShowCertification] = useState(true);
   
   
   
@@ -273,6 +274,7 @@ function PsycheApp(refreshRate) {
     showTravelAnimation, setShowTravelAnimation,
     doneStartAnimation, setDoneStartAnimation,
     volumeOn, setVolumeOn,
+    showCertification, setShowCertification,
   };
 
   const handleStartClick = () => {
@@ -405,10 +407,13 @@ function PsycheApp(refreshRate) {
       
     },[volumeOn, isPlayedMusic]);
     
+    
+    const showCertificate = () => {
+      if (progressValue === 100){
+        setShowCertification(true);
+      }
+    }
 
-
-
-  
   return (
     <GlobalStateProvider value={useContextList}>
       <div className="app-container">
@@ -417,7 +422,7 @@ function PsycheApp(refreshRate) {
         </audio>
         {isCountdown && count > 0 && <div className="countdown">{count}</div>}
         
-        <div className={isLaunched? "psyche-small-logo" : "psyche-logo"}><img src = {Psyche_Badge} alt="Psyche Badge"></img></div>
+        <div className={isLaunched? "psyche-small-logo" : "psyche-logo"} onClick={showCertificate}><img src = {Psyche_Badge} alt="Psyche Badge"></img></div>
       {!isLaunched && <div >
           <div className="title-big" style={{fontSize: "17vw"}}>Psyche</div>
           <div className="title-container title-white" style={{textAlign: "center"}}>
