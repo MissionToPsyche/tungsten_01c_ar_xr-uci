@@ -122,6 +122,7 @@ function PsycheApp(refreshRate) {
 
   const [popupIndex, setPopupIndex] = useState(-1);
   const [currentPopupContent, setCurrentPopupContent] = useState([]);
+  const [preCertComplete, setPreCertComplete] = useState(false);
 
   const popupContentLaunch = [
     { title: "", message: "Hey... I'm Psyche Bot. I'm lost … I … I miss my home." },
@@ -141,6 +142,42 @@ function PsycheApp(refreshRate) {
     { title: "Notebook", message: "You can view the facts you collected by clicking on the notebook button in the top left." },
     { title: "Notebook", message: "Currently you don't have any facts. Go out and collect some by exploring the spacecraft or Pysche Asteroid!" }
 ];
+
+const preCertificationContent = [
+  { title: "Almost There!", message: "Well I think that’s everything, I’ve always dreamed of our planet getting recognized by humans some days.", text: "Finish"  },
+  { title: "Review", message: "Well before I ask you to go, do you know that Psyche is either the exposed core of an early planetary building block or a rarer type of primordial solar system object. isn't that cool?", text: "Finish"  },
+  { title: "Final Steps", message: "Congrats on your joruney!", text: "Finish" }
+];
+
+  const certCompleteText = [
+    {
+      text: "Happy to help out."
+    },
+    {
+      text: "Wow, that is interesting!"
+    },
+    {
+      text: "Finish"
+    }
+  ]
+
+  const instructionsText = [
+    {
+      text: "Glad we made it!"
+    },
+    {
+      text: "Ill Try it out."
+    },
+    {
+      text: "Wow, Interesting"
+    },
+    {
+      text: "Let me take a look"
+    },
+    {
+      text: "Explore"
+    }
+  ]
 
   const btnTextLaunch = [
     { 
@@ -193,9 +230,21 @@ function PsycheApp(refreshRate) {
     }
   };
 
+  useEffect(() => {
+    if (progressValue >= 94 && !preCertComplete) {
+      setCurrentPopupContent(preCertificationContent);
+      setPopupIndex(0);
+    }
+  }, [progressValue, preCertComplete]);
+
   const handleClosePopup = () => {
-    setPopupIndex(-1); // Reset or close popups
-  };  
+    // Close the popup if the last message of the pre-certification conversation is shown
+    if (currentPopupContent === preCertificationContent && popupIndex === preCertificationContent.length - 1) {
+      //setPreCertComplete(true);  // Indicates that the pre-certification conversation is complete
+      // setShowCertification(true);
+    }
+    setPopupIndex(-1); // This will effectively close the popup
+  };
   
   const [factList, setFactList] = useState([
     {isExplored: true, title: "Overview", text: "Welcome to the notebook, please choose on the left to see facts about the Psyche mission that you have explored."},
@@ -420,10 +469,12 @@ function PsycheApp(refreshRate) {
         
         {popupIndex >= 0 && (
           <MissionIntroPopup
-            btnTextLaunch={btnTextLaunch[popupIndex].text}
+            //btnTextLaunch={btnTextLaunch[popupIndex].text}
+            btnTextLaunch={ currentPopupContent[1].message === preCertificationContent[1].message ? certCompleteText[popupIndex].text : (currentPopupContent[1].message === popupContentStart[1].message ? instructionsText[popupIndex].text : btnTextLaunch[popupIndex].text)  }
             title={currentPopupContent[popupIndex].title}
             message={currentPopupContent[popupIndex].message}
             onNext={() => handleNextPopup()}
+            
             onClose={() => {
               
               handleClosePopup();
@@ -441,6 +492,12 @@ function PsycheApp(refreshRate) {
               if (currentPopupContent[1].message === popupContentStart[1].message) { 
                 setShowToPsycheButton(true);
                 setShowToSpaceCraftButton(true);
+              }
+              if (currentPopupContent[1].message === preCertificationContent[1].message) {
+                
+                // setShowCertification(true);
+                setPreCertComplete(true);
+                setPreCertCeomplete(false);
               }
               
             }}
@@ -478,7 +535,7 @@ function PsycheApp(refreshRate) {
         {isStartClicked && isLaunched && (<ControlsButton/>)}
         {isStartClicked && isLaunched && (<ProgressBarButton /> )}
         
-        <CertificationPopup/>
+        {preCertComplete && <CertificationPopup />}
 
       </div>
     </GlobalStateProvider>
