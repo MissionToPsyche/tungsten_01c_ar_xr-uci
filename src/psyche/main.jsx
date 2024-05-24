@@ -204,9 +204,9 @@ function PsycheApp(refreshRate) {
   
   const [factList, setFactList] = useState([
     {isExplored: true, title: "Overview", text: "Welcome to the notebook, please choose on the left to see facts about the Psyche mission that you have explored."},
-    { isExplored: false, icon: <img src={MetalImg} alt = "MetalImg" height='40'/>, image: MetalImg ,title: 'Scientific Interest', text: "Psyche is likely rich in metal. The mission will seek to aid our understanding of iron cores, which have not yet been explored. It will allow us to explore a world not made of rock or ice, but of metal."},
+    { isExplored: false, icon: <img src={MetalImg} alt = "MetalImg" height='40'/>, image: MetalImg ,title: 'Scientific Interest', text: "Psyche is likely rich in metal. The mission will seek to enhance our understanding of iron cores, which have not yet been explored. It will allow us to explore a world not made of rock or ice, but of metal."},
 		{ isExplored: false, icon: <img src={OrbitTrimImg} alt="OrbitImg" height='40'/>,image:OrbitImg, title: 'The orbit', text: "Psyche follows an orbit in the outer part of the main asteroid belt, at an average distance from the Sun of 3 astronomical units (AU); Earth orbits at 1 AU." },
-		{ isExplored: false, icon: <img src={ScaleImg} alt="ScaleImg" height='40'/>,image:ScaleImg, title: "Size",  text: "Psyche is about the length of the State of Massachusetts (leaving out Cape Cod) if it were a perfect sphere. It would have a diameter of 140 miles and a surface area of about 64,000 square miles."},
+		{ isExplored: false, icon: <img src={ScaleImg} alt="ScaleImg" height='40'/>,image:ScaleImg, title: "Size",  text: "If Psyche were a perfect sphere, it would have a diameter of 140 miles, or about the length of the State of Massachusetts (leaving out Cape Cod). It is estimated to have a surface area of about 64,000 square miles."},
 		{ isExplored: false, icon: <img src={FormationTrimImg} alt="FormationTrimImg" height='40'/>,image:FormationTrimImg, title: "Formation",  text: "The asteroid is most likely a survivor of multiple violent hit-and-run collisions, common when the solar system was forming. Thus Psyche may be able to tell us how Earth’s core and the cores of the other terrestrial planets came to be."},
 		{ isExplored: false, icon: <img src={PropsImg} alt="FormationImg" height='40'/>,image:PropsImg, title: "Properties",  text: 
 		(
@@ -214,7 +214,7 @@ function PsycheApp(refreshRate) {
     )},
     
     
-    { isExplored: false, icon: <img src={TrajectoryImg} alt="TrajectoryImg" height='40'/>,image:TrajectoryImg, title: 'Trajectory', text: 'The Psyche spacecraft is targeted to travel to the asteroid using solar-electric (low-thrust) propulsion, following a Mars flyby and gravity-assist. After arrival, the mission plan calls for mapping the asteroid and studying its properties.'},
+    { isExplored: false, icon: <img src={TrajectoryImg} alt="TrajectoryImg" height='40'/>,image:TrajectoryImg, title: 'Trajectory', text: 'The Psyche spacecraft is set to travel to the asteroid using solar-electric (low-thrust) propulsion, following a Mars flyby and gravity-assist. Upon arrival, the mission plan involves mapping the asteroid and studying its properties.'},
     { isExplored: false, icon: <img src={ObitImg2} alt="ObitImg2" height='40'/>,image:ObitImg2, title: 'Orbit', text: (
       <>
        Once the spacecraft arrives at the asteroid, plans call for it to perform science operations from four staging orbits, which become successively closer.
@@ -430,21 +430,22 @@ function PsycheApp(refreshRate) {
         
         <div className={isLaunched? "psyche-small-logo" : "psyche-logo"}><img src = {Psyche_Badge} alt="Psyche Badge"></img></div>
       {!isLaunched && <div >
+          <div className="title-big" style={{fontSize: "17vw"}}>Psyche</div>
           <div className="title-container title-white" style={{textAlign: "center"}}>
-            <div style={{fontSize: "5.5rem", textAlign: "left"}}>Psyche</div>
-            <div style={{fontSize: "3.5rem", textAlign: "center"}}>Journey</div>
-            <div style={{fontSize: "1.5rem", textAlign: "left"}}>to the</div>
-            <div style={{fontSize: "2.5rem", textAlign: "right"}}>Metal World</div>
+            <div style={{fontSize: "8vw", textAlign: "center"}}>Journey</div>
+            <div style={{fontSize: "4vw", textAlign: "left"}}>to the</div>
+            <div style={{fontSize: "7vw", textAlign: "center"}}>Metal World</div>
           </div>
           <div className="psyche-bot">
             <img src={PsycheBot} alt="Psyche Bot" style={{ width: "100%" }} />
+          </div>
+          <div class="hint-badge">
+          Please note: This experience includes audio. We recommend lowering your volume.          
           </div>
         </div>}
         <Canvas ref={canvasRef} camera={{ fov: 45, position: [0, 0, 75] }}>
          <MainPsycheContainer/>
         </Canvas>
-        
-        
         
         {showTravelAnimation && <StarryBackground/>}
         
