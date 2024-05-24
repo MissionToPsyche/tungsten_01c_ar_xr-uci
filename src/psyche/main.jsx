@@ -136,26 +136,26 @@ function PsycheApp(refreshRate) {
   const popupContentLaunch = [
     { title: "", message: "Hey... I'm Psyche Bot. I'm lost … I … I miss my home." },
     {title: "", message: "You wanna help me find my way back? That's really nice of you... but I'm not sure if we'll ever make it." },
-    { title: "", message: "Psyche is a mysterious asteroid that no one has ever visited before." },
+    { title: "", message: "Psyche is a mysterious asteroid that no one has ever visited before. Psyche is about three times farther away from the Sun than is Earth." },
     { title: "", message: "Psyche is different!!! You’ve never seen an asteroid that is as metal-rich as Psyche." },
     { title: "", message: "I guess we can try... but I'm not very good at this space stuff." },
-    { title: "Tool Box", message: "Hey, it'd be awesome if humans could recognize my home! Here are some tools we will need for our journey and exploration."},
+    { title: "Tool Box", message: "Hey, it'd be awesome if humans could recognize my home! Here are some tools we will need for our exploration."},
     { title: "" , message: "Click on them to add them to the spacecraft! When you are done, press \"Finish\"."},
-    {title: "Getting Started", message: "Great job adding the tools! Are you ready to start your journey?" },
+    {title: "Getting Started", message: "Wow, I'm one step closer to my home! Are you ready to start our journey?" },
    
   ];
   const popupContentStart = [
     { title: "Tutorial", message: "We made it! That's my home! Thanks so much for bringing me back! Now let me show you around!" },
     { title: "Movement", message: "To traverse through space you can swipe to move, pitch to zoom and double click to pause. Give it a try!" },
-    { title: "Mission Goal", message: "The goal of the mission is to collect fun facts and details about NASA's Psyche Mission." },
-    { title: "Notebook", message: "You can view the facts you collected by clicking on the notebook button in the top left." },
+    { title: "Mission Goal", message: "Try to collect all fun facts about Psyche and learn spacecraft specifics." },
+    { title: "Notebook", message: "The notebook on the top left will gather all your explorations and you can bring it back to earth!" },
     //{ title: "Notebook", message: "Currently you don't have any facts. Go out and collect some by exploring the spacecraft or Pysche Asteroid!" }
 ];
 
 const preCertificationContent = [
-  { title: "Almost There!", message: "Well I think that’s everything, I’ve always dreamed of our planet getting recognized by humans some days.", text: "Finish"  },
-  { title: "Review", message: "Before you go, do you know that Psyche is either the exposed core of an early planetary building block or a rarer type of primordial solar system object. Isn't that cool?", text: "Finish"  },
-  { title: "Final Steps", message: "Congrats on your joruney!", text: "Finish" }
+  { title: "Almost There!", message: "Well I think that’s everything, I’ve always dreamed of our planet getting recognized by humans some days.", text: "Thanks for bringing me onto this journey to the metal world."  },
+  { title: "Review", message: "Can you imagine, living in a world full of metal?", text: "Wow, I'd become a robot."  },
+  { title: "Final Steps", message: "Congradulations on your journey, feel free to stay for a bit longer and continue the NASA Psyche Mission!", text: "NASA Psyche Mission, what a good name." }
 ];
 
   const certCompleteText = [
@@ -202,7 +202,7 @@ const preCertificationContent = [
       text: "Chill chill, I can help you to go back!",
     },
     {
-      text: "You know what our humans usually do? We build spacecraft to explore asteroids!",
+      text: "Spacecrafts! Us humans always build spacecrafts to explore asteroids!",
     },
     {
       text: "Next",
