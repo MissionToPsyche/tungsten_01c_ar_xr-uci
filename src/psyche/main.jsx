@@ -30,8 +30,11 @@ import SpacecraftSizeImg from '../../public/assets/spacecraft_size.svg';
 import BusSizeImg from '../../public/assets/bus_size.svg';
 import PropulsionImg from '../../public/assets/propulsion_system.svg';
 import MultispectralImager from '../../public/assets/multiSpec_Imager.png';
+import MultispectralImagerTrans from '../../public/assets/multispec_imager_transparent.webp';
 import Magnetometer from '../../public/assets/Magnetometer.png';
+import MagnetometerTrans from '../../public/assets/magnetometer_transparent.webp';
 import GammaRayNeutronSpec from '../../public/assets/gammaRayNeutronSpec.png';
+import GammaRayNeutronSpecTrans from '../../public/assets/gammaray_neutron_spec.webp';
 import PsycheBot from '../../public/assets/Psyche_Bot_Full.png';
 import CombinedFact from './components/PopUps/CombinedFact';
 import Psyche_Badge from '../../public/assets/Psyche_Badge.svg';
@@ -207,7 +210,7 @@ function PsycheApp(refreshRate) {
     { isExplored: false, icon: <img src={MetalImg} alt = "MetalImg" height='40'/>, image: MetalImg ,title: 'Scientific Interest', text: "Psyche is likely rich in metal. The mission will seek to enhance our understanding of iron cores, which have not yet been explored. It will allow us to explore a world not made of rock or ice, but of metal."},
 		{ isExplored: false, icon: <img src={OrbitTrimImg} alt="OrbitImg" height='40'/>,image:OrbitImg, title: 'The orbit', text: "Psyche follows an orbit in the outer part of the main asteroid belt, at an average distance from the Sun of 3 astronomical units (AU); Earth orbits at 1 AU." },
 		{ isExplored: false, icon: <img src={ScaleImg} alt="ScaleImg" height='40'/>,image:ScaleImg, title: "Size",  text: "If Psyche were a perfect sphere, it would have a diameter of 140 miles, or about the length of the State of Massachusetts (leaving out Cape Cod). It is estimated to have a surface area of about 64,000 square miles."},
-		{ isExplored: false, icon: <img src={FormationTrimImg} alt="FormationTrimImg" height='40'/>,image:FormationTrimImg, title: "Formation",  text: "The asteroid is most likely a survivor of multiple violent hit-and-run collisions, common when the solar system was forming. Thus Psyche may be able to tell us how Earth’s core and the cores of the other terrestrial planets came to be."},
+		{ isExplored: false, icon: <img src={FormationTrimImg} alt="FormationTrimImg" height='40'/>, image:FormationImg, title: "Formation",  text: "The asteroid is most likely a survivor of multiple violent hit-and-run collisions, common when the solar system was forming. Thus Psyche may be able to tell us how Earth’s core and the cores of the other terrestrial planets came to be."},
 		{ isExplored: false, icon: <img src={PropsImg} alt="FormationImg" height='40'/>,image:PropsImg, title: "Properties",  text: 
 		(
       <CombinedFact/>
@@ -232,23 +235,9 @@ function PsycheApp(refreshRate) {
 	]);
   
   const [toolList, setToolList] = useState([
-    { isExplored: false, icon: <img src={GammaRayNeutronSpec} className="gallery-image"/>, image:GammaRayNeutronSpec, title: "Gamma Ray and Neutron Spectrometer",  text: "Determine the chemical elements constituting Psyche."},
-    { isExplored: false, icon: <img src={MultispectralImager} className="gallery-image"/>, image:MultispectralImager ,title: 'Multispectral Imager', text: "Provide information about the mineral composition and topography of Psyche." },
-    { isExplored: false, icon: <img src={Magnetometer} className="gallery-image"/>, image:Magnetometer,title: 'Magnetometer', text: "Search for evidence of an ancient magnetic field." },
-    //{ isExplored: false, icon: <BrushIcon />,title: 'X-band radio telecommunications system', text: (
-    //  <>
-    //    Used to send commands to and receive data from the spacecraft and to conduct gravity science.
-    //    <br /><br />
-    //    Waves for communication with Psyche, examining how Psyche influences the spacecraft's orbit.
-    //  </>
-    //) },
-    //{ icon: <SquareFootIcon />,title: 'Deep Space Optical Communication technology demo', text: (
-    //  <>
-    //    Is not intended to relay Psyche mission data since the technology demonstration is planned for the first two years of the spacecraft’s cruise. 
-    //    <br /><br />
-    //    But if it proves successful, the technology will be used by future human and robotic spacecraft to transmit huge volumes of science data, allowing more innovative space mission concepts to take flight. Ultimately, DSOC may pave the way for broadband communications that will help support humanity’s next giant leap.
-    //  </>
-    //) },
+    { isExplored: false, icon: <ArchitectureIcon/>, image:GammaRayNeutronSpec, title: "Gamma Ray and Neutron Spectrometer",  text: "Determine the chemical elements constituting Psyche."},
+    { isExplored: false, icon: <SquareFootIcon/>, image:MultispectralImager ,title: 'Multispectral Imager', text: "Provide information about the mineral composition and topography of Psyche." },
+    { isExplored: false, icon: <HardwareIcon/>, image:Magnetometer,title: 'Magnetometer', text: "Search for evidence of an ancient magnetic field." },
   ]);
 
   const useContextList = {
@@ -439,7 +428,7 @@ function PsycheApp(refreshRate) {
           <div className="psyche-bot">
             <img src={PsycheBot} alt="Psyche Bot" style={{ width: "100%" }} />
           </div>
-          <div class="hint-badge">
+          <div className="hint-badge">
           Please note: This experience includes audio. We recommend lowering your volume.          
           </div>
         </div>}

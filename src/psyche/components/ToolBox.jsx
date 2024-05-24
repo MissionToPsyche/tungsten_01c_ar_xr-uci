@@ -90,7 +90,8 @@ const ToolBox = () => {
 
   return (
     <>
-    <Box className="gallery-container">
+
+    <Box className="gallery-container" sx={toolPlacementDisable? { opacity: 0.5 }: {opacity: 1}}>
       {toolList.map((tool, index) => (
           <Box key={index} onClick={() => handleClick(index)}
               style={{
@@ -99,17 +100,17 @@ const ToolBox = () => {
                 transition: 'opacity 0.5s, visibility 0.5s',
                 margin:'1vw',
               }}>
-                <Box>
-                {tool.icon}
+                <Box >
+                  <img className='gallery-image' src={tool.image} alt={tool.title} />
                 </Box>
                 <Box className='text'>
                 {tool.title}
                 </Box>
           </Box>
       ))}
-        
-
     </Box>
+    
+    
     {currentToolIndex!== null &&
     <Modal open={currentToolIndex != null}
     onClose={handleClose}>

@@ -13,7 +13,7 @@ function InfoContent({ index, array}) {
 			<Typography paragraph>
 				{array[index].text}
 			</Typography>
-			{index!==4 && (
+			{index!==5 && (
       <img 
         src={array[index].image} 
         width='200vw' 
