@@ -217,11 +217,13 @@ function PsycheApp(refreshRate) {
     { isExplored: false, icon: <img src={TrajectoryImg} alt="TrajectoryImg" height='40'/>,image:TrajectoryImg, title: 'Trajectory', text: 'The Psyche spacecraft is targeted to travel to the asteroid using solar-electric (low-thrust) propulsion, following a Mars flyby and gravity-assist. After arrival, the mission plan calls for mapping the asteroid and studying its properties.'},
     { isExplored: false, icon: <img src={ObitImg2} alt="ObitImg2" height='40'/>,image:ObitImg2, title: 'Orbit', text: (
       <>
-      Once the spacecraft arrives at the asteroid, plans call for it to perform science operations from four staging orbits, which become successively closer.
+       Once the spacecraft arrives at the asteroid, plans call for it to perform science operations from four staging orbits, which become successively closer.
       <br /><br />
-      Orbit A: Characterization (56 Days)   Orbit B: Topography (B1: 92 Days, B2: 100 Days)
-      <br /><br />
-      Orbit C: Gravity Science (100 Days)   Orbit D: Elemental Mapping (100 Days)
+      Orbit A: Characterization (56 Days)  <br />
+      Orbit B: Topography (B1: 92 Days, B2: 100 Days) <br />
+      
+      Orbit C: Gravity Science (100 Days)   <br />
+      Orbit D: Elemental Mapping (100 Days)
       </>
     )}, 
     { isExplored: false, icon: <img src={SpacecraftSizeImg} alt="SpacecraftSizeImg" height='40'/>,image:SpacecraftSizeImg, title: 'Spacecraft Size', text: 'The Psyche spacecraft (including the solar panels) is about the size of a singles tennis court.'},
