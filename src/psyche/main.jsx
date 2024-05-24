@@ -2,6 +2,7 @@ import { Canvas } from '@react-three/fiber';
 import MainPsycheContainer from './components/MainPsycheContainer';
 import { useRef, useState, useEffect } from 'react';
 import './style.css';
+import Div100vh from 'react-div-100vh'
 
 import { GlobalStateProvider } from './utils/useContext';
 import ProgressBarButton from './components/Buttons/ProgressBarButton';
@@ -472,7 +473,7 @@ const preCertificationContent = [
 
   return (
     <GlobalStateProvider value={useContextList}>
-      <div className="app-container">
+      <Div100vh className="app-container">
         <audio ref={audioRef} loop>
           <source src="/assets/music.mp3" type="audio/mpeg"></source>
         </audio>
@@ -578,7 +579,7 @@ const preCertificationContent = [
         {psycheLaunchInfo && <div style={{fontSize: "1.5rem", textAlign: "center"}} className='ombre-button'>Psyche launched Oct. 13, 2023, at 10:19 a.m. EDT from Kennedy Space Center</div>}
 
 
-      </div>
+      </Div100vh>
     </GlobalStateProvider>
   );
 }
