@@ -157,7 +157,8 @@ function PsycheApp(refreshRate) {
 const preCertificationContent = [
   { title: "Almost There!", message: "Well I think that’s everything, I’ve always dreamed of our planet getting recognized by humans some days.", text: "Thanks for bringing me onto this journey to the metal world."  },
   { title: "Review", message: "Can you imagine, living in a world full of metal?", text: "Wow, I'd become a robot."  },
-  { title: "Final Steps", message: "Congradulations on your journey, feel free to stay for a bit longer and continue the NASA Psyche Mission!", text: "NASA Psyche Mission, what a good name." }
+  { title: "Final Steps", message: "Congradulations on your journey, feel free to stay for a bit longer and continue the NASA Psyche Mission!", text: "NASA Psyche Mission, what a good name." },
+  { title: "", message: "I have a certificate for you. You can review it by clicking on the top right corner icon if choose to continue explore.", text: "NASA Psyche Mission, what a good name." },
 ];
 
   const certCompleteText = [
