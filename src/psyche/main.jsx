@@ -510,7 +510,7 @@ function PsycheApp(refreshRate) {
         
         <CertificationPopup/>
         
-        {psycheLaunchInfo && <div style={{fontSize: "1.5rem", textAlign: "center"}} className='ombre-button'>Psyche launched Oct. 13, 2023, at 10:19 a.m. EDT from Kennedy Space Center</div>}
+        {psycheLaunchInfo && <div style={{fontSize: "1.5rem", textAlign: "center"}} className='ombre-button'>Psyche spacecraft launched Oct. 13, 2023, at 10:19 a.m. EDT from Kennedy Space Center</div>}
 
       </div>
     </GlobalStateProvider>
