@@ -149,7 +149,7 @@ function PsycheApp(refreshRate) {
     { title: "Movement", message: "To traverse through space you can swipe to move, pitch to zoom and double click to pause. Give it a try!" },
     { title: "Mission Goal", message: "The goal of the mission is to collect fun facts and details about NASA's Psyche Mission." },
     { title: "Notebook", message: "You can view the facts you collected by clicking on the notebook button in the top left." },
-    { title: "Notebook", message: "Currently you don't have any facts. Go out and collect some by exploring the spacecraft or Pysche Asteroid!" }
+    //{ title: "Notebook", message: "Currently you don't have any facts. Go out and collect some by exploring the spacecraft or Pysche Asteroid!" }
 ];
 
 const preCertificationContent = [
@@ -175,10 +175,10 @@ const preCertificationContent = [
       text: "Glad we made it!"
     },
     {
-      text: "Ill Try it out."
+      text: "I'll try it out."
     },
     {
-      text: "Wow, Interesting"
+      text: "Wow, interesting!"
     },
     {
       text: "Let me take a look"
