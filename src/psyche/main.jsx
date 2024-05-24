@@ -397,21 +397,22 @@ function PsycheApp(refreshRate) {
         
         <div className={isLaunched? "psyche-small-logo" : "psyche-logo"}><img src = {Psyche_Badge} alt="Psyche Badge"></img></div>
       {!isLaunched && <div >
+          <div className="title-big" style={{fontSize: "17vw"}}>Psyche</div>
           <div className="title-container title-white" style={{textAlign: "center"}}>
-            <div style={{fontSize: "5.5rem", textAlign: "left"}}>Psyche</div>
-            <div style={{fontSize: "3.5rem", textAlign: "center"}}>Journey</div>
-            <div style={{fontSize: "1.5rem", textAlign: "left"}}>to the</div>
-            <div style={{fontSize: "2.5rem", textAlign: "right"}}>Metal World</div>
+            <div style={{fontSize: "8vw", textAlign: "center"}}>Journey</div>
+            <div style={{fontSize: "4vw", textAlign: "left"}}>to the</div>
+            <div style={{fontSize: "7vw", textAlign: "center"}}>Metal World</div>
           </div>
           <div className="psyche-bot">
             <img src={PsycheBot} alt="Psyche Bot" style={{ width: "100%" }} />
+          </div>
+          <div class="hint-badge">
+          Please note: This experience includes audio. We recommend lowering your volume.          
           </div>
         </div>}
         <Canvas ref={canvasRef} camera={{ fov: 45, position: [0, 0, 75] }}>
          <MainPsycheContainer/>
         </Canvas>
-        
-        
         
         {showTravelAnimation && <StarryBackground/>}
         
