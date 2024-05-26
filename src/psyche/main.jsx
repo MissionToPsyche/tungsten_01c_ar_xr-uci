@@ -523,7 +523,7 @@ const preCertificationContent = [
                 
                 // setShowCertification(true);
                 setPreCertComplete(true);
-                setPreCertCeomplete(false);
+                //setPreCertCeomplete(false);
               }
               
             }}
