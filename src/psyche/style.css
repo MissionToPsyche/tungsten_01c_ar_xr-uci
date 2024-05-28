@@ -454,8 +454,8 @@ button {
   transform: translateX(-50%);
   width: 70%;
   /*height: 20vh; */
-  background: linear-gradient(to right, rgba(165, 63, 91, 0.25), rgba(89, 38, 81, 0.25));
-  border: 2px solid #843557;
+  background: linear-gradient(to right, rgba(165, 63, 91, 1), rgba(89, 38, 81, 1));
+  /*border: 2px solid #843557;*/
   z-index: 10;
   overflow: hidden;
   padding: 1.5vh;
@@ -474,7 +474,7 @@ button {
   image-rendering: pixelated;
   width: 3vw;
   object-fit: contain;
-  border: 1px solid #843557;
+  /*border: 1px solid #843557;*/
   border-radius: 5px;
   
   @media (max-width: 768px) {
@@ -541,7 +541,7 @@ button {
   }
 
   .text-content  {  
-    padding: 15px ; /* Smaller padding for text content on mobile */
+    padding: 1.5vh ; /* Smaller padding for text content on mobile */
     justify-content: space-between;
   }
 
