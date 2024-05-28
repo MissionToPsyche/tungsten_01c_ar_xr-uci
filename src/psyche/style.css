@@ -532,6 +532,7 @@ button {
   .mission-intro-popup {
     width: 80%; /* Increase the width for mobile to maintain the rectangle shape */
     min-height: 80px;
+    height: 17%;
   }
 
   .character-image img {
