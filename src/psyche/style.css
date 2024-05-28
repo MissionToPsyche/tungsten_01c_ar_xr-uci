@@ -455,7 +455,7 @@ button {
   width: 70%;
   height: 20vh; 
   background: linear-gradient(to right, rgba(165, 63, 91, 1), rgba(89, 38, 81, 1));
-  border: 2px solid #843557;
+  /* border: 2px solid #843557; */
   z-index: 10;
   overflow: hidden;
   padding: 2vh;
