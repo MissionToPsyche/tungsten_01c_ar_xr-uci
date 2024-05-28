@@ -12,6 +12,8 @@ const StarryBackground = () => {
 	const {
     refreshRate,
     } = useContext(GlobalStateContext);
+		
+		const speed = calculateSpeedByRefreshRate(refreshRate.refreshRate);
 
   useEffect(() => {
     let scene, camera, renderer, geom;
@@ -81,10 +83,10 @@ const StarryBackground = () => {
     }
 
     function animate() {
-			const speed = calculateSpeedByRefreshRate(refreshRate.refreshRate);
+			
       for (let line_index = 0; line_index < LINE_COUNT; line_index++) {
-				va[2 * line_index] += speed * 1.25;
-				va[2 * line_index + 1] += (speed);
+				va[2 * line_index] += speed - (speed/1.15);
+				va[2 * line_index + 1] += (speed) - (speed/1.1);
 				
 				pa[6 * line_index + 2] += va[2 * line_index];
 				pa[6 * line_index + 5] += va[2 * line_index + 1];

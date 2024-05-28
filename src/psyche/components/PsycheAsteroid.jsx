@@ -8,15 +8,16 @@ import { ROTATION_SPEED} from './constants';
 import ItemHotspots from './Buttons/ItemHotspot';
 import { useContext } from 'react';
 import {GlobalStateContext} from '../utils/useContext';
+import { calculateSpeedByRefreshRate } from '../utils/useCameraZoom';
 
 
 
 const PsycheAsteroid =  ({ psycheRef, visible, distanceFactor }) => {
 	
 	const obj = useLoader(OBJLoader, '	/assets/psyche.obj')
-	const {isAsteroidSpinning, isModalOpen, showNotebook, showTravelAnimation, showHotspot, setShowHotspot,}= useContext(GlobalStateContext);
+	const {isAsteroidSpinning, isModalOpen, showNotebook, showTravelAnimation, showHotspot, setShowHotspot, refreshRate}= useContext(GlobalStateContext);
     
-
+	const speed = calculateSpeedByRefreshRate(refreshRate.refreshRate);
 	const geometry = useMemo(() => {
 		let g;
 		obj.traverse((c) => {
@@ -32,7 +33,7 @@ const PsycheAsteroid =  ({ psycheRef, visible, distanceFactor }) => {
 	
 	useFrame(() => {
 		if (isAsteroidSpinning){
-			psycheRef.current.rotation.z += 0.005;
+			psycheRef.current.rotation.z += speed/60;
 			
 		}
 		
