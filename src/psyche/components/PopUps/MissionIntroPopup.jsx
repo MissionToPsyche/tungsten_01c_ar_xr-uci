@@ -18,12 +18,12 @@ function MissionIntroPopup({ btnTextLaunch,title, message, onClose, onNext, isLa
           <img src={robotImage} alt="Robot Character" />
         </Box>
         <Box className="text-content">
-          <Typography>
-            <Box sx={{fontWeight:'bold'}}>
+          <Typography gutterBottom>
+            <Box>
               <h1>Psyche Bot</h1>
             </Box>
           </Typography>
-          <Typography>{typedMessage}</Typography>
+          <Typography mb={2}>{typedMessage}</Typography>
           {isLast ? (
             <button onClick={onClose}>Excited!</button>
           ) : (
