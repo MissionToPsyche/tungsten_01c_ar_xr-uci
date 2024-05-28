@@ -334,7 +334,6 @@
   font-family: 'Knockout', sans-serif;
   font-weight: 300;
   font-size: 27vw;
-  color: #fff;
   @media (max-width: 768px) {
     font-size: 25vw;
   }
@@ -430,56 +429,10 @@
 }
 
 button {
-  font-family: "Roboto", sans-serif;
+  font-family: "Jersey 10", sans-serif;
+  color: #a53f5b;
+  border-radius: 5px;
 }
-/* .mission-intro-popup {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90%;
-  max-width: 500px;
-  background: white;
-  background: linear-gradient(to bottom right, #ffffff, #f9f9f9);
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  font-family: 'Helvetica Neue', Arial, sans-serif;
-  z-index: 10;
-  transition: all 0.3s ease;
-
-
-.mission-intro-popup h1 {
-  color: #333;
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 15px;
-}
-
-.mission-intro-popup p {
-  color: #666;
-  font-size: 16px;
-  line-height: 1.5;
-  margin-bottom: 20px;
-}
-
-.mission-intro-popup button {
-  background-color: #007bff;
-  color: white;
-  padding: 12px 24px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-}
-
-.mission-intro-popup button:hover {
-  background-color: #0056b3;
-} */
-
-
 
 .jersey-10-regular {
   font-family: "Jersey 10", sans-serif;
@@ -492,9 +445,6 @@ button {
   src: url('../assets/font_knockout.otf') format('opentype');
 }
 
-body {
-  color: rgba(89, 38, 81, 1)
-}
 .mission-intro-popup {
   display: flex;
   position: absolute;
@@ -502,15 +452,13 @@ body {
   left: 50%;
   transform: translateX(-50%);
   width: 70%;
-  /* min-height: 100px;
-  max-height: 20%; */
   height: 20vh; 
-  background: rgb(91, 91, 117);
-  border: 2.5px solid #4d1678;
-  box-shadow: 0 4px 8px rgba(92, 47, 255, 0.2);
+  background: #302144;
+  border: 2px solid #a53f5b;
   z-index: 10;
   overflow: hidden;
   padding: 2vh;
+  border-radius: 10px;
 }
 
 .popup-content {
@@ -523,14 +471,10 @@ body {
 .character-image img {
   display: flex;
   image-rendering: pixelated;
-  /*margin-left: 7px;
-  margin-bottom: 16px;
-  margin-top: 16px;*/
   width: 3vw;
-  /*height: auto;*/
   object-fit: contain;
-  border: 2px solid rgba(89, 38, 81, 1);
-  text-shadow: 20px 20px 20px rgba(89, 38, 81, 0.3);
+  border: 2px solid #a53f5b;
+  border-radius: 5px;
   
   @media (max-width: 768px) {
     width: 30vw;
@@ -551,11 +495,8 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  /* width: 100%;
-  height: 100%; */
   color: rgba(255, 255, 255, 0.849);
   letter-spacing: 2px;
-  box-shadow: 0 4px 8px rgba(92, 47, 255, 0.2);
 }
 
 .mission-intro-popup h1 {
@@ -578,8 +519,7 @@ body {
 @media (max-width: 768px) {
   .mission-intro-popup {
     width: 80%; /* Increase the width for mobile to maintain the rectangle shape */
-    /* Remove min-height or adjust as needed so it does not force the box to become square */
-    min-height: 80px; /* Adjust height as necessary */
+    min-height: 80px;
   }
 
   .character-image img {
@@ -588,7 +528,7 @@ body {
   }
 
   .text-content  {  
-    padding: 10px; /* Smaller padding for text content on mobile */
+    padding: 10px ; /* Smaller padding for text content on mobile */
     justify-content: space-between;
   }
 

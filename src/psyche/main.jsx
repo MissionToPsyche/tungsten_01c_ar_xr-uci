@@ -139,7 +139,7 @@ function PsycheApp(refreshRate) {
     { title: "Tutorial", message: "We made it! That's my home! Thanks so much for bringing me back! Now let me show you around!" },
     { title: "Movement", message: "To traverse through space you can swipe to move, pitch to zoom and double click to pause. Give it a try!" },
     { title: "Mission Goal", message: "Try to collect all fun facts about Psyche and learn spacecraft specifics." },
-    { title: "Notebook", message: "The notebook on the top left will gather all your explorations and you can bring it back to earth!" },
+    { title: "Notebook", message: "The notebook on the top left will gather all your explorations and you can bring it back to Earth!" },
     //{ title: "Notebook", message: "Currently you don't have any facts. Go out and collect some by exploring the spacecraft or Pysche Asteroid!" }
 ];
 
