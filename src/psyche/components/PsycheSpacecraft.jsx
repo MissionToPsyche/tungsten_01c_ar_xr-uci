@@ -11,11 +11,13 @@ import { useTimer } from 'use-timer';
 import SpacecraftHotspots from './Buttons/SpacecraftHotspot';
 
 import { spacecraftFacts, sumPercentage } from './constants';
+import { calculateSpeedByRefreshRate } from '../utils/useCameraZoom';
 
 
 const PsycheSpacecraft = ({ scref, target, distanceFactor }) => {
 	const [model, setModel] = useState(null);
 	const [materials, setMaterials] = useState(null);
+	
   
 	// Load the MTL file
 	const loadedMaterials = useLoader(MTLLoader, '/assets/spacecraft.mtl');
@@ -51,8 +53,12 @@ const PsycheSpacecraft = ({ scref, target, distanceFactor }) => {
 		isLaunched, 
 		progressValue, 
 		setProgressValue ,
-		isStartClicked
+		isStartClicked,
+		refreshRate
 	} = useContext(GlobalStateContext);
+	
+	const speed = calculateSpeedByRefreshRate(refreshRate.refreshRate);
+
 
 	const geometry = useMemo(() => {
 		if (model) {
@@ -74,11 +80,12 @@ const PsycheSpacecraft = ({ scref, target, distanceFactor }) => {
 	
 	useFrame(({clock}) => {
 		if (isMoving) {
+
 			start();
 			//scref.current.position.x = Math.sin(clock.getElapsedTime()*0.8) * 10
 			//scref.current.position.z = Math.cos(clock.getElapsedTime()*0.8) * 10
-			scref.current.position.x = Math.sin(time*0.8) * 10
-			scref.current.position.z = Math.cos(time*0.8) * 10
+			scref.current.position.x = Math.sin(time * speed * 2) * 10
+			scref.current.position.z = Math.cos(time * speed * 2) * 10
 			
 			const direction = new THREE.Vector3();
 			target.current.getWorldPosition(direction);
