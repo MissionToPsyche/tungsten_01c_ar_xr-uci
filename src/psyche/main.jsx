@@ -128,7 +128,7 @@ function PsycheApp(refreshRate) {
     { title: "", message: "Hey... I'm Psyche Bot. I'm lost … I … I miss my home." },
     {title: "", message: "You wanna help me find my way back? That's really nice of you... but I'm not sure if we'll ever make it." },
     { title: "", message: "Psyche is a mysterious asteroid that no one has ever visited before. Psyche is about three times farther away from the Sun than is Earth." },
-    { title: "", message: "Psyche is different!!! You’ve never seen an asteroid that is as metal-rich as Psyche." },
+    { title: "", message: "Psyche is different!!! I’ve never seen an asteroid that is as metal-rich as Psyche." },
     { title: "", message: "I guess we can try... but I'm not very good at this space stuff." },
     { title: "Tool Box", message: "Hey, it'd be awesome if humans could recognize my home! Here are some tools we will need for our exploration."},
     { title: "" , message: "Click on them to add them to the spacecraft! When you are done, press \"Finish\"."},

@@ -430,8 +430,9 @@
 
 button {
   font-family: "Jersey 10", sans-serif;
+  padding-top: 2px;
   color: #a53f5b;
-  border-radius: 5px;
+  /* border-radius: 5px; */
 }
 
 .jersey-10-regular {
@@ -453,8 +454,8 @@ button {
   transform: translateX(-50%);
   width: 70%;
   height: 20vh; 
-  background: #302144;
-  border: 2px solid #a53f5b;
+  background: #843557;
+  border: 2px solid #843557;
   z-index: 10;
   overflow: hidden;
   padding: 2vh;
@@ -473,7 +474,7 @@ button {
   image-rendering: pixelated;
   width: 3vw;
   object-fit: contain;
-  border: 2px solid #a53f5b;
+  border: 1px solid #a53f5b;
   border-radius: 5px;
   
   @media (max-width: 768px) {
@@ -508,10 +509,21 @@ button {
   font-family: 'Jersey 10', sans-serif; /* Ensure all text has the pixelated font */
   font-size: 2vw;
 }
+
 .mission-intro-popup button {
   font-family: 'Jersey 10', sans-serif;
   height: 30%;
   font-size: 2vw;
+  /* background-color: white; */
+  color: #833557;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.mission-intro-popup button:disabled {
+  display: block;
 }
 
 
