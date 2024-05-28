@@ -7,9 +7,8 @@ import { useContext } from "react";
 import { hotspots, sumPercentage } from '../constants';
 import { Html } from '@react-three/drei';
 
-const ItemHotspot = ({ position, scale, meshRotation, boxImage, imageUrl, title, distanceFactor }) => {
+const ItemHotspot = ({ position, title, distanceFactor }) => {
     const meshRef = useRef();
-    const texture = useLoader(TextureLoader, imageUrl);
     
     const { currentFactIndex, setCurrentFactIndex, factList, toolList, progressValue, setProgressValue, setIsModalOpen} = useContext(GlobalStateContext);
     

@@ -1,10 +1,17 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useContext } from 'react';
 import * as THREE from 'three';
+import {GlobalStateContext} from '../utils/useContext';
+import { calculateSpeedByRefreshRate } from '../utils/useCameraZoom';
+
 import './TravelStars.css'; // Ensure you have the corresponding CSS file
 
 
 const StarryBackground = () => {
   const mountRef = useRef(null);
+	
+	const {
+    refreshRate,
+    } = useContext(GlobalStateContext);
 
   useEffect(() => {
     let scene, camera, renderer, geom;
@@ -74,9 +81,10 @@ const StarryBackground = () => {
     }
 
     function animate() {
+			const speed = calculateSpeedByRefreshRate(refreshRate.refreshRate);
       for (let line_index = 0; line_index < LINE_COUNT; line_index++) {
-				va[2 * line_index] += 0.03;
-				va[2 * line_index + 1] += 0.025;
+				va[2 * line_index] += speed * 1.25;
+				va[2 * line_index + 1] += (speed);
 				
 				pa[6 * line_index + 2] += va[2 * line_index];
 				pa[6 * line_index + 5] += va[2 * line_index + 1];

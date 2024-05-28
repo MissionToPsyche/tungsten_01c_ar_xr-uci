@@ -2,38 +2,23 @@
 export const ROTATION_SPEED = 0.0002 // Rotation speed that will be for the asteroid and blink icon
 
 // Hotspots that will be displayed on the asteroid, adding more hotspot here
+
 export const hotspots = [
 	{
 		position: [0, 1, 1.9],
 		title: 'Scientific Interest',
-		scale: [0.05, 0.3, 0.3],
-		meshRotation: [0, 5, 0.5],
-		boxImage: '/assets/iron_box.png',
-		imageUrl: '/assets/nickle_icon.png',
 	},
 	{
 		position: [-2.4, -.5, -.9],
 		title: 'The orbit',
-		scale: [0.05, 0.3, 0.3],
-		meshRotation: [0, 2.3, -0.33],
-		boxImage: '/assets/calendar_box.png',
-		imageUrl: '/assets/calendar_icon.png',
 	},
 	{
 		position: [1.8, -1, -1],
 		title: 'Size',
-		scale: [0.05, 0.3, 0.3],
-		meshRotation: [0, 0.4, -0.2],
-		boxImage: '/assets/planet_core_box.png',
-		imageUrl: '/assets/planet_core_icon.png',
 	},
 	{
 		position: [-0.4, 2.1, -1.3],
 		title: 'Formation',
-		scale: [0.05, 0.3, 0.3],
-		meshRotation: [0, 1.7, 0.8],
-		boxImage: '/assets/size_box.png',
-		imageUrl: '/assets/size_icon.png',
 	},
 ]
 

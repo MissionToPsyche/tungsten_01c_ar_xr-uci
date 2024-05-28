@@ -1,13 +1,16 @@
 import * as THREE from 'three';
 
-const calculateSpeedByRefreshRate = (refreshRate) => {
+export const calculateSpeedByRefreshRate = (refreshRate) => {
   
-  //refreshRate = 50
+  if (refreshRate < 25){
+    refreshRate = 25
+  }
+  else if (refreshRate > 90){
+    refreshRate = 90
+  }
   const base_speed = 1 / refreshRate
 
   const adjustment_factor = 540/ ((refreshRate + 60 + 50)/3)
-  console.log("adjustment_factor", adjustment_factor)
-  console.log("base_speed", base_speed )
   
   const speed = base_speed * adjustment_factor * 2
 
