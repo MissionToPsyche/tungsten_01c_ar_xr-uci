@@ -454,12 +454,12 @@ button {
   transform: translateX(-50%);
   width: 70%;
   height: 20vh; 
-  background: #843557;
+  background: linear-gradient(to right, rgba(165, 63, 91, 1), rgba(89, 38, 81, 1));
   border: 2px solid #843557;
   z-index: 10;
   overflow: hidden;
   padding: 2vh;
-  border-radius: 10px;
+  border-radius: 6px;
 }
 
 .popup-content {
@@ -497,7 +497,6 @@ button {
   flex-direction: column;
   justify-content: space-between;
   color: rgba(255, 255, 255, 0.849);
-  letter-spacing: 2px;
 }
 
 .mission-intro-popup h1 {
@@ -508,6 +507,7 @@ button {
 .mission-intro-popup p{
   font-family: 'Jersey 10', sans-serif; /* Ensure all text has the pixelated font */
   font-size: 2vw;
+  line-height: 1.1; /* Adjust the line spacing */
 }
 
 .mission-intro-popup button {
@@ -517,7 +517,7 @@ button {
   /* background-color: white; */
   color: #833557;
   border: none;
-  border-radius: 5px;
+  border-radius: 2px;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
 }
